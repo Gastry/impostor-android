@@ -1,0 +1,1 @@
+# Data module consumer rules.

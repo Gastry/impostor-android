@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name">Schattenrunde</string>
+    <string name="new_game">Neues Spiel</string>
+    <string name="home_tagline">Ein Handy. Ein Impostor. Reines Chaos.</string>
+    <string name="home_stats_title">Ubersicht</string>
+    <string name="home_stats_games_played">Gespielte Runden: %1$d</string>
+    <string name="home_stats_last_players">Letzte Spielerzahl: %1$d</string>
+
+    <string name="how_to_play_title">So spielt man</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="history_title">Verlauf</string>
+    <string name="credits_title">Credits</string>
+
+    <string name="setup_title">Runde einrichten</string>
+    <string name="setup_subtitle">Schnell einstellen und Handy weitergeben.</string>
+    <string name="setup_players_count">Spieler: %1$d</string>
+    <string name="setup_impostor_count_title">Impostors</string>
+    <string name="setup_impostor_count_item">%1$d Impostor(s)</string>
+    <string name="setup_categories_title">Kategorien</string>
+    <string name="setup_advanced_options">Erweiterte Optionen</string>
+    <string name="setup_round_time_title">Empfohlene Zeit: %1$d Min</string>
+    <string name="setup_no_extra_hints">Keine Extra Hinweise</string>
+    <string name="setup_show_animation">Reveal Animation anzeigen</string>
+    <string name="setup_haptics">Haptik aktivieren</string>
+    <string name="setup_avoid_recent">Aktuelle Worte vermeiden</string>
+    <string name="setup_quick_mode">Schnellmodus (auto verstecken)</string>
+    <string name="setup_custom_names">Eigene Namen</string>
+    <string name="setup_player_name_label">Name Spieler %1$d</string>
+    <string name="setup_start_button">Reveal starten</string>
+    <string name="setup_error_title">Runde kann nicht starten</string>
+
+    <string name="reveal_title">Privates Reveal</string>
+    <string name="reveal_pass_to_player">Gib das Handy an %1$s</string>
+    <string name="reveal_keep_private">Sicherstellen dass niemand schaut.</string>
+    <string name="reveal_hold_to_see">Gedruckt halten zum Anzeigen</string>
+    <string name="reveal_hold_hint">Kurz gedruckt halten</string>
+    <string name="reveal_word_title">Dein Wort ist</string>
+    <string name="reveal_impostor_title">Du bist Impostor</string>
+    <string name="reveal_impostor_hint">Unauffallig bleiben und Wort erraten.</string>
+    <string name="reveal_hide_and_pass">Verbergen und weitergeben</string>
+
+    <string name="round_ready_title">Alles bereit</string>
+    <string name="round_ready_instructions">Sprecht der Reihe nach. Findet den Impostor. Wenn du Impostor bist, tausche gut und finde das Wort.</string>
+    <string name="round_ready_suggested_time">Empfohlene Zeit: %1$d Minuten</string>
+    <string name="round_ready_finish_button">Runde beenden</string>
+    <string name="round_ready_new_config_button">Neue Konfiguration</string>
+
+    <string name="result_title">Rundenergebnis</string>
+    <string name="result_word_label">Geheimes Wort</string>
+    <string name="result_impostor_label">Impostor(s): %1$s</string>
+    <string name="result_winner_title">Wer hat gewonnen?</string>
+    <string name="result_rematch_button">Nochmal mit gleichen Einstellungen</string>
+    <string name="result_new_setup_button">Neue Konfiguration</string>
+
+    <string name="winner_civilians">Zivilisten</string>
+    <string name="winner_impostors">Impostor(s)</string>
+    <string name="winner_undecided">Unentschieden</string>
+
+    <string name="how_step_1">1) Spielerzahl und Kategorien wahlen. Start drucken.</string>
+    <string name="how_step_2">2) Handy weitergeben. Jeder halt gedruckt fur sein Geheimnis.</string>
+    <string name="how_step_3">3) Diskutieren, abstimmen, Impostor aufdecken.</string>
+    <string name="how_faq_title">Kurze FAQ</string>
+    <string name="how_faq_q1">Wie viele Spieler?</string>
+    <string name="how_faq_a1">Von 3 bis 12. Zwei Impostors ab 6 Spielern.</string>
+    <string name="how_faq_q2">Offline spielbar?</string>
+    <string name="how_faq_a2">Ja. App funktioniert komplett offline.</string>
+    <string name="how_faq_q3">Wie vermeiden wir Mitlesen?</string>
+    <string name="how_faq_a3">Hold to reveal nutzen und vor Weitergabe ausblenden.</string>
+
+    <string name="settings_theme_title">Design</string>
+    <string name="settings_language_title">Sprache</string>
+    <string name="settings_haptics">Haptik</string>
+    <string name="settings_reduced_motion">Bewegung reduzieren</string>
+    <string name="settings_show_instructions">Kurzanleitung anzeigen</string>
+    <string name="settings_avoid_recent">Aktuelle Worte vermeiden</string>
+    <string name="settings_show_animation">Reveal Animation</string>
+    <string name="settings_secure_screen">Sensible Bildschirme schutzen</string>
+    <string name="settings_clear_history">Verlauf loschen</string>
+    <string name="settings_reset_preferences">Einstellungen zurucksetzen</string>
+
+    <string name="theme_system">System</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+
+    <string name="language_system">System</string>
+    <string name="language_spanish">Spanisch</string>
+    <string name="language_english">Englisch</string>
+    <string name="language_french">Franzosisch</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_italian">Italienisch</string>
+    <string name="language_portuguese">Portugiesisch</string>
+    <string name="language_japanese">Japanisch</string>
+
+    <string name="history_empty">Noch keine Runden vorhanden.</string>
+    <string name="history_category_format">Kategorie: %1$s</string>
+    <string name="history_impostors_format">Impostor(s): %1$s</string>
+
+    <string name="credits_app_title">Uber Schattenrunde</string>
+    <string name="credits_app_body">Entwickelt fur schnelle Runden mit einem geteilten Handy.</string>
+    <string name="credits_licenses_title">Lizenzen</string>
+    <string name="credits_licenses_body">Erstellt mit Android, Kotlin, Jetpack Compose, Material 3 und Open Source Bibliotheken.</string>
+    <string name="credits_privacy_hint">Keine Konten, keine Werbung, kein Tracking. Alles bleibt auf dem Gerat.</string>
+
+    <string name="category_food">Essen</string>
+    <string name="category_animals">Tiere</string>
+    <string name="category_professions">Berufe</string>
+    <string name="category_objects">Objekte</string>
+    <string name="category_places">Orte</string>
+    <string name="category_movies_series">Filme und Serien</string>
+    <string name="category_sports">Sport</string>
+    <string name="category_countries_cities">Lander und Stadte</string>
+    <string name="category_nature">Natur</string>
+    <string name="category_general_knowledge">Allgemeinwissen</string>
+
+    <string name="error_generic">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
+    <string name="error_player_count">Spielerzahl muss zwischen 3 und 12 liegen.</string>
+    <string name="error_impostor_count">Impostor Anzahl ist ungultig fur diese Spielerzahl.</string>
+    <string name="error_categories_empty">Bitte mindestens eine Kategorie wahlen.</string>
+    <string name="error_round_time">Rundenzeit muss zwischen 3 und 20 Minuten liegen.</string>
+    <string name="error_not_enough_civilians">Mindestens zwei Nicht Impostors erforderlich.</string>
+    <string name="error_no_words_for_category">Keine Worte fur gewahlte Kategorien verfugbar.</string>
+    <string name="error_no_words_recent_filter">Filter fur aktuelle Worte hat alles entfernt. Deaktivieren oder mehr Kategorien wahlen.</string>
+
+    <string name="ok">OK</string>
+    <string name="cd_back">Zuruck</string>
+    <string name="cd_close">Schliessen</string>
+    <string name="back_to_home">Zur Startseite</string>
+</resources>

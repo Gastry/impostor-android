@@ -1,0 +1,15 @@
+# Ignore Gradle and build outputs
+.gradle/
+.gradle-user-home/
+**/build/
+
+# IDE
+.idea/
+*.iml
+
+# Local machine config
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,14 @@
+<resources>
+    <style name="Theme.ImpostorParty" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
+
+    <style name="Theme.ImpostorParty.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_mark</item>
+        <item name="postSplashScreenTheme">@style/Theme.ImpostorParty</item>
+    </style>
+</resources>

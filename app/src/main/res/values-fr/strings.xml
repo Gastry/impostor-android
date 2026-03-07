@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name">Passage Ombre</string>
+    <string name="new_game">Nouvelle partie</string>
+    <string name="home_tagline">Un telephone. Un imposteur. Chaos garanti.</string>
+    <string name="home_stats_title">Resume de la table</string>
+    <string name="home_stats_games_played">Parties jouees : %1$d</string>
+    <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
+
+    <string name="how_to_play_title">Comment jouer</string>
+    <string name="settings_title">Parametres</string>
+    <string name="history_title">Historique</string>
+    <string name="credits_title">Credits</string>
+
+    <string name="setup_title">Configurer la manche</string>
+    <string name="setup_subtitle">Configuration rapide, puis passez le telephone.</string>
+    <string name="setup_players_count">Joueurs : %1$d</string>
+    <string name="setup_impostor_count_title">Imposteurs</string>
+    <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
+    <string name="setup_categories_title">Categories</string>
+    <string name="setup_advanced_options">Options avancees</string>
+    <string name="setup_round_time_title">Temps conseille : %1$d min</string>
+    <string name="setup_no_extra_hints">Sans indices supplementaires</string>
+    <string name="setup_show_animation">Afficher animation</string>
+    <string name="setup_haptics">Activer haptique</string>
+    <string name="setup_avoid_recent">Eviter mots recents</string>
+    <string name="setup_quick_mode">Mode rapide (masquage auto)</string>
+    <string name="setup_custom_names">Noms personnalises</string>
+    <string name="setup_player_name_label">Nom joueur %1$d</string>
+    <string name="setup_start_button">Commencer revelation</string>
+    <string name="setup_error_title">Impossible de lancer la manche</string>
+
+    <string name="reveal_title">Revelation privee</string>
+    <string name="reveal_pass_to_player">Passez le telephone a %1$s</string>
+    <string name="reveal_keep_private">Assurez vous que personne ne regarde.</string>
+    <string name="reveal_hold_to_see">Maintenir pour reveler</string>
+    <string name="reveal_hold_hint">Gardez appuye un court instant</string>
+    <string name="reveal_word_title">Ton mot est</string>
+    <string name="reveal_impostor_title">Tu es imposteur</string>
+    <string name="reveal_impostor_hint">Fais semblant et devine le mot.</string>
+    <string name="reveal_hide_and_pass">Masquer et passer</string>
+
+    <string name="round_ready_title">Tout est pret</string>
+    <string name="round_ready_instructions">Parlez a tour de role. Trouvez imposteur. Si tu es imposteur, dissimule et decouvre le mot.</string>
+    <string name="round_ready_suggested_time">Temps conseille : %1$d minutes</string>
+    <string name="round_ready_finish_button">Terminer la manche</string>
+    <string name="round_ready_new_config_button">Nouvelle configuration</string>
+
+    <string name="result_title">Resultat</string>
+    <string name="result_word_label">Mot secret</string>
+    <string name="result_impostor_label">Imposteur(s) : %1$s</string>
+    <string name="result_winner_title">Qui a gagne ?</string>
+    <string name="result_rematch_button">Rejouer avec memes options</string>
+    <string name="result_new_setup_button">Nouvelle configuration</string>
+
+    <string name="winner_civilians">Civils</string>
+    <string name="winner_impostors">Imposteur(s)</string>
+    <string name="winner_undecided">Indecis</string>
+
+    <string name="how_step_1">1) Choisissez joueurs et categories. Appuyez sur demarrer.</string>
+    <string name="how_step_2">2) Passez le telephone. Chaque joueur maintient pour voir son secret.</string>
+    <string name="how_step_3">3) Discutez, votez, puis revelez imposteur.</string>
+    <string name="how_faq_title">FAQ rapide</string>
+    <string name="how_faq_q1">Combien de joueurs ?</string>
+    <string name="how_faq_a1">De 3 a 12 joueurs. Deux imposteurs a partir de 6 joueurs.</string>
+    <string name="how_faq_q2">Fonctionne hors ligne ?</string>
+    <string name="how_faq_a2">Oui. Application fonctionne 100%% hors ligne.</string>
+    <string name="how_faq_q3">Comment eviter les regards ?</string>
+    <string name="how_faq_a3">Utilisez maintenir pour reveler et masquez avant de passer.</string>
+
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_language_title">Langue</string>
+    <string name="settings_haptics">Haptique</string>
+    <string name="settings_reduced_motion">Reduire animations</string>
+    <string name="settings_show_instructions">Afficher instructions courtes</string>
+    <string name="settings_avoid_recent">Eviter mots recents</string>
+    <string name="settings_show_animation">Animation revelation</string>
+    <string name="settings_secure_screen">Proteger ecrans sensibles</string>
+    <string name="settings_clear_history">Effacer historique</string>
+    <string name="settings_reset_preferences">Reinitialiser preferences</string>
+
+    <string name="theme_system">Systeme</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+
+    <string name="language_system">Systeme</string>
+    <string name="language_spanish">Espagnol</string>
+    <string name="language_english">Anglais</string>
+    <string name="language_french">Francais</string>
+    <string name="language_german">Allemand</string>
+    <string name="language_italian">Italien</string>
+    <string name="language_portuguese">Portugais</string>
+    <string name="language_japanese">Japonais</string>
+
+    <string name="history_empty">Aucune manche pour le moment.</string>
+    <string name="history_category_format">Categorie : %1$s</string>
+    <string name="history_impostors_format">Imposteur(s) : %1$s</string>
+
+    <string name="credits_app_title">A propos de Passage Ombre</string>
+    <string name="credits_app_body">Concu pour manches rapides en presentiel avec un seul telephone.</string>
+    <string name="credits_licenses_title">Licences</string>
+    <string name="credits_licenses_body">Cree avec Android, Kotlin, Jetpack Compose, Material 3 et bibliotheques open source.</string>
+    <string name="credits_privacy_hint">Pas de compte, pas de pub, pas de suivi. Tout reste sur appareil.</string>
+
+    <string name="category_food">Nourriture</string>
+    <string name="category_animals">Animaux</string>
+    <string name="category_professions">Professions</string>
+    <string name="category_objects">Objets</string>
+    <string name="category_places">Lieux</string>
+    <string name="category_movies_series">Films et series</string>
+    <string name="category_sports">Sports</string>
+    <string name="category_countries_cities">Pays et villes</string>
+    <string name="category_nature">Nature</string>
+    <string name="category_general_knowledge">Culture generale</string>
+
+    <string name="error_generic">Une erreur est survenue. Reessayez.</string>
+    <string name="error_player_count">Le nombre de joueurs doit etre entre 3 et 12.</string>
+    <string name="error_impostor_count">Nombre imposteurs invalide pour ce groupe.</string>
+    <string name="error_categories_empty">Choisissez au moins une categorie.</string>
+    <string name="error_round_time">Le temps doit etre entre 3 et 20 minutes.</string>
+    <string name="error_not_enough_civilians">Laissez au moins deux non imposteurs.</string>
+    <string name="error_no_words_for_category">Aucun mot pour categories selectionnees.</string>
+    <string name="error_no_words_recent_filter">Le filtre mots recents a tout retire. Desactivez ou ajoutez categories.</string>
+
+    <string name="ok">OK</string>
+    <string name="cd_back">Retour</string>
+    <string name="cd_close">Fermer</string>
+    <string name="back_to_home">Retour accueil</string>
+</resources>

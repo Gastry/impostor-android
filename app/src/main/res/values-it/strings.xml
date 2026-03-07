@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name">Passo Ombra</string>
+    <string name="new_game">Nuova partita</string>
+    <string name="home_tagline">Un telefono. Un impostore. Caos puro.</string>
+    <string name="home_stats_title">Panoramica tavolo</string>
+    <string name="home_stats_games_played">Partite giocate: %1$d</string>
+    <string name="home_stats_last_players">Ultimo numero giocatori: %1$d</string>
+
+    <string name="how_to_play_title">Come si gioca</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="history_title">Cronologia</string>
+    <string name="credits_title">Crediti</string>
+
+    <string name="setup_title">Configura round</string>
+    <string name="setup_subtitle">Configura in pochi secondi e passa il telefono.</string>
+    <string name="setup_players_count">Giocatori: %1$d</string>
+    <string name="setup_impostor_count_title">Impostori</string>
+    <string name="setup_impostor_count_item">%1$d impostore/i</string>
+    <string name="setup_categories_title">Categorie</string>
+    <string name="setup_advanced_options">Opzioni avanzate</string>
+    <string name="setup_round_time_title">Tempo suggerito: %1$d min</string>
+    <string name="setup_no_extra_hints">Senza indizi extra</string>
+    <string name="setup_show_animation">Mostra animazione reveal</string>
+    <string name="setup_haptics">Abilita aptica</string>
+    <string name="setup_avoid_recent">Evita parole recenti</string>
+    <string name="setup_quick_mode">Modalita rapida (auto nascondi)</string>
+    <string name="setup_custom_names">Nomi personalizzati</string>
+    <string name="setup_player_name_label">Nome giocatore %1$d</string>
+    <string name="setup_start_button">Avvia reveal</string>
+    <string name="setup_error_title">Impossibile avviare il round</string>
+
+    <string name="reveal_title">Reveal privato</string>
+    <string name="reveal_pass_to_player">Passa il telefono a %1$s</string>
+    <string name="reveal_keep_private">Assicurati che nessun altro guardi.</string>
+    <string name="reveal_hold_to_see">Tieni premuto per vedere</string>
+    <string name="reveal_hold_hint">Tieni premuto un attimo</string>
+    <string name="reveal_word_title">La tua parola e</string>
+    <string name="reveal_impostor_title">Sei impostore</string>
+    <string name="reveal_impostor_hint">Mimetizzati e scopri la parola.</string>
+    <string name="reveal_hide_and_pass">Nascondi e passa</string>
+
+    <string name="round_ready_title">Tutto pronto</string>
+    <string name="round_ready_instructions">Parlate a turno. Scoprite impostore. Se sei impostore, bluffa e trova parola.</string>
+    <string name="round_ready_suggested_time">Tempo suggerito: %1$d minuti</string>
+    <string name="round_ready_finish_button">Termina round</string>
+    <string name="round_ready_new_config_button">Nuova configurazione</string>
+
+    <string name="result_title">Risultato round</string>
+    <string name="result_word_label">Parola segreta</string>
+    <string name="result_impostor_label">Impostore/i: %1$s</string>
+    <string name="result_winner_title">Chi ha vinto?</string>
+    <string name="result_rematch_button">Rivincita con stesse impostazioni</string>
+    <string name="result_new_setup_button">Nuova configurazione</string>
+
+    <string name="winner_civilians">Civili</string>
+    <string name="winner_impostors">Impostori</string>
+    <string name="winner_undecided">Indeciso</string>
+
+    <string name="how_step_1">1) Scegli giocatori e categorie. Premi avvia.</string>
+    <string name="how_step_2">2) Passate telefono. Ogni giocatore tiene premuto per segreto.</string>
+    <string name="how_step_3">3) Discutete, votate e scoprite impostore.</string>
+    <string name="how_faq_title">FAQ rapida</string>
+    <string name="how_faq_q1">Quanti giocatori?</string>
+    <string name="how_faq_a1">Da 3 a 12 giocatori. Due impostori da 6 giocatori in su.</string>
+    <string name="how_faq_q2">Si puo giocare offline?</string>
+    <string name="how_faq_a2">Si. App funziona completamente offline.</string>
+    <string name="how_faq_q3">Come evitiamo occhi indiscreti?</string>
+    <string name="how_faq_a3">Usa reveal con pressione prolungata e nascondi prima di passare.</string>
+
+    <string name="settings_theme_title">Tema</string>
+    <string name="settings_language_title">Lingua</string>
+    <string name="settings_haptics">Aptica</string>
+    <string name="settings_reduced_motion">Riduci movimento</string>
+    <string name="settings_show_instructions">Mostra istruzioni brevi</string>
+    <string name="settings_avoid_recent">Evita parole recenti</string>
+    <string name="settings_show_animation">Animazione reveal</string>
+    <string name="settings_secure_screen">Proteggi schermate sensibili</string>
+    <string name="settings_clear_history">Cancella cronologia</string>
+    <string name="settings_reset_preferences">Ripristina preferenze</string>
+
+    <string name="theme_system">Sistema</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_dark">Scuro</string>
+
+    <string name="language_system">Sistema</string>
+    <string name="language_spanish">Spagnolo</string>
+    <string name="language_english">Inglese</string>
+    <string name="language_french">Francese</string>
+    <string name="language_german">Tedesco</string>
+    <string name="language_italian">Italiano</string>
+    <string name="language_portuguese">Portoghese</string>
+    <string name="language_japanese">Giapponese</string>
+
+    <string name="history_empty">Nessun round per ora.</string>
+    <string name="history_category_format">Categoria: %1$s</string>
+    <string name="history_impostors_format">Impostore/i: %1$s</string>
+
+    <string name="credits_app_title">Informazioni su Passo Ombra</string>
+    <string name="credits_app_body">Progettata per round veloci dal vivo con un solo telefono condiviso.</string>
+    <string name="credits_licenses_title">Licenze</string>
+    <string name="credits_licenses_body">Sviluppata con Android, Kotlin, Jetpack Compose, Material 3 e librerie open source.</string>
+    <string name="credits_privacy_hint">Nessun account, nessuna pubblicita, nessun tracciamento. Tutto resta su dispositivo.</string>
+
+    <string name="category_food">Cibo</string>
+    <string name="category_animals">Animali</string>
+    <string name="category_professions">Professioni</string>
+    <string name="category_objects">Oggetti</string>
+    <string name="category_places">Luoghi</string>
+    <string name="category_movies_series">Film e serie</string>
+    <string name="category_sports">Sport</string>
+    <string name="category_countries_cities">Paesi e citta</string>
+    <string name="category_nature">Natura</string>
+    <string name="category_general_knowledge">Cultura generale</string>
+
+    <string name="error_generic">Qualcosa e andato storto. Riprova.</string>
+    <string name="error_player_count">Numero giocatori tra 3 e 12.</string>
+    <string name="error_impostor_count">Numero impostori non valido per gruppo.</string>
+    <string name="error_categories_empty">Seleziona almeno una categoria.</string>
+    <string name="error_round_time">Tempo tra 3 e 20 minuti.</string>
+    <string name="error_not_enough_civilians">Lascia almeno due non impostori.</string>
+    <string name="error_no_words_for_category">Nessuna parola disponibile per categorie scelte.</string>
+    <string name="error_no_words_recent_filter">Filtro parole recenti ha svuotato pool. Disattiva o aggiungi categorie.</string>
+
+    <string name="ok">OK</string>
+    <string name="cd_back">Indietro</string>
+    <string name="cd_close">Chiudi</string>
+    <string name="back_to_home">Torna alla home</string>
+</resources>

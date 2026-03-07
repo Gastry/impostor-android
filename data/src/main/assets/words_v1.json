@@ -1,0 +1,84 @@
+{
+  "categories": [
+    {
+      "code": "food",
+      "words": [
+        "Pizza", "Paella", "Sushi", "Hamburger", "Croissant", "Tortilla", "Gazpacho", "Lasagna", "Ramen", "Tacos",
+        "Cheesecake", "Risotto", "Burrito", "Couscous", "Omelette", "Pancakes", "Donut", "Churros", "Ceviche", "Gnocchi",
+        "Salad", "Steak", "Falafel", "Hummus", "Sandwich", "Brownie", "Muffin", "Waffle", "Soup", "Ice cream"
+      ]
+    },
+    {
+      "code": "animals",
+      "words": [
+        "Lion", "Tiger", "Elephant", "Giraffe", "Dolphin", "Shark", "Panda", "Kangaroo", "Wolf", "Fox",
+        "Owl", "Eagle", "Penguin", "Koala", "Rabbit", "Bear", "Zebra", "Crocodile", "Octopus", "Whale",
+        "Horse", "Monkey", "Leopard", "Swan", "Hedgehog", "Turtle", "Peacock", "Falcon", "Otter", "Camel"
+      ]
+    },
+    {
+      "code": "professions",
+      "words": [
+        "Doctor", "Teacher", "Firefighter", "Police officer", "Chef", "Pilot", "Architect", "Journalist", "Scientist", "Photographer",
+        "Nurse", "Dentist", "Lawyer", "Programmer", "Electrician", "Mechanic", "Farmer", "Musician", "Actor", "Designer",
+        "Pharmacist", "Plumber", "Carpenter", "Astronaut", "Veterinarian", "Judge", "Translator", "Librarian", "Barber", "Receptionist"
+      ]
+    },
+    {
+      "code": "objects",
+      "words": [
+        "Laptop", "Chair", "Backpack", "Umbrella", "Clock", "Mirror", "Headphones", "Pillow", "Bottle", "Wallet",
+        "Scissors", "Notebook", "Camera", "Keyboard", "Spoon", "Toothbrush", "Suitcase", "Lantern", "Helmet", "Mug",
+        "Television", "Remote control", "Basket", "Pen", "Flashlight", "Map", "Compass", "Watch", "Blanket", "Bicycle"
+      ]
+    },
+    {
+      "code": "places",
+      "words": [
+        "Airport", "Library", "Museum", "Beach", "Mountain", "Cinema", "Restaurant", "Stadium", "Hospital", "School",
+        "Park", "Train station", "Hotel", "Theater", "Castle", "Zoo", "Supermarket", "Bakery", "Bridge", "Harbor",
+        "University", "Subway station", "Aquarium", "Market", "Temple", "Lighthouse", "Island", "Waterfall", "Desert", "Forest"
+      ]
+    },
+    {
+      "code": "movies_series",
+      "words": [
+        "Inception", "Titanic", "Avatar", "The Matrix", "Interstellar", "Gladiator", "The Godfather", "Toy Story", "The Lion King", "Jurassic Park",
+        "Breaking Bad", "Stranger Things", "Friends", "The Office", "Sherlock", "Game of Thrones", "The Crown", "Narcos", "The Mandalorian", "Wednesday",
+        "The Dark Knight", "Forrest Gump", "Coco", "Up", "Finding Nemo", "The Avengers", "Black Panther", "Spider-Man", "La La Land", "Inside Out"
+      ]
+    },
+    {
+      "code": "sports",
+      "words": [
+        "Football", "Basketball", "Tennis", "Swimming", "Volleyball", "Cycling", "Boxing", "Baseball", "Rugby", "Handball",
+        "Table tennis", "Athletics", "Surfing", "Skiing", "Snowboarding", "Golf", "Karate", "Judo", "Skateboarding", "Rowing",
+        "Climbing", "Badminton", "Ice hockey", "Formula 1", "Triathlon", "Sailing", "Gymnastics", "Fencing", "Cricket", "Water polo"
+      ]
+    },
+    {
+      "code": "countries_cities",
+      "words": [
+        "Spain", "France", "Italy", "Japan", "Brazil", "Canada", "Australia", "Mexico", "Germany", "Portugal",
+        "Madrid", "Barcelona", "Paris", "Rome", "Berlin", "Lisbon", "London", "Tokyo", "New York", "Buenos Aires",
+        "Cairo", "Seoul", "Bangkok", "Santiago", "Vienna", "Prague", "Dublin", "Oslo", "Helsinki", "Cape Town"
+      ]
+    },
+    {
+      "code": "nature",
+      "words": [
+        "River", "Volcano", "Rainbow", "Thunder", "Storm", "Glacier", "Valley", "Canyon", "Jungle", "Lake",
+        "Ocean", "Coral reef", "Moon", "Sunrise", "Sunset", "Cloud", "Snowflake", "Tree", "Flower", "Mushroom",
+        "Pebble", "Dune", "Pinecone", "Meadow", "Cliff", "Lagoon", "Earthquake", "Comet", "Aurora", "Waterfall"
+      ]
+    },
+    {
+      "code": "general_knowledge",
+      "words": [
+        "Internet", "Electricity", "Gravity", "Microscope", "Telescope", "Compass", "Alphabet", "Calendar", "Volcano", "Pyramid",
+        "Opera", "Chess", "Sculpture", "Painting", "Robot", "Satellite", "Planet", "Galaxy", "Library card", "Passport",
+        "Laboratory", "Democracy", "Symphony", "Festival", "Equation", "Atom", "Barcode", "Map", "Dictionary", "Museum guide"
+      ]
+    }
+  ]
+}
