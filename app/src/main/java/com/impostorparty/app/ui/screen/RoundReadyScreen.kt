@@ -49,14 +49,17 @@ fun RoundReadyScreen(
                         textAlign = TextAlign.Center,
                     )
 
+                    setup?.let {
+                        Text(
+                            text = stringResource(R.string.round_ready_clue_rounds, it.clueRounds),
+                            style = MaterialTheme.typography.titleMedium,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+
                     if (showQuickInstructions) {
                         setup?.let {
-                            Text(
-                                text = stringResource(R.string.round_ready_clue_rounds, it.clueRounds),
-                                style = MaterialTheme.typography.titleMedium,
-                                textAlign = TextAlign.Center,
-                                color = MaterialTheme.colorScheme.primary,
-                            )
                             Text(
                                 text = stringResource(R.string.round_ready_word_per_turn),
                                 style = MaterialTheme.typography.bodyLarge,

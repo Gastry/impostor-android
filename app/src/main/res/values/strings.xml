@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Impostors</string>
     <string name="setup_impostor_count_item">%1$d impostor(s)</string>
     <string name="setup_clue_rounds_title">Rounds per game</string>
+    <string name="setup_clue_rounds_support">Each player says 1 word per round. Recommended: 2 rounds.</string>
     <string name="setup_clue_round_option_1">1 round</string>
     <string name="setup_clue_round_option_2">2 rounds</string>
     <string name="setup_clue_round_option_3">3 rounds</string>
@@ -48,9 +49,9 @@
 
     <string name="round_ready_title">All set</string>
     <string name="round_ready_instructions">Each player says one word per round. After the agreed rounds, vote for the impostor.</string>
-    <string name="round_ready_clue_rounds">Rounds for this game: %1$d</string>
-    <string name="round_ready_word_per_turn">Each player says one single word per round.</string>
-    <string name="round_ready_vote_after_rounds">When you finish %1$d rounds, vote for the impostor.</string>
+    <string name="round_ready_clue_rounds">Fixed rounds for this game: %1$d</string>
+    <string name="round_ready_word_per_turn">Each player says 1 word in each round.</string>
+    <string name="round_ready_vote_after_rounds">After %1$d rounds, vote for the impostor.</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
     <string name="round_ready_new_config_button">New setup</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">One player is the impostor and does not know the word.</string>
     <string name="how_objective_line_3">The group must find the impostor. The impostor must blend in and guess the word.</string>
     <string name="how_preparation_title">Preparation</string>
-    <string name="how_preparation_line_1">Choose player count, categories and rounds (1, 2 or 3).</string>
+    <string name="how_preparation_line_1">Choose player count, categories, and the number of rounds: 1, 2, or 3.</string>
     <string name="how_preparation_line_2">The app assigns roles using one shared phone.</string>
     <string name="how_preparation_line_3">Each player checks in private, then passes the phone.</string>
     <string name="how_play_title">How the round works</string>
-    <string name="how_play_line_1">Start the round away from the phone.</string>
-    <string name="how_play_line_2">Each player says one single word related to the secret word.</string>
-    <string name="how_play_line_3">Do not change the number of rounds during the game.</string>
-    <string name="how_play_line_4">The impostor listens, adapts, and tries to deduce the word.</string>
+    <string name="how_play_line_1">Once everyone has seen their role, leave the phone aside.</string>
+    <string name="how_play_line_2">In each round, every player says exactly 1 word related to the secret word.</string>
+    <string name="how_play_line_3">Keep the same number of rounds until the vote.</string>
+    <string name="how_play_line_4">The app does not control spoken turns; the group does.</string>
     <string name="how_win_title">How to win</string>
-    <string name="how_win_line_1">After the agreed rounds, vote for who you think is the impostor.</string>
+    <string name="how_win_line_1">After all agreed rounds are complete, vote for who you think is the impostor.</string>
     <string name="how_win_line_2">If the group catches the impostor, civilians win.</string>
     <string name="how_win_line_3">If the group misses, the impostor wins.</string>
     <string name="how_win_line_4">Optional house rule: if caught, the impostor may draw by guessing the word (not enforced by the app).</string>

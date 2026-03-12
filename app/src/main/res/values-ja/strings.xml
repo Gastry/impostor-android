@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Impostor su</string>
     <string name="setup_impostor_count_item">%1$d impostor(s)</string>
     <string name="setup_clue_rounds_title">1ゲームの周回数</string>
+    <string name="setup_clue_rounds_support">各プレイヤーは1周ごとに1語だけ。おすすめは2周です。</string>
     <string name="setup_clue_round_option_1">1周</string>
     <string name="setup_clue_round_option_2">2周</string>
     <string name="setup_clue_round_option_3">3周</string>
@@ -48,8 +49,8 @@
 
     <string name="round_ready_title">All set</string>
     <string name="round_ready_instructions">各周で全員が1語だけ言います。決めた周回が終わったらインポスターに投票します。</string>
-    <string name="round_ready_clue_rounds">このゲームの周回数: %1$d</string>
-    <string name="round_ready_word_per_turn">各プレイヤーは1周ごとに1語だけ言います。</string>
+    <string name="round_ready_clue_rounds">このゲームで固定された周回数: %1$d</string>
+    <string name="round_ready_word_per_turn">各周で、各プレイヤーは1語だけ言います。</string>
     <string name="round_ready_vote_after_rounds">%1$d周が終わったらインポスターに投票してください。</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">1人だけインポスターで、ワードを知りません。</string>
     <string name="how_objective_line_3">市民はインポスターを見つけ、インポスターはワードを推理します。</string>
     <string name="how_preparation_title">準備</string>
-    <string name="how_preparation_line_1">人数、カテゴリ、そして1/2/3周のどれかを決めます。</string>
+    <string name="how_preparation_line_1">人数、カテゴリ、そして何周にするかを決めます。選べるのは1周、2周、3周です。</string>
     <string name="how_preparation_line_2">1台の共有スマホで役割が配られます。</string>
     <string name="how_preparation_line_3">各プレイヤーがこっそり確認して次の人へ渡します。</string>
     <string name="how_play_title">ラウンドの進め方</string>
-    <string name="how_play_line_1">ラウンド開始後はスマホを使いません。</string>
-    <string name="how_play_line_2">各プレイヤーは各周で秘密の単語に関連する1語だけを言います。</string>
-    <string name="how_play_line_3">ゲーム中に周回数は変更しません。</string>
-    <string name="how_play_line_4">インポスターは会話を聞いて、正体を隠しながらワードを推理します。</string>
+    <string name="how_play_line_1">全員が役を確認したら、スマホは脇に置きます。</string>
+    <string name="how_play_line_2">各周で、各プレイヤーは秘密の単語に関連する語をちょうど1つ言います。</string>
+    <string name="how_play_line_3">投票までは同じ周回数のまま進めます。</string>
+    <string name="how_play_line_4">話す順番そのものはアプリでは管理せず、グループで進行します。</string>
     <string name="how_win_title">勝敗</string>
-    <string name="how_win_line_1">決めた周回が終わったら、誰がインポスターか投票します。</string>
+    <string name="how_win_line_1">決めた周回数をすべて終えたら、誰がインポスターか投票します。</string>
     <string name="how_win_line_2">当てられたら市民側の勝ちです。</string>
     <string name="how_win_line_3">外したらインポスターの勝ちです。</string>
     <string name="how_win_line_4">任意ルール: 見つかってもワードを当てれば引き分けにできます（アプリ内では自動判定しません）。</string>

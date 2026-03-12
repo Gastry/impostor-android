@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Impostors</string>
     <string name="setup_impostor_count_item">%1$d Impostor(s)</string>
     <string name="setup_clue_rounds_title">Runden pro Partie</string>
+    <string name="setup_clue_rounds_support">Jede Person sagt 1 Wort pro Runde. Empfohlen: 2 Runden.</string>
     <string name="setup_clue_round_option_1">1 Runde</string>
     <string name="setup_clue_round_option_2">2 Runden</string>
     <string name="setup_clue_round_option_3">3 Runden</string>
@@ -48,9 +49,9 @@
 
     <string name="round_ready_title">Alles bereit</string>
     <string name="round_ready_instructions">Jede Person sagt pro Runde genau ein Wort. Nach den vereinbarten Runden stimmt ihr ab.</string>
-    <string name="round_ready_clue_rounds">Runden in dieser Partie: %1$d</string>
-    <string name="round_ready_word_per_turn">Jede Person sagt pro Runde genau ein Wort.</string>
-    <string name="round_ready_vote_after_rounds">Wenn ihr %1$d Runden abgeschlossen habt, stimmt fuer den Betrueger ab.</string>
+    <string name="round_ready_clue_rounds">Festgelegte Runden fuer diese Partie: %1$d</string>
+    <string name="round_ready_word_per_turn">In jeder Runde sagt jede Person 1 Wort.</string>
+    <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr fuer den Betrueger ab.</string>
     <string name="round_ready_suggested_time">Empfohlene Zeit: %1$d Minuten</string>
     <string name="round_ready_finish_button">Runde beenden</string>
     <string name="round_ready_new_config_button">Neue Konfiguration</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">Eine Person ist der Betrüger und kennt das Wort nicht.</string>
     <string name="how_objective_line_3">Die Gruppe muss den Betrüger finden. Der Betrüger muss sich tarnen und das Wort erraten.</string>
     <string name="how_preparation_title">Vorbereitung</string>
-    <string name="how_preparation_line_1">Waehle Spielerzahl, Kategorien und 1, 2 oder 3 Runden.</string>
+    <string name="how_preparation_line_1">Waehle Spielerzahl, Kategorien und wie viele Runden ihr spielt: 1, 2 oder 3.</string>
     <string name="how_preparation_line_2">Die App verteilt die Rollen mit nur einem gemeinsamen Handy.</string>
     <string name="how_preparation_line_3">Jede Person schaut heimlich und gibt das Handy weiter.</string>
     <string name="how_play_title">So läuft die Runde</string>
-    <string name="how_play_line_1">Die Runde startet ohne weitere Handy-Nutzung.</string>
-    <string name="how_play_line_2">Jede Person sagt pro Runde genau ein Wort zum geheimen Wort.</string>
-    <string name="how_play_line_3">Aendert die Rundenzahl nicht waehrend der Partie.</string>
-    <string name="how_play_line_4">Der Betrüger hört zu, passt sich an und versucht das Wort zu erraten.</string>
+    <string name="how_play_line_1">Wenn alle ihre Rolle gesehen haben, legt das Handy weg.</string>
+    <string name="how_play_line_2">In jeder Runde sagt jede Person genau 1 Wort zum geheimen Wort.</string>
+    <string name="how_play_line_3">Behaltet dieselbe Rundenzahl bis zur Abstimmung.</string>
+    <string name="how_play_line_4">Die App steuert die gesprochenen Zuege nicht; das macht die Gruppe.</string>
     <string name="how_win_title">So gewinnt man</string>
-    <string name="how_win_line_1">Nach den vereinbarten Runden stimmt ihr ab, wer der Betrueger ist.</string>
+    <string name="how_win_line_1">Wenn alle vereinbarten Runden vorbei sind, stimmt ihr ab, wer der Betrueger ist.</string>
     <string name="how_win_line_2">Wird der Betrüger enttarnt, gewinnen die Zivilen.</string>
     <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Betrüger.</string>
     <string name="how_win_line_4">Optionale Hausregel: Wird der Betrüger enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>

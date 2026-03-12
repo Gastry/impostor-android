@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Imposteurs</string>
     <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
     <string name="setup_clue_rounds_title">Tours par partie</string>
+    <string name="setup_clue_rounds_support">Chaque joueur dit 1 mot par tour. Recommande : 2 tours.</string>
     <string name="setup_clue_round_option_1">1 tour</string>
     <string name="setup_clue_round_option_2">2 tours</string>
     <string name="setup_clue_round_option_3">3 tours</string>
@@ -48,9 +49,9 @@
 
     <string name="round_ready_title">Tout est pret</string>
     <string name="round_ready_instructions">Chaque joueur dit un seul mot par tour. Apres les tours convenus, votez imposteur.</string>
-    <string name="round_ready_clue_rounds">Tours de cette partie : %1$d</string>
-    <string name="round_ready_word_per_turn">Chaque joueur dira un seul mot par tour.</string>
-    <string name="round_ready_vote_after_rounds">Quand vous avez fini les %1$d tours, votez pour imposteur.</string>
+    <string name="round_ready_clue_rounds">Tours fixes pour cette partie : %1$d</string>
+    <string name="round_ready_word_per_turn">A chaque tour, chaque joueur dit 1 mot.</string>
+    <string name="round_ready_vote_after_rounds">Apres %1$d tours, votez pour l imposteur.</string>
     <string name="round_ready_suggested_time">Temps conseille : %1$d minutes</string>
     <string name="round_ready_finish_button">Terminer la manche</string>
     <string name="round_ready_new_config_button">Nouvelle configuration</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">Un joueur est l’imposteur et ne connaît pas le mot.</string>
     <string name="how_objective_line_3">Le groupe doit trouver l’imposteur. L’imposteur doit se fondre et deviner le mot.</string>
     <string name="how_preparation_title">Préparation</string>
-    <string name="how_preparation_line_1">Choisissez joueurs, categories et 1, 2 ou 3 tours.</string>
+    <string name="how_preparation_line_1">Choisissez le nombre de joueurs, les categories et le nombre de tours : 1, 2 ou 3.</string>
     <string name="how_preparation_line_2">L’application distribue les rôles avec un seul téléphone.</string>
     <string name="how_preparation_line_3">Chaque joueur regarde en secret puis passe le téléphone.</string>
     <string name="how_play_title">Déroulement de la manche</string>
-    <string name="how_play_line_1">La manche commence hors du téléphone.</string>
-    <string name="how_play_line_2">Chaque joueur dit un seul mot lie au mot secret a chaque tour.</string>
-    <string name="how_play_line_3">Ne changez pas le nombre de tours pendant la partie.</string>
-    <string name="how_play_line_4">L’imposteur écoute, s’adapte et tente de deviner le mot.</string>
+    <string name="how_play_line_1">Quand tout le monde a vu son role, laissez le telephone de cote.</string>
+    <string name="how_play_line_2">A chaque tour, chaque joueur dit exactement 1 mot lie au mot secret.</string>
+    <string name="how_play_line_3">Gardez le meme nombre de tours jusqu au vote.</string>
+    <string name="how_play_line_4">L appli ne gere pas les tours de parole ; le groupe le fait.</string>
     <string name="how_win_title">Comment gagner</string>
-    <string name="how_win_line_1">Apres les tours convenus, votez pour imposteur presume.</string>
+    <string name="how_win_line_1">Quand tous les tours prevus sont termines, votez pour la personne que vous pensez etre l imposteur.</string>
     <string name="how_win_line_2">Si le groupe le trouve, les civils gagnent.</string>
     <string name="how_win_line_3">Si le groupe se trompe, l’imposteur gagne.</string>
     <string name="how_win_line_4">Variante optionnelle: s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>

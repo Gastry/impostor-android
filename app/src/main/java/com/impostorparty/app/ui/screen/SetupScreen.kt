@@ -130,6 +130,12 @@ fun SetupScreen(
                     text = stringResource(R.string.setup_clue_rounds_title),
                     style = MaterialTheme.typography.titleSmall,
                 )
+                Text(
+                    text = stringResource(R.string.setup_clue_rounds_support),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = PartyDimens.SpaceXs),
+                )
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()

@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Impostori</string>
     <string name="setup_impostor_count_item">%1$d impostore/i</string>
     <string name="setup_clue_rounds_title">Giri per partita</string>
+    <string name="setup_clue_rounds_support">Ogni giocatore dice 1 parola per giro. Consigliato: 2 giri.</string>
     <string name="setup_clue_round_option_1">1 giro</string>
     <string name="setup_clue_round_option_2">2 giri</string>
     <string name="setup_clue_round_option_3">3 giri</string>
@@ -48,9 +49,9 @@
 
     <string name="round_ready_title">Tutto pronto</string>
     <string name="round_ready_instructions">Ogni giocatore dice una sola parola per giro. Dopo i giri concordati, votate l impostore.</string>
-    <string name="round_ready_clue_rounds">Giri di questa partita: %1$d</string>
-    <string name="round_ready_word_per_turn">Ogni giocatore dira una sola parola per giro.</string>
-    <string name="round_ready_vote_after_rounds">Quando completate i %1$d giri, votate l impostore.</string>
+    <string name="round_ready_clue_rounds">Giri fissi per questa partita: %1$d</string>
+    <string name="round_ready_word_per_turn">In ogni giro, ogni giocatore dice 1 parola.</string>
+    <string name="round_ready_vote_after_rounds">Dopo %1$d giri, votate l impostore.</string>
     <string name="round_ready_suggested_time">Tempo suggerito: %1$d minuti</string>
     <string name="round_ready_finish_button">Termina round</string>
     <string name="round_ready_new_config_button">Nuova configurazione</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">Un giocatore è l’impostore e non conosce la parola.</string>
     <string name="how_objective_line_3">Il gruppo deve scoprire l’impostore. L’impostore deve mimetizzarsi e indovinare la parola.</string>
     <string name="how_preparation_title">Preparazione</string>
-    <string name="how_preparation_line_1">Scegli giocatori, categorie e 1, 2 o 3 giri.</string>
+    <string name="how_preparation_line_1">Scegli giocatori, categorie e quanti giri fare: 1, 2 o 3.</string>
     <string name="how_preparation_line_2">L’app assegna i ruoli con un solo telefono condiviso.</string>
     <string name="how_preparation_line_3">Ogni giocatore guarda in privato e passa il telefono.</string>
     <string name="how_play_title">Come si svolge il round</string>
-    <string name="how_play_line_1">Il round inizia lontano dal telefono.</string>
-    <string name="how_play_line_2">Ogni giocatore dice una sola parola legata alla parola segreta per ogni giro.</string>
-    <string name="how_play_line_3">Non cambiate il numero di giri durante la partita.</string>
-    <string name="how_play_line_4">L’impostore ascolta, si adatta e prova a dedurre la parola.</string>
+    <string name="how_play_line_1">Quando tutti hanno visto il proprio ruolo, mettete via il telefono.</string>
+    <string name="how_play_line_2">In ogni giro, ogni giocatore dice esattamente 1 parola legata alla parola segreta.</string>
+    <string name="how_play_line_3">Mantenete lo stesso numero di giri fino al voto.</string>
+    <string name="how_play_line_4">L app non controlla i turni parlati; li gestisce il gruppo.</string>
     <string name="how_win_title">Come si vince</string>
-    <string name="how_win_line_1">Dopo i giri concordati, votate chi pensate sia l impostore.</string>
+    <string name="how_win_line_1">Quando tutti i giri concordati sono finiti, votate chi pensate sia l impostore.</string>
     <string name="how_win_line_2">Se il gruppo lo individua, vincono i civili.</string>
     <string name="how_win_line_3">Se il gruppo sbaglia, vince l’impostore.</string>
     <string name="how_win_line_4">Variante opzionale: se scoperto, l’impostore può pareggiare indovinando la parola (non gestito dall’app).</string>

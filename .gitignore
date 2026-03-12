@@ -1,6 +1,7 @@
 # Ignore Gradle and build outputs
 .gradle/
 .gradle-user-home/
+build/
 **/build/
 
 # IDE
@@ -9,6 +10,11 @@
 
 # Local machine config
 local.properties
+.android-user-home/
+.kotlin/
+*.log
+*.keystore
+*.lock
 
 # OS
 .DS_Store

@@ -25,6 +25,8 @@ class NavigationSmokeTest {
     @Test
     fun home_to_setup_navigation() {
         startRoundSetupFromHome()
+        composeRule.onNodeWithText(text(R.string.setup_clue_rounds_support))
+            .assertIsDisplayed()
         composeRule.onNodeWithTag("setup_start_button").assertIsDisplayed()
     }
 

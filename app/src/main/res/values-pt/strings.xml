@@ -17,6 +17,7 @@
     <string name="setup_impostor_count_title">Impostores</string>
     <string name="setup_impostor_count_item">%1$d impostor(es)</string>
     <string name="setup_clue_rounds_title">Voltas por partida</string>
+    <string name="setup_clue_rounds_support">Cada jogador diz 1 palavra por volta. Recomendado: 2 voltas.</string>
     <string name="setup_clue_round_option_1">1 volta</string>
     <string name="setup_clue_round_option_2">2 voltas</string>
     <string name="setup_clue_round_option_3">3 voltas</string>
@@ -48,9 +49,9 @@
 
     <string name="round_ready_title">Tudo pronto</string>
     <string name="round_ready_instructions">Cada jogador diz uma palavra por volta. Ao terminar as voltas combinadas, votem no impostor.</string>
-    <string name="round_ready_clue_rounds">Voltas desta partida: %1$d</string>
-    <string name="round_ready_word_per_turn">Cada jogador dira uma unica palavra por volta.</string>
-    <string name="round_ready_vote_after_rounds">Quando completarem as %1$d voltas, votem no impostor.</string>
+    <string name="round_ready_clue_rounds">Voltas fixas desta partida: %1$d</string>
+    <string name="round_ready_word_per_turn">Em cada volta, cada jogador diz 1 palavra.</string>
+    <string name="round_ready_vote_after_rounds">Depois de %1$d voltas, votem no impostor.</string>
     <string name="round_ready_suggested_time">Tempo sugerido: %1$d minutos</string>
     <string name="round_ready_finish_button">Finalizar rodada</string>
     <string name="round_ready_new_config_button">Nova configuração</string>
@@ -71,16 +72,16 @@
     <string name="how_objective_line_2">Um jogador é o impostor e não conhece a palavra.</string>
     <string name="how_objective_line_3">O grupo precisa descobrir o impostor. O impostor deve disfarçar e adivinhar a palavra.</string>
     <string name="how_preparation_title">Preparação</string>
-    <string name="how_preparation_line_1">Escolha jogadores, categorias e 1, 2 ou 3 voltas.</string>
+    <string name="how_preparation_line_1">Escolha jogadores, categorias e quantas voltas havera: 1, 2 ou 3.</string>
     <string name="how_preparation_line_2">O app distribui os papéis com um único celular compartilhado.</string>
     <string name="how_preparation_line_3">Cada jogador vê em segredo e passa o celular.</string>
     <string name="how_play_title">Como a rodada funciona</string>
-    <string name="how_play_line_1">A rodada começa fora do celular.</string>
-    <string name="how_play_line_2">Cada jogador diz uma unica palavra ligada a palavra secreta em cada volta.</string>
-    <string name="how_play_line_3">Nao mudem o numero de voltas durante a partida.</string>
-    <string name="how_play_line_4">O impostor observa, se adapta e tenta deduzir a palavra.</string>
+    <string name="how_play_line_1">Quando todos tiverem visto o seu papel, deixem o celular de lado.</string>
+    <string name="how_play_line_2">Em cada volta, cada jogador diz exatamente 1 palavra ligada a palavra secreta.</string>
+    <string name="how_play_line_3">Mantenham o mesmo numero de voltas ate a votacao.</string>
+    <string name="how_play_line_4">A app nao controla os turnos falados; isso fica com o grupo.</string>
     <string name="how_win_title">Como ganhar</string>
-    <string name="how_win_line_1">Depois das voltas combinadas, votem em quem e o impostor.</string>
+    <string name="how_win_line_1">Quando todas as voltas combinadas terminarem, votem em quem acham que e o impostor.</string>
     <string name="how_win_line_2">Se o grupo acertar, os civis vencem.</string>
     <string name="how_win_line_3">Se o grupo errar, o impostor vence.</string>
     <string name="how_win_line_4">Variante opcional: se for descoberto, o impostor pode empatar ao adivinhar a palavra (não aplicado pelo app).</string>
