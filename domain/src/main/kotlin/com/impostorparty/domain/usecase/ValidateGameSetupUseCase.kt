@@ -1,4 +1,4 @@
-package com.impostorparty.domain.usecase
+﻿package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.GameSetup
 
@@ -12,6 +12,7 @@ enum class SetupValidationError {
     IMPOSTOR_COUNT_INVALID,
     CATEGORIES_EMPTY,
     ROUND_TIME_INVALID,
+    CLUE_ROUNDS_INVALID,
     NOT_ENOUGH_NON_IMPOSTORS,
 }
 
@@ -30,6 +31,9 @@ class ValidateGameSetupUseCase(
         }
         if (setup.suggestedRoundMinutes !in 3..20) {
             return SetupValidationResult.Invalid(SetupValidationError.ROUND_TIME_INVALID)
+        }
+        if (setup.clueRounds !in 1..3) {
+            return SetupValidationResult.Invalid(SetupValidationError.CLUE_ROUNDS_INVALID)
         }
         if (setup.playerCount - setup.impostorCount < 2) {
             return SetupValidationResult.Invalid(SetupValidationError.NOT_ENOUGH_NON_IMPOSTORS)

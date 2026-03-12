@@ -1,4 +1,4 @@
-package com.impostorparty.app
+﻿package com.impostorparty.app
 
 import android.app.Activity
 import android.view.WindowManager
@@ -71,6 +71,7 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                     onImpostorCountChanged = viewModel::updateImpostorCount,
                     onToggleCategory = viewModel::toggleCategory,
                     onRoundMinutesChanged = viewModel::updateRoundMinutes,
+                    onClueRoundsChanged = viewModel::updateClueRounds,
                     onNoExtraHintsChanged = viewModel::updateNoExtraHints,
                     onQuickModeChanged = viewModel::updateQuickMode,
                     onRevealAnimationChanged = viewModel::updateRevealAnimation,

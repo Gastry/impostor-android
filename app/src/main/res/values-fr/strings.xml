@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Passage Ombre</string>
+﻿<resources>
+    <string name="app_name">L’Imposteur</string>
     <string name="new_game">Nouvelle partie</string>
     <string name="home_tagline">Un telephone. Un imposteur. Chaos garanti.</string>
     <string name="home_stats_title">Resume de la table</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Joueurs : %1$d</string>
     <string name="setup_impostor_count_title">Imposteurs</string>
     <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
+    <string name="setup_clue_rounds_title">Tours par partie</string>
+    <string name="setup_clue_round_option_1">1 tour</string>
+    <string name="setup_clue_round_option_2">2 tours</string>
+    <string name="setup_clue_round_option_3">3 tours</string>
+    <string name="setup_clue_round_hint_1">1 tour : partie rapide, moins d informations.</string>
+    <string name="setup_clue_round_hint_2">2 tours : option la plus equilibree.</string>
+    <string name="setup_clue_round_hint_3">3 tours : plus de tension et deduction.</string>
     <string name="setup_categories_title">Categories</string>
     <string name="setup_advanced_options">Options avancees</string>
     <string name="setup_round_time_title">Temps conseille : %1$d min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Masquer et passer</string>
 
     <string name="round_ready_title">Tout est pret</string>
-    <string name="round_ready_instructions">Parlez a tour de role. Trouvez imposteur. Si tu es imposteur, dissimule et decouvre le mot.</string>
+    <string name="round_ready_instructions">Chaque joueur dit un seul mot par tour. Apres les tours convenus, votez imposteur.</string>
+    <string name="round_ready_clue_rounds">Tours de cette partie : %1$d</string>
+    <string name="round_ready_word_per_turn">Chaque joueur dira un seul mot par tour.</string>
+    <string name="round_ready_vote_after_rounds">Quand vous avez fini les %1$d tours, votez pour imposteur.</string>
     <string name="round_ready_suggested_time">Temps conseille : %1$d minutes</string>
     <string name="round_ready_finish_button">Terminer la manche</string>
     <string name="round_ready_new_config_button">Nouvelle configuration</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Civils</string>
     <string name="winner_impostors">Imposteur(s)</string>
     <string name="winner_undecided">Indecis</string>
-
-    <string name="how_step_1">1) Choisissez joueurs et categories. Appuyez sur demarrer.</string>
-    <string name="how_step_2">2) Passez le telephone. Chaque joueur maintient pour voir son secret.</string>
-    <string name="how_step_3">3) Discutez, votez, puis revelez imposteur.</string>
-    <string name="how_faq_title">FAQ rapide</string>
-    <string name="how_faq_q1">Combien de joueurs ?</string>
-    <string name="how_faq_a1">De 3 a 12 joueurs. Deux imposteurs a partir de 6 joueurs.</string>
-    <string name="how_faq_q2">Fonctionne hors ligne ?</string>
-    <string name="how_faq_a2">Oui. Application fonctionne 100%% hors ligne.</string>
-    <string name="how_faq_q3">Comment eviter les regards ?</string>
-    <string name="how_faq_a3">Utilisez maintenir pour reveler et masquez avant de passer.</string>
+    <string name="how_intro">Comprenez la partie complète en moins d’une minute.</string>
+    <string name="how_objective_title">Objectif</string>
+    <string name="how_objective_line_1">Tous sauf un voient le même mot secret.</string>
+    <string name="how_objective_line_2">Un joueur est l’imposteur et ne connaît pas le mot.</string>
+    <string name="how_objective_line_3">Le groupe doit trouver l’imposteur. L’imposteur doit se fondre et deviner le mot.</string>
+    <string name="how_preparation_title">Préparation</string>
+    <string name="how_preparation_line_1">Choisissez joueurs, categories et 1, 2 ou 3 tours.</string>
+    <string name="how_preparation_line_2">L’application distribue les rôles avec un seul téléphone.</string>
+    <string name="how_preparation_line_3">Chaque joueur regarde en secret puis passe le téléphone.</string>
+    <string name="how_play_title">Déroulement de la manche</string>
+    <string name="how_play_line_1">La manche commence hors du téléphone.</string>
+    <string name="how_play_line_2">Chaque joueur dit un seul mot lie au mot secret a chaque tour.</string>
+    <string name="how_play_line_3">Ne changez pas le nombre de tours pendant la partie.</string>
+    <string name="how_play_line_4">L’imposteur écoute, s’adapte et tente de deviner le mot.</string>
+    <string name="how_win_title">Comment gagner</string>
+    <string name="how_win_line_1">Apres les tours convenus, votez pour imposteur presume.</string>
+    <string name="how_win_line_2">Si le groupe le trouve, les civils gagnent.</string>
+    <string name="how_win_line_3">Si le groupe se trompe, l’imposteur gagne.</string>
+    <string name="how_win_line_4">Variante optionnelle: s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>
+    <string name="how_tips_title">Conseils de jeu</string>
+    <string name="how_tip_1">Ne donnez pas un indice trop évident.</string>
+    <string name="how_tip_2">2 tours est souvent l option la plus equilibree.</string>
+    <string name="how_tip_3">Observez les réactions et les réponses des autres.</string>
 
     <string name="settings_theme_title">Theme</string>
     <string name="settings_language_title">Langue</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Categorie : %1$s</string>
     <string name="history_impostors_format">Imposteur(s) : %1$s</string>
 
-    <string name="credits_app_title">A propos de Passage Ombre</string>
+    <string name="credits_app_title">A propos de L’Imposteur</string>
     <string name="credits_app_body">Concu pour manches rapides en presentiel avec un seul telephone.</string>
     <string name="credits_licenses_title">Licences</string>
     <string name="credits_licenses_body">Cree avec Android, Kotlin, Jetpack Compose, Material 3 et bibliotheques open source.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">Nombre imposteurs invalide pour ce groupe.</string>
     <string name="error_categories_empty">Choisissez au moins une categorie.</string>
     <string name="error_round_time">Le temps doit etre entre 3 et 20 minutes.</string>
+    <string name="error_clue_rounds">Le nombre de tours doit etre entre 1 et 3.</string>
     <string name="error_not_enough_civilians">Laissez au moins deux non imposteurs.</string>
     <string name="error_no_words_for_category">Aucun mot pour categories selectionnees.</string>
     <string name="error_no_words_recent_filter">Le filtre mots recents a tout retire. Desactivez ou ajoutez categories.</string>
@@ -126,3 +149,7 @@
     <string name="cd_close">Fermer</string>
     <string name="back_to_home">Retour accueil</string>
 </resources>
+
+
+
+

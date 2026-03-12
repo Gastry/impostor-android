@@ -1,8 +1,19 @@
-package com.impostorparty.domain.model
+﻿package com.impostorparty.domain.model
 
 data class WordEntry(
     val text: String,
     val category: Category,
+)
+
+data class LocalizedWordPool(
+    val languageTag: String,
+    val words: List<WordEntry>,
+)
+
+data class WordUsageRecord(
+    val languageTag: String,
+    val category: Category,
+    val normalizedWord: String,
 )
 
 data class GameSetup(
@@ -10,6 +21,7 @@ data class GameSetup(
     val impostorCount: Int = 1,
     val categories: Set<Category> = Category.defaultSelection,
     val suggestedRoundMinutes: Int = 8,
+    val clueRounds: Int = 2,
     val noExtraHints: Boolean = true,
     val revealAnimation: Boolean = true,
     val hapticsEnabled: Boolean = true,
@@ -45,3 +57,4 @@ data class RoundSession(
     val assignments: List<PlayerAssignment>,
     val createdAtEpochMillis: Long,
 )
+

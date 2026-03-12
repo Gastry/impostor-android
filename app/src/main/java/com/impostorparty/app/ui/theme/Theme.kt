@@ -1,34 +1,54 @@
 package com.impostorparty.app.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.impostorparty.domain.model.ThemeMode
 
 private val LightColors = lightColorScheme(
-    primary = PartyBlue,
-    onPrimary = androidx.compose.ui.graphics.Color.White,
-    secondary = PartyCyan,
-    tertiary = PartyAmber,
-    surface = PartySurfaceLight,
-    surfaceContainerHighest = androidx.compose.ui.graphics.Color(0xFFE9ECFA),
-    error = PartyRose,
+    primary = RoyalBlue,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFFDCE5FF),
+    onPrimaryContainer = InkBlue,
+    secondary = TealSignal,
+    onSecondary = Color.White,
+    tertiary = AmberHint,
+    onTertiary = Color.White,
+    error = DangerRose,
+    surface = SurfaceLight,
+    surfaceContainer = SurfaceLightElevated,
+    surfaceContainerHighest = Color(0xFFE1E8F6),
+    background = SurfaceLight,
 )
 
 private val DarkColors = darkColorScheme(
-    primary = androidx.compose.ui.graphics.Color(0xFF8AB4FF),
-    secondary = androidx.compose.ui.graphics.Color(0xFF5DE9DB),
-    tertiary = androidx.compose.ui.graphics.Color(0xFFFFC75C),
-    surface = PartySurfaceDark,
-    surfaceContainerHighest = androidx.compose.ui.graphics.Color(0xFF1A2333),
-    error = androidx.compose.ui.graphics.Color(0xFFFF8A8A),
+    primary = Color(0xFF9AB6FF),
+    onPrimary = Color(0xFF102B73),
+    primaryContainer = Color(0xFF263E88),
+    onPrimaryContainer = Color(0xFFDCE5FF),
+    secondary = Color(0xFF65D9CE),
+    onSecondary = Color(0xFF053D38),
+    tertiary = Color(0xFFFFC77A),
+    onTertiary = Color(0xFF4A2D00),
+    error = Color(0xFFFFB3C5),
+    surface = SurfaceDark,
+    surfaceContainer = SurfaceDarkElevated,
+    surfaceContainerHighest = Color(0xFF223457),
+    background = SurfaceDark,
+)
+
+private val AppShapes = Shapes(
+    small = androidx.compose.foundation.shape.RoundedCornerShape(PartyDimens.RadiusSm),
+    medium = androidx.compose.foundation.shape.RoundedCornerShape(PartyDimens.RadiusMd),
+    large = androidx.compose.foundation.shape.RoundedCornerShape(PartyDimens.RadiusLg),
 )
 
 @Composable
@@ -56,6 +76,7 @@ fun ImpostorPartyTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        shapes = AppShapes,
         content = content,
     )
 }

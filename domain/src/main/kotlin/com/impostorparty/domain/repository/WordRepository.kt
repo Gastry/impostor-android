@@ -1,7 +1,7 @@
 package com.impostorparty.domain.repository
 
-import com.impostorparty.domain.model.WordEntry
+import com.impostorparty.domain.model.LocalizedWordPool
 
 interface WordRepository {
-    suspend fun getWords(): List<WordEntry>
+    suspend fun getWords(languageTag: String?): LocalizedWordPool
 }

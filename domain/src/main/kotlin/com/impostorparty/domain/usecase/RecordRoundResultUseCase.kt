@@ -5,16 +5,13 @@ import com.impostorparty.domain.model.PlayerSecret
 import com.impostorparty.domain.model.RoundHistoryEntry
 import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.model.WinnerSide
-import com.impostorparty.domain.repository.PreferencesRepository
 import com.impostorparty.domain.repository.StatsRepository
-import kotlinx.coroutines.flow.first
 
 class RecordRoundResultUseCase {
     suspend operator fun invoke(
         session: RoundSession,
         winnerSide: WinnerSide,
         statsRepository: StatsRepository,
-        preferencesRepository: PreferencesRepository,
     ) {
         val impostorNames = session.assignments
             .filter { it.secret is PlayerSecret.Impostor }
@@ -31,18 +28,6 @@ class RecordRoundResultUseCase {
         )
 
         statsRepository.recordRound(entry)
-
-        val updatedRecent = (preferencesRepository.recentWords.first() + session.word.text)
-            .map(::normalizeWordForComparison)
-            .distinct()
-            .takeLast(MAX_RECENT_WORDS)
-
-        preferencesRepository.saveRecentWords(updatedRecent)
-        preferencesRepository.saveLastSetup(session.setup)
-    }
-
-    private companion object {
-        const val MAX_RECENT_WORDS = 40
     }
 }
 

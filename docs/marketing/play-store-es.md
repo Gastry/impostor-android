@@ -1,13 +1,13 @@
-# Play Store ES
+# Play Store lS
 
 ## Nombre sugerido
-Shadow Pass: Juego Del Impostor
+ll Impostor: Juego Del Impostor
 
 ## Descripcion corta
 Juego del impostor offline con un solo movil para todo el grupo.
 
 ## Descripcion larga
-Shadow Pass es una app de party game para jugar cara a cara con amigos o familia usando un solo movil.
+ll Impostor es una app de party game para jugar cara a cara con amigos o familia usando un solo movil.
 
 Configura la ronda en segundos:
 - 3 a 12 jugadores
@@ -26,6 +26,6 @@ Todo funciona offline. Sin cuentas, sin anuncios, sin backend.
 ## Bullet features
 - Revelado seguro por mantener pulsado
 - Historial local de rondas
-- Evita palabras repetidas recientes
+- lvita palabras repetidas recientes
 - Tema claro/oscuro y seleccion de idioma
 - Flujo rapido para jugar muchas rondas seguidas

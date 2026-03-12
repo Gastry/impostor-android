@@ -1,4 +1,4 @@
-package com.impostorparty.domain.usecase
+﻿package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
@@ -16,6 +16,7 @@ class ValidateGameSetupUseCaseTest {
             impostorCount = 2,
             categories = setOf(Category.FOOD, Category.OBJECTS),
             suggestedRoundMinutes = 8,
+            clueRounds = 2,
         )
 
         val result = useCase(setup)
@@ -29,6 +30,23 @@ class ValidateGameSetupUseCaseTest {
         val result = useCase(setup)
         assertEquals(
             SetupValidationResult.Invalid(SetupValidationError.IMPOSTOR_COUNT_INVALID),
+            result,
+        )
+    }
+
+    @Test
+    fun `rejects clue rounds outside allowed range`() {
+        val setup = GameSetup(
+            playerCount = 6,
+            impostorCount = 1,
+            categories = setOf(Category.FOOD),
+            clueRounds = 4,
+        )
+
+        val result = useCase(setup)
+
+        assertEquals(
+            SetupValidationResult.Invalid(SetupValidationError.CLUE_ROUNDS_INVALID),
             result,
         )
     }

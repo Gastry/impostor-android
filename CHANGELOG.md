@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.0.0 - 2026-03-07
-- Primera version funcional de Shadow Pass.
+- Primera version funcional de El Impostor.
 - Flujo completo de partida con revelado privado seguro.
 - Setup configurable (jugadores, impostores, categorias, opciones avanzadas).
 - Persistencia local de ajustes, historial y estadisticas.

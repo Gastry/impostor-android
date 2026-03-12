@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Pase en Sombras</string>
+﻿<resources>
+    <string name="app_name">El Impostor</string>
     <string name="new_game">Nueva partida</string>
     <string name="home_tagline">Un móvil. Un impostor. Caos total.</string>
     <string name="home_stats_title">Tu mesa de un vistazo</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Jugadores: %1$d</string>
     <string name="setup_impostor_count_title">Impostores</string>
     <string name="setup_impostor_count_item">%1$d impostor(es)</string>
+    <string name="setup_clue_rounds_title">Vueltas por partida</string>
+    <string name="setup_clue_round_option_1">1 vuelta</string>
+    <string name="setup_clue_round_option_2">2 vueltas</string>
+    <string name="setup_clue_round_option_3">3 vueltas</string>
+    <string name="setup_clue_round_hint_1">1 vuelta: partida rapida, menos informacion.</string>
+    <string name="setup_clue_round_hint_2">2 vueltas: la opcion mas equilibrada.</string>
+    <string name="setup_clue_round_hint_3">3 vueltas: mas tension y mas deduccion.</string>
     <string name="setup_categories_title">Categorías</string>
     <string name="setup_advanced_options">Opciones avanzadas</string>
     <string name="setup_round_time_title">Tiempo sugerido: %1$d min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Ocultar y pasar</string>
 
     <string name="round_ready_title">Todo listo</string>
-    <string name="round_ready_instructions">Hablad por turnos. Descubrid al impostor. Si eres el impostor, disimula y descubre la palabra.</string>
+    <string name="round_ready_instructions">Cada jugador dice una sola palabra por vuelta. Al terminar las vueltas pactadas, votad al impostor.</string>
+    <string name="round_ready_clue_rounds">Vueltas de esta partida: %1$d</string>
+    <string name="round_ready_word_per_turn">Cada jugador dira una sola palabra por vuelta.</string>
+    <string name="round_ready_vote_after_rounds">Cuando completeis las %1$d vueltas, votad al impostor.</string>
     <string name="round_ready_suggested_time">Tiempo sugerido: %1$d minutos</string>
     <string name="round_ready_finish_button">Terminar ronda</string>
     <string name="round_ready_new_config_button">Nueva configuración</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Civiles</string>
     <string name="winner_impostors">Impostor(es)</string>
     <string name="winner_undecided">Sin decidir</string>
-
-    <string name="how_step_1">1) Elige jugadores y categorías. Pulsa iniciar.</string>
-    <string name="how_step_2">2) Pasad el móvil. Cada jugador mantiene pulsado para revelar su secreto.</string>
-    <string name="how_step_3">3) Hablad, votad y descubrid quién era el impostor.</string>
-    <string name="how_faq_title">FAQ rápida</string>
-    <string name="how_faq_q1">¿Cuántos jugadores?</string>
-    <string name="how_faq_a1">De 3 a 12 jugadores. Dos impostores desde 6 jugadores.</string>
-    <string name="how_faq_q2">¿Se puede jugar offline?</string>
-    <string name="how_faq_a2">Sí. La app funciona 100% sin conexión con contenido local.</string>
-    <string name="how_faq_q3">¿Cómo evitamos miradas?</string>
-    <string name="how_faq_a3">Usa mantener pulsado para revelar y oculta antes de pasar.</string>
+    <string name="how_intro">Aprende la dinámica completa en menos de un minuto.</string>
+    <string name="how_objective_title">Objetivo</string>
+    <string name="how_objective_line_1">Todos menos uno ven la misma palabra secreta.</string>
+    <string name="how_objective_line_2">Un jugador es el impostor y no conoce la palabra.</string>
+    <string name="how_objective_line_3">El grupo debe descubrir al impostor. El impostor debe disimular y adivinar la palabra.</string>
+    <string name="how_preparation_title">Preparación</string>
+    <string name="how_preparation_line_1">Elige jugadores, categorias y 1, 2 o 3 vueltas.</string>
+    <string name="how_preparation_line_2">La app reparte los roles con un solo móvil.</string>
+    <string name="how_preparation_line_3">Cada jugador mira en secreto y pasa el móvil al siguiente.</string>
+    <string name="how_play_title">Cómo se juega la ronda</string>
+    <string name="how_play_line_1">La ronda empieza fuera del móvil.</string>
+    <string name="how_play_line_2">Cada jugador dice una sola palabra relacionada con la palabra secreta.</string>
+    <string name="how_play_line_3">No cambieis el numero de vueltas a mitad de partida.</string>
+    <string name="how_play_line_4">El impostor escucha, se adapta e intenta deducir la palabra.</string>
+    <string name="how_win_title">Cómo se gana</string>
+    <string name="how_win_line_1">Al terminar las vueltas pactadas, votad quien es el impostor.</string>
+    <string name="how_win_line_2">Si el grupo lo descubre, ganan los civiles.</string>
+    <string name="how_win_line_3">Si el grupo falla, gana el impostor.</string>
+    <string name="how_win_line_4">Variante opcional entre amigos: si lo descubren, el impostor puede empatar si adivina la palabra (la app no lo aplica).</string>
+    <string name="how_tips_title">Consejos para jugar mejor</string>
+    <string name="how_tip_1">No des pistas demasiado claras.</string>
+    <string name="how_tip_2">2 vueltas suele ser la opcion mas equilibrada.</string>
+    <string name="how_tip_3">Observa cómo responden los demás.</string>
 
     <string name="settings_theme_title">Tema</string>
     <string name="settings_language_title">Idioma</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Categoría: %1$s</string>
     <string name="history_impostors_format">Impostor(es): %1$s</string>
 
-    <string name="credits_app_title">Sobre Pase en Sombras</string>
+    <string name="credits_app_title">Sobre El Impostor</string>
     <string name="credits_app_body">Diseñada para rondas presenciales rápidas con un solo móvil compartido.</string>
     <string name="credits_licenses_title">Licencias</string>
     <string name="credits_licenses_body">Construida con Android, Kotlin, Jetpack Compose, Material 3 y librerías open source.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">El número de impostores no es válido para este grupo.</string>
     <string name="error_categories_empty">Selecciona al menos una categoría.</string>
     <string name="error_round_time">El tiempo debe estar entre 3 y 20 minutos.</string>
+    <string name="error_clue_rounds">Las vueltas por partida deben estar entre 1 y 3.</string>
     <string name="error_not_enough_civilians">Deja al menos dos jugadores no impostores.</string>
     <string name="error_no_words_for_category">No hay palabras para las categorías elegidas.</string>
     <string name="error_no_words_recent_filter">El filtro de recientes dejó el pool vacío. Desactívalo o añade categorías.</string>
@@ -126,3 +149,5 @@
     <string name="cd_close">Cerrar</string>
     <string name="back_to_home">Volver al inicio</string>
 </resources>
+
+

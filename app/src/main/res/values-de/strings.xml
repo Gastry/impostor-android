@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Schattenrunde</string>
+﻿<resources>
+    <string name="app_name">Der Betrüger</string>
     <string name="new_game">Neues Spiel</string>
     <string name="home_tagline">Ein Handy. Ein Impostor. Reines Chaos.</string>
     <string name="home_stats_title">Ubersicht</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Spieler: %1$d</string>
     <string name="setup_impostor_count_title">Impostors</string>
     <string name="setup_impostor_count_item">%1$d Impostor(s)</string>
+    <string name="setup_clue_rounds_title">Runden pro Partie</string>
+    <string name="setup_clue_round_option_1">1 Runde</string>
+    <string name="setup_clue_round_option_2">2 Runden</string>
+    <string name="setup_clue_round_option_3">3 Runden</string>
+    <string name="setup_clue_round_hint_1">1 Runde: schnell, weniger Informationen.</string>
+    <string name="setup_clue_round_hint_2">2 Runden: meist die ausgewogenste Option.</string>
+    <string name="setup_clue_round_hint_3">3 Runden: mehr Spannung und Deduktion.</string>
     <string name="setup_categories_title">Kategorien</string>
     <string name="setup_advanced_options">Erweiterte Optionen</string>
     <string name="setup_round_time_title">Empfohlene Zeit: %1$d Min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Verbergen und weitergeben</string>
 
     <string name="round_ready_title">Alles bereit</string>
-    <string name="round_ready_instructions">Sprecht der Reihe nach. Findet den Impostor. Wenn du Impostor bist, tausche gut und finde das Wort.</string>
+    <string name="round_ready_instructions">Jede Person sagt pro Runde genau ein Wort. Nach den vereinbarten Runden stimmt ihr ab.</string>
+    <string name="round_ready_clue_rounds">Runden in dieser Partie: %1$d</string>
+    <string name="round_ready_word_per_turn">Jede Person sagt pro Runde genau ein Wort.</string>
+    <string name="round_ready_vote_after_rounds">Wenn ihr %1$d Runden abgeschlossen habt, stimmt fuer den Betrueger ab.</string>
     <string name="round_ready_suggested_time">Empfohlene Zeit: %1$d Minuten</string>
     <string name="round_ready_finish_button">Runde beenden</string>
     <string name="round_ready_new_config_button">Neue Konfiguration</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Zivilisten</string>
     <string name="winner_impostors">Impostor(s)</string>
     <string name="winner_undecided">Unentschieden</string>
-
-    <string name="how_step_1">1) Spielerzahl und Kategorien wahlen. Start drucken.</string>
-    <string name="how_step_2">2) Handy weitergeben. Jeder halt gedruckt fur sein Geheimnis.</string>
-    <string name="how_step_3">3) Diskutieren, abstimmen, Impostor aufdecken.</string>
-    <string name="how_faq_title">Kurze FAQ</string>
-    <string name="how_faq_q1">Wie viele Spieler?</string>
-    <string name="how_faq_a1">Von 3 bis 12. Zwei Impostors ab 6 Spielern.</string>
-    <string name="how_faq_q2">Offline spielbar?</string>
-    <string name="how_faq_a2">Ja. App funktioniert komplett offline.</string>
-    <string name="how_faq_q3">Wie vermeiden wir Mitlesen?</string>
-    <string name="how_faq_a3">Hold to reveal nutzen und vor Weitergabe ausblenden.</string>
+    <string name="how_intro">Verstehe den kompletten Ablauf in unter einer Minute.</string>
+    <string name="how_objective_title">Ziel</string>
+    <string name="how_objective_line_1">Alle außer einer Person sehen dasselbe geheime Wort.</string>
+    <string name="how_objective_line_2">Eine Person ist der Betrüger und kennt das Wort nicht.</string>
+    <string name="how_objective_line_3">Die Gruppe muss den Betrüger finden. Der Betrüger muss sich tarnen und das Wort erraten.</string>
+    <string name="how_preparation_title">Vorbereitung</string>
+    <string name="how_preparation_line_1">Waehle Spielerzahl, Kategorien und 1, 2 oder 3 Runden.</string>
+    <string name="how_preparation_line_2">Die App verteilt die Rollen mit nur einem gemeinsamen Handy.</string>
+    <string name="how_preparation_line_3">Jede Person schaut heimlich und gibt das Handy weiter.</string>
+    <string name="how_play_title">So läuft die Runde</string>
+    <string name="how_play_line_1">Die Runde startet ohne weitere Handy-Nutzung.</string>
+    <string name="how_play_line_2">Jede Person sagt pro Runde genau ein Wort zum geheimen Wort.</string>
+    <string name="how_play_line_3">Aendert die Rundenzahl nicht waehrend der Partie.</string>
+    <string name="how_play_line_4">Der Betrüger hört zu, passt sich an und versucht das Wort zu erraten.</string>
+    <string name="how_win_title">So gewinnt man</string>
+    <string name="how_win_line_1">Nach den vereinbarten Runden stimmt ihr ab, wer der Betrueger ist.</string>
+    <string name="how_win_line_2">Wird der Betrüger enttarnt, gewinnen die Zivilen.</string>
+    <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Betrüger.</string>
+    <string name="how_win_line_4">Optionale Hausregel: Wird der Betrüger enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>
+    <string name="how_tips_title">Tipps für bessere Runden</string>
+    <string name="how_tip_1">Gib keine zu eindeutigen Hinweise.</string>
+    <string name="how_tip_2">2 Runden sind meist die ausgewogenste Wahl.</string>
+    <string name="how_tip_3">Achte auf Reaktionen und Antworten der anderen.</string>
 
     <string name="settings_theme_title">Design</string>
     <string name="settings_language_title">Sprache</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Kategorie: %1$s</string>
     <string name="history_impostors_format">Impostor(s): %1$s</string>
 
-    <string name="credits_app_title">Uber Schattenrunde</string>
+    <string name="credits_app_title">Uber Der Betrüger</string>
     <string name="credits_app_body">Entwickelt fur schnelle Runden mit einem geteilten Handy.</string>
     <string name="credits_licenses_title">Lizenzen</string>
     <string name="credits_licenses_body">Erstellt mit Android, Kotlin, Jetpack Compose, Material 3 und Open Source Bibliotheken.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">Impostor Anzahl ist ungultig fur diese Spielerzahl.</string>
     <string name="error_categories_empty">Bitte mindestens eine Kategorie wahlen.</string>
     <string name="error_round_time">Rundenzeit muss zwischen 3 und 20 Minuten liegen.</string>
+    <string name="error_clue_rounds">Runden pro Partie muessen zwischen 1 und 3 liegen.</string>
     <string name="error_not_enough_civilians">Mindestens zwei Nicht Impostors erforderlich.</string>
     <string name="error_no_words_for_category">Keine Worte fur gewahlte Kategorien verfugbar.</string>
     <string name="error_no_words_recent_filter">Filter fur aktuelle Worte hat alles entfernt. Deaktivieren oder mehr Kategorien wahlen.</string>
@@ -126,3 +149,5 @@
     <string name="cd_close">Schliessen</string>
     <string name="back_to_home">Zur Startseite</string>
 </resources>
+
+

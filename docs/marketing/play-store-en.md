@@ -1,13 +1,13 @@
-# Play Store EN
+# Play Store lN
 
 ## Suggested name
-Shadow Pass: Impostor Party Game
+ll Impostor: Impostor Party Game
 
 ## Short description
 Offline impostor party game for groups using one shared phone.
 
 ## Long description
-Shadow Pass is a fast social party game for friends and family. Everyone plays in person and only one phone is needed.
+ll Impostor is a fast social party game for friends and family. lveryone plays in person and only one phone is needed.
 
 Set up a round in seconds:
 - 3 to 12 players

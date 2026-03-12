@@ -1,20 +1,19 @@
-package com.impostorparty.app.viewmodel
+﻿package com.impostorparty.app.viewmodel
 
-import app.cash.turbine.test
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
+import com.impostorparty.domain.model.LocalizedWordPool
 import com.impostorparty.domain.model.RoundHistoryEntry
-import com.impostorparty.domain.model.ThemeMode
 import com.impostorparty.domain.model.WinnerSide
 import com.impostorparty.domain.model.WordEntry
+import com.impostorparty.domain.model.WordUsageRecord
 import com.impostorparty.domain.repository.PreferencesRepository
 import com.impostorparty.domain.repository.StatsRepository
 import com.impostorparty.domain.repository.WordRepository
 import com.impostorparty.domain.usecase.RevealFlowState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -48,6 +47,26 @@ class GameViewModelTest {
     @After
     fun tearDown() {
         Dispatchers.resetMain()
+    }
+
+    @Test
+    fun `default setup uses two clue rounds`() = runTest(dispatcher) {
+        val viewModel = GameViewModel(wordRepository, preferencesRepository, statsRepository)
+        advanceUntilIdle()
+
+        assertEquals(2, viewModel.setup.value.clueRounds)
+    }
+
+    @Test
+    fun `user can choose clue rounds and value is kept in created round`() = runTest(dispatcher) {
+        val viewModel = GameViewModel(wordRepository, preferencesRepository, statsRepository)
+        viewModel.updateClueRounds(3)
+
+        viewModel.startRound()
+        advanceUntilIdle()
+
+        assertEquals(3, viewModel.setup.value.clueRounds)
+        assertEquals(3, viewModel.activeRound.value?.setup?.clueRounds)
     }
 
     @Test
@@ -95,17 +114,23 @@ class GameViewModelTest {
 }
 
 private class FakeWordRepository : WordRepository {
-    override suspend fun getWords(): List<WordEntry> = listOf(
-        WordEntry("Pizza", Category.FOOD),
-        WordEntry("Tiger", Category.ANIMALS),
-        WordEntry("Airport", Category.PLACES),
-    )
+    override suspend fun getWords(languageTag: String?): LocalizedWordPool {
+        val resolved = languageTag?.substringBefore('-')?.ifBlank { "en" } ?: "en"
+        return LocalizedWordPool(
+            languageTag = resolved,
+            words = listOf(
+                WordEntry("Pizza", Category.FOOD),
+                WordEntry("Tiger", Category.ANIMALS),
+                WordEntry("Airport", Category.PLACES),
+            ),
+        )
+    }
 }
 
 private class FakePreferencesRepository : PreferencesRepository {
     override val appSettings = MutableStateFlow(AppSettings())
     override val lastSetup = MutableStateFlow<GameSetup?>(null)
-    override val recentWords = MutableStateFlow<List<String>>(emptyList())
+    override val wordUsageHistory = MutableStateFlow<List<WordUsageRecord>>(emptyList())
 
     override suspend fun saveAppSettings(settings: AppSettings) {
         appSettings.value = settings
@@ -115,14 +140,14 @@ private class FakePreferencesRepository : PreferencesRepository {
         lastSetup.value = setup
     }
 
-    override suspend fun saveRecentWords(words: List<String>) {
-        recentWords.value = words
+    override suspend fun saveWordUsageHistory(history: List<WordUsageRecord>) {
+        wordUsageHistory.value = history
     }
 
     override suspend fun clearAllPreferences() {
         appSettings.value = AppSettings()
         lastSetup.value = null
-        recentWords.value = emptyList()
+        wordUsageHistory.value = emptyList()
     }
 }
 
@@ -144,3 +169,4 @@ private class FakeStatsRepository : StatsRepository {
         stats.value = com.impostorparty.domain.model.GameStats()
     }
 }
+

@@ -8,7 +8,7 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -58,7 +59,8 @@ fun HoldToRevealButton(
         onClick = {},
         modifier = modifier
             .fillMaxWidth()
-            .height(112.dp),
+            .heightIn(min = 112.dp)
+            .testTag("reveal_hold_button"),
         interactionSource = interactionSource,
         border = BorderStroke(2.dp, borderColor),
         colors = ButtonDefaults.outlinedButtonColors(
@@ -84,3 +86,4 @@ fun HoldToRevealButton(
         }
     }
 }
+

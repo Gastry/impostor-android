@@ -5,12 +5,14 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.impostorparty.data.model.StoredAppSettings
 import com.impostorparty.data.model.StoredGameSetup
+import com.impostorparty.data.model.StoredWordUsageRecord
 import com.impostorparty.data.model.toDomain
 import com.impostorparty.data.model.toDomainOrNull
 import com.impostorparty.data.model.toStored
 import com.impostorparty.data.store.settingsDataStore
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.GameSetup
+import com.impostorparty.domain.model.WordUsageRecord
 import com.impostorparty.domain.repository.PreferencesRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -38,8 +40,13 @@ class DataStorePreferencesRepository @Inject constructor(
             ?.toDomainOrNull()
     }
 
-    override val recentWords: Flow<List<String>> = context.settingsDataStore.data.map { preferences ->
-        preferences[RECENT_WORDS_KEY].decodeOrNull<List<String>>() ?: emptyList()
+    override val wordUsageHistory: Flow<List<WordUsageRecord>> = context.settingsDataStore.data.map { preferences ->
+        val records = preferences[WORD_USAGE_HISTORY_KEY]
+            .decodeOrNull<List<StoredWordUsageRecord>>()
+            .orEmpty()
+            .mapNotNull(StoredWordUsageRecord::toDomainOrNull)
+
+        records.distinctBy { Triple(it.languageTag, it.category, it.normalizedWord) }
     }
 
     override suspend fun saveAppSettings(settings: AppSettings) {
@@ -54,9 +61,16 @@ class DataStorePreferencesRepository @Inject constructor(
         }
     }
 
-    override suspend fun saveRecentWords(words: List<String>) {
+    override suspend fun saveWordUsageHistory(history: List<WordUsageRecord>) {
+        val stored = history
+            .distinctBy { Triple(it.languageTag, it.category, it.normalizedWord) }
+            .map(WordUsageRecord::toStored)
+            .groupBy { it.languageTag to it.category }
+            .values
+            .flatMap { it.takeLast(MAX_RECORDS_PER_LANGUAGE_CATEGORY) }
+
         context.settingsDataStore.edit { preferences ->
-            preferences[RECENT_WORDS_KEY] = json.encodeToString(words)
+            preferences[WORD_USAGE_HISTORY_KEY] = json.encodeToString(stored)
         }
     }
 
@@ -70,8 +84,9 @@ class DataStorePreferencesRepository @Inject constructor(
     }
 
     private companion object {
+        const val MAX_RECORDS_PER_LANGUAGE_CATEGORY = 128
         val APP_SETTINGS_KEY = stringPreferencesKey("app_settings_json")
         val LAST_SETUP_KEY = stringPreferencesKey("last_setup_json")
-        val RECENT_WORDS_KEY = stringPreferencesKey("recent_words_json")
+        val WORD_USAGE_HISTORY_KEY = stringPreferencesKey("word_usage_history_json")
     }
 }

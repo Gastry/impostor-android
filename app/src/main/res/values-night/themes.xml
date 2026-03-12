@@ -8,6 +8,7 @@
     <style name="Theme.ImpostorParty.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splash_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_mark</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/launcher_background</item>
         <item name="postSplashScreenTheme">@style/Theme.ImpostorParty</item>
     </style>
 </resources>

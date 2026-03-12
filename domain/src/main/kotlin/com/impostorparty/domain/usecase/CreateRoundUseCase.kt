@@ -2,12 +2,17 @@ package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.model.RoundSession
+import com.impostorparty.domain.model.WordUsageRecord
 import com.impostorparty.domain.repository.WordRepository
 import java.util.UUID
 import kotlin.random.Random
 
 sealed interface CreateRoundResult {
-    data class Success(val session: RoundSession) : CreateRoundResult
+    data class Success(
+        val session: RoundSession,
+        val updatedWordUsageHistory: List<WordUsageRecord>,
+    ) : CreateRoundResult
+
     data class InvalidSetup(val error: SetupValidationError) : CreateRoundResult
     data class WordSelectionFailed(val error: WordSelectionError) : CreateRoundResult
 }
@@ -20,7 +25,8 @@ class CreateRoundUseCase(
 ) {
     suspend operator fun invoke(
         setup: GameSetup,
-        recentWords: List<String>,
+        activeLanguageTag: String?,
+        wordUsageHistory: List<WordUsageRecord>,
         wordRepository: WordRepository,
         random: Random,
         timestampProvider: () -> Long = { System.currentTimeMillis() },
@@ -30,18 +36,19 @@ class CreateRoundUseCase(
             SetupValidationResult.Valid -> Unit
         }
 
-        val words = wordRepository.getWords()
-        val selectedWord = when (
-            val selection = selectSecretWordUseCase(
-                words = words,
-                selectedCategories = setup.categories,
-                recentWords = recentWords,
-                avoidRecentWords = setup.avoidRecentWords,
-                random = random,
-            )
-        ) {
-            is WordSelectionResult.Error -> return CreateRoundResult.WordSelectionFailed(selection.type)
-            is WordSelectionResult.Success -> selection.word
+        val localizedWords = wordRepository.getWords(activeLanguageTag)
+        val selectedWordResult = selectSecretWordUseCase(
+            words = localizedWords.words,
+            selectedCategories = setup.categories,
+            languageTag = localizedWords.languageTag,
+            wordUsageHistory = wordUsageHistory,
+            avoidRecentWords = setup.avoidRecentWords,
+            random = random,
+        )
+
+        val selectedWord = when (selectedWordResult) {
+            is WordSelectionResult.Error -> return CreateRoundResult.WordSelectionFailed(selectedWordResult.type)
+            is WordSelectionResult.Success -> selectedWordResult.word
         }
 
         val players = buildPlayersUseCase(setup.playerCount, setup.customPlayerNames)
@@ -53,13 +60,14 @@ class CreateRoundUseCase(
         )
 
         return CreateRoundResult.Success(
-            RoundSession(
+            session = RoundSession(
                 id = UUID.randomUUID().toString(),
                 setup = setup,
                 word = selectedWord,
                 assignments = assignments,
                 createdAtEpochMillis = timestampProvider(),
             ),
+            updatedWordUsageHistory = (selectedWordResult as WordSelectionResult.Success).updatedWordUsageHistory,
         )
     }
 }

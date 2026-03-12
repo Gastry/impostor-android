@@ -1,6 +1,6 @@
 # Privacy Policy (Draft)
 
-Shadow Pass funciona completamente offline.
+El Impostor funciona completamente offline.
 
 ## Datos recopilados
 - No recopilamos datos personales.

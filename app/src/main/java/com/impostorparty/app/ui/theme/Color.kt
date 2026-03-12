@@ -2,10 +2,13 @@ package com.impostorparty.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val MysticNavy = Color(0xFF111827)
-val PartyBlue = Color(0xFF1D4ED8)
-val PartyCyan = Color(0xFF14B8A6)
-val PartyAmber = Color(0xFFF59E0B)
-val PartyRose = Color(0xFFE11D48)
-val PartySurfaceLight = Color(0xFFF7F8FD)
-val PartySurfaceDark = Color(0xFF0D1117)
+val InkBlue = Color(0xFF101A33)
+val RoyalBlue = Color(0xFF2B54D6)
+val TealSignal = Color(0xFF0C8F83)
+val AmberHint = Color(0xFFD97706)
+val DangerRose = Color(0xFFD6335C)
+
+val SurfaceLight = Color(0xFFF4F6FB)
+val SurfaceLightElevated = Color(0xFFE9EEF9)
+val SurfaceDark = Color(0xFF0B1326)
+val SurfaceDarkElevated = Color(0xFF1A2742)

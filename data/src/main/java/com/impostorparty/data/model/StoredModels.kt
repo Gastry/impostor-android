@@ -1,4 +1,4 @@
-package com.impostorparty.data.model
+﻿package com.impostorparty.data.model
 
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
@@ -6,6 +6,7 @@ import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.model.RoundHistoryEntry
 import com.impostorparty.domain.model.ThemeMode
 import com.impostorparty.domain.model.WinnerSide
+import com.impostorparty.domain.model.WordUsageRecord
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -14,6 +15,7 @@ data class StoredGameSetup(
     val impostorCount: Int,
     val categories: List<String>,
     val suggestedRoundMinutes: Int,
+    val clueRounds: Int = 2,
     val noExtraHints: Boolean,
     val revealAnimation: Boolean,
     val hapticsEnabled: Boolean,
@@ -45,11 +47,19 @@ data class StoredRoundHistoryEntry(
     val winnerSide: String,
 )
 
+@Serializable
+data class StoredWordUsageRecord(
+    val languageTag: String,
+    val category: String,
+    val normalizedWord: String,
+)
+
 fun GameSetup.toStored(): StoredGameSetup = StoredGameSetup(
     playerCount = playerCount,
     impostorCount = impostorCount,
     categories = categories.map { it.code },
     suggestedRoundMinutes = suggestedRoundMinutes,
+    clueRounds = clueRounds,
     noExtraHints = noExtraHints,
     revealAnimation = revealAnimation,
     hapticsEnabled = hapticsEnabled,
@@ -67,6 +77,7 @@ fun StoredGameSetup.toDomainOrNull(): GameSetup? {
         impostorCount = impostorCount,
         categories = categorySet,
         suggestedRoundMinutes = suggestedRoundMinutes,
+        clueRounds = clueRounds.coerceIn(1, 3),
         noExtraHints = noExtraHints,
         revealAnimation = revealAnimation,
         hapticsEnabled = hapticsEnabled,
@@ -120,5 +131,24 @@ fun StoredRoundHistoryEntry.toDomainOrNull(): RoundHistoryEntry? {
         playerCount = playerCount,
         impostorNames = impostorNames,
         winnerSide = winner,
+    )
+}
+
+fun WordUsageRecord.toStored(): StoredWordUsageRecord = StoredWordUsageRecord(
+    languageTag = languageTag,
+    category = category.code,
+    normalizedWord = normalizedWord,
+)
+
+fun StoredWordUsageRecord.toDomainOrNull(): WordUsageRecord? {
+    val categoryValue = Category.fromCode(category) ?: return null
+    val language = languageTag.trim().lowercase()
+    val normalized = normalizedWord.trim().lowercase()
+    if (language.isEmpty() || normalized.isEmpty()) return null
+
+    return WordUsageRecord(
+        languageTag = language,
+        category = categoryValue,
+        normalizedWord = normalized,
     )
 }

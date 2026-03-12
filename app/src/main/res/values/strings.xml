@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Shadow Pass</string>
+﻿<resources>
+    <string name="app_name">The Impostor</string>
     <string name="new_game">New Game</string>
     <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
     <string name="home_stats_title">Your table at a glance</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Players: %1$d</string>
     <string name="setup_impostor_count_title">Impostors</string>
     <string name="setup_impostor_count_item">%1$d impostor(s)</string>
+    <string name="setup_clue_rounds_title">Rounds per game</string>
+    <string name="setup_clue_round_option_1">1 round</string>
+    <string name="setup_clue_round_option_2">2 rounds</string>
+    <string name="setup_clue_round_option_3">3 rounds</string>
+    <string name="setup_clue_round_hint_1">1 round: fast game, less information.</string>
+    <string name="setup_clue_round_hint_2">2 rounds: the most balanced option.</string>
+    <string name="setup_clue_round_hint_3">3 rounds: more tension and deduction.</string>
     <string name="setup_categories_title">Categories</string>
     <string name="setup_advanced_options">Advanced options</string>
     <string name="setup_round_time_title">Suggested round time: %1$d min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Hide and pass</string>
 
     <string name="round_ready_title">All set</string>
-    <string name="round_ready_instructions">Speak in turns. Find the impostor. If you are the impostor, fake it and discover the word.</string>
+    <string name="round_ready_instructions">Each player says one word per round. After the agreed rounds, vote for the impostor.</string>
+    <string name="round_ready_clue_rounds">Rounds for this game: %1$d</string>
+    <string name="round_ready_word_per_turn">Each player says one single word per round.</string>
+    <string name="round_ready_vote_after_rounds">When you finish %1$d rounds, vote for the impostor.</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
     <string name="round_ready_new_config_button">New setup</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Civilians</string>
     <string name="winner_impostors">Impostor(s)</string>
     <string name="winner_undecided">Undecided</string>
-
-    <string name="how_step_1">1) Choose player count and categories. Tap start.</string>
-    <string name="how_step_2">2) Pass the phone. Each player holds to reveal their secret.</string>
-    <string name="how_step_3">3) Discuss, vote, then reveal who the impostor was.</string>
-    <string name="how_faq_title">Quick FAQ</string>
-    <string name="how_faq_q1">How many players?</string>
-    <string name="how_faq_a1">From 3 to 12 players. Two impostors unlock from 6 players.</string>
-    <string name="how_faq_q2">Can we play offline?</string>
-    <string name="how_faq_a2">Yes. The app works 100% offline with local content.</string>
-    <string name="how_faq_q3">How do we avoid peeking?</string>
-    <string name="how_faq_a3">Use hold-to-reveal, keep the phone centered, and hide before passing.</string>
+    <string name="how_intro">Learn the full game flow in under a minute.</string>
+    <string name="how_objective_title">Objective</string>
+    <string name="how_objective_line_1">All players except one see the same secret word.</string>
+    <string name="how_objective_line_2">One player is the impostor and does not know the word.</string>
+    <string name="how_objective_line_3">The group must find the impostor. The impostor must blend in and guess the word.</string>
+    <string name="how_preparation_title">Preparation</string>
+    <string name="how_preparation_line_1">Choose player count, categories and rounds (1, 2 or 3).</string>
+    <string name="how_preparation_line_2">The app assigns roles using one shared phone.</string>
+    <string name="how_preparation_line_3">Each player checks in private, then passes the phone.</string>
+    <string name="how_play_title">How the round works</string>
+    <string name="how_play_line_1">Start the round away from the phone.</string>
+    <string name="how_play_line_2">Each player says one single word related to the secret word.</string>
+    <string name="how_play_line_3">Do not change the number of rounds during the game.</string>
+    <string name="how_play_line_4">The impostor listens, adapts, and tries to deduce the word.</string>
+    <string name="how_win_title">How to win</string>
+    <string name="how_win_line_1">After the agreed rounds, vote for who you think is the impostor.</string>
+    <string name="how_win_line_2">If the group catches the impostor, civilians win.</string>
+    <string name="how_win_line_3">If the group misses, the impostor wins.</string>
+    <string name="how_win_line_4">Optional house rule: if caught, the impostor may draw by guessing the word (not enforced by the app).</string>
+    <string name="how_tips_title">Tips to play better</string>
+    <string name="how_tip_1">Do not make your clue too obvious.</string>
+    <string name="how_tip_2">2 rounds is usually the most balanced option.</string>
+    <string name="how_tip_3">Watch how others react and answer.</string>
 
     <string name="settings_theme_title">Theme</string>
     <string name="settings_language_title">Language</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Category: %1$s</string>
     <string name="history_impostors_format">Impostor(s): %1$s</string>
 
-    <string name="credits_app_title">About Shadow Pass</string>
+    <string name="credits_app_title">About The Impostor</string>
     <string name="credits_app_body">Designed for quick face-to-face rounds with one shared phone.</string>
     <string name="credits_licenses_title">Licenses</string>
     <string name="credits_licenses_body">Built with Android, Kotlin, Jetpack Compose, Material 3 and other open source libraries.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">Selected impostor count is not valid for this player count.</string>
     <string name="error_categories_empty">Select at least one category.</string>
     <string name="error_round_time">Round time must be between 3 and 20 minutes.</string>
+    <string name="error_clue_rounds">Rounds per game must be between 1 and 3.</string>
     <string name="error_not_enough_civilians">Leave at least two non-impostor players.</string>
     <string name="error_no_words_for_category">No words available for selected categories.</string>
     <string name="error_no_words_recent_filter">Recent-word filter removed every option. Disable it or choose more categories.</string>
@@ -126,3 +149,5 @@
     <string name="cd_close">Close</string>
     <string name="back_to_home">Back to Home</string>
 </resources>
+
+

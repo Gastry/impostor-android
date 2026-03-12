@@ -4,6 +4,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WordDataset(
+    val fallbackLanguage: String,
+    val languages: List<LanguagePayload>,
+)
+
+@Serializable
+data class LanguagePayload(
+    val tag: String,
     val categories: List<WordCategoryPayload>,
 )
 

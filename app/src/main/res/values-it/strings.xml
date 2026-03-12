@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Passo Ombra</string>
+﻿<resources>
+    <string name="app_name">L’Impostore</string>
     <string name="new_game">Nuova partita</string>
     <string name="home_tagline">Un telefono. Un impostore. Caos puro.</string>
     <string name="home_stats_title">Panoramica tavolo</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Giocatori: %1$d</string>
     <string name="setup_impostor_count_title">Impostori</string>
     <string name="setup_impostor_count_item">%1$d impostore/i</string>
+    <string name="setup_clue_rounds_title">Giri per partita</string>
+    <string name="setup_clue_round_option_1">1 giro</string>
+    <string name="setup_clue_round_option_2">2 giri</string>
+    <string name="setup_clue_round_option_3">3 giri</string>
+    <string name="setup_clue_round_hint_1">1 giro: partita rapida, meno informazioni.</string>
+    <string name="setup_clue_round_hint_2">2 giri: opzione piu equilibrata.</string>
+    <string name="setup_clue_round_hint_3">3 giri: piu tensione e deduzione.</string>
     <string name="setup_categories_title">Categorie</string>
     <string name="setup_advanced_options">Opzioni avanzate</string>
     <string name="setup_round_time_title">Tempo suggerito: %1$d min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Nascondi e passa</string>
 
     <string name="round_ready_title">Tutto pronto</string>
-    <string name="round_ready_instructions">Parlate a turno. Scoprite impostore. Se sei impostore, bluffa e trova parola.</string>
+    <string name="round_ready_instructions">Ogni giocatore dice una sola parola per giro. Dopo i giri concordati, votate l impostore.</string>
+    <string name="round_ready_clue_rounds">Giri di questa partita: %1$d</string>
+    <string name="round_ready_word_per_turn">Ogni giocatore dira una sola parola per giro.</string>
+    <string name="round_ready_vote_after_rounds">Quando completate i %1$d giri, votate l impostore.</string>
     <string name="round_ready_suggested_time">Tempo suggerito: %1$d minuti</string>
     <string name="round_ready_finish_button">Termina round</string>
     <string name="round_ready_new_config_button">Nuova configurazione</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Civili</string>
     <string name="winner_impostors">Impostori</string>
     <string name="winner_undecided">Indeciso</string>
-
-    <string name="how_step_1">1) Scegli giocatori e categorie. Premi avvia.</string>
-    <string name="how_step_2">2) Passate telefono. Ogni giocatore tiene premuto per segreto.</string>
-    <string name="how_step_3">3) Discutete, votate e scoprite impostore.</string>
-    <string name="how_faq_title">FAQ rapida</string>
-    <string name="how_faq_q1">Quanti giocatori?</string>
-    <string name="how_faq_a1">Da 3 a 12 giocatori. Due impostori da 6 giocatori in su.</string>
-    <string name="how_faq_q2">Si puo giocare offline?</string>
-    <string name="how_faq_a2">Si. App funziona completamente offline.</string>
-    <string name="how_faq_q3">Come evitiamo occhi indiscreti?</string>
-    <string name="how_faq_a3">Usa reveal con pressione prolungata e nascondi prima di passare.</string>
+    <string name="how_intro">Capisci la partita completa in meno di un minuto.</string>
+    <string name="how_objective_title">Obiettivo</string>
+    <string name="how_objective_line_1">Tutti tranne uno vedono la stessa parola segreta.</string>
+    <string name="how_objective_line_2">Un giocatore è l’impostore e non conosce la parola.</string>
+    <string name="how_objective_line_3">Il gruppo deve scoprire l’impostore. L’impostore deve mimetizzarsi e indovinare la parola.</string>
+    <string name="how_preparation_title">Preparazione</string>
+    <string name="how_preparation_line_1">Scegli giocatori, categorie e 1, 2 o 3 giri.</string>
+    <string name="how_preparation_line_2">L’app assegna i ruoli con un solo telefono condiviso.</string>
+    <string name="how_preparation_line_3">Ogni giocatore guarda in privato e passa il telefono.</string>
+    <string name="how_play_title">Come si svolge il round</string>
+    <string name="how_play_line_1">Il round inizia lontano dal telefono.</string>
+    <string name="how_play_line_2">Ogni giocatore dice una sola parola legata alla parola segreta per ogni giro.</string>
+    <string name="how_play_line_3">Non cambiate il numero di giri durante la partita.</string>
+    <string name="how_play_line_4">L’impostore ascolta, si adatta e prova a dedurre la parola.</string>
+    <string name="how_win_title">Come si vince</string>
+    <string name="how_win_line_1">Dopo i giri concordati, votate chi pensate sia l impostore.</string>
+    <string name="how_win_line_2">Se il gruppo lo individua, vincono i civili.</string>
+    <string name="how_win_line_3">Se il gruppo sbaglia, vince l’impostore.</string>
+    <string name="how_win_line_4">Variante opzionale: se scoperto, l’impostore può pareggiare indovinando la parola (non gestito dall’app).</string>
+    <string name="how_tips_title">Consigli per giocare meglio</string>
+    <string name="how_tip_1">Non dare indizi troppo evidenti.</string>
+    <string name="how_tip_2">2 giri e di solito la scelta piu equilibrata.</string>
+    <string name="how_tip_3">Osserva come rispondono gli altri.</string>
 
     <string name="settings_theme_title">Tema</string>
     <string name="settings_language_title">Lingua</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Categoria: %1$s</string>
     <string name="history_impostors_format">Impostore/i: %1$s</string>
 
-    <string name="credits_app_title">Informazioni su Passo Ombra</string>
+    <string name="credits_app_title">Informazioni su L’Impostore</string>
     <string name="credits_app_body">Progettata per round veloci dal vivo con un solo telefono condiviso.</string>
     <string name="credits_licenses_title">Licenze</string>
     <string name="credits_licenses_body">Sviluppata con Android, Kotlin, Jetpack Compose, Material 3 e librerie open source.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">Numero impostori non valido per gruppo.</string>
     <string name="error_categories_empty">Seleziona almeno una categoria.</string>
     <string name="error_round_time">Tempo tra 3 e 20 minuti.</string>
+    <string name="error_clue_rounds">I giri per partita devono essere tra 1 e 3.</string>
     <string name="error_not_enough_civilians">Lascia almeno due non impostori.</string>
     <string name="error_no_words_for_category">Nessuna parola disponibile per categorie scelte.</string>
     <string name="error_no_words_recent_filter">Filtro parole recenti ha svuotato pool. Disattiva o aggiungi categorie.</string>
@@ -126,3 +149,7 @@
     <string name="cd_close">Chiudi</string>
     <string name="back_to_home">Torna alla home</string>
 </resources>
+
+
+
+

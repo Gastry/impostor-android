@@ -1,4 +1,4 @@
-package com.impostorparty.app.viewmodel
+﻿package com.impostorparty.app.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -139,6 +139,10 @@ class GameViewModel @Inject constructor(
         _setup.update { it.copy(suggestedRoundMinutes = minutes) }
     }
 
+    fun updateClueRounds(rounds: Int) {
+        _setup.update { it.copy(clueRounds = rounds.coerceIn(1, 3)) }
+    }
+
     fun updateNoExtraHints(enabled: Boolean) {
         _setup.update { it.copy(noExtraHints = enabled) }
     }
@@ -183,9 +187,11 @@ class GameViewModel @Inject constructor(
             val setupSnapshot = getAllowedImpostorCountsUseCase.clamp(_setup.value)
             _setup.value = setupSnapshot
 
+            val settingsSnapshot = appSettings.first()
             val result = createRoundUseCase(
                 setup = setupSnapshot,
-                recentWords = preferencesRepository.recentWords.first(),
+                activeLanguageTag = settingsSnapshot.languageTag,
+                wordUsageHistory = preferencesRepository.wordUsageHistory.first(),
                 wordRepository = wordRepository,
                 random = Random(System.nanoTime()),
             )
@@ -195,6 +201,7 @@ class GameViewModel @Inject constructor(
                     _activeRound.value = result.session
                     _revealState.value = RevealFlowState.PassingPhone(playerIndex = 0)
                     _winnerSelection.value = WinnerSide.UNDECIDED
+                    preferencesRepository.saveWordUsageHistory(result.updatedWordUsageHistory)
                     preferencesRepository.saveLastSetup(setupSnapshot)
                 }
 
@@ -242,7 +249,6 @@ class GameViewModel @Inject constructor(
                 session = round,
                 winnerSide = _winnerSelection.value,
                 statsRepository = statsRepository,
-                preferencesRepository = preferencesRepository,
             )
         }
     }
@@ -320,3 +326,5 @@ data class UiMessage(
         }
     }
 }
+
+

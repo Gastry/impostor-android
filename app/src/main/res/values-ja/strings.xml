@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Shado Pasu</string>
+﻿<resources>
+    <string name="app_name">インポスター</string>
     <string name="new_game">Atarashii geemu</string>
     <string name="home_tagline">Hitotsu no denwa. Hitori no impostor. Party chaos.</string>
     <string name="home_stats_title">Table summary</string>
@@ -16,6 +16,13 @@
     <string name="setup_players_count">Players: %1$d</string>
     <string name="setup_impostor_count_title">Impostor su</string>
     <string name="setup_impostor_count_item">%1$d impostor(s)</string>
+    <string name="setup_clue_rounds_title">1ゲームの周回数</string>
+    <string name="setup_clue_round_option_1">1周</string>
+    <string name="setup_clue_round_option_2">2周</string>
+    <string name="setup_clue_round_option_3">3周</string>
+    <string name="setup_clue_round_hint_1">1周: 短時間で情報は少なめ。</string>
+    <string name="setup_clue_round_hint_2">2周: いちばんバランスが良い設定。</string>
+    <string name="setup_clue_round_hint_3">3周: 緊張感と推理が増える。</string>
     <string name="setup_categories_title">Categories</string>
     <string name="setup_advanced_options">Advanced options</string>
     <string name="setup_round_time_title">Suggested time: %1$d min</string>
@@ -40,7 +47,10 @@
     <string name="reveal_hide_and_pass">Hide and pass</string>
 
     <string name="round_ready_title">All set</string>
-    <string name="round_ready_instructions">Speak in turns. Find impostor. If you are impostor, fake it and discover word.</string>
+    <string name="round_ready_instructions">各周で全員が1語だけ言います。決めた周回が終わったらインポスターに投票します。</string>
+    <string name="round_ready_clue_rounds">このゲームの周回数: %1$d</string>
+    <string name="round_ready_word_per_turn">各プレイヤーは1周ごとに1語だけ言います。</string>
+    <string name="round_ready_vote_after_rounds">%1$d周が終わったらインポスターに投票してください。</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
     <string name="round_ready_new_config_button">New setup</string>
@@ -55,17 +65,29 @@
     <string name="winner_civilians">Civilians</string>
     <string name="winner_impostors">Impostor(s)</string>
     <string name="winner_undecided">Undecided</string>
-
-    <string name="how_step_1">1) Choose players and categories. Tap start.</string>
-    <string name="how_step_2">2) Pass phone. Each player holds to reveal secret.</string>
-    <string name="how_step_3">3) Discuss, vote, and reveal impostor.</string>
-    <string name="how_faq_title">Quick FAQ</string>
-    <string name="how_faq_q1">How many players?</string>
-    <string name="how_faq_a1">From 3 to 12 players. Two impostors from 6 players.</string>
-    <string name="how_faq_q2">Can we play offline?</string>
-    <string name="how_faq_a2">Yes. App works 100%% offline.</string>
-    <string name="how_faq_q3">How to avoid peeking?</string>
-    <string name="how_faq_a3">Use hold to reveal and hide before passing.</string>
+    <string name="how_intro">1分で遊び方の流れがわかります。</string>
+    <string name="how_objective_title">目的</string>
+    <string name="how_objective_line_1">1人を除いて全員が同じ秘密のワードを見ます。</string>
+    <string name="how_objective_line_2">1人だけインポスターで、ワードを知りません。</string>
+    <string name="how_objective_line_3">市民はインポスターを見つけ、インポスターはワードを推理します。</string>
+    <string name="how_preparation_title">準備</string>
+    <string name="how_preparation_line_1">人数、カテゴリ、そして1/2/3周のどれかを決めます。</string>
+    <string name="how_preparation_line_2">1台の共有スマホで役割が配られます。</string>
+    <string name="how_preparation_line_3">各プレイヤーがこっそり確認して次の人へ渡します。</string>
+    <string name="how_play_title">ラウンドの進め方</string>
+    <string name="how_play_line_1">ラウンド開始後はスマホを使いません。</string>
+    <string name="how_play_line_2">各プレイヤーは各周で秘密の単語に関連する1語だけを言います。</string>
+    <string name="how_play_line_3">ゲーム中に周回数は変更しません。</string>
+    <string name="how_play_line_4">インポスターは会話を聞いて、正体を隠しながらワードを推理します。</string>
+    <string name="how_win_title">勝敗</string>
+    <string name="how_win_line_1">決めた周回が終わったら、誰がインポスターか投票します。</string>
+    <string name="how_win_line_2">当てられたら市民側の勝ちです。</string>
+    <string name="how_win_line_3">外したらインポスターの勝ちです。</string>
+    <string name="how_win_line_4">任意ルール: 見つかってもワードを当てれば引き分けにできます（アプリ内では自動判定しません）。</string>
+    <string name="how_tips_title">うまく遊ぶコツ</string>
+    <string name="how_tip_1">ヒントを露骨にしすぎない。</string>
+    <string name="how_tip_2">2周が最もバランスのよい設定です。</string>
+    <string name="how_tip_3">相手の反応や答え方を観察しましょう。</string>
 
     <string name="settings_theme_title">Theme</string>
     <string name="settings_language_title">Language</string>
@@ -95,7 +117,7 @@
     <string name="history_category_format">Category: %1$s</string>
     <string name="history_impostors_format">Impostor(s): %1$s</string>
 
-    <string name="credits_app_title">About Shado Pasu</string>
+    <string name="credits_app_title">インポスターについて</string>
     <string name="credits_app_body">Made for fast in person rounds with one shared phone.</string>
     <string name="credits_licenses_title">Licenses</string>
     <string name="credits_licenses_body">Built with Android, Kotlin, Jetpack Compose and Material 3.</string>
@@ -117,6 +139,7 @@
     <string name="error_impostor_count">Invalid impostor count for this player count.</string>
     <string name="error_categories_empty">Select at least one category.</string>
     <string name="error_round_time">Round time must be between 3 and 20 minutes.</string>
+    <string name="error_clue_rounds">1ゲームの周回数は1〜3の範囲で設定してください。</string>
     <string name="error_not_enough_civilians">Leave at least two non impostor players.</string>
     <string name="error_no_words_for_category">No words for selected categories.</string>
     <string name="error_no_words_recent_filter">Recent word filter removed all options. Disable or add categories.</string>
@@ -126,3 +149,4 @@
     <string name="cd_close">Close</string>
     <string name="back_to_home">Back to home</string>
 </resources>
+
