@@ -62,6 +62,11 @@
     <string name="result_winner_title">Who won?</string>
     <string name="result_rematch_button">Play again with same settings</string>
     <string name="result_new_setup_button">New configuration</string>
+    <string name="review_prompt_title">The Impostor を評価してみませんか？</string>
+    <string name="review_prompt_body">役に立っていて楽しいと感じてもらえているなら、評価がとても励みになります。</string>
+    <string name="review_prompt_rate_now">今すぐ評価する</string>
+    <string name="review_prompt_later">あとで</string>
+    <string name="review_prompt_send_feedback">提案を送る</string>
 
     <string name="winner_civilians">Civilians</string>
     <string name="winner_impostors">Impostor(s)</string>
@@ -98,8 +103,37 @@
     <string name="settings_avoid_recent">Avoid recent words</string>
     <string name="settings_show_animation">Reveal animation</string>
     <string name="settings_secure_screen">Protect sensitive screens</string>
+    <string name="settings_rate_app">Google Play で評価する</string>
+    <string name="settings_send_feedback">提案を送る</string>
     <string name="settings_clear_history">Clear history</string>
     <string name="settings_reset_preferences">Reset preferences</string>
+    <string name="feedback_title">提案を送る</string>
+    <string name="feedback_placeholder_title">フィードバック機能は準備中です</string>
+    <string name="feedback_placeholder_body">この場所はフェーズ2向けに準備済みです。ここに本物の提案チャネルを接続する予定です。</string>
+    <string name="feedback_form_intro">アプリを離れずに提案や問題報告を送れます。</string>
+    <string name="feedback_form_privacy">送信するのはメッセージ、任意のメール、アプリ版、言語、時刻、platform=android、利用可能なら基本的なゲーム文脈だけです。</string>
+    <string name="feedback_type_label">フィードバック種別</string>
+    <string name="feedback_type_suggestion">提案</string>
+    <string name="feedback_type_problem">問題</string>
+    <string name="feedback_message_label">メッセージ</string>
+    <string name="feedback_message_placeholder">改善してほしい点や不具合の内容を書いてください。</string>
+    <string name="feedback_message_help">対応できるよう、必要な文脈を入れてください。</string>
+    <string name="feedback_message_error_required">メッセージは必須です。</string>
+    <string name="feedback_message_error_short">もう少し詳しく書いてください。</string>
+    <string name="feedback_email_label">メールアドレス（任意）</string>
+    <string name="feedback_email_placeholder">name@example.com</string>
+    <string name="feedback_email_help">返信が必要な場合のみ入力してください。</string>
+    <string name="feedback_email_error">メール形式を確認してください。</string>
+    <string name="feedback_context_title">自動で送信される情報</string>
+    <string name="feedback_context_body">アプリ版、言語、時刻、platform、利用可能な場合は基本的なラウンド文脈です。</string>
+    <string name="feedback_success">フィードバックを送信しました。</string>
+    <string name="feedback_retry">再試行</string>
+    <string name="feedback_send">送信</string>
+    <string name="feedback_sending">送信中...</string>
+    <string name="feedback_error_network">ネットワークエラーです。接続を確認して再試行してください。</string>
+    <string name="feedback_error_server">フィードバックサービスがエラーを返しました。</string>
+    <string name="feedback_error_invalid_response">フィードバックサービスの応答が不正です。</string>
+    <string name="feedback_error_missing_endpoint">このビルドではフィードバックの送信先URLが未設定です。</string>
 
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>

@@ -1,12 +1,14 @@
 ﻿package com.impostorparty.app
 
 import android.app.Activity
+import android.content.Context
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.LocaleListCompat
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,6 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.impostorparty.app.navigation.AppRoute
 import com.impostorparty.app.ui.screen.CreditsScreen
+import com.impostorparty.app.ui.screen.FeedbackScreen
 import com.impostorparty.app.ui.screen.HistoryScreen
 import com.impostorparty.app.ui.screen.HomeScreen
 import com.impostorparty.app.ui.screen.HowToPlayScreen
@@ -28,6 +31,7 @@ import com.impostorparty.app.ui.screen.SettingsScreen
 import com.impostorparty.app.ui.screen.SetupScreen
 import com.impostorparty.app.ui.theme.ImpostorPartyTheme
 import com.impostorparty.app.viewmodel.GameViewModel
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.impostorparty.domain.usecase.RevealFlowState
 
 @Composable
@@ -35,7 +39,15 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     val appSettings by viewModel.appSettings.collectAsStateWithLifecycle()
     val activeRound by viewModel.activeRound.collectAsStateWithLifecycle()
+    val feedbackForm by viewModel.feedbackForm.collectAsStateWithLifecycle()
+    val reviewPrompt by viewModel.reviewPrompt.collectAsStateWithLifecycle()
+    val pendingInAppReviewRequest by viewModel.pendingInAppReviewRequest.collectAsStateWithLifecycle()
     val revealState by viewModel.revealState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    val activity = context.findActivity()
+    val reviewManager = remember(activity) {
+        activity?.let(ReviewManagerFactory::create)
+    }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val route = backStackEntry?.destination?.route
@@ -44,6 +56,30 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
     SensitiveContentEffect(
         enabled = appSettings.secureScreen && route in setOf(AppRoute.Reveal.route, AppRoute.Result.route),
     )
+
+    LaunchedEffect(pendingInAppReviewRequest) {
+        pendingInAppReviewRequest ?: return@LaunchedEffect
+        val currentActivity = activity
+        val currentReviewManager = reviewManager
+
+        if (currentActivity == null || currentReviewManager == null) {
+            viewModel.onInAppReviewRequestHandled()
+            return@LaunchedEffect
+        }
+
+        currentReviewManager.requestReviewFlow()
+            .addOnCompleteListener { task ->
+                val reviewInfo = task.result
+                if (task.isSuccessful && reviewInfo != null) {
+                    currentReviewManager.launchReviewFlow(currentActivity, reviewInfo)
+                        .addOnCompleteListener {
+                            viewModel.onInAppReviewRequestHandled()
+                        }
+                } else {
+                    viewModel.onInAppReviewRequestHandled()
+                }
+            }
+    }
 
     ImpostorPartyTheme(themeMode = appSettings.themeMode) {
         NavHost(
@@ -136,7 +172,14 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                 ResultScreen(
                     roundSession = activeRound,
                     winnerSelection = viewModel.winnerSelection.collectAsStateWithLifecycle().value,
+                    reviewPrompt = reviewPrompt,
                     onWinnerSelected = viewModel::selectWinner,
+                    onReviewNow = viewModel::onReviewNowSelected,
+                    onReviewLater = viewModel::dismissReviewPrompt,
+                    onSendSuggestion = {
+                        viewModel.onSendSuggestionSelected()
+                        navController.navigate(AppRoute.Feedback.route)
+                    },
                     onPlayAgain = {
                         viewModel.persistRoundResultIfNeeded()
                         viewModel.startRematch()
@@ -152,6 +195,12 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                         }
                     },
                 )
+
+                LaunchedEffect(activeRound?.id) {
+                    if (activeRound != null) {
+                        viewModel.onResultScreenViewed()
+                    }
+                }
             }
 
             composable(AppRoute.HowToPlay.route) {
@@ -169,9 +218,23 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                     onHapticsChanged = viewModel::updateHaptics,
                     onAvoidRecentChanged = viewModel::updateAvoidRecentWords,
                     onRevealAnimationChanged = viewModel::updateRevealAnimation,
+                    onRateApp = viewModel::launchManualReviewFlow,
+                    onSendSuggestion = { navController.navigate(AppRoute.Feedback.route) },
                     onResetPreferences = viewModel::resetPreferences,
                     onClearHistory = viewModel::clearHistory,
                     onBack = { navController.popBackStack() },
+                )
+            }
+
+            composable(AppRoute.Feedback.route) {
+                FeedbackScreen(
+                    state = feedbackForm,
+                    onBack = { navController.popBackStack() },
+                    onTypeChanged = viewModel::updateFeedbackType,
+                    onMessageChanged = viewModel::updateFeedbackMessage,
+                    onEmailChanged = viewModel::updateFeedbackEmail,
+                    onSubmit = viewModel::submitFeedback,
+                    onRetry = viewModel::retryFeedbackSubmission,
                 )
             }
 
@@ -187,6 +250,15 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
             }
         }
     }
+}
+
+private fun Context.findActivity(): Activity? {
+    var current = this
+    while (current is android.content.ContextWrapper) {
+        if (current is Activity) return current
+        current = current.baseContext
+    }
+    return null
 }
 
 @Composable

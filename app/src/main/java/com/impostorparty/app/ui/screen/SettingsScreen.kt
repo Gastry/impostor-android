@@ -49,6 +49,8 @@ fun SettingsScreen(
     onHapticsChanged: (Boolean) -> Unit,
     onAvoidRecentChanged: (Boolean) -> Unit,
     onRevealAnimationChanged: (Boolean) -> Unit,
+    onRateApp: () -> Unit,
+    onSendSuggestion: () -> Unit,
     onResetPreferences: () -> Unit,
     onClearHistory: () -> Unit,
     onBack: () -> Unit,
@@ -156,6 +158,20 @@ fun SettingsScreen(
             item {
                 PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                     Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                        SecondaryPartyButton(
+                            text = stringResource(R.string.settings_rate_app),
+                            onClick = onRateApp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("settings_rate_app"),
+                        )
+                        SecondaryPartyButton(
+                            text = stringResource(R.string.settings_send_feedback),
+                            onClick = onSendSuggestion,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("settings_send_feedback"),
+                        )
                         SecondaryPartyButton(
                             text = stringResource(R.string.settings_clear_history),
                             onClick = onClearHistory,

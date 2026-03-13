@@ -1,8 +1,10 @@
 package com.impostorparty.data.di
 
 import com.impostorparty.data.repository.AssetWordRepository
+import com.impostorparty.data.repository.AppsScriptFeedbackRepository
 import com.impostorparty.data.repository.DataStorePreferencesRepository
 import com.impostorparty.data.repository.DataStoreStatsRepository
+import com.impostorparty.domain.repository.FeedbackRepository
 import com.impostorparty.domain.repository.PreferencesRepository
 import com.impostorparty.domain.repository.StatsRepository
 import com.impostorparty.domain.repository.WordRepository
@@ -29,6 +31,10 @@ abstract class RepositoryBindingsModule {
     @Binds
     @Singleton
     abstract fun bindStatsRepository(impl: DataStoreStatsRepository): StatsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFeedbackRepository(impl: AppsScriptFeedbackRepository): FeedbackRepository
 }
 
 @Module

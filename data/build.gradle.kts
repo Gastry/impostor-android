@@ -6,6 +6,11 @@ plugins {
     alias(libs.plugins.hilt.android)
 }
 
+val feedbackEndpointUrl = (findProperty("feedbackEndpointUrl") as String?)
+    ?.replace("\\", "\\\\")
+    ?.replace("\"", "\\\"")
+    ?: ""
+
 android {
     namespace = "com.impostorparty.data"
     compileSdk = 35
@@ -14,6 +19,7 @@ android {
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "FEEDBACK_ENDPOINT_URL", "\"$feedbackEndpointUrl\"")
     }
 
     compileOptions {
@@ -22,6 +28,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
