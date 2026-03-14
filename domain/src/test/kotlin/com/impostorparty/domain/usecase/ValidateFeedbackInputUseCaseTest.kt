@@ -38,6 +38,13 @@ class ValidateFeedbackInputUseCaseTest {
     }
 
     @Test
+    fun `message over max length is rejected`() {
+        val result = useCase(message = "a".repeat(1_201), email = "")
+
+        assertEquals(setOf(FeedbackValidationError.MESSAGE_TOO_LONG), result)
+    }
+
+    @Test
     fun `valid payload passes validation`() {
         val result = useCase(message = "Enough detail", email = "mail@example.com")
 

@@ -120,6 +120,7 @@
     <string name="feedback_message_help">Ajoutez assez de contexte pour que nous puissions agir.</string>
     <string name="feedback_message_error_required">Le message est obligatoire.</string>
     <string name="feedback_message_error_short">Ajoutez un peu plus de detail.</string>
+    <string name="feedback_message_error_long">Raccourcissez le message avant l envoi.</string>
     <string name="feedback_email_label">Email (optionnel)</string>
     <string name="feedback_email_placeholder">nom@exemple.fr</string>
     <string name="feedback_email_help">Optionnel. Seulement si vous souhaitez une reponse.</string>
@@ -133,7 +134,7 @@
     <string name="feedback_error_network">Erreur reseau. Verifiez la connexion puis reessayez.</string>
     <string name="feedback_error_server">Le service de feedback a renvoye une erreur.</string>
     <string name="feedback_error_invalid_response">Le service de feedback a renvoye une reponse invalide.</string>
-    <string name="feedback_error_missing_endpoint">Le point d acces de feedback n est pas configure dans ce build.</string>
+    <string name="feedback_error_missing_endpoint">La configuration du feedback est incomplete dans ce build.</string>
 
     <string name="theme_system">Systeme</string>
     <string name="theme_light">Clair</string>

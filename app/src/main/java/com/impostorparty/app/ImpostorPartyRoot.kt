@@ -2,6 +2,8 @@
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
@@ -218,7 +220,7 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                     onHapticsChanged = viewModel::updateHaptics,
                     onAvoidRecentChanged = viewModel::updateAvoidRecentWords,
                     onRevealAnimationChanged = viewModel::updateRevealAnimation,
-                    onRateApp = viewModel::launchManualReviewFlow,
+                    onRateApp = { context.openPlayStoreListing() },
                     onSendSuggestion = { navController.navigate(AppRoute.Feedback.route) },
                     onResetPreferences = viewModel::resetPreferences,
                     onClearHistory = viewModel::clearHistory,
@@ -250,6 +252,19 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
             }
         }
     }
+}
+
+private fun Context.openPlayStoreListing() {
+    val packageName = BuildConfig.APPLICATION_ID.removeSuffix(".debug")
+    val marketIntent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    val webIntent = Intent(
+        Intent.ACTION_VIEW,
+        Uri.parse("https://play.google.com/store/apps/details?id=$packageName"),
+    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+    runCatching { startActivity(marketIntent) }
+        .recoverCatching { startActivity(webIntent) }
 }
 
 private fun Context.findActivity(): Activity? {

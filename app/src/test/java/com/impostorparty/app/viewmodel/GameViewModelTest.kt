@@ -194,6 +194,18 @@ class GameViewModelTest {
     }
 
     @Test
+    fun `feedback rejects messages over max length`() = runTest(dispatcher) {
+        val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
+
+        viewModel.updateFeedbackMessage("a".repeat(1_201))
+        viewModel.submitFeedback()
+        advanceUntilIdle()
+
+        assertTrue(viewModel.feedbackForm.value.validationErrors.isNotEmpty())
+        assertEquals(0, feedbackRepository.sentRequests.size)
+    }
+
+    @Test
     fun `feedback submit success updates ui state`() = runTest(dispatcher) {
         feedbackRepository.enqueueResult(FeedbackSendResult.Success)
         val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)

@@ -18,6 +18,8 @@ class ValidateFeedbackInputUseCase {
             errors += FeedbackValidationError.MESSAGE_REQUIRED
         } else if (trimmedMessage.length < MIN_MESSAGE_LENGTH) {
             errors += FeedbackValidationError.MESSAGE_TOO_SHORT
+        } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+            errors += FeedbackValidationError.MESSAGE_TOO_LONG
         }
 
         if (trimmedEmail.isNotEmpty() && !EMAIL_REGEX.matches(trimmedEmail)) {
@@ -29,6 +31,7 @@ class ValidateFeedbackInputUseCase {
 
     private companion object {
         const val MIN_MESSAGE_LENGTH = 8
+        const val MAX_MESSAGE_LENGTH = 1_200
         val EMAIL_REGEX = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
     }
 }

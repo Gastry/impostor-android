@@ -10,6 +10,10 @@ val feedbackEndpointUrl = (findProperty("feedbackEndpointUrl") as String?)
     ?.replace("\\", "\\\\")
     ?.replace("\"", "\\\"")
     ?: ""
+val feedbackSharedToken = (findProperty("feedbackSharedToken") as String?)
+    ?.replace("\\", "\\\\")
+    ?.replace("\"", "\\\"")
+    ?: ""
 
 android {
     namespace = "com.impostorparty.data"
@@ -20,6 +24,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
         buildConfigField("String", "FEEDBACK_ENDPOINT_URL", "\"$feedbackEndpointUrl\"")
+        buildConfigField("String", "FEEDBACK_SHARED_TOKEN", "\"$feedbackSharedToken\"")
     }
 
     compileOptions {

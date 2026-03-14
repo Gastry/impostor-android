@@ -120,6 +120,7 @@
     <string name="feedback_message_help">対応できるよう、必要な文脈を入れてください。</string>
     <string name="feedback_message_error_required">メッセージは必須です。</string>
     <string name="feedback_message_error_short">もう少し詳しく書いてください。</string>
+    <string name="feedback_message_error_long">送信前にメッセージをもう少し短くしてください。</string>
     <string name="feedback_email_label">メールアドレス（任意）</string>
     <string name="feedback_email_placeholder">name@example.com</string>
     <string name="feedback_email_help">返信が必要な場合のみ入力してください。</string>
@@ -133,7 +134,7 @@
     <string name="feedback_error_network">ネットワークエラーです。接続を確認して再試行してください。</string>
     <string name="feedback_error_server">フィードバックサービスがエラーを返しました。</string>
     <string name="feedback_error_invalid_response">フィードバックサービスの応答が不正です。</string>
-    <string name="feedback_error_missing_endpoint">このビルドではフィードバックの送信先URLが未設定です。</string>
+    <string name="feedback_error_missing_endpoint">このビルドではフィードバック設定が不足しています。</string>
 
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>

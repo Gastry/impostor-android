@@ -24,12 +24,14 @@ data class FeedbackSubmission(
 enum class FeedbackValidationError {
     MESSAGE_REQUIRED,
     MESSAGE_TOO_SHORT,
+    MESSAGE_TOO_LONG,
     EMAIL_INVALID,
 }
 
 sealed interface FeedbackSendResult {
     data object Success : FeedbackSendResult
-    data object MissingEndpoint : FeedbackSendResult
+    data object MissingConfiguration : FeedbackSendResult
+    data object InvalidRequest : FeedbackSendResult
     data object NetworkError : FeedbackSendResult
     data object ServerError : FeedbackSendResult
     data object InvalidResponse : FeedbackSendResult

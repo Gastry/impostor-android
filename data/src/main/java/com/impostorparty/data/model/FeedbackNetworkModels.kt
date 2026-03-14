@@ -9,6 +9,7 @@ data class FeedbackApiRequest(
     val type: String,
     val message: String,
     val email: String? = null,
+    val token: String,
     @SerialName("appVersion") val appVersion: String,
     val locale: String,
     val platform: String,
@@ -28,10 +29,11 @@ data class FeedbackApiResponse(
     val error: String? = null,
 )
 
-fun FeedbackSubmission.toApiRequest(): FeedbackApiRequest = FeedbackApiRequest(
+fun FeedbackSubmission.toApiRequest(sharedToken: String): FeedbackApiRequest = FeedbackApiRequest(
     type = type.name.lowercase(),
     message = message.trim(),
     email = email?.trim()?.ifBlank { null },
+    token = sharedToken.trim(),
     appVersion = context.appVersion,
     locale = context.locale,
     platform = context.platform,

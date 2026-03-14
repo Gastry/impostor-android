@@ -120,6 +120,7 @@
     <string name="feedback_message_help">Genug Kontext hilft uns beim Nachvollziehen.</string>
     <string name="feedback_message_error_required">Eine Nachricht ist erforderlich.</string>
     <string name="feedback_message_error_short">Bitte gib etwas mehr Details an.</string>
+    <string name="feedback_message_error_long">Bitte kürze die Nachricht vor dem Senden.</string>
     <string name="feedback_email_label">E-Mail (optional)</string>
     <string name="feedback_email_placeholder">name@beispiel.de</string>
     <string name="feedback_email_help">Optional. Nur wenn du eine Antwort moechtest.</string>
@@ -133,7 +134,7 @@
     <string name="feedback_error_network">Netzwerkfehler. Verbindung pruefen und erneut versuchen.</string>
     <string name="feedback_error_server">Der Feedback-Dienst hat einen Fehler zurueckgegeben.</string>
     <string name="feedback_error_invalid_response">Der Feedback-Dienst hat ungueltig geantwortet.</string>
-    <string name="feedback_error_missing_endpoint">Der Feedback-Endpunkt ist in diesem Build nicht konfiguriert.</string>
+    <string name="feedback_error_missing_endpoint">Die Feedback-Konfiguration ist in diesem Build unvollständig.</string>
 
     <string name="theme_system">System</string>
     <string name="theme_light">Hell</string>

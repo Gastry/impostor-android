@@ -115,7 +115,9 @@ fun FeedbackScreen(
                             }
                         },
                         isError = state.validationErrors.any {
-                            it == FeedbackValidationError.MESSAGE_REQUIRED || it == FeedbackValidationError.MESSAGE_TOO_SHORT
+                            it == FeedbackValidationError.MESSAGE_REQUIRED ||
+                                it == FeedbackValidationError.MESSAGE_TOO_SHORT ||
+                                it == FeedbackValidationError.MESSAGE_TOO_LONG
                         },
                     )
 
@@ -210,6 +212,7 @@ private fun messageValidationText(errors: Set<FeedbackValidationError>): String?
     return when {
         FeedbackValidationError.MESSAGE_REQUIRED in errors -> stringResource(R.string.feedback_message_error_required)
         FeedbackValidationError.MESSAGE_TOO_SHORT in errors -> stringResource(R.string.feedback_message_error_short)
+        FeedbackValidationError.MESSAGE_TOO_LONG in errors -> stringResource(R.string.feedback_message_error_long)
         else -> null
     }
 }
@@ -217,7 +220,8 @@ private fun messageValidationText(errors: Set<FeedbackValidationError>): String?
 @Composable
 private fun sendErrorText(result: FeedbackSendResult?): String? {
     return when (result) {
-        FeedbackSendResult.MissingEndpoint -> stringResource(R.string.feedback_error_missing_endpoint)
+        FeedbackSendResult.MissingConfiguration -> stringResource(R.string.feedback_error_missing_endpoint)
+        FeedbackSendResult.InvalidRequest -> stringResource(R.string.feedback_error_server)
         FeedbackSendResult.NetworkError -> stringResource(R.string.feedback_error_network)
         FeedbackSendResult.ServerError -> stringResource(R.string.feedback_error_server)
         FeedbackSendResult.InvalidResponse -> stringResource(R.string.feedback_error_invalid_response)

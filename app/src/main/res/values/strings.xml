@@ -120,6 +120,7 @@
     <string name="feedback_message_help">Be specific enough so we can act on it.</string>
     <string name="feedback_message_error_required">Message is required.</string>
     <string name="feedback_message_error_short">Please add a bit more detail.</string>
+    <string name="feedback_message_error_long">Please shorten the message before sending.</string>
     <string name="feedback_email_label">Email (optional)</string>
     <string name="feedback_email_placeholder">name@example.com</string>
     <string name="feedback_email_help">Optional. Only if you want a reply.</string>
@@ -133,7 +134,7 @@
     <string name="feedback_error_network">Network error. Check your connection and try again.</string>
     <string name="feedback_error_server">The feedback service returned an error.</string>
     <string name="feedback_error_invalid_response">The feedback service returned an invalid response.</string>
-    <string name="feedback_error_missing_endpoint">Feedback endpoint is not configured in this build.</string>
+    <string name="feedback_error_missing_endpoint">Feedback configuration is incomplete in this build.</string>
 
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>

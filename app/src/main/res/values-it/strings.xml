@@ -120,6 +120,7 @@
     <string name="feedback_message_help">Aggiungi abbastanza contesto per permetterci di intervenire.</string>
     <string name="feedback_message_error_required">Il messaggio e obbligatorio.</string>
     <string name="feedback_message_error_short">Aggiungi qualche dettaglio in piu.</string>
+    <string name="feedback_message_error_long">Accorcia il messaggio prima di inviarlo.</string>
     <string name="feedback_email_label">Email (opzionale)</string>
     <string name="feedback_email_placeholder">nome@esempio.it</string>
     <string name="feedback_email_help">Opzionale. Solo se vuoi una risposta.</string>
@@ -133,7 +134,7 @@
     <string name="feedback_error_network">Errore di rete. Controlla la connessione e riprova.</string>
     <string name="feedback_error_server">Il servizio feedback ha restituito un errore.</string>
     <string name="feedback_error_invalid_response">Il servizio feedback ha restituito una risposta non valida.</string>
-    <string name="feedback_error_missing_endpoint">L endpoint del feedback non e configurato in questa build.</string>
+    <string name="feedback_error_missing_endpoint">La configurazione del feedback e incompleta in questa build.</string>
 
     <string name="theme_system">Sistema</string>
     <string name="theme_light">Chiaro</string>
