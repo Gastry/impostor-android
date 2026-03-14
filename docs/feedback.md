@@ -11,11 +11,15 @@ The implementation stays intentionally small for this MVP, but it now includes s
 
 ## Google Sheet
 
-Suggested spreadsheet tab name:
+Recommended spreadsheet name:
+
+`El Impostor Feedback`
+
+Recommended tab name:
 
 `Feedback`
 
-Expected columns:
+Exact columns and order:
 
 1. `createdAt`
 2. `type`
@@ -25,6 +29,10 @@ Expected columns:
 6. `locale`
 7. `platform`
 8. `optionalContext`
+
+Example row:
+
+`2026-03-14T18:42:10.000Z | suggestion | More category packs please | mail@example.com | 1.0.0 | es | android | {"clueRounds":2,"playerCount":6}`
 
 `optionalContext` is stored as JSON text and may include:
 
@@ -70,9 +78,23 @@ Recommended place:
 
 - user-level `~/.gradle/gradle.properties`
 
+On Windows, the equivalent user-level file is typically:
+
+- `%USERPROFILE%\\.gradle\\gradle.properties`
+
 Alternative:
 
 - project `gradle.properties` if you intentionally want to share it with the team
+- a local machine-specific `gradle.properties` that is not committed
+
+Recommended example in user-level `gradle.properties`:
+
+```properties
+feedbackEndpointUrl=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+feedbackSharedToken=REPLACE_WITH_A_LONG_RANDOM_SHARED_TOKEN
+```
+
+Do not hardcode either value in source files or commit real production values to the repository.
 
 The data module exposes both values through:
 
