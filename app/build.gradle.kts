@@ -86,6 +86,7 @@ dependencies {
     implementation(libs.androidx.compose.material.icons)
 
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.google.play.review.ktx)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

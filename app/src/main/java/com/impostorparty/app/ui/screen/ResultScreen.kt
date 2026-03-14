@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,13 +32,18 @@ import com.impostorparty.app.util.labelRes
 import com.impostorparty.domain.model.PlayerSecret
 import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.model.WinnerSide
+import com.impostorparty.app.viewmodel.ReviewPromptUiState
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ResultScreen(
     roundSession: RoundSession?,
     winnerSelection: WinnerSide,
+    reviewPrompt: ReviewPromptUiState?,
     onWinnerSelected: (WinnerSide) -> Unit,
+    onReviewNow: () -> Unit,
+    onReviewLater: () -> Unit,
+    onSendSuggestion: () -> Unit,
     onPlayAgain: () -> Unit,
     onNewConfiguration: () -> Unit,
 ) {
@@ -117,6 +124,38 @@ fun ResultScreen(
                     .testTag("result_new_setup_button"),
             )
         }
+    }
+
+    if (reviewPrompt != null) {
+        AlertDialog(
+            onDismissRequest = onReviewLater,
+            title = { Text(stringResource(R.string.review_prompt_title)) },
+            text = { Text(stringResource(R.string.review_prompt_body)) },
+            confirmButton = {
+                TextButton(
+                    onClick = onReviewNow,
+                    modifier = Modifier.testTag("review_prompt_rate_now"),
+                ) {
+                    Text(stringResource(R.string.review_prompt_rate_now))
+                }
+            },
+            dismissButton = {
+                androidx.compose.foundation.layout.Row(horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    TextButton(
+                        onClick = onReviewLater,
+                        modifier = Modifier.testTag("review_prompt_later"),
+                    ) {
+                        Text(stringResource(R.string.review_prompt_later))
+                    }
+                    TextButton(
+                        onClick = onSendSuggestion,
+                        modifier = Modifier.testTag("review_prompt_feedback"),
+                    ) {
+                        Text(stringResource(R.string.review_prompt_send_feedback))
+                    }
+                }
+            },
+        )
     }
 }
 

@@ -3,6 +3,7 @@
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
+import com.impostorparty.domain.model.ReviewPromptState
 import com.impostorparty.domain.model.RoundHistoryEntry
 import com.impostorparty.domain.model.ThemeMode
 import com.impostorparty.domain.model.WinnerSide
@@ -34,6 +35,17 @@ data class StoredAppSettings(
     val avoidRecentWords: Boolean,
     val secureScreen: Boolean,
     val showRevealAnimation: Boolean,
+)
+
+@Serializable
+data class StoredReviewPromptState(
+    val completedGames: Int = 0,
+    val distinctUseDays: Int = 0,
+    val sessionCount: Int = 0,
+    val lastUsedEpochDay: Long? = null,
+    val lastReviewAttemptEpochMillis: Long? = null,
+    val lastReviewLaterEpochMillis: Long? = null,
+    val lastCompletedRoundId: String? = null,
 )
 
 @Serializable
@@ -107,6 +119,26 @@ fun StoredAppSettings.toDomain(): AppSettings = AppSettings(
     avoidRecentWords = avoidRecentWords,
     secureScreen = secureScreen,
     showRevealAnimation = showRevealAnimation,
+)
+
+fun ReviewPromptState.toStored(): StoredReviewPromptState = StoredReviewPromptState(
+    completedGames = completedGames,
+    distinctUseDays = distinctUseDays,
+    sessionCount = sessionCount,
+    lastUsedEpochDay = lastUsedEpochDay,
+    lastReviewAttemptEpochMillis = lastReviewAttemptEpochMillis,
+    lastReviewLaterEpochMillis = lastReviewLaterEpochMillis,
+    lastCompletedRoundId = lastCompletedRoundId,
+)
+
+fun StoredReviewPromptState.toDomain(): ReviewPromptState = ReviewPromptState(
+    completedGames = completedGames.coerceAtLeast(0),
+    distinctUseDays = distinctUseDays.coerceAtLeast(0),
+    sessionCount = sessionCount.coerceAtLeast(0),
+    lastUsedEpochDay = lastUsedEpochDay,
+    lastReviewAttemptEpochMillis = lastReviewAttemptEpochMillis,
+    lastReviewLaterEpochMillis = lastReviewLaterEpochMillis,
+    lastCompletedRoundId = lastCompletedRoundId,
 )
 
 fun RoundHistoryEntry.toStored(): StoredRoundHistoryEntry = StoredRoundHistoryEntry(

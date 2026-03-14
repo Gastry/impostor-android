@@ -2,13 +2,21 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.impostorparty.app.BuildConfig
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
+import com.impostorparty.domain.model.FeedbackContext
+import com.impostorparty.domain.model.FeedbackSendResult
+import com.impostorparty.domain.model.FeedbackSubmission
+import com.impostorparty.domain.model.FeedbackType
+import com.impostorparty.domain.model.FeedbackValidationError
 import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.model.PlayerAssignment
+import com.impostorparty.domain.model.ReviewPromptState
 import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.model.ThemeMode
 import com.impostorparty.domain.model.WinnerSide
+import com.impostorparty.domain.repository.FeedbackRepository
 import com.impostorparty.domain.repository.PreferencesRepository
 import com.impostorparty.domain.repository.StatsRepository
 import com.impostorparty.domain.repository.WordRepository
@@ -18,11 +26,16 @@ import com.impostorparty.domain.usecase.GetAllowedImpostorCountsUseCase
 import com.impostorparty.domain.usecase.RecordRoundResultUseCase
 import com.impostorparty.domain.usecase.ReduceRevealFlowStateUseCase
 import com.impostorparty.domain.usecase.RevealFlowState
+import com.impostorparty.domain.usecase.SendFeedbackUseCase
+import com.impostorparty.domain.usecase.ShouldShowReviewPromptUseCase
 import com.impostorparty.domain.usecase.SetupValidationError
+import com.impostorparty.domain.usecase.UpdateReviewPromptStateUseCase
+import com.impostorparty.domain.usecase.ValidateFeedbackInputUseCase
 import com.impostorparty.domain.usecase.WordSelectionError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.random.Random
+import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -35,6 +48,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val wordRepository: WordRepository,
+    private val feedbackRepository: FeedbackRepository,
     private val preferencesRepository: PreferencesRepository,
     private val statsRepository: StatsRepository,
 ) : ViewModel() {
@@ -43,6 +57,10 @@ class GameViewModel @Inject constructor(
     private val getAllowedImpostorCountsUseCase = GetAllowedImpostorCountsUseCase()
     private val reduceRevealFlowStateUseCase = ReduceRevealFlowStateUseCase()
     private val recordRoundResultUseCase = RecordRoundResultUseCase()
+    private val shouldShowReviewPromptUseCase = ShouldShowReviewPromptUseCase()
+    private val updateReviewPromptStateUseCase = UpdateReviewPromptStateUseCase()
+    private val validateFeedbackInputUseCase = ValidateFeedbackInputUseCase()
+    private val sendFeedbackUseCase = SendFeedbackUseCase(feedbackRepository)
 
     private val _setup = MutableStateFlow(GameSetup())
     val setup: StateFlow<GameSetup> = _setup.asStateFlow()
@@ -61,6 +79,15 @@ class GameViewModel @Inject constructor(
 
     private val _message = MutableStateFlow<UiMessage?>(null)
     val message: StateFlow<UiMessage?> = _message.asStateFlow()
+
+    private val _reviewPrompt = MutableStateFlow<ReviewPromptUiState?>(null)
+    val reviewPrompt: StateFlow<ReviewPromptUiState?> = _reviewPrompt.asStateFlow()
+
+    private val _pendingInAppReviewRequest = MutableStateFlow<Long?>(null)
+    val pendingInAppReviewRequest: StateFlow<Long?> = _pendingInAppReviewRequest.asStateFlow()
+
+    private val _feedbackForm = MutableStateFlow(FeedbackFormUiState())
+    val feedbackForm: StateFlow<FeedbackFormUiState> = _feedbackForm.asStateFlow()
 
     val appSettings: StateFlow<AppSettings> = preferencesRepository.appSettings.stateIn(
         viewModelScope,
@@ -81,7 +108,10 @@ class GameViewModel @Inject constructor(
     )
 
     private val recordedRoundIds = mutableSetOf<String>()
+    private val reviewTrackedRoundIds = mutableSetOf<String>()
+    private var lastFeedbackContextHint: FeedbackContextHint? = null
     private var setupLoaded = false
+    private var reviewSessionTracked = false
 
     init {
         viewModelScope.launch {
@@ -105,10 +135,21 @@ class GameViewModel @Inject constructor(
                 setupLoaded = true
             }
         }
+
+        registerSessionIfNeeded()
     }
 
     fun dismissMessage() {
         _message.value = null
+    }
+
+    fun dismissReviewPrompt() {
+        viewModelScope.launch {
+            updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onRemindLater(state, System.currentTimeMillis())
+            }
+            _reviewPrompt.value = null
+        }
     }
 
     fun updatePlayerCount(count: Int) {
@@ -253,6 +294,149 @@ class GameViewModel @Inject constructor(
         }
     }
 
+    fun onResultScreenViewed() {
+        val round = _activeRound.value ?: return
+        if (!reviewTrackedRoundIds.add(round.id)) return
+        lastFeedbackContextHint = FeedbackContextHint(
+            clueRounds = round.setup.clueRounds,
+            playerCount = round.setup.playerCount,
+        )
+
+        viewModelScope.launch {
+            val updated = updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onRoundCompleted(state, round.id)
+            }
+            if (shouldShowReviewPromptUseCase(updated, System.currentTimeMillis())) {
+                _reviewPrompt.value = ReviewPromptUiState(round.id)
+            }
+        }
+    }
+
+    fun onReviewNowSelected() {
+        viewModelScope.launch {
+            updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onReviewAttempted(state, System.currentTimeMillis())
+            }
+            _reviewPrompt.value = null
+            _pendingInAppReviewRequest.value = System.nanoTime()
+        }
+    }
+
+    fun onSendSuggestionSelected() {
+        viewModelScope.launch {
+            updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onRemindLater(state, System.currentTimeMillis())
+            }
+            _reviewPrompt.value = null
+        }
+    }
+
+    fun launchManualReviewFlow() {
+        viewModelScope.launch {
+            updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onReviewAttempted(state, System.currentTimeMillis())
+            }
+            _pendingInAppReviewRequest.value = System.nanoTime()
+        }
+    }
+
+    fun onInAppReviewRequestHandled() {
+        _pendingInAppReviewRequest.value = null
+    }
+
+    fun updateFeedbackType(type: FeedbackType) {
+        _feedbackForm.update { it.copy(type = type, isSuccess = false, sendResult = null) }
+    }
+
+    fun updateFeedbackMessage(message: String) {
+        _feedbackForm.update {
+            it.copy(
+                message = message,
+                validationErrors = it.validationErrors - setOf(
+                    FeedbackValidationError.MESSAGE_REQUIRED,
+                    FeedbackValidationError.MESSAGE_TOO_SHORT,
+                ),
+                isSuccess = false,
+                sendResult = null,
+            )
+        }
+    }
+
+    fun updateFeedbackEmail(email: String) {
+        _feedbackForm.update {
+            it.copy(
+                email = email,
+                validationErrors = it.validationErrors - FeedbackValidationError.EMAIL_INVALID,
+                isSuccess = false,
+                sendResult = null,
+            )
+        }
+    }
+
+    fun submitFeedback() {
+        val current = _feedbackForm.value
+        if (current.isSending) return
+
+        val validationErrors = validateFeedbackInputUseCase(current.message, current.email)
+        if (validationErrors.isNotEmpty()) {
+            _feedbackForm.update { it.copy(validationErrors = validationErrors, isSuccess = false, sendResult = null) }
+            return
+        }
+
+        _feedbackForm.value = current.copy(
+            isSending = true,
+            validationErrors = emptySet(),
+            isSuccess = false,
+            sendResult = null,
+        )
+
+        viewModelScope.launch {
+            val settingsSnapshot = appSettings.first()
+            val localeTag = settingsSnapshot.languageTag
+                ?.ifBlank { null }
+                ?: Locale.getDefault().toLanguageTag().ifBlank { "en" }
+
+            val feedbackContext = FeedbackContext(
+                appVersion = BuildConfig.VERSION_NAME,
+                locale = localeTag,
+                timestampEpochMillis = System.currentTimeMillis(),
+                clueRounds = lastFeedbackContextHint?.clueRounds,
+                playerCount = lastFeedbackContextHint?.playerCount,
+            )
+
+            val result = sendFeedbackUseCase(
+                FeedbackSubmission(
+                    type = current.type,
+                    message = current.message.trim(),
+                    email = current.email.trim().ifBlank { null },
+                    context = feedbackContext,
+                ),
+            )
+
+            _feedbackForm.update { state ->
+                if (result == FeedbackSendResult.Success) {
+                    FeedbackFormUiState(
+                        type = state.type,
+                        isSuccess = true,
+                    )
+                } else {
+                    state.copy(
+                        isSending = false,
+                        sendResult = result,
+                    )
+                }
+            }
+        }
+    }
+
+    fun retryFeedbackSubmission() {
+        submitFeedback()
+    }
+
+    fun clearFeedbackStatus() {
+        _feedbackForm.update { it.copy(isSuccess = false, sendResult = null, validationErrors = emptySet()) }
+    }
+
     fun startRematch() {
         val previousSetup = _activeRound.value?.setup ?: _setup.value
         _setup.value = previousSetup
@@ -304,7 +488,46 @@ class GameViewModel @Inject constructor(
             preferencesRepository.saveAppSettings(update(current))
         }
     }
+
+    private fun registerSessionIfNeeded() {
+        if (reviewSessionTracked) return
+        reviewSessionTracked = true
+
+        viewModelScope.launch {
+            updateReviewPromptState { state ->
+                updateReviewPromptStateUseCase.onSessionStarted(state, System.currentTimeMillis())
+            }
+        }
+    }
+
+    private suspend fun updateReviewPromptState(
+        update: (ReviewPromptState) -> ReviewPromptState,
+    ): ReviewPromptState {
+        val current = preferencesRepository.reviewPromptState.first()
+        val updated = update(current)
+        preferencesRepository.saveReviewPromptState(updated)
+        return updated
+    }
 }
+
+data class ReviewPromptUiState(
+    val roundId: String,
+)
+
+data class FeedbackFormUiState(
+    val type: FeedbackType = FeedbackType.SUGGESTION,
+    val message: String = "",
+    val email: String = "",
+    val isSending: Boolean = false,
+    val isSuccess: Boolean = false,
+    val sendResult: FeedbackSendResult? = null,
+    val validationErrors: Set<FeedbackValidationError> = emptySet(),
+)
+
+data class FeedbackContextHint(
+    val clueRounds: Int?,
+    val playerCount: Int?,
+)
 
 enum class UiMessageType {
     INVALID_SETUP,

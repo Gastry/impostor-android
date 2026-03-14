@@ -33,5 +33,14 @@ class HomeAndSettingsLayoutTest {
         composeRule.onNodeWithTag("settings_reset_cta").assertIsDisplayed()
     }
 
+    @Test
+    fun settings_feedback_stub_is_reachable() {
+        composeRule.onNodeWithText(text(R.string.settings_title)).performClick()
+        composeRule.onNodeWithTag("settings_list")
+            .performScrollToNode(hasTestTag("settings_send_feedback"))
+        composeRule.onNodeWithTag("settings_send_feedback").performClick()
+        composeRule.onNodeWithTag("feedback_send").assertIsDisplayed()
+    }
+
     private fun text(id: Int): String = composeRule.activity.getString(id)
 }
