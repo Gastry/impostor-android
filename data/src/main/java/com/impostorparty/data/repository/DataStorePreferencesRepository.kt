@@ -2,6 +2,7 @@ package com.impostorparty.data.repository
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.impostorparty.data.model.StoredAppSettings
 import com.impostorparty.data.model.StoredGameSetup
@@ -36,6 +37,10 @@ class DataStorePreferencesRepository @Inject constructor(
         encoded?.decodeOrNull<StoredAppSettings>()?.toDomain() ?: AppSettings()
     }
 
+    override val adsRemoved: Flow<Boolean> = context.settingsDataStore.data.map { preferences ->
+        preferences[ADS_REMOVED_KEY] ?: false
+    }
+
     override val lastSetup: Flow<GameSetup?> = context.settingsDataStore.data.map { preferences ->
         preferences[LAST_SETUP_KEY]
             ?.decodeOrNull<StoredGameSetup>()
@@ -61,6 +66,12 @@ class DataStorePreferencesRepository @Inject constructor(
     override suspend fun saveAppSettings(settings: AppSettings) {
         context.settingsDataStore.edit { preferences ->
             preferences[APP_SETTINGS_KEY] = json.encodeToString(settings.toStored())
+        }
+    }
+
+    override suspend fun saveAdsRemoved(removed: Boolean) {
+        context.settingsDataStore.edit { preferences ->
+            preferences[ADS_REMOVED_KEY] = removed
         }
     }
 
@@ -90,7 +101,11 @@ class DataStorePreferencesRepository @Inject constructor(
     }
 
     override suspend fun clearAllPreferences() {
-        context.settingsDataStore.edit { it.clear() }
+        context.settingsDataStore.edit { preferences ->
+            val adsRemoved = preferences[ADS_REMOVED_KEY] ?: false
+            preferences.clear()
+            preferences[ADS_REMOVED_KEY] = adsRemoved
+        }
     }
 
     private inline fun <reified T> String?.decodeOrNull(): T? {
@@ -101,6 +116,7 @@ class DataStorePreferencesRepository @Inject constructor(
     private companion object {
         const val MAX_RECORDS_PER_LANGUAGE_CATEGORY = 128
         val APP_SETTINGS_KEY = stringPreferencesKey("app_settings_json")
+        val ADS_REMOVED_KEY = booleanPreferencesKey("ads_removed")
         val LAST_SETUP_KEY = stringPreferencesKey("last_setup_json")
         val REVIEW_PROMPT_STATE_KEY = stringPreferencesKey("review_prompt_state_json")
         val WORD_USAGE_HISTORY_KEY = stringPreferencesKey("word_usage_history_json")

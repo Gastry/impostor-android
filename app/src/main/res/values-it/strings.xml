@@ -103,6 +103,15 @@
     <string name="settings_avoid_recent">Evita parole recenti</string>
     <string name="settings_show_animation">Animazione reveal</string>
     <string name="settings_secure_screen">Proteggi schermate sensibili</string>
+    <string name="settings_remove_ads_buy">Rimuovi pubblicità</string>
+    <string name="settings_remove_ads_price">Rimuovi pubblicità · %1$s</string>
+    <string name="settings_remove_ads_loading">Controllo Google Play…</string>
+    <string name="settings_remove_ads_owned">Pubblicità rimossa</string>
+    <string name="settings_remove_ads_pending">Acquisto in attesa</string>
+    <string name="settings_remove_ads_message_purchased">La pubblicità è ora disattivata su questo dispositivo.</string>
+    <string name="settings_remove_ads_message_pending">L’acquisto è in attesa. Google Play lo confermerà quando il pagamento sarà completato.</string>
+    <string name="settings_remove_ads_message_error">Non è stato possibile completare l’acquisto su Google Play.</string>
+    <string name="settings_remove_ads_message_unavailable">Questa opzione non è disponibile in questa build.</string>
     <string name="settings_rate_app">Valuta su Google Play</string>
     <string name="settings_send_feedback">Invia un suggerimento</string>
     <string name="settings_clear_history">Cancella cronologia</string>
@@ -157,7 +166,7 @@
     <string name="credits_app_body">Progettata per round veloci dal vivo con un solo telefono condiviso.</string>
     <string name="credits_licenses_title">Licenze</string>
     <string name="credits_licenses_body">Sviluppata con Android, Kotlin, Jetpack Compose, Material 3 e librerie open source.</string>
-    <string name="credits_privacy_hint">Nessun account, nessuna pubblicità, nessun tracciamento. Tutto resta sul dispositivo.</string>
+    <string name="credits_privacy_hint">Nessun account, nessun tracciamento. Pensata per partite locali rapide con un solo telefono condiviso.</string>
 
     <string name="category_food">Cibo</string>
     <string name="category_animals">Animali</string>

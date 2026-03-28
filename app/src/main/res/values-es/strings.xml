@@ -103,6 +103,15 @@
     <string name="settings_avoid_recent">Evitar palabras recientes</string>
     <string name="settings_show_animation">Animación de revelado</string>
     <string name="settings_secure_screen">Proteger pantallas sensibles</string>
+    <string name="settings_remove_ads_buy">Quitar anuncios</string>
+    <string name="settings_remove_ads_price">Quitar anuncios · %1$s</string>
+    <string name="settings_remove_ads_loading">Comprobando Google Play…</string>
+    <string name="settings_remove_ads_owned">Anuncios quitados</string>
+    <string name="settings_remove_ads_pending">Compra pendiente</string>
+    <string name="settings_remove_ads_message_purchased">Los anuncios ya están desactivados en este dispositivo.</string>
+    <string name="settings_remove_ads_message_pending">La compra está pendiente. Google Play la confirmará cuando se complete el pago.</string>
+    <string name="settings_remove_ads_message_error">No se pudo completar la compra en Google Play.</string>
+    <string name="settings_remove_ads_message_unavailable">Esta opción no está disponible en esta build.</string>
     <string name="settings_rate_app">Valorar en Google Play</string>
     <string name="settings_send_feedback">Enviar sugerencia</string>
     <string name="settings_clear_history">Borrar historial</string>
@@ -157,7 +166,7 @@
     <string name="credits_app_body">Diseñada para rondas presenciales rápidas con un solo móvil compartido.</string>
     <string name="credits_licenses_title">Licencias</string>
     <string name="credits_licenses_body">Construida con Android, Kotlin, Jetpack Compose, Material 3 y librerías open source.</string>
-    <string name="credits_privacy_hint">Sin cuentas, sin anuncios, sin rastreo. Todo queda en el dispositivo.</string>
+    <string name="credits_privacy_hint">Sin cuentas ni rastreo. Pensada para jugar en local y compartir un solo móvil.</string>
 
     <string name="category_food">Comida</string>
     <string name="category_animals">Animales</string>

@@ -24,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.impostorparty.app.R
+import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
+import com.impostorparty.app.ads.RemoveAdsPurchaseUiState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
@@ -36,6 +38,7 @@ import com.impostorparty.domain.model.ThemeMode
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
+    removeAdsUiState: RemoveAdsPurchaseUiState,
     onThemeModeChanged: (ThemeMode) -> Unit,
     onLanguageChanged: (String?) -> Unit,
     onReducedMotionChanged: (Boolean) -> Unit,
@@ -44,16 +47,38 @@ fun SettingsScreen(
     onHapticsChanged: (Boolean) -> Unit,
     onAvoidRecentChanged: (Boolean) -> Unit,
     onRevealAnimationChanged: (Boolean) -> Unit,
+    onRemoveAds: () -> Unit,
     onRateApp: () -> Unit,
     onSendSuggestion: () -> Unit,
     onResetPreferences: () -> Unit,
     onClearHistory: () -> Unit,
+    onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val removeAdsButtonText = when {
+        removeAdsUiState.isAdsRemoved -> stringResource(R.string.settings_remove_ads_owned)
+        removeAdsUiState.hasPendingPurchase -> stringResource(R.string.settings_remove_ads_pending)
+        removeAdsUiState.isLoading || removeAdsUiState.isPurchaseInProgress -> {
+            stringResource(R.string.settings_remove_ads_loading)
+        }
+        removeAdsUiState.priceLabel != null -> {
+            stringResource(R.string.settings_remove_ads_price, removeAdsUiState.priceLabel)
+        }
+        else -> stringResource(R.string.settings_remove_ads_buy)
+    }
+    val removeAdsEnabled = !removeAdsUiState.isAdsRemoved &&
+        !removeAdsUiState.hasPendingPurchase &&
+        !removeAdsUiState.isLoading &&
+        !removeAdsUiState.isPurchaseInProgress &&
+        removeAdsUiState.isPurchaseAvailable
+
     PartyScaffold(
         title = stringResource(R.string.settings_title),
         navigationIcon = {
-            IconButton(onClick = onBack) {
+            IconButton(onClick = {
+                onDismissBillingMessage()
+                onBack()
+            }) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
             }
         },
@@ -128,6 +153,22 @@ fun SettingsScreen(
                 PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                     Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                         SecondaryPartyButton(
+                            text = removeAdsButtonText,
+                            onClick = onRemoveAds,
+                            enabled = removeAdsEnabled,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("settings_remove_ads"),
+                        )
+                        removeAdsStatusText(removeAdsUiState.message)?.let { message ->
+                            Text(
+                                text = stringResource(message),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.testTag("settings_remove_ads_status"),
+                            )
+                        }
+                        SecondaryPartyButton(
                             text = stringResource(R.string.settings_rate_app),
                             onClick = onRateApp,
                             modifier = Modifier
@@ -157,6 +198,16 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+}
+
+private fun removeAdsStatusText(message: RemoveAdsPurchaseMessage?): Int? {
+    return when (message) {
+        RemoveAdsPurchaseMessage.PURCHASED -> R.string.settings_remove_ads_message_purchased
+        RemoveAdsPurchaseMessage.PENDING -> R.string.settings_remove_ads_message_pending
+        RemoveAdsPurchaseMessage.ERROR -> R.string.settings_remove_ads_message_error
+        RemoveAdsPurchaseMessage.UNAVAILABLE -> R.string.settings_remove_ads_message_unavailable
+        null -> null
     }
 }
 
