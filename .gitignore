@@ -13,6 +13,8 @@ local.properties
 .android-user-home/
 .kotlin/
 *.log
+hs_err_pid*
+replay_pid*
 *.keystore
 *.lock
 
