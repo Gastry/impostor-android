@@ -146,20 +146,6 @@ fun FeedbackScreen(
                 }
             }
 
-            PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceXs)) {
-                    Text(
-                        text = stringResource(R.string.feedback_context_title),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Text(
-                        text = stringResource(R.string.feedback_context_body),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-
             if (state.isSuccess) {
                 PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                     Text(

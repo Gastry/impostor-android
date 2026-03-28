@@ -20,6 +20,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.impostorparty.app.ads.AdPlacement
+import com.impostorparty.app.ads.AdsConfig
 import com.impostorparty.app.navigation.AppRoute
 import com.impostorparty.app.ui.screen.CreditsScreen
 import com.impostorparty.app.ui.screen.FeedbackScreen
@@ -56,7 +58,7 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
 
     ApplyLanguageEffect(appSettings.languageTag)
     SensitiveContentEffect(
-        enabled = appSettings.secureScreen && route in setOf(AppRoute.Reveal.route, AppRoute.Result.route),
+        enabled = route in setOf(AppRoute.Reveal.route, AppRoute.Result.route),
     )
 
     LaunchedEffect(pendingInAppReviewRequest) {
@@ -91,6 +93,7 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
             composable(AppRoute.Home.route) {
                 HomeScreen(
                     stats = viewModel.stats.collectAsStateWithLifecycle().value,
+                    homeBannerAdUnitId = AdsConfig.adUnitIdFor(AdPlacement.HOME_BANNER),
                     onNewGame = { navController.navigate(AppRoute.Setup.route) },
                     onHowToPlay = { navController.navigate(AppRoute.HowToPlay.route) },
                     onSettings = { navController.navigate(AppRoute.Settings.route) },
@@ -134,8 +137,8 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                 RevealScreen(
                     roundSession = activeRound,
                     flowState = revealState,
-                    reducedMotion = appSettings.reducedMotion,
-                    hapticsEnabled = viewModel.setup.collectAsStateWithLifecycle().value.hapticsEnabled,
+                    reducedMotion = false,
+                    hapticsEnabled = true,
                     onRequestReveal = viewModel::requestReveal,
                     onHideAndPass = viewModel::hideAndPass,
                     onExit = {
@@ -159,8 +162,12 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
             composable(AppRoute.RoundReady.route) {
                 RoundReadyScreen(
                     setup = activeRound?.setup,
-                    showQuickInstructions = appSettings.showQuickInstructions,
-                    onFinishRound = { navController.navigate(AppRoute.Result.route) },
+                    showQuickInstructions = true,
+                    onFinishRound = {
+                        navController.navigate(AppRoute.Result.route) {
+                            popUpTo(AppRoute.RoundReady.route) { inclusive = true }
+                        }
+                    },
                     onNewConfiguration = {
                         viewModel.clearCurrentRound()
                         navController.navigate(AppRoute.Setup.route) {
@@ -189,17 +196,23 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                             popUpTo(AppRoute.Result.route) { inclusive = true }
                         }
                     },
-                    onNewConfiguration = {
+                    onBackToMenu = {
                         viewModel.persistRoundResultIfNeeded()
                         viewModel.clearCurrentRound()
-                        navController.navigate(AppRoute.Setup.route) {
-                            popUpTo(AppRoute.Setup.route) { inclusive = true }
+                        navController.navigate(AppRoute.Home.route) {
+                            popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
+                            launchSingleTop = true
                         }
                     },
                 )
 
                 LaunchedEffect(activeRound?.id) {
-                    if (activeRound != null) {
+                    if (activeRound == null) {
+                        navController.navigate(AppRoute.Home.route) {
+                            popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
+                            launchSingleTop = true
+                        }
+                    } else {
                         viewModel.onResultScreenViewed()
                     }
                 }

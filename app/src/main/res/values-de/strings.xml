@@ -1,8 +1,8 @@
 ﻿<resources>
     <string name="app_name">Der Betrüger</string>
     <string name="new_game">Neues Spiel</string>
-    <string name="home_tagline">Ein Handy. Ein Impostor. Reines Chaos.</string>
-    <string name="home_stats_title">Ubersicht</string>
+    <string name="home_tagline">Ein Handy. Ein Betrüger. Reines Chaos.</string>
+    <string name="home_stats_title">Übersicht</string>
     <string name="home_stats_games_played">Gespielte Runden: %1$d</string>
     <string name="home_stats_last_players">Letzte Spielerzahl: %1$d</string>
 
@@ -14,8 +14,8 @@
     <string name="setup_title">Runde einrichten</string>
     <string name="setup_subtitle">Schnell einstellen und Handy weitergeben.</string>
     <string name="setup_players_count">Spieler: %1$d</string>
-    <string name="setup_impostor_count_title">Impostors</string>
-    <string name="setup_impostor_count_item">%1$d Impostor(s)</string>
+    <string name="setup_impostor_count_title">Betrüger</string>
+    <string name="setup_impostor_count_item">%1$d Betrüger</string>
     <string name="setup_clue_rounds_title">Runden pro Partie</string>
     <string name="setup_clue_rounds_support">Jede Person sagt 1 Wort pro Runde. Empfohlen: 2 Runden.</string>
     <string name="setup_clue_round_option_1">1 Runde</string>
@@ -27,49 +27,49 @@
     <string name="setup_categories_title">Kategorien</string>
     <string name="setup_advanced_options">Erweiterte Optionen</string>
     <string name="setup_round_time_title">Empfohlene Zeit: %1$d Min</string>
-    <string name="setup_no_extra_hints">Keine Extra Hinweise</string>
-    <string name="setup_show_animation">Reveal Animation anzeigen</string>
+    <string name="setup_no_extra_hints">Keine zusätzlichen Hinweise</string>
+    <string name="setup_show_animation">Aufdeck-Animation anzeigen</string>
     <string name="setup_haptics">Haptik aktivieren</string>
-    <string name="setup_avoid_recent">Aktuelle Worte vermeiden</string>
-    <string name="setup_quick_mode">Schnellmodus (auto verstecken)</string>
+    <string name="setup_avoid_recent">Zuletzt genutzte Wörter vermeiden</string>
+    <string name="setup_quick_mode">Schnellmodus (automatisch verbergen)</string>
     <string name="setup_custom_names">Eigene Namen</string>
-    <string name="setup_player_name_label">Name Spieler %1$d</string>
-    <string name="setup_start_button">Reveal starten</string>
+    <string name="setup_player_name_label">Name von Spieler %1$d</string>
+    <string name="setup_start_button">Aufdecken starten</string>
     <string name="setup_error_title">Runde kann nicht starten</string>
 
-    <string name="reveal_title">Privates Reveal</string>
+    <string name="reveal_title">Geheime Ansicht</string>
     <string name="reveal_pass_to_player">Gib das Handy an %1$s</string>
-    <string name="reveal_keep_private">Sicherstellen dass niemand schaut.</string>
-    <string name="reveal_hold_to_see">Gedruckt halten zum Anzeigen</string>
-    <string name="reveal_hold_hint">Kurz gedruckt halten</string>
+    <string name="reveal_keep_private">Stell sicher, dass niemand sonst hinsieht.</string>
+    <string name="reveal_hold_to_see">Gedrückt halten zum Aufdecken</string>
+    <string name="reveal_hold_hint">Kurz gedrückt halten</string>
     <string name="reveal_word_title">Dein Wort ist</string>
-    <string name="reveal_impostor_title">Du bist Impostor</string>
-    <string name="reveal_impostor_hint">Unauffallig bleiben und Wort erraten.</string>
+    <string name="reveal_impostor_title">Du bist der Betrüger</string>
+    <string name="reveal_impostor_hint">Falle nicht auf und errate das Wort.</string>
     <string name="reveal_hide_and_pass">Verbergen und weitergeben</string>
 
     <string name="round_ready_title">Alles bereit</string>
     <string name="round_ready_instructions">Jede Person sagt pro Runde genau ein Wort. Nach den vereinbarten Runden stimmt ihr ab.</string>
-    <string name="round_ready_clue_rounds">Festgelegte Runden fuer diese Partie: %1$d</string>
+    <string name="round_ready_clue_rounds">Festgelegte Runden für diese Partie: %1$d</string>
     <string name="round_ready_word_per_turn">In jeder Runde sagt jede Person 1 Wort.</string>
-    <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr fuer den Betrueger ab.</string>
+    <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr für den Betrüger ab.</string>
     <string name="round_ready_suggested_time">Empfohlene Zeit: %1$d Minuten</string>
     <string name="round_ready_finish_button">Runde beenden</string>
-    <string name="round_ready_new_config_button">Neue Konfiguration</string>
+    <string name="round_ready_new_config_button">Neu einrichten</string>
 
     <string name="result_title">Rundenergebnis</string>
     <string name="result_word_label">Geheimes Wort</string>
-    <string name="result_impostor_label">Impostor(s): %1$s</string>
+    <string name="result_impostor_label">Betrüger: %1$s</string>
     <string name="result_winner_title">Wer hat gewonnen?</string>
     <string name="result_rematch_button">Nochmal mit gleichen Einstellungen</string>
-    <string name="result_new_setup_button">Neue Konfiguration</string>
-    <string name="review_prompt_title">Moechtest du The Impostor bewerten?</string>
-    <string name="review_prompt_body">Wenn die App fuer eure Runde nuetzlich und unterhaltsam war, hilft eine Bewertung sehr.</string>
+    <string name="result_new_setup_button">Zum Menü</string>
+    <string name="review_prompt_title">Möchtest du The Impostor bewerten?</string>
+    <string name="review_prompt_body">Wenn die App für eure Runde nützlich und unterhaltsam war, hilft eine Bewertung sehr.</string>
     <string name="review_prompt_rate_now">Jetzt bewerten</string>
-    <string name="review_prompt_later">Spaeter</string>
+    <string name="review_prompt_later">Später</string>
     <string name="review_prompt_send_feedback">Vorschlag senden</string>
 
     <string name="winner_civilians">Zivilisten</string>
-    <string name="winner_impostors">Impostor(s)</string>
+    <string name="winner_impostors">Betrüger</string>
     <string name="winner_undecided">Unentschieden</string>
     <string name="how_intro">Verstehe den kompletten Ablauf in unter einer Minute.</string>
     <string name="how_objective_title">Ziel</string>
@@ -77,16 +77,16 @@
     <string name="how_objective_line_2">Eine Person ist der Betrüger und kennt das Wort nicht.</string>
     <string name="how_objective_line_3">Die Gruppe muss den Betrüger finden. Der Betrüger muss sich tarnen und das Wort erraten.</string>
     <string name="how_preparation_title">Vorbereitung</string>
-    <string name="how_preparation_line_1">Waehle Spielerzahl, Kategorien und wie viele Runden ihr spielt: 1, 2 oder 3.</string>
+    <string name="how_preparation_line_1">Wähle Spielerzahl und Kategorien für die Partie.</string>
     <string name="how_preparation_line_2">Die App verteilt die Rollen mit nur einem gemeinsamen Handy.</string>
     <string name="how_preparation_line_3">Jede Person schaut heimlich und gibt das Handy weiter.</string>
     <string name="how_play_title">So läuft die Runde</string>
     <string name="how_play_line_1">Wenn alle ihre Rolle gesehen haben, legt das Handy weg.</string>
     <string name="how_play_line_2">In jeder Runde sagt jede Person genau 1 Wort zum geheimen Wort.</string>
     <string name="how_play_line_3">Behaltet dieselbe Rundenzahl bis zur Abstimmung.</string>
-    <string name="how_play_line_4">Die App steuert die gesprochenen Zuege nicht; das macht die Gruppe.</string>
+    <string name="how_play_line_4">Die App steuert die gesprochenen Wortmeldungen nicht; das macht die Gruppe.</string>
     <string name="how_win_title">So gewinnt man</string>
-    <string name="how_win_line_1">Wenn alle vereinbarten Runden vorbei sind, stimmt ihr ab, wer der Betrueger ist.</string>
+    <string name="how_win_line_1">Wenn alle vereinbarten Runden vorbei sind, stimmt ihr ab, wer der Betrüger ist.</string>
     <string name="how_win_line_2">Wird der Betrüger enttarnt, gewinnen die Zivilen.</string>
     <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Betrüger.</string>
     <string name="how_win_line_4">Optionale Hausregel: Wird der Betrüger enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>
@@ -100,9 +100,9 @@
     <string name="settings_haptics">Haptik</string>
     <string name="settings_reduced_motion">Bewegung reduzieren</string>
     <string name="settings_show_instructions">Kurzanleitung anzeigen</string>
-    <string name="settings_avoid_recent">Aktuelle Worte vermeiden</string>
-    <string name="settings_show_animation">Reveal Animation</string>
-    <string name="settings_secure_screen">Sensible Bildschirme schutzen</string>
+    <string name="settings_avoid_recent">Zuletzt genutzte Wörter vermeiden</string>
+    <string name="settings_show_animation">Aufdeck-Animation</string>
+    <string name="settings_secure_screen">Sensible Bildschirme schützen</string>
     <string name="settings_rate_app">Bei Google Play bewerten</string>
     <string name="settings_send_feedback">Vorschlag senden</string>
     <string name="settings_clear_history">Verlauf loschen</string>
@@ -114,7 +114,7 @@
     <string name="feedback_form_privacy">Wir senden nur deine Nachricht, optionale E-Mail, App-Version, Sprache, Zeitstempel, Plattform und einfachen Spielkontext, falls verfuegbar.</string>
     <string name="feedback_type_label">Feedback-Typ</string>
     <string name="feedback_type_suggestion">Vorschlag</string>
-    <string name="feedback_type_problem">Problem</string>
+    <string name="feedback_type_problem">Problem melden</string>
     <string name="feedback_message_label">Nachricht</string>
     <string name="feedback_message_placeholder">Beschreibe, was verbessert werden sollte oder was fehlgeschlagen ist.</string>
     <string name="feedback_message_help">Genug Kontext hilft uns beim Nachvollziehen.</string>
@@ -123,7 +123,7 @@
     <string name="feedback_message_error_long">Bitte kürze die Nachricht vor dem Senden.</string>
     <string name="feedback_email_label">E-Mail (optional)</string>
     <string name="feedback_email_placeholder">name@beispiel.de</string>
-    <string name="feedback_email_help">Optional. Nur wenn du eine Antwort moechtest.</string>
+    <string name="feedback_email_help">Optional. Nur wenn du eine Antwort möchtest.</string>
     <string name="feedback_email_error">Bitte pruefe das E-Mail-Format.</string>
     <string name="feedback_context_title">Automatisch gesendeter Kontext</string>
     <string name="feedback_context_body">App-Version, Sprache, Zeitstempel, Plattform und einfacher Rundenkontext, wenn verfuegbar.</string>
@@ -143,7 +143,7 @@
     <string name="language_system">System</string>
     <string name="language_spanish">Spanisch</string>
     <string name="language_english">Englisch</string>
-    <string name="language_french">Franzosisch</string>
+    <string name="language_french">Französisch</string>
     <string name="language_german">Deutsch</string>
     <string name="language_italian">Italienisch</string>
     <string name="language_portuguese">Portugiesisch</string>
@@ -151,13 +151,13 @@
 
     <string name="history_empty">Noch keine Runden vorhanden.</string>
     <string name="history_category_format">Kategorie: %1$s</string>
-    <string name="history_impostors_format">Impostor(s): %1$s</string>
+    <string name="history_impostors_format">Betrüger: %1$s</string>
 
-    <string name="credits_app_title">Uber Der Betrüger</string>
-    <string name="credits_app_body">Entwickelt fur schnelle Runden mit einem geteilten Handy.</string>
+    <string name="credits_app_title">Über Der Betrüger</string>
+    <string name="credits_app_body">Entwickelt für schnelle Runden mit einem geteilten Handy.</string>
     <string name="credits_licenses_title">Lizenzen</string>
     <string name="credits_licenses_body">Erstellt mit Android, Kotlin, Jetpack Compose, Material 3 und Open Source Bibliotheken.</string>
-    <string name="credits_privacy_hint">Keine Konten, keine Werbung, kein Tracking. Alles bleibt auf dem Gerat.</string>
+    <string name="credits_privacy_hint">Keine Konten, keine Werbung, kein Tracking. Alles bleibt auf dem Gerät.</string>
 
     <string name="category_food">Essen</string>
     <string name="category_animals">Tiere</string>
@@ -166,23 +166,23 @@
     <string name="category_places">Orte</string>
     <string name="category_movies_series">Filme und Serien</string>
     <string name="category_sports">Sport</string>
-    <string name="category_countries_cities">Lander und Stadte</string>
+    <string name="category_countries_cities">Länder und Städte</string>
     <string name="category_nature">Natur</string>
     <string name="category_general_knowledge">Allgemeinwissen</string>
 
     <string name="error_generic">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
     <string name="error_player_count">Spielerzahl muss zwischen 3 und 12 liegen.</string>
-    <string name="error_impostor_count">Impostor Anzahl ist ungultig fur diese Spielerzahl.</string>
-    <string name="error_categories_empty">Bitte mindestens eine Kategorie wahlen.</string>
+    <string name="error_impostor_count">Diese Anzahl an Betrügern ist für diese Spielerzahl ungültig.</string>
+    <string name="error_categories_empty">Bitte wähle mindestens eine Kategorie.</string>
     <string name="error_round_time">Rundenzeit muss zwischen 3 und 20 Minuten liegen.</string>
-    <string name="error_clue_rounds">Runden pro Partie muessen zwischen 1 und 3 liegen.</string>
-    <string name="error_not_enough_civilians">Mindestens zwei Nicht Impostors erforderlich.</string>
-    <string name="error_no_words_for_category">Keine Worte fur gewahlte Kategorien verfugbar.</string>
-    <string name="error_no_words_recent_filter">Filter fur aktuelle Worte hat alles entfernt. Deaktivieren oder mehr Kategorien wahlen.</string>
+    <string name="error_clue_rounds">Runden pro Partie müssen zwischen 1 und 3 liegen.</string>
+    <string name="error_not_enough_civilians">Es müssen mindestens zwei Nicht-Betrüger übrig bleiben.</string>
+    <string name="error_no_words_for_category">Für die gewählten Kategorien sind keine Wörter verfügbar.</string>
+    <string name="error_no_words_recent_filter">Der Filter für zuletzt genutzte Wörter hat alle Optionen entfernt. Deaktiviere ihn oder wähle mehr Kategorien.</string>
 
     <string name="ok">OK</string>
-    <string name="cd_back">Zuruck</string>
-    <string name="cd_close">Schliessen</string>
+    <string name="cd_back">Zurück</string>
+    <string name="cd_close">Schließen</string>
     <string name="back_to_home">Zur Startseite</string>
 </resources>
 

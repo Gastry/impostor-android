@@ -61,7 +61,7 @@
     <string name="result_impostor_label">Impostor(s): %1$s</string>
     <string name="result_winner_title">Who won?</string>
     <string name="result_rematch_button">Play again with same settings</string>
-    <string name="result_new_setup_button">New configuration</string>
+    <string name="result_new_setup_button">Back to menu</string>
     <string name="review_prompt_title">Would you like to rate The Impostor?</string>
     <string name="review_prompt_body">If it has been useful and fun for your group, your rating helps a lot.</string>
     <string name="review_prompt_rate_now">Rate now</string>
@@ -77,7 +77,7 @@
     <string name="how_objective_line_2">One player is the impostor and does not know the word.</string>
     <string name="how_objective_line_3">The group must find the impostor. The impostor must blend in and guess the word.</string>
     <string name="how_preparation_title">Preparation</string>
-    <string name="how_preparation_line_1">Choose player count, categories, and the number of rounds: 1, 2, or 3.</string>
+    <string name="how_preparation_line_1">Choose player count and categories to prepare the game.</string>
     <string name="how_preparation_line_2">The app assigns roles using one shared phone.</string>
     <string name="how_preparation_line_3">Each player checks in private, then passes the phone.</string>
     <string name="how_play_title">How the round works</string>

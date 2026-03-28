@@ -1,23 +1,23 @@
 ﻿<resources>
     <string name="app_name">L’Imposteur</string>
     <string name="new_game">Nouvelle partie</string>
-    <string name="home_tagline">Un telephone. Un imposteur. Chaos garanti.</string>
-    <string name="home_stats_title">Resume de la table</string>
+    <string name="home_tagline">Un téléphone. Un imposteur. Chaos garanti.</string>
+    <string name="home_stats_title">Résumé de la table</string>
     <string name="home_stats_games_played">Parties jouees : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
 
     <string name="how_to_play_title">Comment jouer</string>
-    <string name="settings_title">Parametres</string>
+    <string name="settings_title">Paramètres</string>
     <string name="history_title">Historique</string>
-    <string name="credits_title">Credits</string>
+    <string name="credits_title">Crédits</string>
 
     <string name="setup_title">Configurer la manche</string>
-    <string name="setup_subtitle">Configuration rapide, puis passez le telephone.</string>
+    <string name="setup_subtitle">Configuration rapide, puis passez le téléphone.</string>
     <string name="setup_players_count">Joueurs : %1$d</string>
     <string name="setup_impostor_count_title">Imposteurs</string>
     <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
     <string name="setup_clue_rounds_title">Tours par partie</string>
-    <string name="setup_clue_rounds_support">Chaque joueur dit 1 mot par tour. Recommande : 2 tours.</string>
+    <string name="setup_clue_rounds_support">Chaque joueur dit 1 mot par tour. Recommandé : 2 tours.</string>
     <string name="setup_clue_round_option_1">1 tour</string>
     <string name="setup_clue_round_option_2">2 tours</string>
     <string name="setup_clue_round_option_3">3 tours</string>
@@ -34,13 +34,13 @@
     <string name="setup_quick_mode">Mode rapide (masquage auto)</string>
     <string name="setup_custom_names">Noms personnalises</string>
     <string name="setup_player_name_label">Nom joueur %1$d</string>
-    <string name="setup_start_button">Commencer revelation</string>
+    <string name="setup_start_button">Commencer la révélation</string>
     <string name="setup_error_title">Impossible de lancer la manche</string>
 
     <string name="reveal_title">Revelation privee</string>
     <string name="reveal_pass_to_player">Passez le telephone a %1$s</string>
     <string name="reveal_keep_private">Assurez vous que personne ne regarde.</string>
-    <string name="reveal_hold_to_see">Maintenir pour reveler</string>
+    <string name="reveal_hold_to_see">Maintenir pour révéler</string>
     <string name="reveal_hold_hint">Gardez appuye un court instant</string>
     <string name="reveal_word_title">Ton mot est</string>
     <string name="reveal_impostor_title">Tu es imposteur</string>
@@ -48,51 +48,51 @@
     <string name="reveal_hide_and_pass">Masquer et passer</string>
 
     <string name="round_ready_title">Tout est pret</string>
-    <string name="round_ready_instructions">Chaque joueur dit un seul mot par tour. Apres les tours convenus, votez imposteur.</string>
+    <string name="round_ready_instructions">Chaque joueur dit un seul mot par tour. Après les tours convenus, votez pour l’imposteur.</string>
     <string name="round_ready_clue_rounds">Tours fixes pour cette partie : %1$d</string>
     <string name="round_ready_word_per_turn">A chaque tour, chaque joueur dit 1 mot.</string>
-    <string name="round_ready_vote_after_rounds">Apres %1$d tours, votez pour l imposteur.</string>
+    <string name="round_ready_vote_after_rounds">Après %1$d tours, votez pour l’imposteur.</string>
     <string name="round_ready_suggested_time">Temps conseille : %1$d minutes</string>
     <string name="round_ready_finish_button">Terminer la manche</string>
     <string name="round_ready_new_config_button">Nouvelle configuration</string>
 
-    <string name="result_title">Resultat</string>
+    <string name="result_title">Résultat de la manche</string>
     <string name="result_word_label">Mot secret</string>
     <string name="result_impostor_label">Imposteur(s) : %1$s</string>
-    <string name="result_winner_title">Qui a gagne ?</string>
-    <string name="result_rematch_button">Rejouer avec memes options</string>
-    <string name="result_new_setup_button">Nouvelle configuration</string>
+    <string name="result_winner_title">Qui a gagné ?</string>
+    <string name="result_rematch_button">Rejouer avec les mêmes réglages</string>
+    <string name="result_new_setup_button">Retour au menu</string>
     <string name="review_prompt_title">Envie de noter The Impostor ?</string>
-    <string name="review_prompt_body">Si l appli vous est utile et amusante, votre note aide beaucoup.</string>
+    <string name="review_prompt_body">Si l’app vous est utile et amusante, votre note aide beaucoup.</string>
     <string name="review_prompt_rate_now">Noter maintenant</string>
     <string name="review_prompt_later">Plus tard</string>
     <string name="review_prompt_send_feedback">Envoyer une suggestion</string>
 
     <string name="winner_civilians">Civils</string>
     <string name="winner_impostors">Imposteur(s)</string>
-    <string name="winner_undecided">Indecis</string>
+    <string name="winner_undecided">Aucun camp</string>
     <string name="how_intro">Comprenez la partie complète en moins d’une minute.</string>
     <string name="how_objective_title">Objectif</string>
     <string name="how_objective_line_1">Tous sauf un voient le même mot secret.</string>
     <string name="how_objective_line_2">Un joueur est l’imposteur et ne connaît pas le mot.</string>
     <string name="how_objective_line_3">Le groupe doit trouver l’imposteur. L’imposteur doit se fondre et deviner le mot.</string>
     <string name="how_preparation_title">Préparation</string>
-    <string name="how_preparation_line_1">Choisissez le nombre de joueurs, les categories et le nombre de tours : 1, 2 ou 3.</string>
+    <string name="how_preparation_line_1">Choisissez le nombre de joueurs et les catégories pour préparer la partie.</string>
     <string name="how_preparation_line_2">L’application distribue les rôles avec un seul téléphone.</string>
     <string name="how_preparation_line_3">Chaque joueur regarde en secret puis passe le téléphone.</string>
     <string name="how_play_title">Déroulement de la manche</string>
-    <string name="how_play_line_1">Quand tout le monde a vu son role, laissez le telephone de cote.</string>
-    <string name="how_play_line_2">A chaque tour, chaque joueur dit exactement 1 mot lie au mot secret.</string>
-    <string name="how_play_line_3">Gardez le meme nombre de tours jusqu au vote.</string>
-    <string name="how_play_line_4">L appli ne gere pas les tours de parole ; le groupe le fait.</string>
+    <string name="how_play_line_1">Quand tout le monde a vu son rôle, laissez le téléphone de côté.</string>
+    <string name="how_play_line_2">À chaque tour, chaque joueur dit exactement 1 mot lié au mot secret.</string>
+    <string name="how_play_line_3">Gardez le même nombre de tours jusqu’au vote.</string>
+    <string name="how_play_line_4">L’app ne gère pas les tours de parole ; le groupe s’en charge.</string>
     <string name="how_win_title">Comment gagner</string>
-    <string name="how_win_line_1">Quand tous les tours prevus sont termines, votez pour la personne que vous pensez etre l imposteur.</string>
+    <string name="how_win_line_1">Quand tous les tours prévus sont terminés, votez pour la personne que vous pensez être l’imposteur.</string>
     <string name="how_win_line_2">Si le groupe le trouve, les civils gagnent.</string>
     <string name="how_win_line_3">Si le groupe se trompe, l’imposteur gagne.</string>
     <string name="how_win_line_4">Variante optionnelle: s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>
     <string name="how_tips_title">Conseils de jeu</string>
     <string name="how_tip_1">Ne donnez pas un indice trop évident.</string>
-    <string name="how_tip_2">2 tours est souvent l option la plus equilibree.</string>
+    <string name="how_tip_2">2 tours est souvent l’option la plus équilibrée.</string>
     <string name="how_tip_3">Observez les réactions et les réponses des autres.</string>
 
     <string name="settings_theme_title">Theme</string>
@@ -105,12 +105,12 @@
     <string name="settings_secure_screen">Proteger ecrans sensibles</string>
     <string name="settings_rate_app">Noter sur Google Play</string>
     <string name="settings_send_feedback">Envoyer une suggestion</string>
-    <string name="settings_clear_history">Effacer historique</string>
+    <string name="settings_clear_history">Effacer l’historique</string>
     <string name="settings_reset_preferences">Reinitialiser preferences</string>
     <string name="feedback_title">Envoyer une suggestion</string>
     <string name="feedback_placeholder_title">Les suggestions arrivent bientot</string>
     <string name="feedback_placeholder_body">Cet espace est pret pour la phase 2. Nous y connecterons bientot un vrai canal de suggestions.</string>
-    <string name="feedback_form_intro">Envoyez une suggestion ou signalez un probleme sans quitter l appli.</string>
+    <string name="feedback_form_intro">Envoyez une suggestion ou signalez un problème sans quitter l’app.</string>
     <string name="feedback_form_privacy">Nous envoyons seulement votre message, l email optionnel, la version de l appli, la langue, l horodatage, la plateforme et un contexte de partie basique si disponible.</string>
     <string name="feedback_type_label">Type de retour</string>
     <string name="feedback_type_suggestion">Suggestion</string>
@@ -127,8 +127,8 @@
     <string name="feedback_email_error">Verifiez le format de l email.</string>
     <string name="feedback_context_title">Contexte envoye automatiquement</string>
     <string name="feedback_context_body">Version de l appli, langue, horodatage, plateforme et contexte simple de partie quand il est disponible.</string>
-    <string name="feedback_success">Retour envoye avec succes.</string>
-    <string name="feedback_retry">Reessayer</string>
+    <string name="feedback_success">Retour envoyé avec succès.</string>
+    <string name="feedback_retry">Réessayer</string>
     <string name="feedback_send">Envoyer</string>
     <string name="feedback_sending">Envoi...</string>
     <string name="feedback_error_network">Erreur reseau. Verifiez la connexion puis reessayez.</string>
@@ -154,10 +154,10 @@
     <string name="history_impostors_format">Imposteur(s) : %1$s</string>
 
     <string name="credits_app_title">A propos de L’Imposteur</string>
-    <string name="credits_app_body">Concu pour manches rapides en presentiel avec un seul telephone.</string>
+    <string name="credits_app_body">Conçue pour des manches rapides en présentiel avec un seul téléphone partagé.</string>
     <string name="credits_licenses_title">Licences</string>
-    <string name="credits_licenses_body">Cree avec Android, Kotlin, Jetpack Compose, Material 3 et bibliotheques open source.</string>
-    <string name="credits_privacy_hint">Pas de compte, pas de pub, pas de suivi. Tout reste sur appareil.</string>
+    <string name="credits_licenses_body">Créée avec Android, Kotlin, Jetpack Compose, Material 3 et des bibliothèques open source.</string>
+    <string name="credits_privacy_hint">Pas de compte, pas de pub, pas de suivi. Tout reste sur l’appareil.</string>
 
     <string name="category_food">Nourriture</string>
     <string name="category_animals">Animaux</string>
@@ -177,13 +177,13 @@
     <string name="error_round_time">Le temps doit etre entre 3 et 20 minutes.</string>
     <string name="error_clue_rounds">Le nombre de tours doit etre entre 1 et 3.</string>
     <string name="error_not_enough_civilians">Laissez au moins deux non imposteurs.</string>
-    <string name="error_no_words_for_category">Aucun mot pour categories selectionnees.</string>
-    <string name="error_no_words_recent_filter">Le filtre mots recents a tout retire. Desactivez ou ajoutez categories.</string>
+    <string name="error_no_words_for_category">Aucun mot n’est disponible pour les catégories sélectionnées.</string>
+    <string name="error_no_words_recent_filter">Le filtre des mots récents a retiré toutes les options. Désactivez-le ou ajoutez des catégories.</string>
 
     <string name="ok">OK</string>
     <string name="cd_back">Retour</string>
     <string name="cd_close">Fermer</string>
-    <string name="back_to_home">Retour accueil</string>
+    <string name="back_to_home">Retour à l’accueil</string>
 </resources>
 
 

@@ -25,8 +25,7 @@ class NavigationSmokeTest {
     @Test
     fun home_to_setup_navigation() {
         startRoundSetupFromHome()
-        composeRule.onNodeWithText(text(R.string.setup_clue_rounds_support))
-            .assertIsDisplayed()
+        composeRule.onNodeWithText(text(R.string.setup_categories_title)).assertIsDisplayed()
         composeRule.onNodeWithTag("setup_start_button").assertIsDisplayed()
     }
 
@@ -49,15 +48,13 @@ class NavigationSmokeTest {
     }
 
     @Test
-    fun setup_clue_rounds_selection_is_reflected_in_round_ready() {
+    fun setup_valid_to_round_ready_shows_basic_instructions() {
         startRoundSetupFromHome()
-        composeRule.onNodeWithTag("setup_clue_round_3").performClick()
         composeRule.onNodeWithTag("setup_start_button").performScrollTo().performClick()
 
         completeRevealFlow(playerCount = 6)
 
-        composeRule.onNodeWithText(text(R.string.round_ready_clue_rounds, 3)).assertIsDisplayed()
-        composeRule.onNodeWithText(text(R.string.round_ready_vote_after_rounds, 3)).assertIsDisplayed()
+        composeRule.onNodeWithText(text(R.string.round_ready_instructions)).assertIsDisplayed()
     }
 
     @Test

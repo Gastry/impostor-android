@@ -177,7 +177,7 @@ private fun HowSectionCard(
                 Text(text = title, style = MaterialTheme.typography.titleMedium)
                 lines.forEach { line ->
                     Text(
-                        text = "• $line",
+                        text = "- $line",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

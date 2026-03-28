@@ -29,6 +29,7 @@ class CreateRoundUseCase(
         wordUsageHistory: List<WordUsageRecord>,
         wordRepository: WordRepository,
         random: Random,
+        fallbackPlayerNames: List<String> = emptyList(),
         timestampProvider: () -> Long = { System.currentTimeMillis() },
     ): CreateRoundResult {
         when (val validation = validateGameSetupUseCase(setup)) {
@@ -51,7 +52,11 @@ class CreateRoundUseCase(
             is WordSelectionResult.Success -> selectedWordResult.word
         }
 
-        val players = buildPlayersUseCase(setup.playerCount, setup.customPlayerNames)
+        val players = buildPlayersUseCase(
+            playerCount = setup.playerCount,
+            customNames = setup.customPlayerNames,
+            fallbackNames = fallbackPlayerNames,
+        )
         val assignments = assignRolesUseCase(
             players = players,
             impostorCount = setup.impostorCount,

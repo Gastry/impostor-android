@@ -115,22 +115,10 @@ class GameViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            appSettings.collect { settings ->
-                _setup.update {
-                    it.copy(
-                        hapticsEnabled = settings.hapticsEnabled,
-                        avoidRecentWords = settings.avoidRecentWords,
-                        revealAnimation = settings.showRevealAnimation,
-                    )
-                }
-            }
-        }
-
-        viewModelScope.launch {
             preferencesRepository.lastSetup.collect { saved ->
                 if (setupLoaded) return@collect
 
-                val base = saved ?: _setup.value
+                val base = fixedSetup(saved ?: _setup.value)
                 _setup.value = getAllowedImpostorCountsUseCase.clamp(base)
                 setupLoaded = true
             }
@@ -225,7 +213,7 @@ class GameViewModel @Inject constructor(
     fun startRound() {
         viewModelScope.launch {
             _isStartingRound.value = true
-            val setupSnapshot = getAllowedImpostorCountsUseCase.clamp(_setup.value)
+            val setupSnapshot = getAllowedImpostorCountsUseCase.clamp(fixedSetup(_setup.value))
             _setup.value = setupSnapshot
 
             val settingsSnapshot = appSettings.first()
@@ -235,6 +223,10 @@ class GameViewModel @Inject constructor(
                 wordUsageHistory = preferencesRepository.wordUsageHistory.first(),
                 wordRepository = wordRepository,
                 random = Random(System.nanoTime()),
+                fallbackPlayerNames = localizedDefaultPlayerNames(
+                    playerCount = setupSnapshot.playerCount,
+                    languageTag = settingsSnapshot.languageTag,
+                ),
             )
 
             when (result) {
@@ -438,7 +430,7 @@ class GameViewModel @Inject constructor(
     }
 
     fun startRematch() {
-        val previousSetup = _activeRound.value?.setup ?: _setup.value
+        val previousSetup = fixedSetup(_activeRound.value?.setup ?: _setup.value)
         _setup.value = previousSetup
         startRound()
     }
@@ -480,6 +472,33 @@ class GameViewModel @Inject constructor(
             preferencesRepository.clearAllPreferences()
             _setup.value = GameSetup()
         }
+    }
+
+    private fun fixedSetup(setup: GameSetup): GameSetup {
+        val defaults = GameSetup()
+        return setup.copy(
+            suggestedRoundMinutes = defaults.suggestedRoundMinutes,
+            clueRounds = defaults.clueRounds,
+            noExtraHints = defaults.noExtraHints,
+            revealAnimation = defaults.revealAnimation,
+            hapticsEnabled = defaults.hapticsEnabled,
+            avoidRecentWords = defaults.avoidRecentWords,
+            quickMode = defaults.quickMode,
+            customPlayerNames = defaults.customPlayerNames,
+        )
+    }
+
+    private fun localizedDefaultPlayerNames(playerCount: Int, languageTag: String?): List<String> {
+        val label = when (languageTag?.substringBefore('-')?.lowercase(Locale.ROOT)) {
+            "es" -> "Jugador"
+            "fr" -> "Joueur"
+            "de" -> "Spieler"
+            "it" -> "Giocatore"
+            "pt" -> "Jogador"
+            "ja" -> "プレイヤー"
+            else -> "Player"
+        }
+        return List(playerCount) { index -> "$label ${index + 1}" }
     }
 
     private fun updateAppSettings(update: (AppSettings) -> AppSettings) {

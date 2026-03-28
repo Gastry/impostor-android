@@ -65,15 +65,15 @@ class GameViewModelTest {
     }
 
     @Test
-    fun `user can choose clue rounds and value is kept in created round`() = runTest(dispatcher) {
+    fun `clue rounds stay fixed to default when creating a round`() = runTest(dispatcher) {
         val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
         viewModel.updateClueRounds(3)
 
         viewModel.startRound()
         advanceUntilIdle()
 
-        assertEquals(3, viewModel.setup.value.clueRounds)
-        assertEquals(3, viewModel.activeRound.value?.setup?.clueRounds)
+        assertEquals(2, viewModel.setup.value.clueRounds)
+        assertEquals(2, viewModel.activeRound.value?.setup?.clueRounds)
     }
 
     @Test

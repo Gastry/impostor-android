@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
+import com.impostorparty.app.ui.components.AdMobBanner
 import com.impostorparty.app.ui.components.PartyBackground
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
@@ -40,6 +41,7 @@ import com.impostorparty.domain.model.GameStats
 @Composable
 fun HomeScreen(
     stats: GameStats,
+    homeBannerAdUnitId: String?,
     onNewGame: () -> Unit,
     onHowToPlay: () -> Unit,
     onSettings: () -> Unit,
@@ -153,6 +155,17 @@ fun HomeScreen(
                                 )
                             }
                         }
+                    }
+                }
+            }
+
+            if (homeBannerAdUnitId != null) {
+                item {
+                    ContentWidth {
+                        AdMobBanner(
+                            adUnitId = homeBannerAdUnitId,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
                     }
                 }
             }

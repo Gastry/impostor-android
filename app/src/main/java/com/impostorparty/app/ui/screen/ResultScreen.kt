@@ -16,6 +16,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,8 +46,10 @@ fun ResultScreen(
     onReviewLater: () -> Unit,
     onSendSuggestion: () -> Unit,
     onPlayAgain: () -> Unit,
-    onNewConfiguration: () -> Unit,
+    onBackToMenu: () -> Unit,
 ) {
+    BackHandler(onBack = onBackToMenu)
+
     PartyScaffold(title = stringResource(R.string.result_title)) { modifier ->
         if (roundSession == null) {
             Column(
@@ -118,10 +121,10 @@ fun ResultScreen(
             )
             SecondaryPartyButton(
                 text = stringResource(R.string.result_new_setup_button),
-                onClick = onNewConfiguration,
+                onClick = onBackToMenu,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .testTag("result_new_setup_button"),
+                    .testTag("result_back_to_menu_button"),
             )
         }
     }

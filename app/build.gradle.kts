@@ -6,6 +6,11 @@ plugins {
     alias(libs.plugins.hilt.android)
 }
 
+val debugAdMobAppId = "ca-app-pub-3940256099942544~3347511713"
+val debugHomeBannerAdUnitId = "ca-app-pub-3940256099942544/9214589741"
+val releaseAdMobAppId = providers.gradleProperty("admobAppId").orNull ?: debugAdMobAppId
+val releaseHomeBannerAdUnitId = providers.gradleProperty("admobHomeBannerAdUnitId").orNull.orEmpty()
+
 android {
     namespace = "com.impostorparty.app"
     compileSdk = 35
@@ -26,6 +31,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            buildConfigField("boolean", "ADS_ENABLED", (releaseHomeBannerAdUnitId.isNotBlank()).toString())
+            buildConfigField("String", "HOME_BANNER_AD_UNIT_ID", "\"$releaseHomeBannerAdUnitId\"")
+            resValue("string", "admob_app_id", releaseAdMobAppId)
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -34,6 +42,9 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+            buildConfigField("boolean", "ADS_ENABLED", "true")
+            buildConfigField("String", "HOME_BANNER_AD_UNIT_ID", "\"$debugHomeBannerAdUnitId\"")
+            resValue("string", "admob_app_id", debugAdMobAppId)
         }
     }
 
@@ -87,6 +98,7 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.google.play.review.ktx)
+    implementation(libs.google.play.services.ads.lite)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

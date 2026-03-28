@@ -1,6 +1,5 @@
 package com.impostorparty.app.ui.screen
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -11,34 +10,24 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.impostorparty.app.BuildConfig
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
@@ -73,9 +62,6 @@ fun SetupScreen(
     onStartRound: () -> Unit,
     onBack: () -> Unit,
 ) {
-    var showAdvanced by remember { mutableStateOf(false) }
-    var showNameFields by remember { mutableStateOf(setup.customPlayerNames.any { it.isNotBlank() }) }
-
     PartyScaffold(
         title = stringResource(R.string.setup_title),
         navigationIcon = {
@@ -125,39 +111,6 @@ fun SetupScreen(
                 }
 
                 Spacer(modifier = Modifier.height(PartyDimens.SpaceMd))
-
-                Text(
-                    text = stringResource(R.string.setup_clue_rounds_title),
-                    style = MaterialTheme.typography.titleSmall,
-                )
-                Text(
-                    text = stringResource(R.string.setup_clue_rounds_support),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = PartyDimens.SpaceXs),
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .testTag("setup_clue_rounds_row"),
-                    horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                ) {
-                    listOf(1, 2, 3).forEach { option ->
-                        FilterChip(
-                            modifier = Modifier.testTag("setup_clue_round_$option"),
-                            selected = setup.clueRounds == option,
-                            onClick = { onClueRoundsChanged(option) },
-                            label = { Text(stringResource(clueRoundsOptionRes(option))) },
-                        )
-                    }
-                }
-
-                Text(
-                    text = stringResource(clueRoundsHintRes(setup.clueRounds)),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = PartyDimens.SpaceSm),
-                )
             }
 
             PartySectionCard(modifier = Modifier.fillMaxWidth()) {
@@ -180,83 +133,7 @@ fun SetupScreen(
                 }
             }
 
-            TextButton(onClick = { showAdvanced = !showAdvanced }) {
-                Icon(
-                    imageVector = if (showAdvanced) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = null,
-                )
-                Spacer(modifier = Modifier.width(6.dp))
-                Text(stringResource(R.string.setup_advanced_options))
-            }
-
-            AnimatedVisibility(visible = showAdvanced) {
-                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                        Text(
-                            text = stringResource(R.string.setup_round_time_title, setup.suggestedRoundMinutes),
-                            style = MaterialTheme.typography.titleMedium,
-                        )
-                        Slider(
-                            value = setup.suggestedRoundMinutes.toFloat(),
-                            onValueChange = { onRoundMinutesChanged(it.toInt()) },
-                            valueRange = 3f..20f,
-                            steps = 16,
-                        )
-
-                        ToggleRow(
-                            title = stringResource(R.string.setup_no_extra_hints),
-                            checked = setup.noExtraHints,
-                            onCheckedChanged = onNoExtraHintsChanged,
-                        )
-                        ToggleRow(
-                            title = stringResource(R.string.setup_show_animation),
-                            checked = setup.revealAnimation,
-                            onCheckedChanged = onRevealAnimationChanged,
-                        )
-                        ToggleRow(
-                            title = stringResource(R.string.setup_haptics),
-                            checked = setup.hapticsEnabled,
-                            onCheckedChanged = onHapticsChanged,
-                        )
-                        ToggleRow(
-                            title = stringResource(R.string.setup_avoid_recent),
-                            checked = setup.avoidRecentWords,
-                            onCheckedChanged = onAvoidRecentWordsChanged,
-                        )
-                        ToggleRow(
-                            title = stringResource(R.string.setup_quick_mode),
-                            checked = setup.quickMode,
-                            onCheckedChanged = onQuickModeChanged,
-                        )
-                        ToggleRow(
-                            title = stringResource(R.string.setup_custom_names),
-                            checked = showNameFields,
-                            onCheckedChanged = {
-                                showNameFields = it
-                                if (!it) onClearCustomNames()
-                            },
-                        )
-
-                        AnimatedVisibility(visible = showNameFields) {
-                            Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceXs)) {
-                                repeat(setup.playerCount) { index ->
-                                    OutlinedTextField(
-                                        value = setup.customPlayerNames.getOrNull(index).orEmpty(),
-                                        onValueChange = { onCustomPlayerNameChanged(index, it) },
-                                        singleLine = true,
-                                        modifier = Modifier.fillMaxWidth(),
-                                        label = {
-                                            Text(stringResource(R.string.setup_player_name_label, index + 1))
-                                        },
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-                        PrimaryPartyButton(
+            PrimaryPartyButton(
                 text = stringResource(R.string.setup_start_button),
                 onClick = onStartRound,
                 enabled = !isLoading,
@@ -306,26 +183,6 @@ fun SetupScreen(
 }
 
 @Composable
-private fun ToggleRow(
-    title: String,
-    checked: Boolean,
-    onCheckedChanged: (Boolean) -> Unit,
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.weight(1f),
-        )
-        Switch(checked = checked, onCheckedChange = onCheckedChanged)
-    }
-}
-
-@Composable
 private fun invalidSetupMessage(detail: String): String {
     return when (detail) {
         "PLAYER_COUNT_OUT_OF_RANGE" -> stringResource(R.string.error_player_count)
@@ -358,24 +215,4 @@ private fun shouldShowTechnicalDiagnostic(detail: String): Boolean {
         key.contains("POLICY") ||
         key.contains("COMPOSITION")
 }
-
-private fun clueRoundsOptionRes(option: Int): Int {
-    return when (option) {
-        1 -> R.string.setup_clue_round_option_1
-        2 -> R.string.setup_clue_round_option_2
-        else -> R.string.setup_clue_round_option_3
-    }
-}
-
-private fun clueRoundsHintRes(option: Int): Int {
-    return when (option) {
-        1 -> R.string.setup_clue_round_hint_1
-        2 -> R.string.setup_clue_round_hint_2
-        else -> R.string.setup_clue_round_hint_3
-    }
-}
-
-
-
-
 

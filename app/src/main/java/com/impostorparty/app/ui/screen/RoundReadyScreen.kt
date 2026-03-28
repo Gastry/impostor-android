@@ -49,30 +49,8 @@ fun RoundReadyScreen(
                         textAlign = TextAlign.Center,
                     )
 
-                    setup?.let {
-                        Text(
-                            text = stringResource(R.string.round_ready_clue_rounds, it.clueRounds),
-                            style = MaterialTheme.typography.titleMedium,
-                            textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.primary,
-                        )
-                    }
-
                     if (showQuickInstructions) {
-                        setup?.let {
-                            Text(
-                                text = stringResource(R.string.round_ready_word_per_turn),
-                                style = MaterialTheme.typography.bodyLarge,
-                                textAlign = TextAlign.Center,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                            Text(
-                                text = stringResource(R.string.round_ready_vote_after_rounds, it.clueRounds),
-                                style = MaterialTheme.typography.bodyLarge,
-                                textAlign = TextAlign.Center,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        } ?: Text(
+                        Text(
                             text = stringResource(R.string.round_ready_instructions),
                             style = MaterialTheme.typography.bodyLarge,
                             textAlign = TextAlign.Center,

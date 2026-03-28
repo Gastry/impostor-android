@@ -5,26 +5,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -131,32 +126,6 @@ fun SettingsScreen(
 
             item {
                 PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceXs)) {
-                        val rows = listOf(
-                            ToggleItem(stringResource(R.string.settings_haptics), settings.hapticsEnabled, onHapticsChanged),
-                            ToggleItem(stringResource(R.string.settings_reduced_motion), settings.reducedMotion, onReducedMotionChanged),
-                            ToggleItem(stringResource(R.string.settings_show_instructions), settings.showQuickInstructions, onShowQuickInstructionsChanged),
-                            ToggleItem(stringResource(R.string.settings_avoid_recent), settings.avoidRecentWords, onAvoidRecentChanged),
-                            ToggleItem(stringResource(R.string.settings_show_animation), settings.showRevealAnimation, onRevealAnimationChanged),
-                            ToggleItem(stringResource(R.string.settings_secure_screen), settings.secureScreen, onSecureScreenChanged),
-                        )
-
-                        rows.forEachIndexed { index, item ->
-                            ToggleRow(
-                                title = item.title,
-                                checked = item.checked,
-                                onCheckedChanged = item.onCheckedChanged,
-                            )
-                            if (index < rows.lastIndex) {
-                                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-                            }
-                        }
-                    }
-                }
-            }
-
-            item {
-                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                     Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                         SecondaryPartyButton(
                             text = stringResource(R.string.settings_rate_app),
@@ -190,34 +159,6 @@ fun SettingsScreen(
         }
     }
 }
-
-@Composable
-private fun ToggleRow(
-    title: String,
-    checked: Boolean,
-    onCheckedChanged: (Boolean) -> Unit,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = PartyDimens.SpaceXs),
-        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.weight(1f),
-        )
-        Switch(checked = checked, onCheckedChange = onCheckedChanged)
-    }
-}
-
-private data class ToggleItem(
-    val title: String,
-    val checked: Boolean,
-    val onCheckedChanged: (Boolean) -> Unit,
-)
 
 enum class LanguageOption(val tag: String?, val labelRes: Int) {
     SYSTEM(null, R.string.language_system),
