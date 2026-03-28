@@ -137,17 +137,6 @@ fun HomeScreen(
                 }
             }
 
-            if (homeBannerAdUnitId != null) {
-                item {
-                    ContentWidth {
-                        AdMobBanner(
-                            adUnitId = homeBannerAdUnitId,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
-                }
-            }
-
             item {
                 ContentWidth {
                     Row(
@@ -160,6 +149,17 @@ fun HomeScreen(
                         TextButton(onClick = onCredits) {
                             Text(stringResource(R.string.credits_title))
                         }
+                    }
+                }
+            }
+
+            if (homeBannerAdUnitId != null) {
+                item {
+                    ContentWidth {
+                        AdMobBanner(
+                            adUnitId = homeBannerAdUnitId,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
                     }
                 }
             }
