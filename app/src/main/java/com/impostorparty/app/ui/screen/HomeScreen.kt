@@ -5,18 +5,27 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -25,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.AdMobBanner
+import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyBackground
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
@@ -39,9 +49,17 @@ fun HomeScreen(
     onNewGame: () -> Unit,
     onHowToPlay: () -> Unit,
     onSettings: () -> Unit,
+    onOpenRemoveAdsSettings: () -> Unit,
     onHistory: () -> Unit,
     onCredits: () -> Unit,
 ) {
+    val bannerReservedHeight = if (homeBannerAdUnitId != null) 88.dp else 0.dp
+    var bannerState by rememberSaveable(homeBannerAdUnitId) {
+        mutableStateOf(
+            if (homeBannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
+        )
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         PartyBackground()
         LazyColumn(
@@ -54,7 +72,7 @@ fun HomeScreen(
                 start = PartyDimens.ScreenHorizontal,
                 end = PartyDimens.ScreenHorizontal,
                 top = PartyDimens.SpaceXxl,
-                bottom = PartyDimens.SpaceXxl,
+                bottom = PartyDimens.SpaceXxl + bannerReservedHeight,
             ),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -152,16 +170,30 @@ fun HomeScreen(
                     }
                 }
             }
+        }
 
-            if (homeBannerAdUnitId != null) {
-                item {
-                    ContentWidth {
-                        AdMobBanner(
-                            adUnitId = homeBannerAdUnitId,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
-                }
+        if (homeBannerAdUnitId != null) {
+            when (bannerState) {
+                BannerLoadState.LOADING,
+                BannerLoadState.LOADED,
+                -> AdMobBanner(
+                    adUnitId = homeBannerAdUnitId,
+                    onLoadStateChanged = { bannerState = it },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .padding(horizontal = PartyDimens.ScreenHorizontal),
+                )
+
+                BannerLoadState.FAILED -> RemoveAdsFallbackCard(
+                    onClick = onOpenRemoveAdsSettings,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .padding(horizontal = PartyDimens.ScreenHorizontal),
+                )
             }
         }
     }
@@ -176,6 +208,53 @@ private fun ContentWidth(content: @Composable () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         content()
+    }
+}
+
+@Composable
+private fun RemoveAdsFallbackCard(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        onClick = onClick,
+        modifier = modifier
+            .heightIn(min = 56.dp)
+            .testTag("home_banner_fallback"),
+        shape = RoundedCornerShape(PartyDimens.RadiusSm),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            contentColor = MaterialTheme.colorScheme.onSurface,
+        ),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+        ) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.home_banner_fallback_title),
+                    style = MaterialTheme.typography.titleSmall,
+                )
+                Text(
+                    text = stringResource(R.string.home_banner_fallback_subtitle),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            Spacer(modifier = Modifier.weight(0.02f))
+            Text(
+                text = stringResource(R.string.home_banner_fallback_cta),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
     }
 }
 

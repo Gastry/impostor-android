@@ -2,9 +2,12 @@
     <string name="app_name">El Impostor</string>
     <string name="new_game">Nueva partida</string>
     <string name="home_tagline">Un móvil. Un impostor. Caos total.</string>
-    <string name="home_stats_title">Tu mesa de un vistazo</string>
+    <string name="home_stats_title">Últimas partidas</string>
     <string name="home_stats_games_played">Partidas jugadas: %1$d</string>
     <string name="home_stats_last_players">Último número de jugadores: %1$d</string>
+    <string name="home_banner_fallback_title">Quita la publicidad para siempre</string>
+    <string name="home_banner_fallback_subtitle">Pago único</string>
+    <string name="home_banner_fallback_cta">Ver opción</string>
 
     <string name="how_to_play_title">Cómo se juega</string>
     <string name="settings_title">Ajustes</string>

@@ -2,9 +2,12 @@
     <string name="app_name">The Impostor</string>
     <string name="new_game">New Game</string>
     <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
-    <string name="home_stats_title">Your table at a glance</string>
+    <string name="home_stats_title">Recent games</string>
     <string name="home_stats_games_played">Games played: %1$d</string>
     <string name="home_stats_last_players">Last player count: %1$d</string>
+    <string name="home_banner_fallback_title">Remove ads forever</string>
+    <string name="home_banner_fallback_subtitle">One-time payment</string>
+    <string name="home_banner_fallback_cta">See option</string>
 
     <string name="how_to_play_title">How to play</string>
     <string name="settings_title">Settings</string>

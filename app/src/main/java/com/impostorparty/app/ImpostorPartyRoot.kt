@@ -19,10 +19,12 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.impostorparty.app.ads.AdPlacement
 import com.impostorparty.app.ads.AdsConfig
 import com.impostorparty.app.navigation.AppRoute
@@ -126,6 +128,9 @@ fun ImpostorPartyRoot(
                     onNewGame = { navController.navigate(AppRoute.Setup.route) },
                     onHowToPlay = { navController.navigate(AppRoute.HowToPlay.route) },
                     onSettings = { navController.navigate(AppRoute.Settings.route) },
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     onHistory = { navController.navigate(AppRoute.History.route) },
                     onCredits = { navController.navigate(AppRoute.Credits.route) },
                 )
@@ -251,10 +256,20 @@ fun ImpostorPartyRoot(
                 HowToPlayScreen(onBack = { navController.popBackStack() })
             }
 
-            composable(AppRoute.Settings.route) {
+            composable(
+                route = AppRoute.Settings.RoutePattern,
+                arguments = listOf(
+                    navArgument(AppRoute.Settings.HighlightRemoveAdsArg) {
+                        type = NavType.BoolType
+                        defaultValue = false
+                    },
+                ),
+            ) { entry ->
+                val highlightRemoveAds = entry.arguments?.getBoolean(AppRoute.Settings.HighlightRemoveAdsArg) == true
                 SettingsScreen(
                     settings = appSettings,
                     removeAdsUiState = removeAdsUiState,
+                    highlightRemoveAds = highlightRemoveAds,
                     onThemeModeChanged = viewModel::updateThemeMode,
                     onLanguageChanged = viewModel::updateLanguageTag,
                     onReducedMotionChanged = viewModel::updateReducedMotion,
