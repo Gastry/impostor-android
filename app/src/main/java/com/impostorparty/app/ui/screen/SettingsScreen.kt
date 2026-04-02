@@ -1,5 +1,9 @@
 package com.impostorparty.app.ui.screen
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -7,9 +11,14 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -20,10 +29,20 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import com.impostorparty.app.R
+import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
+import com.impostorparty.app.ads.RemoveAdsPurchaseUiState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
@@ -36,6 +55,8 @@ import com.impostorparty.domain.model.ThemeMode
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
+    removeAdsUiState: RemoveAdsPurchaseUiState,
+    highlightRemoveAds: Boolean,
     onThemeModeChanged: (ThemeMode) -> Unit,
     onLanguageChanged: (String?) -> Unit,
     onReducedMotionChanged: (Boolean) -> Unit,
@@ -44,16 +65,71 @@ fun SettingsScreen(
     onHapticsChanged: (Boolean) -> Unit,
     onAvoidRecentChanged: (Boolean) -> Unit,
     onRevealAnimationChanged: (Boolean) -> Unit,
+    onRemoveAds: () -> Unit,
     onRateApp: () -> Unit,
     onSendSuggestion: () -> Unit,
     onResetPreferences: () -> Unit,
     onClearHistory: () -> Unit,
+    onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val listState = rememberLazyListState()
+    val removeAdsButtonText = when {
+        removeAdsUiState.isAdsRemoved -> stringResource(R.string.settings_remove_ads_owned)
+        removeAdsUiState.hasPendingPurchase -> stringResource(R.string.settings_remove_ads_pending)
+        removeAdsUiState.isLoading || removeAdsUiState.isPurchaseInProgress -> {
+            stringResource(R.string.settings_remove_ads_loading)
+        }
+        removeAdsUiState.priceLabel != null -> {
+            stringResource(R.string.settings_remove_ads_price, removeAdsUiState.priceLabel)
+        }
+        else -> stringResource(R.string.settings_remove_ads_buy)
+    }
+    val removeAdsEnabled = !removeAdsUiState.isAdsRemoved &&
+        !removeAdsUiState.hasPendingPurchase &&
+        !removeAdsUiState.isLoading &&
+        !removeAdsUiState.isPurchaseInProgress &&
+        removeAdsUiState.isPurchaseAvailable
+    var highlightCard by rememberSaveable(highlightRemoveAds) { mutableStateOf(highlightRemoveAds) }
+    val highlightProgress by animateFloatAsState(
+        targetValue = if (highlightCard) 1.02f else 1f,
+        animationSpec = tween(durationMillis = 320),
+        label = "remove_ads_scale",
+    )
+    val highlightContainerColor by animateColorAsState(
+        targetValue = if (highlightCard) {
+            MaterialTheme.colorScheme.primaryContainer
+        } else {
+            MaterialTheme.colorScheme.surfaceContainer
+        },
+        animationSpec = tween(durationMillis = 420),
+        label = "remove_ads_container",
+    )
+    val highlightBorderColor by animateColorAsState(
+        targetValue = if (highlightCard) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.outlineVariant
+        },
+        animationSpec = tween(durationMillis = 420),
+        label = "remove_ads_border",
+    )
+
+    LaunchedEffect(highlightRemoveAds) {
+        if (!highlightRemoveAds) return@LaunchedEffect
+        listState.animateScrollToItem(2)
+        highlightCard = true
+        delay(950)
+        highlightCard = false
+    }
+
     PartyScaffold(
         title = stringResource(R.string.settings_title),
         navigationIcon = {
-            IconButton(onClick = onBack) {
+            IconButton(onClick = {
+                onDismissBillingMessage()
+                onBack()
+            }) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
             }
         },
@@ -62,6 +138,7 @@ fun SettingsScreen(
             modifier = modifier
                 .fillMaxSize()
                 .testTag("settings_list"),
+            state = listState,
             verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
             contentPadding = PaddingValues(
                 top = PartyDimens.SpaceMd,
@@ -125,6 +202,46 @@ fun SettingsScreen(
             }
 
             item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            scaleX = highlightProgress
+                            scaleY = highlightProgress
+                        }
+                        .testTag("settings_remove_ads_card"),
+                    shape = RoundedCornerShape(PartyDimens.RadiusMd),
+                    colors = CardDefaults.cardColors(
+                        containerColor = highlightContainerColor,
+                    ),
+                    border = BorderStroke(1.dp, highlightBorderColor),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                ) {
+                    Column(
+                        modifier = Modifier.padding(20.dp),
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
+                        SecondaryPartyButton(
+                            text = removeAdsButtonText,
+                            onClick = onRemoveAds,
+                            enabled = removeAdsEnabled,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("settings_remove_ads"),
+                        )
+                        removeAdsStatusText(removeAdsUiState.message)?.let { message ->
+                            Text(
+                                text = stringResource(message),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.testTag("settings_remove_ads_status"),
+                            )
+                        }
+                    }
+                }
+            }
+
+            item {
                 PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                     Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                         SecondaryPartyButton(
@@ -157,6 +274,16 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+}
+
+private fun removeAdsStatusText(message: RemoveAdsPurchaseMessage?): Int? {
+    return when (message) {
+        RemoveAdsPurchaseMessage.PURCHASED -> R.string.settings_remove_ads_message_purchased
+        RemoveAdsPurchaseMessage.PENDING -> R.string.settings_remove_ads_message_pending
+        RemoveAdsPurchaseMessage.ERROR -> R.string.settings_remove_ads_message_error
+        RemoveAdsPurchaseMessage.UNAVAILABLE -> R.string.settings_remove_ads_message_unavailable
+        null -> null
     }
 }
 

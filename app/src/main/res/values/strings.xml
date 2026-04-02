@@ -2,9 +2,12 @@
     <string name="app_name">The Impostor</string>
     <string name="new_game">New Game</string>
     <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
-    <string name="home_stats_title">Your table at a glance</string>
+    <string name="home_stats_title">Recent games</string>
     <string name="home_stats_games_played">Games played: %1$d</string>
     <string name="home_stats_last_players">Last player count: %1$d</string>
+    <string name="home_banner_fallback_title">Remove ads forever</string>
+    <string name="home_banner_fallback_subtitle">One-time payment</string>
+    <string name="home_banner_fallback_cta">See option</string>
 
     <string name="how_to_play_title">How to play</string>
     <string name="settings_title">Settings</string>
@@ -103,6 +106,15 @@
     <string name="settings_avoid_recent">Avoid recent words</string>
     <string name="settings_show_animation">Reveal animation</string>
     <string name="settings_secure_screen">Protect sensitive screens</string>
+    <string name="settings_remove_ads_buy">Remove ads</string>
+    <string name="settings_remove_ads_price">Remove ads · %1$s</string>
+    <string name="settings_remove_ads_loading">Checking Google Play…</string>
+    <string name="settings_remove_ads_owned">Ads removed</string>
+    <string name="settings_remove_ads_pending">Purchase pending</string>
+    <string name="settings_remove_ads_message_purchased">Ads are now disabled on this device.</string>
+    <string name="settings_remove_ads_message_pending">Purchase pending. Google Play will confirm it when payment completes.</string>
+    <string name="settings_remove_ads_message_error">The Google Play purchase could not be completed.</string>
+    <string name="settings_remove_ads_message_unavailable">This option is currently unavailable on this build.</string>
     <string name="settings_rate_app">Rate on Google Play</string>
     <string name="settings_send_feedback">Send feedback</string>
     <string name="settings_clear_history">Clear round history</string>
@@ -157,7 +169,7 @@
     <string name="credits_app_body">Designed for quick face-to-face rounds with one shared phone.</string>
     <string name="credits_licenses_title">Licenses</string>
     <string name="credits_licenses_body">Built with Android, Kotlin, Jetpack Compose, Material 3 and other open source libraries.</string>
-    <string name="credits_privacy_hint">No account, no ads, no tracking. Everything stays on device.</string>
+    <string name="credits_privacy_hint">No account, no tracking. Designed for quick local play.</string>
 
     <string name="category_food">Food</string>
     <string name="category_animals">Animals</string>

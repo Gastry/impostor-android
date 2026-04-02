@@ -2,9 +2,12 @@
     <string name="app_name">L’Imposteur</string>
     <string name="new_game">Nouvelle partie</string>
     <string name="home_tagline">Un téléphone. Un imposteur. Chaos garanti.</string>
-    <string name="home_stats_title">Résumé de la table</string>
+    <string name="home_stats_title">Dernières parties</string>
     <string name="home_stats_games_played">Parties jouees : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
+    <string name="home_banner_fallback_title">Supprimer la publicité pour toujours</string>
+    <string name="home_banner_fallback_subtitle">Paiement unique</string>
+    <string name="home_banner_fallback_cta">Voir l’option</string>
 
     <string name="how_to_play_title">Comment jouer</string>
     <string name="settings_title">Paramètres</string>
@@ -103,6 +106,15 @@
     <string name="settings_avoid_recent">Eviter mots recents</string>
     <string name="settings_show_animation">Animation revelation</string>
     <string name="settings_secure_screen">Proteger ecrans sensibles</string>
+    <string name="settings_remove_ads_buy">Retirer les pubs</string>
+    <string name="settings_remove_ads_price">Retirer les pubs · %1$s</string>
+    <string name="settings_remove_ads_loading">Vérification Google Play…</string>
+    <string name="settings_remove_ads_owned">Pubs retirées</string>
+    <string name="settings_remove_ads_pending">Achat en attente</string>
+    <string name="settings_remove_ads_message_purchased">Les pubs sont maintenant désactivées sur cet appareil.</string>
+    <string name="settings_remove_ads_message_pending">L’achat est en attente. Google Play le confirmera une fois le paiement terminé.</string>
+    <string name="settings_remove_ads_message_error">L’achat Google Play n’a pas pu être finalisé.</string>
+    <string name="settings_remove_ads_message_unavailable">Cette option n’est pas disponible dans ce build.</string>
     <string name="settings_rate_app">Noter sur Google Play</string>
     <string name="settings_send_feedback">Envoyer une suggestion</string>
     <string name="settings_clear_history">Effacer l’historique</string>
@@ -157,7 +169,7 @@
     <string name="credits_app_body">Conçue pour des manches rapides en présentiel avec un seul téléphone partagé.</string>
     <string name="credits_licenses_title">Licences</string>
     <string name="credits_licenses_body">Créée avec Android, Kotlin, Jetpack Compose, Material 3 et des bibliothèques open source.</string>
-    <string name="credits_privacy_hint">Pas de compte, pas de pub, pas de suivi. Tout reste sur l’appareil.</string>
+    <string name="credits_privacy_hint">Pas de compte, pas de suivi. Pensée pour des parties locales rapides avec un seul téléphone partagé.</string>
 
     <string name="category_food">Nourriture</string>
     <string name="category_animals">Animaux</string>

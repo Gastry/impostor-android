@@ -95,6 +95,12 @@ class GameViewModel @Inject constructor(
         AppSettings(),
     )
 
+    val adsRemoved: StateFlow<Boolean> = preferencesRepository.adsRemoved.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5_000),
+        false,
+    )
+
     val history = statsRepository.history.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),

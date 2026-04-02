@@ -2,9 +2,12 @@
     <string name="app_name">インポスター</string>
     <string name="new_game">新しいゲーム</string>
     <string name="home_tagline">1台のスマホ。1人のインポスター。大混乱。</string>
-    <string name="home_stats_title">プレイ状況</string>
+    <string name="home_stats_title">最近のプレイ</string>
     <string name="home_stats_games_played">プレイした回数: %1$d</string>
     <string name="home_stats_last_players">前回のプレイヤー人数: %1$d</string>
+    <string name="home_banner_fallback_title">広告をずっと非表示にする</string>
+    <string name="home_banner_fallback_subtitle">1回限りの支払い</string>
+    <string name="home_banner_fallback_cta">設定を見る</string>
 
     <string name="how_to_play_title">遊び方</string>
     <string name="settings_title">設定</string>
@@ -103,6 +106,15 @@
     <string name="settings_avoid_recent">最近使ったワードを避ける</string>
     <string name="settings_show_animation">公開アニメーション</string>
     <string name="settings_secure_screen">機密画面を保護する</string>
+    <string name="settings_remove_ads_buy">広告を非表示にする</string>
+    <string name="settings_remove_ads_price">広告を非表示にする · %1$s</string>
+    <string name="settings_remove_ads_loading">Google Play を確認中…</string>
+    <string name="settings_remove_ads_owned">広告は非表示です</string>
+    <string name="settings_remove_ads_pending">購入は保留中です</string>
+    <string name="settings_remove_ads_message_purchased">この端末では広告が無効になりました。</string>
+    <string name="settings_remove_ads_message_pending">購入は保留中です。支払い完了後に Google Play が確定します。</string>
+    <string name="settings_remove_ads_message_error">Google Play での購入を完了できませんでした。</string>
+    <string name="settings_remove_ads_message_unavailable">このビルドではこの機能を利用できません。</string>
     <string name="settings_rate_app">Google Play で評価する</string>
     <string name="settings_send_feedback">提案を送る</string>
     <string name="settings_clear_history">履歴を消去</string>
@@ -157,7 +169,7 @@
     <string name="credits_app_body">1台の共有スマホで遊ぶ、テンポの良い対面ゲーム向けに作られています。</string>
     <string name="credits_licenses_title">ライセンス</string>
     <string name="credits_licenses_body">Android、Kotlin、Jetpack Compose、Material 3 などで構築されています。</string>
-    <string name="credits_privacy_hint">アカウント不要、広告なし、追跡なし。データは端末内に留まります。</string>
+    <string name="credits_privacy_hint">アカウント不要、追跡なし。1台の共有スマホで気軽に遊べるように作られています。</string>
 
     <string name="category_food">食べ物</string>
     <string name="category_animals">動物</string>

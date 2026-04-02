@@ -2,9 +2,12 @@
     <string name="app_name">Der Betrüger</string>
     <string name="new_game">Neues Spiel</string>
     <string name="home_tagline">Ein Handy. Ein Betrüger. Reines Chaos.</string>
-    <string name="home_stats_title">Übersicht</string>
+    <string name="home_stats_title">Letzte Partien</string>
     <string name="home_stats_games_played">Gespielte Runden: %1$d</string>
     <string name="home_stats_last_players">Letzte Spielerzahl: %1$d</string>
+    <string name="home_banner_fallback_title">Werbung dauerhaft entfernen</string>
+    <string name="home_banner_fallback_subtitle">Einmalige Zahlung</string>
+    <string name="home_banner_fallback_cta">Option ansehen</string>
 
     <string name="how_to_play_title">So spielt man</string>
     <string name="settings_title">Einstellungen</string>
@@ -103,6 +106,15 @@
     <string name="settings_avoid_recent">Zuletzt genutzte Wörter vermeiden</string>
     <string name="settings_show_animation">Aufdeck-Animation</string>
     <string name="settings_secure_screen">Sensible Bildschirme schützen</string>
+    <string name="settings_remove_ads_buy">Werbung entfernen</string>
+    <string name="settings_remove_ads_price">Werbung entfernen · %1$s</string>
+    <string name="settings_remove_ads_loading">Google Play wird geprüft…</string>
+    <string name="settings_remove_ads_owned">Werbung entfernt</string>
+    <string name="settings_remove_ads_pending">Kauf ausstehend</string>
+    <string name="settings_remove_ads_message_purchased">Die Werbung ist auf diesem Gerät jetzt deaktiviert.</string>
+    <string name="settings_remove_ads_message_pending">Der Kauf ist noch ausstehend. Google Play bestätigt ihn, sobald die Zahlung abgeschlossen ist.</string>
+    <string name="settings_remove_ads_message_error">Der Kauf über Google Play konnte nicht abgeschlossen werden.</string>
+    <string name="settings_remove_ads_message_unavailable">Diese Option ist in diesem Build derzeit nicht verfügbar.</string>
     <string name="settings_rate_app">Bei Google Play bewerten</string>
     <string name="settings_send_feedback">Vorschlag senden</string>
     <string name="settings_clear_history">Verlauf loschen</string>
@@ -157,7 +169,7 @@
     <string name="credits_app_body">Entwickelt für schnelle Runden mit einem geteilten Handy.</string>
     <string name="credits_licenses_title">Lizenzen</string>
     <string name="credits_licenses_body">Erstellt mit Android, Kotlin, Jetpack Compose, Material 3 und Open Source Bibliotheken.</string>
-    <string name="credits_privacy_hint">Keine Konten, keine Werbung, kein Tracking. Alles bleibt auf dem Gerät.</string>
+    <string name="credits_privacy_hint">Kein Konto, kein Tracking. Entwickelt für schnelles lokales Spielen mit nur einem Handy.</string>
 
     <string name="category_food">Essen</string>
     <string name="category_animals">Tiere</string>

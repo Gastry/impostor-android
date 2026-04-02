@@ -64,9 +64,11 @@ fun SecondaryPartyButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     OutlinedButton(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.heightIn(min = PartyDimens.CtaMinHeight),
         shape = RoundedCornerShape(PartyDimens.RadiusSm),
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 13.dp),

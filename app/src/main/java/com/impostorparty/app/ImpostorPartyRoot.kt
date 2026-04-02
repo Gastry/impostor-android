@@ -14,12 +14,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.LocaleListCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.impostorparty.app.ads.AdPlacement
 import com.impostorparty.app.ads.AdsConfig
 import com.impostorparty.app.navigation.AppRoute
@@ -35,20 +40,27 @@ import com.impostorparty.app.ui.screen.SettingsScreen
 import com.impostorparty.app.ui.screen.SetupScreen
 import com.impostorparty.app.ui.theme.ImpostorPartyTheme
 import com.impostorparty.app.viewmodel.GameViewModel
+import com.impostorparty.app.viewmodel.RemoveAdsBillingViewModel
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.impostorparty.domain.usecase.RevealFlowState
 
 @Composable
-fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
+fun ImpostorPartyRoot(
+    viewModel: GameViewModel = hiltViewModel(),
+    billingViewModel: RemoveAdsBillingViewModel = hiltViewModel(),
+) {
     val navController = rememberNavController()
     val appSettings by viewModel.appSettings.collectAsStateWithLifecycle()
+    val adsRemoved by viewModel.adsRemoved.collectAsStateWithLifecycle()
     val activeRound by viewModel.activeRound.collectAsStateWithLifecycle()
     val feedbackForm by viewModel.feedbackForm.collectAsStateWithLifecycle()
     val reviewPrompt by viewModel.reviewPrompt.collectAsStateWithLifecycle()
     val pendingInAppReviewRequest by viewModel.pendingInAppReviewRequest.collectAsStateWithLifecycle()
     val revealState by viewModel.revealState.collectAsStateWithLifecycle()
+    val removeAdsUiState by billingViewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val activity = context.findActivity()
+    val lifecycleOwner = LocalLifecycleOwner.current
     val reviewManager = remember(activity) {
         activity?.let(ReviewManagerFactory::create)
     }
@@ -60,6 +72,22 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
     SensitiveContentEffect(
         enabled = route in setOf(AppRoute.Reveal.route, AppRoute.Result.route),
     )
+
+    LaunchedEffect(Unit) {
+        billingViewModel.refresh()
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_START) {
+                billingViewModel.refresh()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
 
     LaunchedEffect(pendingInAppReviewRequest) {
         pendingInAppReviewRequest ?: return@LaunchedEffect
@@ -93,10 +121,16 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
             composable(AppRoute.Home.route) {
                 HomeScreen(
                     stats = viewModel.stats.collectAsStateWithLifecycle().value,
-                    homeBannerAdUnitId = AdsConfig.adUnitIdFor(AdPlacement.HOME_BANNER),
+                    homeBannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.HOME_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
                     onNewGame = { navController.navigate(AppRoute.Setup.route) },
                     onHowToPlay = { navController.navigate(AppRoute.HowToPlay.route) },
                     onSettings = { navController.navigate(AppRoute.Settings.route) },
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     onHistory = { navController.navigate(AppRoute.History.route) },
                     onCredits = { navController.navigate(AppRoute.Credits.route) },
                 )
@@ -222,9 +256,20 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                 HowToPlayScreen(onBack = { navController.popBackStack() })
             }
 
-            composable(AppRoute.Settings.route) {
+            composable(
+                route = AppRoute.Settings.RoutePattern,
+                arguments = listOf(
+                    navArgument(AppRoute.Settings.HighlightRemoveAdsArg) {
+                        type = NavType.BoolType
+                        defaultValue = false
+                    },
+                ),
+            ) { entry ->
+                val highlightRemoveAds = entry.arguments?.getBoolean(AppRoute.Settings.HighlightRemoveAdsArg) == true
                 SettingsScreen(
                     settings = appSettings,
+                    removeAdsUiState = removeAdsUiState,
+                    highlightRemoveAds = highlightRemoveAds,
                     onThemeModeChanged = viewModel::updateThemeMode,
                     onLanguageChanged = viewModel::updateLanguageTag,
                     onReducedMotionChanged = viewModel::updateReducedMotion,
@@ -233,10 +278,14 @@ fun ImpostorPartyRoot(viewModel: GameViewModel = hiltViewModel()) {
                     onHapticsChanged = viewModel::updateHaptics,
                     onAvoidRecentChanged = viewModel::updateAvoidRecentWords,
                     onRevealAnimationChanged = viewModel::updateRevealAnimation,
+                    onRemoveAds = {
+                        activity?.let(billingViewModel::launchPurchase)
+                    },
                     onRateApp = { context.openPlayStoreListing() },
                     onSendSuggestion = { navController.navigate(AppRoute.Feedback.route) },
                     onResetPreferences = viewModel::resetPreferences,
                     onClearHistory = viewModel::clearHistory,
+                    onDismissBillingMessage = billingViewModel::clearMessage,
                     onBack = { navController.popBackStack() },
                 )
             }

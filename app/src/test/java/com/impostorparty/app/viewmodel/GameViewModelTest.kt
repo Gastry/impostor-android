@@ -268,12 +268,17 @@ private class FakeWordRepository : WordRepository {
 
 private class FakePreferencesRepository : PreferencesRepository {
     override val appSettings = MutableStateFlow(AppSettings())
+    override val adsRemoved = MutableStateFlow(false)
     override val lastSetup = MutableStateFlow<GameSetup?>(null)
     override val reviewPromptState = MutableStateFlow(ReviewPromptState())
     override val wordUsageHistory = MutableStateFlow<List<WordUsageRecord>>(emptyList())
 
     override suspend fun saveAppSettings(settings: AppSettings) {
         appSettings.value = settings
+    }
+
+    override suspend fun saveAdsRemoved(removed: Boolean) {
+        adsRemoved.value = removed
     }
 
     override suspend fun saveLastSetup(setup: GameSetup) {
@@ -289,7 +294,9 @@ private class FakePreferencesRepository : PreferencesRepository {
     }
 
     override suspend fun clearAllPreferences() {
+        val purchased = adsRemoved.value
         appSettings.value = AppSettings()
+        adsRemoved.value = purchased
         lastSetup.value = null
         reviewPromptState.value = ReviewPromptState()
         wordUsageHistory.value = emptyList()
