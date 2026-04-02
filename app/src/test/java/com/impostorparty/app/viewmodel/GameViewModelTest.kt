@@ -91,6 +91,34 @@ class GameViewModelTest {
     }
 
     @Test
+    fun `start round uses current app locale when no language preference is saved`() = runTest(dispatcher) {
+        val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
+        viewModel.toggleCategory(Category.ANIMALS)
+        viewModel.toggleCategory(Category.PLACES)
+
+        viewModel.startRound(currentAppLanguageTag = "es-ES")
+        advanceUntilIdle()
+
+        assertEquals("es-ES", wordRepository.lastRequestedLanguageTag)
+        assertEquals("Paella", viewModel.activeRound.value?.word?.text)
+    }
+
+    @Test
+    fun `saved language preference overrides current app locale`() = runTest(dispatcher) {
+        preferencesRepository.appSettings.value = AppSettings(languageTag = "de")
+        val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
+        viewModel.toggleCategory(Category.ANIMALS)
+        viewModel.toggleCategory(Category.PLACES)
+        advanceUntilIdle()
+
+        viewModel.startRound(currentAppLanguageTag = "es-ES")
+        advanceUntilIdle()
+
+        assertEquals("de", wordRepository.lastRequestedLanguageTag)
+        assertEquals("Brezel", viewModel.activeRound.value?.word?.text)
+    }
+
+    @Test
     fun `reveal state transitions to round ready`() = runTest(dispatcher) {
         val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
         viewModel.updatePlayerCount(3)
@@ -253,12 +281,24 @@ class GameViewModelTest {
 }
 
 private class FakeWordRepository : WordRepository {
+    var lastRequestedLanguageTag: String? = null
+
     override suspend fun getWords(languageTag: String?): LocalizedWordPool {
+        lastRequestedLanguageTag = languageTag
         val resolved = languageTag?.substringBefore('-')?.ifBlank { "en" } ?: "en"
+        val word = when (resolved) {
+            "es" -> "Paella"
+            "de" -> "Brezel"
+            "fr" -> "Baguette"
+            "it" -> "Pasta"
+            "pt" -> "Feijoada"
+            "ja" -> "すし"
+            else -> "Pizza"
+        }
         return LocalizedWordPool(
             languageTag = resolved,
             words = listOf(
-                WordEntry("Pizza", Category.FOOD),
+                WordEntry(word, Category.FOOD),
                 WordEntry("Tiger", Category.ANIMALS),
                 WordEntry("Airport", Category.PLACES),
             ),

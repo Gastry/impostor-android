@@ -60,6 +60,7 @@ fun ImpostorPartyRoot(
     val removeAdsUiState by billingViewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val activity = context.findActivity()
+    val currentAppLanguageTag = context.currentAppLanguageTag()
     val lifecycleOwner = LocalLifecycleOwner.current
     val reviewManager = remember(activity) {
         activity?.let(ReviewManagerFactory::create)
@@ -154,7 +155,7 @@ fun ImpostorPartyRoot(
                     onAvoidRecentWordsChanged = viewModel::updateAvoidRecentWords,
                     onCustomPlayerNameChanged = viewModel::updateCustomPlayerName,
                     onClearCustomNames = viewModel::clearCustomNames,
-                    onStartRound = viewModel::startRound,
+                    onStartRound = { viewModel.startRound(currentAppLanguageTag) },
                     onBack = { navController.popBackStack() },
                 )
 
@@ -225,7 +226,7 @@ fun ImpostorPartyRoot(
                     },
                     onPlayAgain = {
                         viewModel.persistRoundResultIfNeeded()
-                        viewModel.startRematch()
+                        viewModel.startRematch(currentAppLanguageTag)
                         navController.navigate(AppRoute.Reveal.route) {
                             popUpTo(AppRoute.Result.route) { inclusive = true }
                         }
@@ -253,7 +254,13 @@ fun ImpostorPartyRoot(
             }
 
             composable(AppRoute.HowToPlay.route) {
-                HowToPlayScreen(onBack = { navController.popBackStack() })
+                HowToPlayScreen(
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.HOW_TO_PLAY_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    onBack = { navController.popBackStack() },
+                )
             }
 
             composable(
@@ -268,6 +275,10 @@ fun ImpostorPartyRoot(
                 val highlightRemoveAds = entry.arguments?.getBoolean(AppRoute.Settings.HighlightRemoveAdsArg) == true
                 SettingsScreen(
                     settings = appSettings,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.SETTINGS_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
                     removeAdsUiState = removeAdsUiState,
                     highlightRemoveAds = highlightRemoveAds,
                     onThemeModeChanged = viewModel::updateThemeMode,
@@ -336,6 +347,10 @@ private fun Context.findActivity(): Activity? {
         current = current.baseContext
     }
     return null
+}
+
+private fun Context.currentAppLanguageTag(): String {
+    return resources.configuration.locales[0]?.toLanguageTag().orEmpty()
 }
 
 @Composable

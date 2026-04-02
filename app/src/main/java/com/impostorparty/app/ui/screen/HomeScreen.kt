@@ -21,6 +21,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.AdMobBanner
@@ -87,6 +89,7 @@ fun HomeScreen(
                             text = stringResource(R.string.app_name),
                             style = MaterialTheme.typography.headlineLarge,
                             textAlign = TextAlign.Center,
+                            modifier = Modifier.testTag("home_title"),
                         )
                         Text(
                             text = stringResource(R.string.home_tagline),
@@ -157,6 +160,15 @@ fun HomeScreen(
 
             item {
                 ContentWidth {
+                    SupportTheAppCard(
+                        onClick = onOpenRemoveAdsSettings,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
+
+            item {
+                ContentWidth {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -212,35 +224,39 @@ private fun ContentWidth(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun RemoveAdsFallbackCard(
+private fun SupportTheAppCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
         onClick = onClick,
-        modifier = modifier
-            .heightIn(min = 56.dp)
-            .testTag("home_banner_fallback"),
-        shape = RoundedCornerShape(PartyDimens.RadiusSm),
+        modifier = modifier.testTag("home_support_card"),
+        shape = RoundedCornerShape(PartyDimens.RadiusMd),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
             contentColor = MaterialTheme.colorScheme.onSurface,
         ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 10.dp),
+                .padding(horizontal = 20.dp, vertical = 18.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
         ) {
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
+                    text = stringResource(R.string.home_support_title),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
                     text = stringResource(R.string.home_banner_fallback_title),
-                    style = MaterialTheme.typography.titleSmall,
+                    style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
                     text = stringResource(R.string.home_banner_fallback_subtitle),
@@ -248,7 +264,61 @@ private fun RemoveAdsFallbackCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            Spacer(modifier = Modifier.weight(0.02f))
+            Text(
+                text = stringResource(R.string.home_banner_fallback_cta),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
+    }
+}
+
+@Composable
+private fun RemoveAdsFallbackCard(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    OutlinedCard(
+        onClick = onClick,
+        modifier = modifier
+            .heightIn(min = 62.dp, max = 62.dp)
+            .testTag("home_banner_fallback"),
+        shape = RoundedCornerShape(PartyDimens.RadiusSm),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        ),
+        border = CardDefaults.outlinedCardBorder().copy(
+            brush = androidx.compose.ui.graphics.SolidColor(
+                MaterialTheme.colorScheme.primary.copy(alpha = 0.26f),
+            ),
+        ),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(1.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.home_banner_fallback_title),
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Text(
+                    text = stringResource(R.string.home_banner_fallback_subtitle),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.74f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
             Text(
                 text = stringResource(R.string.home_banner_fallback_cta),
                 style = MaterialTheme.typography.labelLarge,

@@ -4,6 +4,8 @@ import com.impostorparty.app.BuildConfig
 
 enum class AdPlacement {
     HOME_BANNER,
+    SETTINGS_BANNER,
+    HOW_TO_PLAY_BANNER,
 }
 
 object AdsConfig {
@@ -15,6 +17,8 @@ object AdsConfig {
 
         return when (placement) {
             AdPlacement.HOME_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
+            AdPlacement.SETTINGS_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
+            AdPlacement.HOW_TO_PLAY_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
         }
     }
 }

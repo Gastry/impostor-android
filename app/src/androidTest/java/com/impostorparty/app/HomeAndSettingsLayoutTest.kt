@@ -21,7 +21,7 @@ class HomeAndSettingsLayoutTest {
 
     @Test
     fun home_shows_branding_and_primary_cta() {
-        composeRule.onNodeWithTag("home_logo").assertIsDisplayed()
+        composeRule.onNodeWithTag("home_title").assertIsDisplayed()
         composeRule.onNodeWithTag("home_primary_cta").assertIsDisplayed()
     }
 

@@ -216,22 +216,26 @@ class GameViewModel @Inject constructor(
         _setup.update { it.copy(customPlayerNames = emptyList()) }
     }
 
-    fun startRound() {
+    fun startRound(currentAppLanguageTag: String? = null) {
         viewModelScope.launch {
             _isStartingRound.value = true
             val setupSnapshot = getAllowedImpostorCountsUseCase.clamp(fixedSetup(_setup.value))
             _setup.value = setupSnapshot
 
-            val settingsSnapshot = appSettings.first()
+            val settingsSnapshot = preferencesRepository.appSettings.first()
+            val effectiveLanguageTag = resolveEffectiveLanguageTag(
+                preferredLanguageTag = settingsSnapshot.languageTag,
+                currentAppLanguageTag = currentAppLanguageTag,
+            )
             val result = createRoundUseCase(
                 setup = setupSnapshot,
-                activeLanguageTag = settingsSnapshot.languageTag,
+                activeLanguageTag = effectiveLanguageTag,
                 wordUsageHistory = preferencesRepository.wordUsageHistory.first(),
                 wordRepository = wordRepository,
                 random = Random(System.nanoTime()),
                 fallbackPlayerNames = localizedDefaultPlayerNames(
                     playerCount = setupSnapshot.playerCount,
-                    languageTag = settingsSnapshot.languageTag,
+                    languageTag = effectiveLanguageTag,
                 ),
             )
 
@@ -389,10 +393,11 @@ class GameViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            val settingsSnapshot = appSettings.first()
-            val localeTag = settingsSnapshot.languageTag
-                ?.ifBlank { null }
-                ?: Locale.getDefault().toLanguageTag().ifBlank { "en" }
+            val settingsSnapshot = preferencesRepository.appSettings.first()
+            val localeTag = resolveEffectiveLanguageTag(
+                preferredLanguageTag = settingsSnapshot.languageTag,
+                currentAppLanguageTag = null,
+            )
 
             val feedbackContext = FeedbackContext(
                 appVersion = BuildConfig.VERSION_NAME,
@@ -435,10 +440,10 @@ class GameViewModel @Inject constructor(
         _feedbackForm.update { it.copy(isSuccess = false, sendResult = null, validationErrors = emptySet()) }
     }
 
-    fun startRematch() {
+    fun startRematch(currentAppLanguageTag: String? = null) {
         val previousSetup = fixedSetup(_activeRound.value?.setup ?: _setup.value)
         _setup.value = previousSetup
-        startRound()
+        startRound(currentAppLanguageTag)
     }
 
     fun clearCurrentRound() {
@@ -507,9 +512,20 @@ class GameViewModel @Inject constructor(
         return List(playerCount) { index -> "$label ${index + 1}" }
     }
 
+    private fun resolveEffectiveLanguageTag(
+        preferredLanguageTag: String?,
+        currentAppLanguageTag: String?,
+    ): String {
+        return preferredLanguageTag
+            ?.ifBlank { null }
+            ?: currentAppLanguageTag
+                ?.ifBlank { null }
+            ?: Locale.getDefault().toLanguageTag().ifBlank { "en" }
+    }
+
     private fun updateAppSettings(update: (AppSettings) -> AppSettings) {
         viewModelScope.launch {
-            val current = appSettings.first()
+            val current = preferencesRepository.appSettings.first()
             preferencesRepository.saveAppSettings(update(current))
         }
     }

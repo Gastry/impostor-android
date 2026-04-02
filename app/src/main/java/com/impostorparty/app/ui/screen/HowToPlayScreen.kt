@@ -2,8 +2,10 @@ package com.impostorparty.app.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,6 +23,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,12 +36,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
+import com.impostorparty.app.ui.components.AdMobBanner
+import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.theme.PartyDimens
 
 @Composable
-fun HowToPlayScreen(onBack: () -> Unit) {
+fun HowToPlayScreen(
+    bannerAdUnitId: String?,
+    onBack: () -> Unit,
+) {
+    val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
+    var bannerState by rememberSaveable(bannerAdUnitId) {
+        mutableStateOf(
+            if (bannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
+        )
+    }
+
     PartyScaffold(
         title = stringResource(R.string.how_to_play_title),
         navigationIcon = {
@@ -47,102 +65,114 @@ fun HowToPlayScreen(onBack: () -> Unit) {
             }
         },
     ) { modifier ->
-        LazyColumn(
-            modifier = modifier
-                .fillMaxWidth()
-                .testTag("how_to_play_list"),
-            contentPadding = PaddingValues(
-                top = PartyDimens.SpaceLg,
-                bottom = PartyDimens.SpaceXl,
-            ),
-            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-        ) {
-            item {
-                PartySectionCard {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_logo_mark),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(52.dp)
-                                .clip(CircleShape),
-                        )
-                        Text(
-                            text = stringResource(R.string.how_intro),
-                            style = MaterialTheme.typography.titleMedium,
-                        )
+        Box(modifier = modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("how_to_play_list"),
+                contentPadding = PaddingValues(
+                    top = PartyDimens.SpaceLg,
+                    bottom = PartyDimens.SpaceXl + bannerReservedHeight,
+                ),
+                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+            ) {
+                item {
+                    PartySectionCard {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.ic_logo_mark),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(52.dp)
+                                    .clip(CircleShape),
+                            )
+                            Text(
+                                text = stringResource(R.string.how_intro),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                        }
                     }
+                }
+
+                item {
+                    HowSectionCard(
+                        modifier = Modifier.testTag("how_objective_card"),
+                        icon = Icons.Filled.Flag,
+                        title = stringResource(R.string.how_objective_title),
+                        lines = listOf(
+                            stringResource(R.string.how_objective_line_1),
+                            stringResource(R.string.how_objective_line_2),
+                            stringResource(R.string.how_objective_line_3),
+                        ),
+                    )
+                }
+
+                item {
+                    HowSectionCard(
+                        modifier = Modifier.testTag("how_preparation_card"),
+                        icon = Icons.Filled.Smartphone,
+                        title = stringResource(R.string.how_preparation_title),
+                        lines = listOf(
+                            stringResource(R.string.how_preparation_line_1),
+                            stringResource(R.string.how_preparation_line_2),
+                            stringResource(R.string.how_preparation_line_3),
+                        ),
+                    )
+                }
+
+                item {
+                    HowSectionCard(
+                        modifier = Modifier.testTag("how_play_card"),
+                        icon = Icons.Filled.ChatBubbleOutline,
+                        title = stringResource(R.string.how_play_title),
+                        lines = listOf(
+                            stringResource(R.string.how_play_line_1),
+                            stringResource(R.string.how_play_line_2),
+                            stringResource(R.string.how_play_line_3),
+                            stringResource(R.string.how_play_line_4),
+                        ),
+                    )
+                }
+
+                item {
+                    HowSectionCard(
+                        modifier = Modifier.testTag("how_win_card"),
+                        icon = Icons.Filled.EmojiEvents,
+                        title = stringResource(R.string.how_win_title),
+                        lines = listOf(
+                            stringResource(R.string.how_win_line_1),
+                            stringResource(R.string.how_win_line_2),
+                            stringResource(R.string.how_win_line_3),
+                            stringResource(R.string.how_win_line_4),
+                        ),
+                    )
+                }
+
+                item {
+                    HowSectionCard(
+                        modifier = Modifier.testTag("how_tips_card"),
+                        icon = Icons.Filled.Lightbulb,
+                        title = stringResource(R.string.how_tips_title),
+                        lines = listOf(
+                            stringResource(R.string.how_tip_1),
+                            stringResource(R.string.how_tip_2),
+                            stringResource(R.string.how_tip_3),
+                        ),
+                    )
                 }
             }
 
-            item {
-                HowSectionCard(
-                    modifier = Modifier.testTag("how_objective_card"),
-                    icon = Icons.Filled.Flag,
-                    title = stringResource(R.string.how_objective_title),
-                    lines = listOf(
-                        stringResource(R.string.how_objective_line_1),
-                        stringResource(R.string.how_objective_line_2),
-                        stringResource(R.string.how_objective_line_3),
-                    ),
-                )
-            }
-
-            item {
-                HowSectionCard(
-                    modifier = Modifier.testTag("how_preparation_card"),
-                    icon = Icons.Filled.Smartphone,
-                    title = stringResource(R.string.how_preparation_title),
-                    lines = listOf(
-                        stringResource(R.string.how_preparation_line_1),
-                        stringResource(R.string.how_preparation_line_2),
-                        stringResource(R.string.how_preparation_line_3),
-                    ),
-                )
-            }
-
-            item {
-                HowSectionCard(
-                    modifier = Modifier.testTag("how_play_card"),
-                    icon = Icons.Filled.ChatBubbleOutline,
-                    title = stringResource(R.string.how_play_title),
-                    lines = listOf(
-                        stringResource(R.string.how_play_line_1),
-                        stringResource(R.string.how_play_line_2),
-                        stringResource(R.string.how_play_line_3),
-                        stringResource(R.string.how_play_line_4),
-                    ),
-                )
-            }
-
-            item {
-                HowSectionCard(
-                    modifier = Modifier.testTag("how_win_card"),
-                    icon = Icons.Filled.EmojiEvents,
-                    title = stringResource(R.string.how_win_title),
-                    lines = listOf(
-                        stringResource(R.string.how_win_line_1),
-                        stringResource(R.string.how_win_line_2),
-                        stringResource(R.string.how_win_line_3),
-                        stringResource(R.string.how_win_line_4),
-                    ),
-                )
-            }
-
-            item {
-                HowSectionCard(
-                    modifier = Modifier.testTag("how_tips_card"),
-                    icon = Icons.Filled.Lightbulb,
-                    title = stringResource(R.string.how_tips_title),
-                    lines = listOf(
-                        stringResource(R.string.how_tip_1),
-                        stringResource(R.string.how_tip_2),
-                        stringResource(R.string.how_tip_3),
-                    ),
+            if (bannerAdUnitId != null) {
+                AdMobBanner(
+                    adUnitId = bannerAdUnitId,
+                    onLoadStateChanged = { bannerState = it },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth(),
                 )
             }
         }

@@ -1,10 +1,11 @@
 ﻿<resources>
-    <string name="app_name">L’Imposteur</string>
+    <string name="app_name">Imposteur</string>
     <string name="new_game">Nouvelle partie</string>
     <string name="home_tagline">Un téléphone. Un imposteur. Chaos garanti.</string>
     <string name="home_stats_title">Dernières parties</string>
     <string name="home_stats_games_played">Parties jouees : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
+    <string name="home_support_title">Soutiens l’app</string>
     <string name="home_banner_fallback_title">Supprimer la publicité pour toujours</string>
     <string name="home_banner_fallback_subtitle">Paiement unique</string>
     <string name="home_banner_fallback_cta">Voir l’option</string>

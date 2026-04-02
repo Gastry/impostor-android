@@ -1,10 +1,11 @@
 ﻿<resources>
-    <string name="app_name">The Impostor</string>
+    <string name="app_name">Imposter</string>
     <string name="new_game">New Game</string>
     <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
     <string name="home_stats_title">Recent games</string>
     <string name="home_stats_games_played">Games played: %1$d</string>
     <string name="home_stats_last_players">Last player count: %1$d</string>
+    <string name="home_support_title">Support the app</string>
     <string name="home_banner_fallback_title">Remove ads forever</string>
     <string name="home_banner_fallback_subtitle">One-time payment</string>
     <string name="home_banner_fallback_cta">See option</string>

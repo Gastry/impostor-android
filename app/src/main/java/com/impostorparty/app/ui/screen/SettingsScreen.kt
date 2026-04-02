@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -35,6 +36,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -43,6 +45,8 @@ import kotlinx.coroutines.delay
 import com.impostorparty.app.R
 import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
 import com.impostorparty.app.ads.RemoveAdsPurchaseUiState
+import com.impostorparty.app.ui.components.AdMobBanner
+import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
@@ -55,6 +59,7 @@ import com.impostorparty.domain.model.ThemeMode
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
+    bannerAdUnitId: String?,
     removeAdsUiState: RemoveAdsPurchaseUiState,
     highlightRemoveAds: Boolean,
     onThemeModeChanged: (ThemeMode) -> Unit,
@@ -73,7 +78,13 @@ fun SettingsScreen(
     onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
     val listState = rememberLazyListState()
+    var bannerState by rememberSaveable(bannerAdUnitId) {
+        mutableStateOf(
+            if (bannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
+        )
+    }
     val removeAdsButtonText = when {
         removeAdsUiState.isAdsRemoved -> stringResource(R.string.settings_remove_ads_owned)
         removeAdsUiState.hasPendingPurchase -> stringResource(R.string.settings_remove_ads_pending)
@@ -134,144 +145,156 @@ fun SettingsScreen(
             }
         },
     ) { modifier ->
-        LazyColumn(
-            modifier = modifier
-                .fillMaxSize()
-                .testTag("settings_list"),
-            state = listState,
-            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-            contentPadding = PaddingValues(
-                top = PartyDimens.SpaceMd,
-                bottom = PartyDimens.SpaceXxl,
-            ),
-        ) {
-            item {
-                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                        Text(
-                            text = stringResource(R.string.settings_theme_title),
-                            style = MaterialTheme.typography.titleMedium,
-                        )
-                        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-                            ThemeMode.entries.forEachIndexed { index, mode ->
-                                SegmentedButton(
-                                    selected = mode == settings.themeMode,
-                                    onClick = { onThemeModeChanged(mode) },
-                                    shape = SegmentedButtonDefaults.itemShape(
-                                        index = index,
-                                        count = ThemeMode.entries.size,
-                                    ),
-                                    label = {
-                                        Text(
-                                            text = when (mode) {
-                                                ThemeMode.SYSTEM -> stringResource(R.string.theme_system)
-                                                ThemeMode.LIGHT -> stringResource(R.string.theme_light)
-                                                ThemeMode.DARK -> stringResource(R.string.theme_dark)
-                                            },
-                                        )
-                                    },
-                                )
+        Box(modifier = modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .testTag("settings_list"),
+                state = listState,
+                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                contentPadding = PaddingValues(
+                    top = PartyDimens.SpaceMd,
+                    bottom = PartyDimens.SpaceXxl + bannerReservedHeight,
+                ),
+            ) {
+                item {
+                    PartySectionCard(modifier = Modifier.fillMaxWidth()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            Text(
+                                text = stringResource(R.string.settings_theme_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                            SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
+                                ThemeMode.entries.forEachIndexed { index, mode ->
+                                    SegmentedButton(
+                                        selected = mode == settings.themeMode,
+                                        onClick = { onThemeModeChanged(mode) },
+                                        shape = SegmentedButtonDefaults.itemShape(
+                                            index = index,
+                                            count = ThemeMode.entries.size,
+                                        ),
+                                        label = {
+                                            Text(
+                                                text = when (mode) {
+                                                    ThemeMode.SYSTEM -> stringResource(R.string.theme_system)
+                                                    ThemeMode.LIGHT -> stringResource(R.string.theme_light)
+                                                    ThemeMode.DARK -> stringResource(R.string.theme_dark)
+                                                },
+                                            )
+                                        },
+                                    )
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            item {
-                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                        Text(
-                            text = stringResource(R.string.settings_language_title),
-                            style = MaterialTheme.typography.titleMedium,
-                        )
-                        FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                item {
+                    PartySectionCard(modifier = Modifier.fillMaxWidth()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            Text(
+                                text = stringResource(R.string.settings_language_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                            FlowRow(
+                                horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                            ) {
+                                LanguageOption.entries.forEach { option ->
+                                    FilterChip(
+                                        modifier = Modifier.testTag(languageTag(option)),
+                                        selected = option.tag == settings.languageTag,
+                                        onClick = { onLanguageChanged(option.tag) },
+                                        label = { Text(stringResource(option.labelRes)) },
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .graphicsLayer {
+                                scaleX = highlightProgress
+                                scaleY = highlightProgress
+                            }
+                            .testTag("settings_remove_ads_card"),
+                        shape = RoundedCornerShape(PartyDimens.RadiusMd),
+                        colors = CardDefaults.cardColors(
+                            containerColor = highlightContainerColor,
+                        ),
+                        border = BorderStroke(1.dp, highlightBorderColor),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(20.dp),
                             verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                         ) {
-                            LanguageOption.entries.forEach { option ->
-                                FilterChip(
-                                    modifier = Modifier.testTag(languageTag(option)),
-                                    selected = option.tag == settings.languageTag,
-                                    onClick = { onLanguageChanged(option.tag) },
-                                    label = { Text(stringResource(option.labelRes)) },
+                            SecondaryPartyButton(
+                                text = removeAdsButtonText,
+                                onClick = onRemoveAds,
+                                enabled = removeAdsEnabled,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .testTag("settings_remove_ads"),
+                            )
+                            removeAdsStatusText(removeAdsUiState.message)?.let { message ->
+                                Text(
+                                    text = stringResource(message),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.testTag("settings_remove_ads_status"),
                                 )
                             }
                         }
                     }
                 }
-            }
 
-            item {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .graphicsLayer {
-                            scaleX = highlightProgress
-                            scaleY = highlightProgress
-                        }
-                        .testTag("settings_remove_ads_card"),
-                    shape = RoundedCornerShape(PartyDimens.RadiusMd),
-                    colors = CardDefaults.cardColors(
-                        containerColor = highlightContainerColor,
-                    ),
-                    border = BorderStroke(1.dp, highlightBorderColor),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                    ) {
-                        SecondaryPartyButton(
-                            text = removeAdsButtonText,
-                            onClick = onRemoveAds,
-                            enabled = removeAdsEnabled,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .testTag("settings_remove_ads"),
-                        )
-                        removeAdsStatusText(removeAdsUiState.message)?.let { message ->
-                            Text(
-                                text = stringResource(message),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.testTag("settings_remove_ads_status"),
+                item {
+                    PartySectionCard(modifier = Modifier.fillMaxWidth()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            SecondaryPartyButton(
+                                text = stringResource(R.string.settings_rate_app),
+                                onClick = onRateApp,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .testTag("settings_rate_app"),
+                            )
+                            SecondaryPartyButton(
+                                text = stringResource(R.string.settings_send_feedback),
+                                onClick = onSendSuggestion,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .testTag("settings_send_feedback"),
+                            )
+                            SecondaryPartyButton(
+                                text = stringResource(R.string.settings_clear_history),
+                                onClick = onClearHistory,
+                                modifier = Modifier.fillMaxWidth(),
+                            )
+                            PrimaryPartyButton(
+                                text = stringResource(R.string.settings_reset_preferences),
+                                onClick = onResetPreferences,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .testTag("settings_reset_cta"),
                             )
                         }
                     }
                 }
             }
 
-            item {
-                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                        SecondaryPartyButton(
-                            text = stringResource(R.string.settings_rate_app),
-                            onClick = onRateApp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .testTag("settings_rate_app"),
-                        )
-                        SecondaryPartyButton(
-                            text = stringResource(R.string.settings_send_feedback),
-                            onClick = onSendSuggestion,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .testTag("settings_send_feedback"),
-                        )
-                        SecondaryPartyButton(
-                            text = stringResource(R.string.settings_clear_history),
-                            onClick = onClearHistory,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                        PrimaryPartyButton(
-                            text = stringResource(R.string.settings_reset_preferences),
-                            onClick = onResetPreferences,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .testTag("settings_reset_cta"),
-                        )
-                    }
-                }
+            if (bannerAdUnitId != null) {
+                AdMobBanner(
+                    adUnitId = bannerAdUnitId,
+                    onLoadStateChanged = { bannerState = it },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth(),
+                )
             }
         }
     }

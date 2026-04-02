@@ -1,10 +1,11 @@
 ﻿<resources>
-    <string name="app_name">O Impostor</string>
+    <string name="app_name">Impostor</string>
     <string name="new_game">Nova partida</string>
     <string name="home_tagline">Um telemóvel. Um impostor. Caos total.</string>
     <string name="home_stats_title">Últimas partidas</string>
     <string name="home_stats_games_played">Partidas jogadas: %1$d</string>
     <string name="home_stats_last_players">Último número de jogadores: %1$d</string>
+    <string name="home_support_title">Apoia a app</string>
     <string name="home_banner_fallback_title">Remove a publicidade para sempre</string>
     <string name="home_banner_fallback_subtitle">Pagamento único</string>
     <string name="home_banner_fallback_cta">Ver opção</string>

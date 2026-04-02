@@ -7,6 +7,7 @@ import com.impostorparty.domain.model.Category
 import java.io.File
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -35,6 +36,31 @@ class WordDatasetValidatorTest {
                 )
             }
         }
+    }
+
+    @Test
+    fun `movies and series titles use localized market names`() {
+        val file = File("src/main/assets/words_v1.json")
+        val dataset = json.decodeFromString<WordDataset>(file.readText())
+
+        fun moviesFor(tag: String): List<String> =
+            dataset.languages
+                .first { it.tag == tag }
+                .categories
+                .first { it.code == "movies_series" }
+                .words
+
+        val spanish = moviesFor("es")
+        assertTrue(spanish.containsAll(listOf("Origen", "Parque Jurásico", "Los Vengadores", "Miércoles")))
+        assertFalse(spanish.contains("Inception"))
+        assertFalse(spanish.contains("Jurassic Park"))
+        assertFalse(spanish.contains("Wednesday"))
+
+        assertTrue(moviesFor("fr").contains("La Reine des neiges"))
+        assertTrue(moviesFor("de").contains("Die Eiskönigin – Völlig unverfroren"))
+        assertTrue(moviesFor("it").contains("Il gladiatore"))
+        assertTrue(moviesFor("pt").contains("A Origem"))
+        assertTrue(moviesFor("ja").contains("アナと雪の女王"))
     }
 
     @Test(expected = IllegalArgumentException::class)
