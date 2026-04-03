@@ -77,8 +77,13 @@ class NavigationSmokeTest {
         startRoundFromHome()
         completeRevealFlow(playerCount = 6)
         composeRule.onNodeWithTag("round_ready_finish_button").performClick()
+        waitForResultScreen()
+        dismissReviewPromptIfVisible()
         composeRule.onNodeWithTag("result_rematch_button").performClick()
 
+        composeRule.waitUntil(timeoutMillis = 8_000) {
+            composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty()
+        }
         composeRule.onNodeWithTag("reveal_hold_button").assertIsDisplayed()
     }
 
@@ -118,6 +123,23 @@ class NavigationSmokeTest {
         composeRule.waitUntil(timeoutMillis = 6_000) {
             composeRule.onAllNodesWithTag("reveal_hide_and_pass_button")
                 .fetchSemanticsNodes().isNotEmpty()
+        }
+    }
+
+    private fun waitForResultScreen() {
+        composeRule.waitUntil(timeoutMillis = 8_000) {
+            composeRule.onAllNodesWithTag("result_rematch_button")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+    }
+
+    private fun dismissReviewPromptIfVisible() {
+        val laterButtons = composeRule.onAllNodesWithTag("review_prompt_later").fetchSemanticsNodes()
+        if (laterButtons.isNotEmpty()) {
+            composeRule.onNodeWithTag("review_prompt_later").performClick()
+            composeRule.waitUntil(timeoutMillis = 4_000) {
+                composeRule.onAllNodesWithTag("review_prompt_later").fetchSemanticsNodes().isEmpty()
+            }
         }
     }
 

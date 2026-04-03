@@ -287,8 +287,8 @@ private fun RemoveAdsFallbackCard(
             .height(64.dp)
             .testTag("home_banner_fallback"),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceBright,
-            contentColor = MaterialTheme.colorScheme.onSurface,
+            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.88f),
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
         ),
         shape = RoundedCornerShape(0.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -330,7 +330,7 @@ private fun RemoveAdsFallbackCard(
                 Text(
                     text = stringResource(R.string.home_banner_fallback_subtitle),
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.74f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -342,7 +342,7 @@ private fun RemoveAdsFallbackCard(
                 Text(
                     text = stringResource(R.string.home_support_title),
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.68f),
                     maxLines = 1,
                 )
                 Text(
