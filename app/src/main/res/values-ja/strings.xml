@@ -8,6 +8,7 @@
     <string name="home_support_title">アプリを応援</string>
     <string name="home_banner_fallback_title">広告をずっと非表示にする</string>
     <string name="home_banner_fallback_subtitle">1回限りの支払い</string>
+    <string name="home_banner_fallback_subtitle_price">1回限りの支払い · %1$s</string>
     <string name="home_banner_fallback_cta">設定を見る</string>
 
     <string name="how_to_play_title">遊び方</string>

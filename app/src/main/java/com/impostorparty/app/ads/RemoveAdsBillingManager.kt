@@ -18,6 +18,7 @@ import com.impostorparty.domain.repository.PreferencesRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.resume
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -212,10 +213,11 @@ class RemoveAdsBillingManager @Inject constructor(
         if (billingClient.isReady) return true
 
         return suspendCancellableCoroutine { continuation ->
+            val resumed = AtomicBoolean(false)
             billingClient.startConnection(
                 object : BillingClientStateListener {
                     override fun onBillingSetupFinished(billingResult: BillingResult) {
-                        if (continuation.isActive) {
+                        if (resumed.compareAndSet(false, true)) {
                             continuation.resume(
                                 billingResult.responseCode == BillingClient.BillingResponseCode.OK,
                             )
@@ -223,7 +225,7 @@ class RemoveAdsBillingManager @Inject constructor(
                     }
 
                     override fun onBillingServiceDisconnected() {
-                        if (continuation.isActive) {
+                        if (resumed.compareAndSet(false, true)) {
                             continuation.resume(false)
                         }
                     }
@@ -245,6 +247,7 @@ class RemoveAdsBillingManager @Inject constructor(
             .build()
 
         suspendCancellableCoroutine<Unit> { continuation ->
+            val resumed = AtomicBoolean(false)
             billingClient.queryProductDetailsAsync(params) { billingResult, queryResult ->
                 val details = if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     queryResult.productDetailsList.firstOrNull()
@@ -268,7 +271,7 @@ class RemoveAdsBillingManager @Inject constructor(
                     )
                 }
 
-                if (continuation.isActive) {
+                if (resumed.compareAndSet(false, true)) {
                     continuation.resume(Unit)
                 }
             }
@@ -345,13 +348,14 @@ class RemoveAdsBillingManager @Inject constructor(
             .build()
 
         return suspendCancellableCoroutine { continuation ->
+            val resumed = AtomicBoolean(false)
             billingClient.queryPurchasesAsync(params) { billingResult, purchases ->
                 val result = if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     purchases
                 } else {
                     null
                 }
-                if (continuation.isActive) {
+                if (resumed.compareAndSet(false, true)) {
                     continuation.resume(result)
                 }
             }
@@ -366,8 +370,9 @@ class RemoveAdsBillingManager @Inject constructor(
             .build()
 
         return suspendCancellableCoroutine { continuation ->
+            val resumed = AtomicBoolean(false)
             billingClient.acknowledgePurchase(params) { billingResult ->
-                if (continuation.isActive) {
+                if (resumed.compareAndSet(false, true)) {
                     continuation.resume(
                         billingResult.responseCode == BillingClient.BillingResponseCode.OK,
                     )

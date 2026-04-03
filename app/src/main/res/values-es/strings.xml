@@ -8,6 +8,7 @@
     <string name="home_support_title">Apoya la app</string>
     <string name="home_banner_fallback_title">Quita la publicidad para siempre</string>
     <string name="home_banner_fallback_subtitle">Pago único</string>
+    <string name="home_banner_fallback_subtitle_price">Pago único · %1$s</string>
     <string name="home_banner_fallback_cta">Ver opción</string>
 
     <string name="how_to_play_title">Cómo se juega</string>

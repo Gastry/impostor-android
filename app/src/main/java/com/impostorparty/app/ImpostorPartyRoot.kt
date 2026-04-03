@@ -126,6 +126,7 @@ fun ImpostorPartyRoot(
                         placement = AdPlacement.HOME_BANNER,
                         adsRemoved = adsRemoved,
                     ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
                     onNewGame = { navController.navigate(AppRoute.Setup.route) },
                     onHowToPlay = { navController.navigate(AppRoute.HowToPlay.route) },
                     onSettings = { navController.navigate(AppRoute.Settings.route) },

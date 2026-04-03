@@ -53,6 +53,7 @@ import com.impostorparty.domain.model.GameStats
 fun HomeScreen(
     stats: GameStats,
     homeBannerAdUnitId: String?,
+    removeAdsPriceLabel: String?,
     onNewGame: () -> Unit,
     onHowToPlay: () -> Unit,
     onSettings: () -> Unit,
@@ -166,6 +167,7 @@ fun HomeScreen(
             item {
                 ContentWidth {
                     SupportTheAppCard(
+                        priceLabel = removeAdsPriceLabel,
                         onClick = onOpenRemoveAdsSettings,
                         modifier = Modifier.fillMaxWidth(),
                     )
@@ -203,6 +205,7 @@ fun HomeScreen(
                 )
 
                 BannerLoadState.FAILED -> RemoveAdsFallbackCard(
+                    priceLabel = removeAdsPriceLabel,
                     onClick = onOpenRemoveAdsSettings,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
@@ -228,6 +231,7 @@ private fun ContentWidth(content: @Composable () -> Unit) {
 
 @Composable
 private fun SupportTheAppCard(
+    priceLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -262,7 +266,7 @@ private fun SupportTheAppCard(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
-                    text = stringResource(R.string.home_banner_fallback_subtitle),
+                    text = removeAdsPromoSubtitle(priceLabel),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -278,6 +282,7 @@ private fun SupportTheAppCard(
 
 @Composable
 private fun RemoveAdsFallbackCard(
+    priceLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -328,7 +333,7 @@ private fun RemoveAdsFallbackCard(
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = stringResource(R.string.home_banner_fallback_subtitle),
+                    text = removeAdsPromoSubtitle(priceLabel),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.74f),
                     maxLines = 1,
@@ -355,6 +360,15 @@ private fun RemoveAdsFallbackCard(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun removeAdsPromoSubtitle(priceLabel: String?): String {
+    return if (priceLabel.isNullOrBlank()) {
+        stringResource(R.string.home_banner_fallback_subtitle)
+    } else {
+        stringResource(R.string.home_banner_fallback_subtitle_price, priceLabel)
     }
 }
 
