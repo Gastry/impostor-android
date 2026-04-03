@@ -7,8 +7,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +18,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
@@ -55,7 +57,7 @@ import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.ThemeMode
 
-@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
@@ -80,6 +82,7 @@ fun SettingsScreen(
 ) {
     val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
     val listState = rememberLazyListState()
+    var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
     var bannerState by rememberSaveable(bannerAdUnitId) {
         mutableStateOf(
             if (bannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
@@ -196,17 +199,38 @@ fun SettingsScreen(
                                 text = stringResource(R.string.settings_language_title),
                                 style = MaterialTheme.typography.titleMedium,
                             )
-                            FlowRow(
-                                horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                            ExposedDropdownMenuBox(
+                                expanded = languageMenuExpanded,
+                                onExpandedChange = { languageMenuExpanded = !languageMenuExpanded },
                             ) {
-                                LanguageOption.entries.forEach { option ->
-                                    FilterChip(
-                                        modifier = Modifier.testTag(languageTag(option)),
-                                        selected = option.tag == settings.languageTag,
-                                        onClick = { onLanguageChanged(option.tag) },
-                                        label = { Text(stringResource(option.labelRes)) },
-                                    )
+                                OutlinedTextField(
+                                    value = stringResource(selectedLanguageOption(settings.languageTag).labelRes),
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    singleLine = true,
+                                    modifier = Modifier
+                                        .menuAnchor()
+                                        .fillMaxWidth()
+                                        .testTag("settings_language_selector"),
+                                    trailingIcon = {
+                                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = languageMenuExpanded)
+                                    },
+                                    colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+                                )
+                                DropdownMenu(
+                                    expanded = languageMenuExpanded,
+                                    onDismissRequest = { languageMenuExpanded = false },
+                                ) {
+                                    LanguageOption.entries.forEach { option ->
+                                        DropdownMenuItem(
+                                            text = { Text(stringResource(option.labelRes)) },
+                                            onClick = {
+                                                languageMenuExpanded = false
+                                                onLanguageChanged(option.tag)
+                                            },
+                                            modifier = Modifier.testTag(languageTag(option)),
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -308,6 +332,10 @@ private fun removeAdsStatusText(message: RemoveAdsPurchaseMessage?): Int? {
         RemoveAdsPurchaseMessage.UNAVAILABLE -> R.string.settings_remove_ads_message_unavailable
         null -> null
     }
+}
+
+private fun selectedLanguageOption(languageTag: String?): LanguageOption {
+    return LanguageOption.entries.firstOrNull { it.tag == languageTag } ?: LanguageOption.SYSTEM
 }
 
 enum class LanguageOption(val tag: String?, val labelRes: Int) {

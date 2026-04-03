@@ -86,7 +86,11 @@ class LocaleLayoutSmokeTest {
         composeRule.onNodeWithTag("home_settings").performClick()
 
         composeRule.onNodeWithTag("settings_list")
-            .performScrollToNode(hasTestTag(languageTag))
+            .performScrollToNode(hasTestTag("settings_language_selector"))
+        composeRule.onNodeWithTag("settings_language_selector").performClick()
+        composeRule.waitUntil(timeoutMillis = 4_000) {
+            composeRule.onAllNodesWithTag(languageTag).fetchSemanticsNodes().isNotEmpty()
+        }
         composeRule.onNodeWithTag(languageTag).performClick()
 
         composeRule.onNodeWithContentDescription(text(R.string.cd_back)).performClick()
