@@ -4,12 +4,15 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTouchInput
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.impostorparty.app.R
 import org.junit.Rule
@@ -35,6 +38,15 @@ class LocaleLayoutSmokeTest {
     @Test
     fun french_locale_renders_home_setup_and_reveal() {
         verifyLanguageFlow("settings_language_fr")
+    }
+
+    @Test
+    fun selecting_french_updates_visible_home_copy() {
+        switchLanguage("settings_language_fr")
+        composeRule.waitUntil(timeoutMillis = 6_000) {
+            composeRule.onAllNodesWithText("Nouvelle partie").fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithText("Nouvelle partie").assertIsDisplayed()
     }
 
     @Test
@@ -93,7 +105,7 @@ class LocaleLayoutSmokeTest {
         }
         composeRule.onNodeWithTag(languageTag).performClick()
 
-        composeRule.onNodeWithContentDescription(text(R.string.cd_back)).performClick()
+        pressBack()
         composeRule.waitUntil(timeoutMillis = 6_000) {
             composeRule.onAllNodesWithTag("home_primary_cta").fetchSemanticsNodes().isNotEmpty()
         }

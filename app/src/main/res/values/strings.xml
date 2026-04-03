@@ -161,6 +161,13 @@
     <string name="language_italian">Italian</string>
     <string name="language_portuguese">Portuguese</string>
     <string name="language_japanese">Japanese</string>
+    <string name="language_native_spanish">Español</string>
+    <string name="language_native_english">English</string>
+    <string name="language_native_french">Français</string>
+    <string name="language_native_german">Deutsch</string>
+    <string name="language_native_italian">Italiano</string>
+    <string name="language_native_portuguese">Português</string>
+    <string name="language_native_japanese">日本語</string>
 
     <string name="history_empty">No rounds yet. Start your first game.</string>
     <string name="history_category_format">Category: %1$s</string>

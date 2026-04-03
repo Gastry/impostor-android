@@ -1,5 +1,9 @@
 package com.impostorparty.app.ui.screen
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -40,9 +44,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import kotlinx.coroutines.delay
 import com.impostorparty.app.R
 import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
@@ -80,6 +86,7 @@ fun SettingsScreen(
     onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val context = LocalContext.current
     val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
     val listState = rememberLazyListState()
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -204,7 +211,7 @@ fun SettingsScreen(
                                 onExpandedChange = { languageMenuExpanded = !languageMenuExpanded },
                             ) {
                                 OutlinedTextField(
-                                    value = stringResource(selectedLanguageOption(settings.languageTag).labelRes),
+                                    value = stringResource(selectedLanguageOption(settings.languageTag).displayLabelRes),
                                     onValueChange = {},
                                     readOnly = true,
                                     singleLine = true,
@@ -212,6 +219,7 @@ fun SettingsScreen(
                                         .menuAnchor()
                                         .fillMaxWidth()
                                         .testTag("settings_language_selector"),
+                                    shape = RoundedCornerShape(PartyDimens.RadiusSm),
                                     trailingIcon = {
                                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = languageMenuExpanded)
                                     },
@@ -223,10 +231,17 @@ fun SettingsScreen(
                                 ) {
                                     LanguageOption.entries.forEach { option ->
                                         DropdownMenuItem(
-                                            text = { Text(stringResource(option.labelRes)) },
+                                            text = { Text(stringResource(option.displayLabelRes)) },
                                             onClick = {
                                                 languageMenuExpanded = false
+                                                val localeList = if (option.tag.isNullOrBlank()) {
+                                                    LocaleListCompat.getEmptyLocaleList()
+                                                } else {
+                                                    LocaleListCompat.forLanguageTags(option.tag)
+                                                }
+                                                AppCompatDelegate.setApplicationLocales(localeList)
                                                 onLanguageChanged(option.tag)
+                                                context.findActivity()?.recreate()
                                             },
                                             modifier = Modifier.testTag(languageTag(option)),
                                         )
@@ -338,15 +353,28 @@ private fun selectedLanguageOption(languageTag: String?): LanguageOption {
     return LanguageOption.entries.firstOrNull { it.tag == languageTag } ?: LanguageOption.SYSTEM
 }
 
+private fun Context.findActivity(): Activity? {
+    var current = this
+    while (current is ContextWrapper) {
+        if (current is Activity) return current
+        current = current.baseContext
+    }
+    return null
+}
+
 enum class LanguageOption(val tag: String?, val labelRes: Int) {
     SYSTEM(null, R.string.language_system),
-    SPANISH("es", R.string.language_spanish),
-    ENGLISH("en", R.string.language_english),
-    FRENCH("fr", R.string.language_french),
-    GERMAN("de", R.string.language_german),
-    ITALIAN("it", R.string.language_italian),
-    PORTUGUESE("pt", R.string.language_portuguese),
-    JAPANESE("ja", R.string.language_japanese),
+    SPANISH("es", R.string.language_native_spanish),
+    ENGLISH("en", R.string.language_native_english),
+    FRENCH("fr", R.string.language_native_french),
+    GERMAN("de", R.string.language_native_german),
+    ITALIAN("it", R.string.language_native_italian),
+    PORTUGUESE("pt", R.string.language_native_portuguese),
+    JAPANESE("ja", R.string.language_native_japanese),
+    ;
+
+    val displayLabelRes: Int
+        get() = labelRes
 }
 
 private fun languageTag(option: LanguageOption): String {
