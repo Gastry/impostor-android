@@ -82,9 +82,10 @@ class NavigationSmokeTest {
         composeRule.onNodeWithTag("result_rematch_button").performClick()
 
         composeRule.waitUntil(timeoutMillis = 15_000) {
-            composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty()
+            composeRule.onAllNodesWithTag("reveal_screen").fetchSemanticsNodes().isNotEmpty() &&
+                composeRule.onAllNodesWithTag("result_rematch_button").fetchSemanticsNodes().isEmpty()
         }
-        composeRule.onNodeWithTag("reveal_hold_button").assertIsDisplayed()
+        composeRule.onNodeWithTag("reveal_screen").assertIsDisplayed()
     }
 
     private fun startRoundSetupFromHome() {

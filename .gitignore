@@ -16,6 +16,9 @@ local.properties
 hs_err_pid*
 replay_pid*
 *.keystore
+*.jks
+signing/
+release-artifacts/*.aab
 *.lock
 
 # OS

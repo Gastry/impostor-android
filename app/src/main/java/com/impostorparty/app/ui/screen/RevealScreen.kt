@@ -85,6 +85,7 @@ fun RevealScreen(
 
     PartyScaffold(
         title = stringResource(R.string.reveal_title),
+        modifier = Modifier.testTag("reveal_screen"),
         navigationIcon = {
             IconButton(onClick = onExit) {
                 Icon(Icons.Default.Close, contentDescription = stringResource(R.string.cd_close))
