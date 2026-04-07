@@ -17,7 +17,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.impostorparty"
+        applicationId = "com.gastry.elimpostor"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
