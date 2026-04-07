@@ -167,11 +167,13 @@
     <string name="history_category_format">Categoria: %1$s</string>
     <string name="history_impostors_format">Impostor(es): %1$s</string>
 
-    <string name="credits_app_title">Sobre O Impostor</string>
-    <string name="credits_app_body">Criada para rondas presenciais rápidas com um único telemóvel partilhado.</string>
-    <string name="credits_licenses_title">Licenças</string>
-    <string name="credits_licenses_body">Desenvolvido com Android, Kotlin, Jetpack Compose, Material 3 e bibliotecas open source.</string>
-    <string name="credits_privacy_hint">Sem conta nem rastreamento. Pensada para partidas locais rápidas com um único telemóvel partilhado.</string>
+    <string name="credits_creator_title">Criado por</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">Versão</string>
+    <string name="credits_technology_title">Tecnologia</string>
+    <string name="credits_technology_body">Android, Kotlin, Jetpack Compose e Material 3.</string>
+    <string name="credits_privacy_title">Privacidade</string>
+    <string name="credits_privacy_body">Sem conta. Sem rastreamento pessoal. Jogo local com um único telemóvel partilhado.</string>
 
     <string name="category_food">Comida</string>
     <string name="category_animals">Animais</string>

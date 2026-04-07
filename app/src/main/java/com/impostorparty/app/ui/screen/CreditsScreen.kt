@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.impostorparty.app.BuildConfig
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
@@ -38,17 +39,23 @@ fun CreditsScreen(onBack: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
         ) {
             PartySectionCard {
-                Text(stringResource(R.string.credits_app_title), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(R.string.credits_app_body), style = MaterialTheme.typography.bodyLarge)
+                Text(stringResource(R.string.credits_creator_title), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.credits_creator_body), style = MaterialTheme.typography.bodyLarge)
             }
 
             PartySectionCard {
-                Text(stringResource(R.string.credits_licenses_title), style = MaterialTheme.typography.titleMedium)
-                Text(stringResource(R.string.credits_licenses_body), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.credits_version_title), style = MaterialTheme.typography.titleMedium)
+                Text(BuildConfig.VERSION_NAME, style = MaterialTheme.typography.bodyLarge)
             }
 
             PartySectionCard {
-                Text(stringResource(R.string.credits_privacy_hint), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.credits_technology_title), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.credits_technology_body), style = MaterialTheme.typography.bodyMedium)
+            }
+
+            PartySectionCard {
+                Text(stringResource(R.string.credits_privacy_title), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.credits_privacy_body), style = MaterialTheme.typography.bodyMedium)
             }
         }
     }

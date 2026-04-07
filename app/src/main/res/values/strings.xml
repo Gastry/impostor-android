@@ -174,11 +174,13 @@
     <string name="history_category_format">Category: %1$s</string>
     <string name="history_impostors_format">Impostor(s): %1$s</string>
 
-    <string name="credits_app_title">About The Impostor</string>
-    <string name="credits_app_body">Designed for quick face-to-face rounds with one shared phone.</string>
-    <string name="credits_licenses_title">Licenses</string>
-    <string name="credits_licenses_body">Built with Android, Kotlin, Jetpack Compose, Material 3 and other open source libraries.</string>
-    <string name="credits_privacy_hint">No account, no tracking. Designed for quick local play.</string>
+    <string name="credits_creator_title">Created by</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">Version</string>
+    <string name="credits_technology_title">Built with</string>
+    <string name="credits_technology_body">Android, Kotlin, Jetpack Compose and Material 3.</string>
+    <string name="credits_privacy_title">Privacy</string>
+    <string name="credits_privacy_body">No account. No personal tracking. Local play with one shared phone.</string>
 
     <string name="category_food">Food</string>
     <string name="category_animals">Animals</string>

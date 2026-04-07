@@ -167,11 +167,13 @@
     <string name="history_category_format">Categoria: %1$s</string>
     <string name="history_impostors_format">Impostore/i: %1$s</string>
 
-    <string name="credits_app_title">Informazioni su L’Impostore</string>
-    <string name="credits_app_body">Progettata per round veloci dal vivo con un solo telefono condiviso.</string>
-    <string name="credits_licenses_title">Licenze</string>
-    <string name="credits_licenses_body">Sviluppata con Android, Kotlin, Jetpack Compose, Material 3 e librerie open source.</string>
-    <string name="credits_privacy_hint">Nessun account, nessun tracciamento. Pensata per partite locali rapide con un solo telefono condiviso.</string>
+    <string name="credits_creator_title">Creata da</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">Versione</string>
+    <string name="credits_technology_title">Tecnologia</string>
+    <string name="credits_technology_body">Android, Kotlin, Jetpack Compose e Material 3.</string>
+    <string name="credits_privacy_title">Privacy</string>
+    <string name="credits_privacy_body">Nessun account. Nessun tracciamento personale. Gioco locale con un solo telefono condiviso.</string>
 
     <string name="category_food">Cibo</string>
     <string name="category_animals">Animali</string>

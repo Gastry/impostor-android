@@ -167,11 +167,13 @@
     <string name="history_category_format">Kategorie: %1$s</string>
     <string name="history_impostors_format">Betrüger: %1$s</string>
 
-    <string name="credits_app_title">Über Der Betrüger</string>
-    <string name="credits_app_body">Entwickelt für schnelle Runden mit einem geteilten Handy.</string>
-    <string name="credits_licenses_title">Lizenzen</string>
-    <string name="credits_licenses_body">Erstellt mit Android, Kotlin, Jetpack Compose, Material 3 und Open Source Bibliotheken.</string>
-    <string name="credits_privacy_hint">Kein Konto, kein Tracking. Entwickelt für schnelles lokales Spielen mit nur einem Handy.</string>
+    <string name="credits_creator_title">Erstellt von</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">Version</string>
+    <string name="credits_technology_title">Technik</string>
+    <string name="credits_technology_body">Android, Kotlin, Jetpack Compose und Material 3.</string>
+    <string name="credits_privacy_title">Datenschutz</string>
+    <string name="credits_privacy_body">Kein Konto. Kein persönliches Tracking. Lokales Spiel mit nur einem gemeinsamen Handy.</string>
 
     <string name="category_food">Essen</string>
     <string name="category_animals">Tiere</string>

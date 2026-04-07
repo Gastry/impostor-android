@@ -167,11 +167,13 @@
     <string name="history_category_format">Categorie : %1$s</string>
     <string name="history_impostors_format">Imposteur(s) : %1$s</string>
 
-    <string name="credits_app_title">A propos de L’Imposteur</string>
-    <string name="credits_app_body">Conçue pour des manches rapides en présentiel avec un seul téléphone partagé.</string>
-    <string name="credits_licenses_title">Licences</string>
-    <string name="credits_licenses_body">Créée avec Android, Kotlin, Jetpack Compose, Material 3 et des bibliothèques open source.</string>
-    <string name="credits_privacy_hint">Pas de compte, pas de suivi. Pensée pour des parties locales rapides avec un seul téléphone partagé.</string>
+    <string name="credits_creator_title">Créé par</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">Version</string>
+    <string name="credits_technology_title">Technologie</string>
+    <string name="credits_technology_body">Android, Kotlin, Jetpack Compose et Material 3.</string>
+    <string name="credits_privacy_title">Confidentialité</string>
+    <string name="credits_privacy_body">Pas de compte. Pas de suivi personnel. Jeu local avec un seul téléphone partagé.</string>
 
     <string name="category_food">Nourriture</string>
     <string name="category_animals">Animaux</string>

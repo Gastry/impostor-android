@@ -167,11 +167,13 @@
     <string name="history_category_format">カテゴリ: %1$s</string>
     <string name="history_impostors_format">インポスター: %1$s</string>
 
-    <string name="credits_app_title">インポスターについて</string>
-    <string name="credits_app_body">1台の共有スマホで遊ぶ、テンポの良い対面ゲーム向けに作られています。</string>
-    <string name="credits_licenses_title">ライセンス</string>
-    <string name="credits_licenses_body">Android、Kotlin、Jetpack Compose、Material 3 などで構築されています。</string>
-    <string name="credits_privacy_hint">アカウント不要、追跡なし。1台の共有スマホで気軽に遊べるように作られています。</string>
+    <string name="credits_creator_title">制作</string>
+    <string name="credits_creator_body">Gastry</string>
+    <string name="credits_version_title">バージョン</string>
+    <string name="credits_technology_title">技術</string>
+    <string name="credits_technology_body">Android、Kotlin、Jetpack Compose、Material 3。</string>
+    <string name="credits_privacy_title">プライバシー</string>
+    <string name="credits_privacy_body">アカウント不要。個人追跡なし。1台の共有スマホで遊ぶローカルゲームです。</string>
 
     <string name="category_food">食べ物</string>
     <string name="category_animals">動物</string>
