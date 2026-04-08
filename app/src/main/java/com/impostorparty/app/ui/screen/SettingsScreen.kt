@@ -171,8 +171,12 @@ fun SettingsScreen(
                     PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                         Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                             Text(
-                                text = stringResource(R.string.settings_theme_title),
+                                text = stringResource(R.string.settings_appearance_title),
                                 style = MaterialTheme.typography.titleMedium,
+                            )
+                            Text(
+                                text = stringResource(R.string.settings_theme_title),
+                                style = MaterialTheme.typography.titleSmall,
                             )
                             SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                                 ThemeMode.entries.forEachIndexed { index, mode ->
@@ -204,7 +208,7 @@ fun SettingsScreen(
                         Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                             Text(
                                 text = stringResource(R.string.settings_language_title),
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleSmall,
                             )
                             ExposedDropdownMenuBox(
                                 expanded = languageMenuExpanded,
@@ -272,6 +276,15 @@ fun SettingsScreen(
                             modifier = Modifier.padding(20.dp),
                             verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                         ) {
+                            Text(
+                                text = stringResource(R.string.settings_support_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                            Text(
+                                text = stringResource(R.string.home_banner_fallback_subtitle),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
                             SecondaryPartyButton(
                                 text = removeAdsButtonText,
                                 onClick = onRemoveAds,
@@ -295,6 +308,10 @@ fun SettingsScreen(
                 item {
                     PartySectionCard(modifier = Modifier.fillMaxWidth()) {
                         Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            Text(
+                                text = stringResource(R.string.settings_help_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
                             SecondaryPartyButton(
                                 text = stringResource(R.string.settings_rate_app),
                                 onClick = onRateApp,
@@ -309,12 +326,23 @@ fun SettingsScreen(
                                     .fillMaxWidth()
                                     .testTag("settings_send_feedback"),
                             )
+                        }
+                    }
+                }
+
+                item {
+                    PartySectionCard(modifier = Modifier.fillMaxWidth()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            Text(
+                                text = stringResource(R.string.settings_data_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
                             SecondaryPartyButton(
                                 text = stringResource(R.string.settings_clear_history),
                                 onClick = onClearHistory,
                                 modifier = Modifier.fillMaxWidth(),
                             )
-                            PrimaryPartyButton(
+                            SecondaryPartyButton(
                                 text = stringResource(R.string.settings_reset_preferences),
                                 onClick = onResetPreferences,
                                 modifier = Modifier

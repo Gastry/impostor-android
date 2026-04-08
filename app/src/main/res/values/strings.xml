@@ -18,9 +18,12 @@
 
     <string name="setup_title">Set up round</string>
     <string name="setup_subtitle">Fast setup, then pass the phone around.</string>
+    <string name="setup_basics_title">Round basics</string>
     <string name="setup_players_count">Players: %1$d</string>
     <string name="setup_impostor_count_title">Impostors</string>
     <string name="setup_impostor_count_item">%1$d impostor(s)</string>
+    <string name="setup_categories_selected">%1$d selected</string>
+    <string name="setup_categories_support">Pick a few broad categories to keep clues fast and clear.</string>
     <string name="setup_clue_rounds_title">Rounds per game</string>
     <string name="setup_clue_rounds_support">Each player says 1 word per round. Recommended: 2 rounds.</string>
     <string name="setup_clue_round_option_1">1 round</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">Theme</string>
     <string name="settings_language_title">Language</string>
+    <string name="settings_appearance_title">Appearance</string>
+    <string name="settings_support_title">Support the app</string>
+    <string name="settings_help_title">Help &amp; feedback</string>
+    <string name="settings_data_title">Data</string>
     <string name="settings_haptics">Haptics</string>
     <string name="settings_reduced_motion">Reduce motion</string>
     <string name="settings_show_instructions">Show quick instructions</string>

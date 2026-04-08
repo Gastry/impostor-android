@@ -18,6 +18,7 @@
 
     <string name="setup_title">Configurar ronda</string>
     <string name="setup_subtitle">Prepara rápido e passa o telemóvel.</string>
+    <string name="setup_basics_title">Ajustes base</string>
     <string name="setup_players_count">Jogadores: %1$d</string>
     <string name="setup_impostor_count_title">Impostores</string>
     <string name="setup_impostor_count_item">%1$d impostor(es)</string>
@@ -30,6 +31,8 @@
     <string name="setup_clue_round_hint_2">2 voltas: opção mais equilibrada.</string>
     <string name="setup_clue_round_hint_3">3 voltas: mais tensão e dedução.</string>
     <string name="setup_categories_title">Categorias</string>
+    <string name="setup_categories_selected">%1$d selecionadas</string>
+    <string name="setup_categories_support">Escolhe poucas categorias amplas para que as pistas sejam mais claras.</string>
     <string name="setup_advanced_options">Opções avançadas</string>
     <string name="setup_round_time_title">Tempo sugerido: %1$d min</string>
     <string name="setup_no_extra_hints">Sem dicas extras</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">Tema</string>
     <string name="settings_language_title">Idioma</string>
+    <string name="settings_appearance_title">Aspeto</string>
+    <string name="settings_support_title">Apoia a app</string>
+    <string name="settings_help_title">Ajuda e feedback</string>
+    <string name="settings_data_title">Dados</string>
     <string name="settings_haptics">Hápticos</string>
     <string name="settings_reduced_motion">Reduzir movimento</string>
     <string name="settings_show_instructions">Mostrar instruções rápidas</string>

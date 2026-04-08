@@ -1,9 +1,13 @@
 package com.impostorparty.app.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
@@ -33,57 +38,98 @@ fun RoundReadyScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                .verticalScroll(rememberScrollState())
+                .padding(top = PartyDimens.SpaceLg, bottom = PartyDimens.SpaceSm),
+            verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                ) {
-                    Text(
-                        text = stringResource(R.string.round_ready_title),
-                        style = MaterialTheme.typography.headlineMedium,
-                        textAlign = TextAlign.Center,
-                    )
-
-                    if (showQuickInstructions) {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center,
+            ) {
+                PartySectionCard(modifier = Modifier.fillMaxWidth()) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                    ) {
                         Text(
-                            text = stringResource(R.string.round_ready_instructions),
-                            style = MaterialTheme.typography.bodyLarge,
+                            text = stringResource(R.string.round_ready_title),
+                            style = MaterialTheme.typography.headlineMedium,
                             textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
-                    }
 
-                    setup?.let {
-                        Text(
-                            text = stringResource(R.string.round_ready_suggested_time, it.suggestedRoundMinutes),
-                            style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.secondary,
-                        )
+                        if (showQuickInstructions) {
+                            Text(
+                                text = stringResource(R.string.round_ready_instructions),
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+
+                        setup?.let {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                            ) {
+                                RoundReadyInfoPill(
+                                    text = stringResource(R.string.round_ready_clue_rounds, it.clueRounds),
+                                )
+                                Text(
+                                    text = stringResource(R.string.round_ready_vote_after_rounds, it.clueRounds),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    textAlign = TextAlign.Center,
+                                )
+                                Text(
+                                    text = stringResource(R.string.round_ready_suggested_time, it.suggestedRoundMinutes),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    textAlign = TextAlign.Center,
+                                    color = MaterialTheme.colorScheme.secondary,
+                                )
+                            }
+                        }
                     }
                 }
             }
 
-            PrimaryPartyButton(
-                text = stringResource(R.string.round_ready_finish_button),
-                onClick = onFinishRound,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("round_ready_finish_button"),
-            )
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+            ) {
+                PrimaryPartyButton(
+                    text = stringResource(R.string.round_ready_finish_button),
+                    onClick = onFinishRound,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("round_ready_finish_button"),
+                )
 
-            SecondaryPartyButton(
-                text = stringResource(R.string.round_ready_new_config_button),
-                onClick = onNewConfiguration,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("round_ready_new_config_button"),
-            )
+                SecondaryPartyButton(
+                    text = stringResource(R.string.round_ready_new_config_button),
+                    onClick = onNewConfiguration,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("round_ready_new_config_button"),
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun RoundReadyInfoPill(text: String) {
+    Surface(
+        shape = RoundedCornerShape(PartyDimens.RadiusSm),
+        color = MaterialTheme.colorScheme.surfaceContainerHighest,
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+            textAlign = TextAlign.Center,
+        )
     }
 }
 

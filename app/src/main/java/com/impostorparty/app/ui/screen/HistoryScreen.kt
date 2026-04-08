@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -15,10 +14,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
+import com.impostorparty.app.ui.components.SecondaryPartyButton
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.app.util.formatAsShortDateTime
 import com.impostorparty.app.util.titleRes
@@ -41,18 +43,40 @@ fun HistoryScreen(
             Column(
                 modifier = modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(
-                    text = stringResource(R.string.history_empty),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
+                PartySectionCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("history_empty_card"),
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                    ) {
+                        Text(
+                            text = stringResource(R.string.history_title),
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                        Text(
+                            text = stringResource(R.string.history_empty),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        SecondaryPartyButton(
+                            text = stringResource(R.string.back_to_home),
+                            onClick = onBack,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                }
             }
             return@PartyScaffold
         }
 
         LazyColumn(
             modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = PartyDimens.SpaceLg),
         ) {
             items(history, key = { it.id }) { entry ->

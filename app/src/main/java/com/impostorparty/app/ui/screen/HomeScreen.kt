@@ -1,22 +1,21 @@
 package com.impostorparty.app.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.HideSource
@@ -86,25 +85,7 @@ fun HomeScreen(
         ) {
             item {
                 ContentWidth {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-                    ) {
-                        Text(
-                            text = stringResource(R.string.app_name),
-                            style = MaterialTheme.typography.headlineLarge,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.testTag("home_title"),
-                        )
-                        Text(
-                            text = stringResource(R.string.home_tagline),
-                            style = MaterialTheme.typography.bodyLarge,
-                            textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(horizontal = 4.dp),
-                        )
-                    }
+                    HomeHeroCard(stats = stats)
                 }
             }
 
@@ -122,19 +103,22 @@ fun HomeScreen(
 
             item {
                 ContentWidth {
-                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
                         SecondaryPartyButton(
                             text = stringResource(R.string.how_to_play_title),
                             onClick = onHowToPlay,
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .weight(1f)
                                 .testTag("home_how_to_play"),
                         )
                         SecondaryPartyButton(
                             text = stringResource(R.string.settings_title),
                             onClick = onSettings,
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .weight(1f)
                                 .testTag("home_settings"),
                         )
                     }
@@ -143,22 +127,21 @@ fun HomeScreen(
 
             item {
                 ContentWidth {
-                    PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                        Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceXs)) {
-                            Text(
-                                text = stringResource(R.string.home_stats_title),
-                                style = MaterialTheme.typography.titleMedium,
-                            )
-                            Text(
-                                text = stringResource(R.string.home_stats_games_played, stats.gamesPlayed),
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
-                            if (stats.lastPlayerCount > 0) {
-                                Text(
-                                    text = stringResource(R.string.home_stats_last_players, stats.lastPlayerCount),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                )
-                            }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        TextButton(
+                            onClick = onHistory,
+                            modifier = Modifier.testTag("home_history"),
+                        ) {
+                            Text(stringResource(R.string.history_title))
+                        }
+                        TextButton(
+                            onClick = onCredits,
+                            modifier = Modifier.testTag("home_credits"),
+                        ) {
+                            Text(stringResource(R.string.credits_title))
                         }
                     }
                 }
@@ -171,22 +154,6 @@ fun HomeScreen(
                         onClick = onOpenRemoveAdsSettings,
                         modifier = Modifier.fillMaxWidth(),
                     )
-                }
-            }
-
-            item {
-                ContentWidth {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                    ) {
-                        TextButton(onClick = onHistory) {
-                            Text(stringResource(R.string.history_title))
-                        }
-                        TextButton(onClick = onCredits) {
-                            Text(stringResource(R.string.credits_title))
-                        }
-                    }
                 }
             }
         }
@@ -230,6 +197,67 @@ private fun ContentWidth(content: @Composable () -> Unit) {
 }
 
 @Composable
+private fun HomeHeroCard(
+    stats: GameStats,
+    modifier: Modifier = Modifier,
+) {
+    PartySectionCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag("home_hero_card"),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 24.dp),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+        ) {
+            Text(
+                text = stringResource(R.string.app_name),
+                style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.testTag("home_title"),
+            )
+            Text(
+                text = stringResource(R.string.home_tagline),
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 4.dp),
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+            ) {
+                HomeStatPill(text = stringResource(R.string.home_stats_games_played, stats.gamesPlayed))
+                if (stats.lastPlayerCount > 0) {
+                    HomeStatPill(text = stringResource(R.string.home_stats_last_players, stats.lastPlayerCount))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HomeStatPill(text: String) {
+    Box(
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                shape = RoundedCornerShape(PartyDimens.RadiusSm),
+            )
+            .padding(horizontal = 12.dp, vertical = 8.dp),
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
+
+@Composable
 private fun SupportTheAppCard(
     priceLabel: String?,
     onClick: () -> Unit,
@@ -248,7 +276,7 @@ private fun SupportTheAppCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 18.dp),
+                .padding(horizontal = 18.dp, vertical = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
         ) {
@@ -263,7 +291,7 @@ private fun SupportTheAppCard(
                 )
                 Text(
                     text = stringResource(R.string.home_banner_fallback_title),
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
                     text = removeAdsPromoSubtitle(priceLabel),

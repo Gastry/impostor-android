@@ -18,9 +18,12 @@
 
     <string name="setup_title">Configurer la manche</string>
     <string name="setup_subtitle">Configuration rapide, puis passez le téléphone.</string>
+    <string name="setup_basics_title">Réglages essentiels</string>
     <string name="setup_players_count">Joueurs : %1$d</string>
     <string name="setup_impostor_count_title">Imposteurs</string>
     <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
+    <string name="setup_categories_selected">%1$d sélectionnées</string>
+    <string name="setup_categories_support">Choisissez quelques grandes catégories pour garder des indices clairs.</string>
     <string name="setup_clue_rounds_title">Tours par partie</string>
     <string name="setup_clue_rounds_support">Chaque joueur dit 1 mot par tour. Recommandé : 2 tours.</string>
     <string name="setup_clue_round_option_1">1 tour</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">Theme</string>
     <string name="settings_language_title">Langue</string>
+    <string name="settings_appearance_title">Apparence</string>
+    <string name="settings_support_title">Soutenir l’app</string>
+    <string name="settings_help_title">Aide et retours</string>
+    <string name="settings_data_title">Données</string>
     <string name="settings_haptics">Haptique</string>
     <string name="settings_reduced_motion">Reduire animations</string>
     <string name="settings_show_instructions">Afficher instructions courtes</string>

@@ -18,9 +18,12 @@
 
     <string name="setup_title">Configurar ronda</string>
     <string name="setup_subtitle">Prepara rápido y pasa el móvil.</string>
+    <string name="setup_basics_title">Ajustes básicos</string>
     <string name="setup_players_count">Jugadores: %1$d</string>
     <string name="setup_impostor_count_title">Impostores</string>
     <string name="setup_impostor_count_item">%1$d impostor(es)</string>
+    <string name="setup_categories_selected">%1$d seleccionadas</string>
+    <string name="setup_categories_support">Elige unas pocas categorías amplias para que las pistas sean más claras.</string>
     <string name="setup_clue_rounds_title">Vueltas por partida</string>
     <string name="setup_clue_rounds_support">Cada jugador dice 1 palabra por vuelta. Recomendadas: 2 vueltas.</string>
     <string name="setup_clue_round_option_1">1 vuelta</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">Tema</string>
     <string name="settings_language_title">Idioma</string>
+    <string name="settings_appearance_title">Apariencia</string>
+    <string name="settings_support_title">Apoya la app</string>
+    <string name="settings_help_title">Ayuda y sugerencias</string>
+    <string name="settings_data_title">Datos</string>
     <string name="settings_haptics">Hápticos</string>
     <string name="settings_reduced_motion">Reducir movimiento</string>
     <string name="settings_show_instructions">Mostrar instrucciones cortas</string>

@@ -18,9 +18,12 @@
 
     <string name="setup_title">Runde einrichten</string>
     <string name="setup_subtitle">Schnell einstellen und Handy weitergeben.</string>
+    <string name="setup_basics_title">Rundenbasis</string>
     <string name="setup_players_count">Spieler: %1$d</string>
     <string name="setup_impostor_count_title">Betrüger</string>
     <string name="setup_impostor_count_item">%1$d Betrüger</string>
+    <string name="setup_categories_selected">%1$d ausgewählt</string>
+    <string name="setup_categories_support">Wähle ein paar breite Kategorien, damit Hinweise klar bleiben.</string>
     <string name="setup_clue_rounds_title">Runden pro Partie</string>
     <string name="setup_clue_rounds_support">Jede Person sagt 1 Wort pro Runde. Empfohlen: 2 Runden.</string>
     <string name="setup_clue_round_option_1">1 Runde</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">Design</string>
     <string name="settings_language_title">Sprache</string>
+    <string name="settings_appearance_title">Darstellung</string>
+    <string name="settings_support_title">App unterstützen</string>
+    <string name="settings_help_title">Hilfe und Feedback</string>
+    <string name="settings_data_title">Daten</string>
     <string name="settings_haptics">Haptik</string>
     <string name="settings_reduced_motion">Bewegung reduzieren</string>
     <string name="settings_show_instructions">Kurzanleitung anzeigen</string>

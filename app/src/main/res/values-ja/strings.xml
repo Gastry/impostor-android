@@ -18,6 +18,7 @@
 
     <string name="setup_title">ラウンド設定</string>
     <string name="setup_subtitle">手早く準備して、スマホを回しましょう。</string>
+    <string name="setup_basics_title">基本設定</string>
     <string name="setup_players_count">プレイヤー数: %1$d</string>
     <string name="setup_impostor_count_title">インポスター数</string>
     <string name="setup_impostor_count_item">インポスター %1$d人</string>
@@ -30,6 +31,8 @@
     <string name="setup_clue_round_hint_2">2周: いちばんバランスが良い設定。</string>
     <string name="setup_clue_round_hint_3">3周: 緊張感と推理が増える。</string>
     <string name="setup_categories_title">カテゴリ</string>
+    <string name="setup_categories_selected">%1$d個を選択中</string>
+    <string name="setup_categories_support">ヒントを分かりやすくするため、広めのカテゴリを少数選んでください。</string>
     <string name="setup_advanced_options">詳細オプション</string>
     <string name="setup_round_time_title">目安時間: %1$d分</string>
     <string name="setup_no_extra_hints">追加ヒントなし</string>
@@ -102,6 +105,10 @@
 
     <string name="settings_theme_title">テーマ</string>
     <string name="settings_language_title">言語</string>
+    <string name="settings_appearance_title">表示</string>
+    <string name="settings_support_title">アプリを応援</string>
+    <string name="settings_help_title">ヘルプとフィードバック</string>
+    <string name="settings_data_title">データ</string>
     <string name="settings_haptics">触覚フィードバック</string>
     <string name="settings_reduced_motion">動きを減らす</string>
     <string name="settings_show_instructions">短い説明を表示</string>

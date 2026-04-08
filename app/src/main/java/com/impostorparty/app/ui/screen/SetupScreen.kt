@@ -28,6 +28,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.impostorparty.app.BuildConfig
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
@@ -83,70 +85,113 @@ fun SetupScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
-            PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = stringResource(R.string.setup_players_count, setup.playerCount),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Slider(
-                    value = setup.playerCount.toFloat(),
-                    onValueChange = { onPlayerCountChanged(it.toInt()) },
-                    valueRange = 3f..12f,
-                    steps = 8,
-                )
-
-                Text(
-                    text = stringResource(R.string.setup_impostor_count_title),
-                    style = MaterialTheme.typography.titleSmall,
-                )
-                Row(horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                    val options = if (setup.playerCount >= 6) listOf(1, 2) else listOf(1)
-                    options.forEach { option ->
-                        FilterChip(
-                            selected = setup.impostorCount == option,
-                            onClick = { onImpostorCountChanged(option) },
-                            label = { Text(stringResource(R.string.setup_impostor_count_item, option)) },
-                        )
+            PartySectionCard(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    Text(
+                        text = stringResource(R.string.setup_basics_title),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Text(
+                        text = stringResource(R.string.setup_players_count, setup.playerCount),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Slider(
+                        value = setup.playerCount.toFloat(),
+                        onValueChange = { onPlayerCountChanged(it.toInt()) },
+                        valueRange = 3f..12f,
+                        steps = 8,
+                    )
+                    Text(
+                        text = stringResource(R.string.setup_impostor_count_title),
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                        val options = if (setup.playerCount >= 6) listOf(1, 2) else listOf(1)
+                        options.forEach { option ->
+                            FilterChip(
+                                selected = setup.impostorCount == option,
+                                onClick = { onImpostorCountChanged(option) },
+                                label = { Text(stringResource(R.string.setup_impostor_count_item, option)) },
+                            )
+                        }
                     }
                 }
-
-                Spacer(modifier = Modifier.height(PartyDimens.SpaceMd))
             }
 
-            PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = stringResource(R.string.setup_categories_title),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Spacer(modifier = Modifier.height(PartyDimens.SpaceSm))
-                FlowRow(
-                    horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+            PartySectionCard(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = stringResource(R.string.setup_categories_title),
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                        Text(
+                            text = stringResource(R.string.setup_categories_selected, setup.categories.size),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                    Text(
+                        text = stringResource(R.string.setup_categories_support),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
+                        Category.entries.forEach { category ->
+                            FilterChip(
+                                selected = category in setup.categories,
+                                onClick = { onToggleCategory(category) },
+                                label = { Text(stringResource(category.titleRes())) },
+                            )
+                        }
+                    }
+                }
+            }
+
+            PartySectionCard(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                 ) {
-                    Category.entries.forEach { category ->
-                        FilterChip(
-                            selected = category in setup.categories,
-                            onClick = { onToggleCategory(category) },
-                            label = { Text(stringResource(category.titleRes())) },
-                        )
+                    Text(
+                        text = stringResource(R.string.setup_categories_selected, setup.categories.size),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
+                    PrimaryPartyButton(
+                        text = stringResource(R.string.setup_start_button),
+                        onClick = onStartRound,
+                        enabled = !isLoading,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("setup_start_button"),
+                    )
+
+                    if (isLoading) {
+                        CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
                     }
                 }
             }
 
-            PrimaryPartyButton(
-                text = stringResource(R.string.setup_start_button),
-                onClick = onStartRound,
-                enabled = !isLoading,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("setup_start_button"),
-            )
-
-            if (isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-            }
-
-            Spacer(modifier = Modifier.height(PartyDimens.SpaceMd))
+            Spacer(modifier = Modifier.height(PartyDimens.SpaceSm))
         }
     }
 
