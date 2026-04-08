@@ -4,6 +4,7 @@ import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.FeedbackSendResult
 import com.impostorparty.domain.model.FeedbackSubmission
+import com.impostorparty.domain.model.FeedbackType
 import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.model.LocalizedWordPool
 import com.impostorparty.domain.model.ReviewPromptState
@@ -277,6 +278,26 @@ class GameViewModelTest {
         advanceUntilIdle()
 
         assertEquals(1, feedbackRepository.sentRequests.size)
+    }
+
+    @Test
+    fun `clear feedback status keeps draft after failed validation and clears transient state`() = runTest(dispatcher) {
+        val viewModel = GameViewModel(wordRepository, feedbackRepository, preferencesRepository, statsRepository)
+
+        viewModel.updateFeedbackType(FeedbackType.PROBLEM)
+        viewModel.updateFeedbackMessage("Enough detail here")
+        viewModel.updateFeedbackEmail("bad-email")
+        viewModel.submitFeedback()
+        advanceUntilIdle()
+
+        viewModel.clearFeedbackStatus()
+
+        assertEquals(FeedbackType.PROBLEM, viewModel.feedbackForm.value.type)
+        assertEquals("Enough detail here", viewModel.feedbackForm.value.message)
+        assertEquals("bad-email", viewModel.feedbackForm.value.email)
+        assertNull(viewModel.feedbackForm.value.sendResult)
+        assertTrue(viewModel.feedbackForm.value.validationErrors.isEmpty())
+        assertTrue(!viewModel.feedbackForm.value.isSuccess)
     }
 }
 

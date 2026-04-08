@@ -303,6 +303,9 @@ fun ImpostorPartyRoot(
             }
 
             composable(AppRoute.Feedback.route) {
+                LaunchedEffect(Unit) {
+                    viewModel.clearFeedbackStatus()
+                }
                 FeedbackScreen(
                     state = feedbackForm,
                     onBack = { navController.popBackStack() },
