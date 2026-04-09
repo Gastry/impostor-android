@@ -25,12 +25,12 @@
     <string name="setup_categories_selected">%1$d seleccionadas</string>
     <string name="setup_categories_support">Elige unas pocas categorías amplias para que las pistas sean más claras.</string>
     <string name="setup_clue_rounds_title">Vueltas por partida</string>
-    <string name="setup_clue_rounds_support">Cada jugador dice 1 palabra por vuelta. Recomendadas: 2 vueltas.</string>
+    <string name="setup_clue_rounds_support">Elegid 1, 2 o 3 vueltas antes de empezar. 2 vueltas es solo la recomendación habitual.</string>
     <string name="setup_clue_round_option_1">1 vuelta</string>
     <string name="setup_clue_round_option_2">2 vueltas</string>
     <string name="setup_clue_round_option_3">3 vueltas</string>
     <string name="setup_clue_round_hint_1">1 vuelta: partida rápida, menos información.</string>
-    <string name="setup_clue_round_hint_2">2 vueltas: la opción más equilibrada.</string>
+    <string name="setup_clue_round_hint_2">2 vueltas: suele ser la opción más equilibrada.</string>
     <string name="setup_clue_round_hint_3">3 vueltas: más tensión y más deducción.</string>
     <string name="setup_categories_title">Categorías</string>
     <string name="setup_advanced_options">Opciones avanzadas</string>
@@ -56,10 +56,10 @@
     <string name="reveal_hide_and_pass">Ocultar y pasar</string>
 
     <string name="round_ready_title">Todo listo</string>
-    <string name="round_ready_instructions">Cada jugador dice una sola palabra por vuelta. Al terminar las vueltas pactadas, votad al impostor.</string>
-    <string name="round_ready_clue_rounds">Vueltas fijadas para esta partida: %1$d</string>
-    <string name="round_ready_word_per_turn">Cada jugador dice 1 palabra en cada vuelta.</string>
-    <string name="round_ready_vote_after_rounds">Al completar las %1$d vueltas, votad al impostor.</string>
+    <string name="round_ready_instructions">Dejad el móvil a un lado. Cada jugador dice una sola palabra por vuelta. Cuando terminéis las vueltas elegidas, votad al impostor.</string>
+    <string name="round_ready_clue_rounds">Vueltas elegidas para esta partida: %1$d</string>
+    <string name="round_ready_word_per_turn">Una palabra por jugador en cada vuelta.</string>
+    <string name="round_ready_vote_after_rounds">Cuando completéis las %1$d vueltas, votad al impostor.</string>
     <string name="round_ready_suggested_time">Tiempo sugerido: %1$d minutos</string>
     <string name="round_ready_finish_button">Terminar ronda</string>
     <string name="round_ready_new_config_button">Nueva configuración</string>

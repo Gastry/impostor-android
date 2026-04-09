@@ -30,19 +30,19 @@ private val LightColors = lightColorScheme(
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFF9AB6FF),
-    onPrimary = Color(0xFF102B73),
-    primaryContainer = Color(0xFF263E88),
+    primary = Color(0xFFA8BEFF),
+    onPrimary = Color(0xFF0F275F),
+    primaryContainer = Color(0xFF2E4A99),
     onPrimaryContainer = Color(0xFFDCE5FF),
-    secondary = Color(0xFF65D9CE),
+    secondary = Color(0xFF72E2D7),
     onSecondary = Color(0xFF053D38),
     tertiary = Color(0xFFFFC77A),
     onTertiary = Color(0xFF4A2D00),
     error = Color(0xFFFFB3C5),
-    surface = SurfaceDark,
-    surfaceContainer = SurfaceDarkElevated,
-    surfaceContainerHighest = Color(0xFF223457),
-    background = SurfaceDark,
+    surface = Color(0xFF0A1224),
+    surfaceContainer = Color(0xFF14213B),
+    surfaceContainerHighest = Color(0xFF213353),
+    background = Color(0xFF08101E),
 )
 
 private val AppShapes = Shapes(

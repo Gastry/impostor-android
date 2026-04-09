@@ -14,6 +14,7 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import com.impostorparty.app.BuildConfig
+import com.impostorparty.app.RuntimeFlags
 import com.impostorparty.domain.repository.PreferencesRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -60,10 +61,33 @@ class RemoveAdsBillingManager @Inject constructor(
                 _uiState.update { it.copy(isAdsRemoved = removed) }
             }
         }
-        refresh()
+        if (RuntimeFlags.externalServicesEnabled) {
+            refresh()
+        } else {
+            _uiState.value = RemoveAdsPurchaseUiState(
+                isLoading = false,
+                isPurchaseAvailable = false,
+                message = null,
+            )
+        }
     }
 
     fun refresh() {
+        if (!RuntimeFlags.externalServicesEnabled) {
+            currentProductDetails = null
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    isPurchaseAvailable = false,
+                    hasPendingPurchase = false,
+                    isPurchaseInProgress = false,
+                    priceLabel = null,
+                    message = null,
+                )
+            }
+            return
+        }
+
         if (productId.isBlank()) {
             currentProductDetails = null
             _uiState.value = RemoveAdsPurchaseUiState(
@@ -129,6 +153,8 @@ class RemoveAdsBillingManager @Inject constructor(
     }
 
     fun launchPurchase(activity: Activity) {
+        if (!RuntimeFlags.externalServicesEnabled) return
+
         val productDetails = currentProductDetails
         val offerDetails = productDetails?.oneTimePurchaseOfferDetailsList?.firstOrNull()
         val offerToken = offerDetails?.offerToken

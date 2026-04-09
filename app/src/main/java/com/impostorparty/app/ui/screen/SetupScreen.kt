@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -87,7 +89,7 @@ fun SetupScreen(
 
             PartySectionCard(
                 modifier = Modifier.fillMaxWidth(),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+                contentPadding = PaddingValues(18.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                     Text(
@@ -123,7 +125,51 @@ fun SetupScreen(
 
             PartySectionCard(
                 modifier = Modifier.fillMaxWidth(),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+                contentPadding = PaddingValues(18.dp),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    Text(
+                        text = stringResource(R.string.setup_clue_rounds_title),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Text(
+                        text = stringResource(R.string.setup_clue_rounds_support),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
+                        (1..3).forEach { rounds ->
+                            FilterChip(
+                                selected = setup.clueRounds == rounds,
+                                onClick = { onClueRoundsChanged(rounds) },
+                                label = {
+                                    Text(
+                                        text = stringResource(
+                                            when (rounds) {
+                                                1 -> R.string.setup_clue_round_option_1
+                                                2 -> R.string.setup_clue_round_option_2
+                                                else -> R.string.setup_clue_round_option_3
+                                            },
+                                        ),
+                                    )
+                                },
+                            )
+                        }
+                    }
+                    Text(
+                        text = clueRoundsHint(setup.clueRounds),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                }
+            }
+
+            PartySectionCard(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(18.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                     Row(
@@ -163,7 +209,55 @@ fun SetupScreen(
 
             PartySectionCard(
                 modifier = Modifier.fillMaxWidth(),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(18.dp),
+                contentPadding = PaddingValues(18.dp),
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                    Text(
+                        text = stringResource(R.string.setup_advanced_options),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Text(
+                        text = stringResource(R.string.setup_round_time_title, setup.suggestedRoundMinutes),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Slider(
+                        value = setup.suggestedRoundMinutes.toFloat(),
+                        onValueChange = { onRoundMinutesChanged(it.toInt()) },
+                        valueRange = 5f..15f,
+                        steps = 9,
+                    )
+
+                    SetupSwitchRow(
+                        title = stringResource(R.string.setup_quick_mode),
+                        checked = setup.quickMode,
+                        onCheckedChange = onQuickModeChanged,
+                    )
+                    SetupSwitchRow(
+                        title = stringResource(R.string.setup_avoid_recent),
+                        checked = setup.avoidRecentWords,
+                        onCheckedChange = onAvoidRecentWordsChanged,
+                    )
+                    SetupSwitchRow(
+                        title = stringResource(R.string.setup_haptics),
+                        checked = setup.hapticsEnabled,
+                        onCheckedChange = onHapticsChanged,
+                    )
+                    SetupSwitchRow(
+                        title = stringResource(R.string.setup_show_animation),
+                        checked = setup.revealAnimation,
+                        onCheckedChange = onRevealAnimationChanged,
+                    )
+                    SetupSwitchRow(
+                        title = stringResource(R.string.setup_no_extra_hints),
+                        checked = setup.noExtraHints,
+                        onCheckedChange = onNoExtraHintsChanged,
+                    )
+                }
+            }
+
+            PartySectionCard(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(18.dp),
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -171,10 +265,19 @@ fun SetupScreen(
                     verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                 ) {
                     Text(
-                        text = stringResource(R.string.setup_categories_selected, setup.categories.size),
-                        style = MaterialTheme.typography.bodyMedium,
+                        text = stringResource(R.string.setup_players_count, setup.playerCount),
+                        style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
+                    )
+                    Text(
+                        text = when (setup.clueRounds) {
+                            1 -> stringResource(R.string.setup_clue_round_option_1)
+                            2 -> stringResource(R.string.setup_clue_round_option_2)
+                            else -> stringResource(R.string.setup_clue_round_option_3)
+                        },
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
                     )
                     PrimaryPartyButton(
                         text = stringResource(R.string.setup_start_button),
@@ -228,6 +331,40 @@ fun SetupScreen(
 }
 
 @Composable
+private fun clueRoundsHint(clueRounds: Int): String {
+    return stringResource(
+        when (clueRounds) {
+            1 -> R.string.setup_clue_round_hint_1
+            2 -> R.string.setup_clue_round_hint_2
+            else -> R.string.setup_clue_round_hint_3
+        },
+    )
+}
+
+@Composable
+private fun SetupSwitchRow(
+    title: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.weight(1f),
+        )
+        Switch(
+            checked = checked,
+            onCheckedChange = onCheckedChange,
+        )
+    }
+}
+
+@Composable
 private fun invalidSetupMessage(detail: String): String {
     return when (detail) {
         "PLAYER_COUNT_OUT_OF_RANGE" -> stringResource(R.string.error_player_count)
@@ -260,4 +397,3 @@ private fun shouldShowTechnicalDiagnostic(detail: String): Boolean {
         key.contains("POLICY") ||
         key.contains("COMPOSITION")
 }
-

@@ -1,5 +1,6 @@
 package com.impostorparty.app
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -14,6 +15,7 @@ import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTouchInput
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.core.os.LocaleListCompat
 import com.impostorparty.app.R
 import org.junit.Rule
 import org.junit.Test
@@ -70,7 +72,7 @@ class LocaleLayoutSmokeTest {
     }
 
     private fun verifyLanguageFlow(languageTag: String) {
-        switchLanguage(languageTag)
+        applyLanguage(languageTag)
 
         composeRule.onNodeWithTag("home_list")
             .performScrollToNode(hasTestTag("home_primary_cta"))
@@ -107,6 +109,15 @@ class LocaleLayoutSmokeTest {
 
         pressBack()
         composeRule.waitUntil(timeoutMillis = 6_000) {
+            composeRule.onAllNodesWithTag("home_primary_cta").fetchSemanticsNodes().isNotEmpty()
+        }
+    }
+
+    private fun applyLanguage(languageTag: String) {
+        composeRule.runOnUiThread {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageTag.removePrefix("settings_language_")))
+        }
+        composeRule.waitUntil(timeoutMillis = 8_000) {
             composeRule.onAllNodesWithTag("home_primary_cta").fetchSemanticsNodes().isNotEmpty()
         }
     }

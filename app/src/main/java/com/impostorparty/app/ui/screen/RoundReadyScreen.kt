@@ -3,6 +3,8 @@ package com.impostorparty.app.ui.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,6 +29,7 @@ import com.impostorparty.app.ui.components.SecondaryPartyButton
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.GameSetup
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RoundReadyScreen(
     setup: GameSetup?,
@@ -51,7 +54,7 @@ fun RoundReadyScreen(
                     Column(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceLg),
                     ) {
                         Text(
                             text = stringResource(R.string.round_ready_title),
@@ -69,25 +72,28 @@ fun RoundReadyScreen(
                         }
 
                         setup?.let {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
+                            FlowRow(
+                                horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                                 verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                             ) {
                                 RoundReadyInfoPill(
                                     text = stringResource(R.string.round_ready_clue_rounds, it.clueRounds),
                                 )
-                                Text(
-                                    text = stringResource(R.string.round_ready_vote_after_rounds, it.clueRounds),
-                                    style = MaterialTheme.typography.titleSmall,
-                                    textAlign = TextAlign.Center,
-                                )
-                                Text(
+                                RoundReadyInfoPill(
                                     text = stringResource(R.string.round_ready_suggested_time, it.suggestedRoundMinutes),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    textAlign = TextAlign.Center,
-                                    color = MaterialTheme.colorScheme.secondary,
                                 )
                             }
+                            Text(
+                                text = stringResource(R.string.round_ready_word_per_turn),
+                                style = MaterialTheme.typography.titleSmall,
+                                textAlign = TextAlign.Center,
+                            )
+                            Text(
+                                text = stringResource(R.string.round_ready_vote_after_rounds, it.clueRounds),
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
                         }
                     }
                 }

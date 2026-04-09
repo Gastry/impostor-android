@@ -25,12 +25,12 @@
     <string name="setup_categories_selected">%1$d selected</string>
     <string name="setup_categories_support">Pick a few broad categories to keep clues fast and clear.</string>
     <string name="setup_clue_rounds_title">Rounds per game</string>
-    <string name="setup_clue_rounds_support">Each player says 1 word per round. Recommended: 2 rounds.</string>
+    <string name="setup_clue_rounds_support">Choose 1, 2 or 3 rounds before you start. 2 rounds is just the usual recommendation.</string>
     <string name="setup_clue_round_option_1">1 round</string>
     <string name="setup_clue_round_option_2">2 rounds</string>
     <string name="setup_clue_round_option_3">3 rounds</string>
     <string name="setup_clue_round_hint_1">1 round: fast game, less information.</string>
-    <string name="setup_clue_round_hint_2">2 rounds: the most balanced option.</string>
+    <string name="setup_clue_round_hint_2">2 rounds: usually the most balanced option.</string>
     <string name="setup_clue_round_hint_3">3 rounds: more tension and deduction.</string>
     <string name="setup_categories_title">Categories</string>
     <string name="setup_advanced_options">Advanced options</string>
@@ -56,10 +56,10 @@
     <string name="reveal_hide_and_pass">Hide and pass</string>
 
     <string name="round_ready_title">All set</string>
-    <string name="round_ready_instructions">Each player says one word per round. After the agreed rounds, vote for the impostor.</string>
-    <string name="round_ready_clue_rounds">Fixed rounds for this game: %1$d</string>
-    <string name="round_ready_word_per_turn">Each player says 1 word in each round.</string>
-    <string name="round_ready_vote_after_rounds">After %1$d rounds, vote for the impostor.</string>
+    <string name="round_ready_instructions">Put the phone away. Each player says one word per round. After the chosen rounds, vote for the impostor.</string>
+    <string name="round_ready_clue_rounds">Chosen rounds for this game: %1$d</string>
+    <string name="round_ready_word_per_turn">One word per player in each round.</string>
+    <string name="round_ready_vote_after_rounds">Once you finish %1$d rounds, vote for the impostor.</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
     <string name="round_ready_new_config_button">New setup</string>

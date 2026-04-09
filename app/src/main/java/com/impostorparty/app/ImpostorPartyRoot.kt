@@ -360,12 +360,15 @@ private fun Context.currentAppLanguageTag(): String {
 @Composable
 private fun ApplyLanguageEffect(languageTag: String?) {
     LaunchedEffect(languageTag) {
-        val localeList = if (languageTag.isNullOrBlank()) {
+        val desiredLocales = if (languageTag.isNullOrBlank()) {
             LocaleListCompat.getEmptyLocaleList()
         } else {
             LocaleListCompat.forLanguageTags(languageTag)
         }
-        AppCompatDelegate.setApplicationLocales(localeList)
+        val currentLocales = AppCompatDelegate.getApplicationLocales()
+        if (currentLocales.toLanguageTags() != desiredLocales.toLanguageTags()) {
+            AppCompatDelegate.setApplicationLocales(desiredLocales)
+        }
     }
 }
 

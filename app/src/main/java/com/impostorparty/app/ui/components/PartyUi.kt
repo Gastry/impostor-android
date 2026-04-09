@@ -15,6 +15,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.ui.theme.PartyDimens
 
@@ -24,17 +25,22 @@ fun PartySectionCard(
     contentPadding: PaddingValues = PaddingValues(20.dp),
     content: @Composable () -> Unit,
 ) {
+    val isDarkSurface = MaterialTheme.colorScheme.surface.luminance() < 0.2f
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(PartyDimens.RadiusMd),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = MaterialTheme.colorScheme.surfaceContainer.copy(
+                alpha = if (isDarkSurface) 0.98f else 1f,
+            ),
         ),
         border = BorderStroke(
             width = 1.dp,
-            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.58f),
+            color = MaterialTheme.colorScheme.outlineVariant.copy(
+                alpha = if (isDarkSurface) 0.88f else 0.58f,
+            ),
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isDarkSurface) 3.dp else 2.dp),
     ) {
         Column(modifier = Modifier.padding(contentPadding)) {
             content()

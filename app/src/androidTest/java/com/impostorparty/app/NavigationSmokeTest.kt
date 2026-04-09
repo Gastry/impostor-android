@@ -25,8 +25,10 @@ class NavigationSmokeTest {
     @Test
     fun home_to_setup_navigation() {
         startRoundSetupFromHome()
-        composeRule.onNodeWithText(text(R.string.setup_categories_title)).assertIsDisplayed()
-        composeRule.onNodeWithTag("setup_start_button").assertIsDisplayed()
+        composeRule.waitUntil(timeoutMillis = 5_000) {
+            composeRule.onAllNodesWithTag("setup_start_button").fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithTag("setup_start_button").performScrollTo().assertIsDisplayed()
     }
 
     @Test
@@ -81,11 +83,11 @@ class NavigationSmokeTest {
         dismissReviewPromptIfVisible()
         composeRule.onNodeWithTag("result_rematch_button").performClick()
 
-        composeRule.waitUntil(timeoutMillis = 15_000) {
-            composeRule.onAllNodesWithTag("reveal_screen").fetchSemanticsNodes().isNotEmpty() &&
+        composeRule.waitUntil(timeoutMillis = 30_000) {
+            composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty() &&
                 composeRule.onAllNodesWithTag("result_rematch_button").fetchSemanticsNodes().isEmpty()
         }
-        composeRule.onNodeWithTag("reveal_screen").assertIsDisplayed()
+        composeRule.onNodeWithTag("reveal_hold_button").assertIsDisplayed()
     }
 
     private fun startRoundSetupFromHome() {

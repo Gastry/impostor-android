@@ -146,16 +146,6 @@ fun HomeScreen(
                     }
                 }
             }
-
-            item {
-                ContentWidth {
-                    SupportTheAppCard(
-                        priceLabel = removeAdsPriceLabel,
-                        onClick = onOpenRemoveAdsSettings,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            }
         }
 
         if (homeBannerAdUnitId != null) {
@@ -254,57 +244,6 @@ private fun HomeStatPill(text: String) {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-    }
-}
-
-@Composable
-private fun SupportTheAppCard(
-    priceLabel: String?,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        onClick = onClick,
-        modifier = modifier.testTag("home_support_card"),
-        shape = RoundedCornerShape(PartyDimens.RadiusMd),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 18.dp, vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-        ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.home_support_title),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(
-                    text = stringResource(R.string.home_banner_fallback_title),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(
-                    text = removeAdsPromoSubtitle(priceLabel),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            Text(
-                text = stringResource(R.string.home_banner_fallback_cta),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary,
-            )
-        }
     }
 }
 

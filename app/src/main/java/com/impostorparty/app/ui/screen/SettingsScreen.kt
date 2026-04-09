@@ -1,9 +1,5 @@
 package com.impostorparty.app.ui.screen
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -44,11 +40,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.os.LocaleListCompat
 import kotlinx.coroutines.delay
 import com.impostorparty.app.R
 import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
@@ -86,7 +80,6 @@ fun SettingsScreen(
     onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
-    val context = LocalContext.current
     val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
     val listState = rememberLazyListState()
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -238,14 +231,7 @@ fun SettingsScreen(
                                             text = { Text(stringResource(option.displayLabelRes)) },
                                             onClick = {
                                                 languageMenuExpanded = false
-                                                val localeList = if (option.tag.isNullOrBlank()) {
-                                                    LocaleListCompat.getEmptyLocaleList()
-                                                } else {
-                                                    LocaleListCompat.forLanguageTags(option.tag)
-                                                }
-                                                AppCompatDelegate.setApplicationLocales(localeList)
                                                 onLanguageChanged(option.tag)
-                                                context.findActivity()?.recreate()
                                             },
                                             modifier = Modifier.testTag(languageTag(option)),
                                         )
@@ -379,15 +365,6 @@ private fun removeAdsStatusText(message: RemoveAdsPurchaseMessage?): Int? {
 
 private fun selectedLanguageOption(languageTag: String?): LanguageOption {
     return LanguageOption.entries.firstOrNull { it.tag == languageTag } ?: LanguageOption.SYSTEM
-}
-
-private fun Context.findActivity(): Activity? {
-    var current = this
-    while (current is ContextWrapper) {
-        if (current is Activity) return current
-        current = current.baseContext
-    }
-    return null
 }
 
 enum class LanguageOption(val tag: String?, val labelRes: Int) {
