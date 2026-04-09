@@ -23,7 +23,7 @@
     <string name="setup_impostor_count_title">インポスター数</string>
     <string name="setup_impostor_count_item">インポスター %1$d人</string>
     <string name="setup_clue_rounds_title">1ゲームの周回数</string>
-    <string name="setup_clue_rounds_support">各プレイヤーは1周ごとに1語だけ。おすすめは2周です。</string>
+    <string name="setup_clue_rounds_support">始める前に1周、2周、3周から選びます。2周はあくまで一般的なおすすめです。</string>
     <string name="setup_clue_round_option_1">1周</string>
     <string name="setup_clue_round_option_2">2周</string>
     <string name="setup_clue_round_option_3">3周</string>
@@ -130,7 +130,14 @@
     <string name="settings_reset_preferences">設定を初期化</string>
     <string name="feedback_title">提案を送る</string>
     <string name="feedback_placeholder_title">フィードバック機能は準備中です</string>
-    <string name="feedback_placeholder_body">この場所はフェーズ2向けに準備済みです。ここに本物の提案チャネルを接続する予定です。</string>
+    <string name="feedback_placeholder_body">ここには今後、本格的な提案チャネルを追加する予定です。近いうちにここから送れるようになります。</string>
+    <string name="language_native_spanish">Español</string>
+    <string name="language_native_english">English</string>
+    <string name="language_native_french">Français</string>
+    <string name="language_native_german">Deutsch</string>
+    <string name="language_native_italian">Italiano</string>
+    <string name="language_native_portuguese">Português</string>
+    <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">アプリを離れずに提案や問題報告を送れます。</string>
     <string name="feedback_form_privacy">送信するのはメッセージ、任意のメールアドレス、アプリ版、言語、時刻、プラットフォーム、利用可能なら基本的なゲーム状況だけです。</string>
     <string name="feedback_type_label">フィードバック種別</string>

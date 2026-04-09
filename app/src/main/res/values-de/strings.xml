@@ -25,7 +25,7 @@
     <string name="setup_categories_selected">%1$d ausgewählt</string>
     <string name="setup_categories_support">Wähle ein paar breite Kategorien, damit Hinweise klar bleiben.</string>
     <string name="setup_clue_rounds_title">Runden pro Partie</string>
-    <string name="setup_clue_rounds_support">Jede Person sagt 1 Wort pro Runde. Empfohlen: 2 Runden.</string>
+    <string name="setup_clue_rounds_support">Wählt vor dem Start 1, 2 oder 3 Runden. 2 Runden sind nur die übliche Empfehlung.</string>
     <string name="setup_clue_round_option_1">1 Runde</string>
     <string name="setup_clue_round_option_2">2 Runden</string>
     <string name="setup_clue_round_option_3">3 Runden</string>
@@ -70,7 +70,7 @@
     <string name="result_winner_title">Wer hat gewonnen?</string>
     <string name="result_rematch_button">Nochmal mit gleichen Einstellungen</string>
     <string name="result_new_setup_button">Zum Menü</string>
-    <string name="review_prompt_title">Möchtest du The Impostor bewerten?</string>
+    <string name="review_prompt_title">Möchtest du die App bewerten?</string>
     <string name="review_prompt_body">Wenn die App für eure Runde nützlich und unterhaltsam war, hilft eine Bewertung sehr.</string>
     <string name="review_prompt_rate_now">Jetzt bewerten</string>
     <string name="review_prompt_later">Später</string>
@@ -130,7 +130,14 @@
     <string name="settings_reset_preferences">Einstellungen zurucksetzen</string>
     <string name="feedback_title">Vorschlag senden</string>
     <string name="feedback_placeholder_title">Feedback kommt bald</string>
-    <string name="feedback_placeholder_body">Dieser Bereich ist fuer Phase 2 vorbereitet. Hier schliessen wir bald einen echten Feedback-Kanal an.</string>
+    <string name="feedback_placeholder_body">Dieser Bereich ist für einen echten Feedback-Kanal reserviert. Wir schalten ihn hier bald frei.</string>
+    <string name="language_native_spanish">Español</string>
+    <string name="language_native_english">English</string>
+    <string name="language_native_french">Français</string>
+    <string name="language_native_german">Deutsch</string>
+    <string name="language_native_italian">Italiano</string>
+    <string name="language_native_portuguese">Português</string>
+    <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Sende einen Vorschlag oder melde ein Problem, ohne die App zu verlassen.</string>
     <string name="feedback_form_privacy">Wir senden nur deine Nachricht, optionale E-Mail, App-Version, Sprache, Zeitstempel, Plattform und einfachen Spielkontext, falls verfuegbar.</string>
     <string name="feedback_type_label">Feedback-Typ</string>

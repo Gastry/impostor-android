@@ -70,7 +70,7 @@
     <string name="result_winner_title">¿Quién ganó?</string>
     <string name="result_rematch_button">Jugar otra con los mismos ajustes</string>
     <string name="result_new_setup_button">Volver al menú</string>
-    <string name="review_prompt_title">¿Te apetece valorar El Impostor?</string>
+    <string name="review_prompt_title">¿Te apetece valorar la app?</string>
     <string name="review_prompt_body">Si te está resultando útil y divertido, tu valoración ayuda mucho.</string>
     <string name="review_prompt_rate_now">Valorar ahora</string>
     <string name="review_prompt_later">Más tarde</string>
@@ -130,7 +130,14 @@
     <string name="settings_reset_preferences">Restablecer preferencias</string>
     <string name="feedback_title">Enviar sugerencia</string>
     <string name="feedback_placeholder_title">Sugerencias próximamente</string>
-    <string name="feedback_placeholder_body">Este espacio queda preparado para la Fase 2. Aquí conectaremos un canal real de sugerencias.</string>
+    <string name="feedback_placeholder_body">Este espacio queda reservado para un canal real de sugerencias. Lo conectaremos aquí muy pronto.</string>
+    <string name="language_native_spanish">Español</string>
+    <string name="language_native_english">English</string>
+    <string name="language_native_french">Français</string>
+    <string name="language_native_german">Deutsch</string>
+    <string name="language_native_italian">Italiano</string>
+    <string name="language_native_portuguese">Português</string>
+    <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Envía una sugerencia o reporta un problema sin salir de la app.</string>
     <string name="feedback_form_privacy">Solo enviamos tu mensaje, el email opcional, la versión de la app, el idioma, la fecha, la plataforma y contexto básico de la partida si está disponible.</string>
     <string name="feedback_type_label">Tipo de feedback</string>

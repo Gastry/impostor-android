@@ -23,7 +23,7 @@
     <string name="setup_impostor_count_title">Impostores</string>
     <string name="setup_impostor_count_item">%1$d impostor(es)</string>
     <string name="setup_clue_rounds_title">Voltas por partida</string>
-    <string name="setup_clue_rounds_support">Cada jogador diz 1 palavra por volta. Recomendado: 2 voltas.</string>
+    <string name="setup_clue_rounds_support">Escolham 1, 2 ou 3 voltas antes de começar. 2 voltas são apenas a recomendação mais habitual.</string>
     <string name="setup_clue_round_option_1">1 volta</string>
     <string name="setup_clue_round_option_2">2 voltas</string>
     <string name="setup_clue_round_option_3">3 voltas</string>
@@ -70,7 +70,7 @@
     <string name="result_winner_title">Quem venceu?</string>
     <string name="result_rematch_button">Jogar de novo com as mesmas opções</string>
     <string name="result_new_setup_button">Voltar ao menu</string>
-    <string name="review_prompt_title">Apetece-te avaliar The Impostor?</string>
+    <string name="review_prompt_title">Apetece-te avaliar a app?</string>
     <string name="review_prompt_body">Se te está a ser útil e divertido, a tua avaliação ajuda muito.</string>
     <string name="review_prompt_rate_now">Avaliar agora</string>
     <string name="review_prompt_later">Mais tarde</string>
@@ -130,7 +130,14 @@
     <string name="settings_reset_preferences">Redefinir preferências</string>
     <string name="feedback_title">Enviar sugestão</string>
     <string name="feedback_placeholder_title">Sugestões em breve</string>
-    <string name="feedback_placeholder_body">Este espaço fica preparado para a Fase 2. Aqui vamos ligar em breve um canal real de sugestões.</string>
+    <string name="feedback_placeholder_body">Este espaço fica reservado para um canal real de sugestões. Vamos ligá-lo aqui muito em breve.</string>
+    <string name="language_native_spanish">Español</string>
+    <string name="language_native_english">English</string>
+    <string name="language_native_french">Français</string>
+    <string name="language_native_german">Deutsch</string>
+    <string name="language_native_italian">Italiano</string>
+    <string name="language_native_portuguese">Português</string>
+    <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Envia uma sugestão ou comunica um problema sem sair da app.</string>
     <string name="feedback_form_privacy">Enviamos apenas a tua mensagem, email opcional, versão da app, idioma, data, plataforma e contexto básico da partida, se estiver disponível.</string>
     <string name="feedback_type_label">Tipo de feedback</string>

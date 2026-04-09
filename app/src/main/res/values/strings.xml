@@ -70,7 +70,7 @@
     <string name="result_winner_title">Who won?</string>
     <string name="result_rematch_button">Play again with same settings</string>
     <string name="result_new_setup_button">Back to menu</string>
-    <string name="review_prompt_title">Would you like to rate The Impostor?</string>
+    <string name="review_prompt_title">Would you like to rate the app?</string>
     <string name="review_prompt_body">If it has been useful and fun for your group, your rating helps a lot.</string>
     <string name="review_prompt_rate_now">Rate now</string>
     <string name="review_prompt_later">Later</string>
@@ -130,7 +130,7 @@
     <string name="settings_reset_preferences">Reset preferences</string>
     <string name="feedback_title">Send feedback</string>
     <string name="feedback_placeholder_title">Feedback is coming soon</string>
-    <string name="feedback_placeholder_body">This space is ready for Phase 2. We will connect a real suggestion channel here soon.</string>
+    <string name="feedback_placeholder_body">This space is reserved for a future feedback channel. We will connect it here soon.</string>
     <string name="feedback_form_intro">Send a suggestion or report a problem without leaving the app.</string>
     <string name="feedback_form_privacy">We only send your message, optional email, app version, language, timestamp, platform, and basic game context if available.</string>
     <string name="feedback_type_label">Feedback type</string>
