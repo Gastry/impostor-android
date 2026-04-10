@@ -1,12 +1,14 @@
 package com.impostorparty.domain.usecase
 
+import javax.inject.Inject
+
 sealed interface RevealFlowState {
     data class PassingPhone(val playerIndex: Int) : RevealFlowState
     data class RevealingSecret(val playerIndex: Int) : RevealFlowState
     data object RoundReady : RevealFlowState
 }
 
-class ReduceRevealFlowStateUseCase {
+class ReduceRevealFlowStateUseCase @Inject constructor() {
     fun onRevealRequested(state: RevealFlowState): RevealFlowState {
         return when (state) {
             is RevealFlowState.PassingPhone -> RevealFlowState.RevealingSecret(state.playerIndex)

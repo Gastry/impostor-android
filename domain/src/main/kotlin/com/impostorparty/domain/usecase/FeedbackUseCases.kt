@@ -4,8 +4,9 @@ import com.impostorparty.domain.model.FeedbackSendResult
 import com.impostorparty.domain.model.FeedbackSubmission
 import com.impostorparty.domain.model.FeedbackValidationError
 import com.impostorparty.domain.repository.FeedbackRepository
+import javax.inject.Inject
 
-class ValidateFeedbackInputUseCase {
+class ValidateFeedbackInputUseCase @Inject constructor() {
     operator fun invoke(
         message: String,
         email: String,
@@ -36,7 +37,7 @@ class ValidateFeedbackInputUseCase {
     }
 }
 
-class SendFeedbackUseCase(
+class SendFeedbackUseCase @Inject constructor(
     private val feedbackRepository: FeedbackRepository,
 ) {
     suspend operator fun invoke(submission: FeedbackSubmission): FeedbackSendResult {

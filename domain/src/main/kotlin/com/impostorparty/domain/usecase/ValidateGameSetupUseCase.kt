@@ -1,6 +1,7 @@
 ﻿package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.GameSetup
+import javax.inject.Inject
 
 sealed interface SetupValidationResult {
     data object Valid : SetupValidationResult
@@ -16,9 +17,11 @@ enum class SetupValidationError {
     NOT_ENOUGH_NON_IMPOSTORS,
 }
 
-class ValidateGameSetupUseCase(
-    private val getAllowedImpostorCountsUseCase: GetAllowedImpostorCountsUseCase = GetAllowedImpostorCountsUseCase(),
+class ValidateGameSetupUseCase @Inject constructor(
+    private val getAllowedImpostorCountsUseCase: GetAllowedImpostorCountsUseCase,
 ) {
+    constructor() : this(GetAllowedImpostorCountsUseCase())
+
     operator fun invoke(setup: GameSetup): SetupValidationResult {
         if (setup.playerCount !in 3..12) {
             return SetupValidationResult.Invalid(SetupValidationError.PLAYER_COUNT_OUT_OF_RANGE)

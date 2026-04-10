@@ -11,6 +11,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.LocaleListCompat
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,29 +40,40 @@ import com.impostorparty.app.ui.screen.RoundReadyScreen
 import com.impostorparty.app.ui.screen.SettingsScreen
 import com.impostorparty.app.ui.screen.SetupScreen
 import com.impostorparty.app.ui.theme.ImpostorPartyTheme
-import com.impostorparty.app.viewmodel.GameViewModel
+import com.impostorparty.app.viewmodel.FeedbackViewModel
+import com.impostorparty.app.viewmodel.GameSessionViewModel
 import com.impostorparty.app.viewmodel.RemoveAdsBillingViewModel
+import com.impostorparty.app.viewmodel.SettingsViewModel
+import com.impostorparty.app.viewmodel.SetupViewModel
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.impostorparty.domain.usecase.CreateRoundResult
 import com.impostorparty.domain.usecase.RevealFlowState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @Composable
 fun ImpostorPartyRoot(
-    viewModel: GameViewModel = hiltViewModel(),
+    setupViewModel: SetupViewModel = hiltViewModel(),
+    sessionViewModel: GameSessionViewModel = hiltViewModel(),
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
+    feedbackViewModel: FeedbackViewModel = hiltViewModel(),
     billingViewModel: RemoveAdsBillingViewModel = hiltViewModel(),
 ) {
     val navController = rememberNavController()
-    val appSettings by viewModel.appSettings.collectAsStateWithLifecycle()
-    val adsRemoved by viewModel.adsRemoved.collectAsStateWithLifecycle()
-    val activeRound by viewModel.activeRound.collectAsStateWithLifecycle()
-    val feedbackForm by viewModel.feedbackForm.collectAsStateWithLifecycle()
-    val reviewPrompt by viewModel.reviewPrompt.collectAsStateWithLifecycle()
-    val pendingInAppReviewRequest by viewModel.pendingInAppReviewRequest.collectAsStateWithLifecycle()
-    val revealState by viewModel.revealState.collectAsStateWithLifecycle()
+    val appSettings by settingsViewModel.appSettings.collectAsStateWithLifecycle()
+    val adsRemoved by settingsViewModel.adsRemoved.collectAsStateWithLifecycle()
+    val activeRound by sessionViewModel.activeRound.collectAsStateWithLifecycle()
+    val feedbackForm by feedbackViewModel.feedbackForm.collectAsStateWithLifecycle()
+    val reviewPrompt by sessionViewModel.reviewPrompt.collectAsStateWithLifecycle()
+    val pendingInAppReviewRequest by sessionViewModel.pendingInAppReviewRequest.collectAsStateWithLifecycle()
+    val revealState by sessionViewModel.revealState.collectAsStateWithLifecycle()
     val removeAdsUiState by billingViewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val activity = context.findActivity()
     val currentAppLanguageTag = context.currentAppLanguageTag()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val scope = rememberCoroutineScope()
     val reviewManager = remember(activity) {
         activity?.let(ReviewManagerFactory::create)
     }
@@ -96,7 +108,7 @@ fun ImpostorPartyRoot(
         val currentReviewManager = reviewManager
 
         if (currentActivity == null || currentReviewManager == null) {
-            viewModel.onInAppReviewRequestHandled()
+            sessionViewModel.onInAppReviewRequestHandled()
             return@LaunchedEffect
         }
 
@@ -106,10 +118,10 @@ fun ImpostorPartyRoot(
                 if (task.isSuccessful && reviewInfo != null) {
                     currentReviewManager.launchReviewFlow(currentActivity, reviewInfo)
                         .addOnCompleteListener {
-                            viewModel.onInAppReviewRequestHandled()
+                            sessionViewModel.onInAppReviewRequestHandled()
                         }
                 } else {
-                    viewModel.onInAppReviewRequestHandled()
+                    sessionViewModel.onInAppReviewRequestHandled()
                 }
             }
     }
@@ -121,7 +133,7 @@ fun ImpostorPartyRoot(
         ) {
             composable(AppRoute.Home.route) {
                 HomeScreen(
-                    stats = viewModel.stats.collectAsStateWithLifecycle().value,
+                    stats = settingsViewModel.stats.collectAsStateWithLifecycle().value,
                     homeBannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HOME_BANNER,
                         adsRemoved = adsRemoved,
@@ -140,45 +152,49 @@ fun ImpostorPartyRoot(
 
             composable(AppRoute.Setup.route) {
                 SetupScreen(
-                    setup = viewModel.setup.collectAsStateWithLifecycle().value,
-                    isLoading = viewModel.isStartingRound.collectAsStateWithLifecycle().value,
-                    message = viewModel.message.collectAsStateWithLifecycle().value,
-                    onDismissMessage = viewModel::dismissMessage,
-                    onPlayerCountChanged = viewModel::updatePlayerCount,
-                    onImpostorCountChanged = viewModel::updateImpostorCount,
-                    onToggleCategory = viewModel::toggleCategory,
-                    onRoundMinutesChanged = viewModel::updateRoundMinutes,
-                    onClueRoundsChanged = viewModel::updateClueRounds,
-                    onNoExtraHintsChanged = viewModel::updateNoExtraHints,
-                    onQuickModeChanged = viewModel::updateQuickMode,
-                    onRevealAnimationChanged = viewModel::updateRevealAnimation,
-                    onHapticsChanged = viewModel::updateHaptics,
-                    onAvoidRecentWordsChanged = viewModel::updateAvoidRecentWords,
-                    onCustomPlayerNameChanged = viewModel::updateCustomPlayerName,
-                    onClearCustomNames = viewModel::clearCustomNames,
-                    onStartRound = { viewModel.startRound(currentAppLanguageTag) },
+                    setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
+                    isLoading = setupViewModel.isStartingRound.collectAsStateWithLifecycle().value,
+                    message = setupViewModel.message.collectAsStateWithLifecycle().value,
+                    onDismissMessage = setupViewModel::dismissMessage,
+                    onPlayerCountChanged = setupViewModel::updatePlayerCount,
+                    onImpostorCountChanged = setupViewModel::updateImpostorCount,
+                    onToggleCategory = setupViewModel::toggleCategory,
+                    onRoundMinutesChanged = setupViewModel::updateRoundMinutes,
+                    onClueRoundsChanged = setupViewModel::updateClueRounds,
+                    onNoExtraHintsChanged = setupViewModel::updateNoExtraHints,
+                    onQuickModeChanged = setupViewModel::updateQuickMode,
+                    onRevealAnimationChanged = setupViewModel::updateRevealAnimation,
+                    onHapticsChanged = setupViewModel::updateHaptics,
+                    onAvoidRecentWordsChanged = setupViewModel::updateAvoidRecentWords,
+                    onCustomPlayerNameChanged = setupViewModel::updateCustomPlayerName,
+                    onClearCustomNames = setupViewModel::clearCustomNames,
+                    onStartRound = {
+                        scope.launch {
+                            val result = setupViewModel.createRound(currentAppLanguageTag)
+                            if (result is CreateRoundResult.Success) {
+                                withContext(Dispatchers.Main.immediate) {
+                                    sessionViewModel.activateRound(result.session)
+                                    navController.navigate(AppRoute.Reveal.route) {
+                                        popUpTo(AppRoute.Setup.route) { inclusive = true }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     onBack = { navController.popBackStack() },
                 )
-
-                LaunchedEffect(activeRound?.id) {
-                    if (activeRound != null) {
-                        navController.navigate(AppRoute.Reveal.route) {
-                            popUpTo(AppRoute.Setup.route) { inclusive = true }
-                        }
-                    }
-                }
             }
 
             composable(AppRoute.Reveal.route) {
                 RevealScreen(
                     roundSession = activeRound,
                     flowState = revealState,
-                    reducedMotion = false,
-                    hapticsEnabled = true,
-                    onRequestReveal = viewModel::requestReveal,
-                    onHideAndPass = viewModel::hideAndPass,
+                    reducedMotion = appSettings.reducedMotion,
+                    hapticsEnabled = appSettings.hapticsEnabled,
+                    onRequestReveal = sessionViewModel::requestReveal,
+                    onHideAndPass = sessionViewModel::hideAndPass,
                     onExit = {
-                        viewModel.clearCurrentRound()
+                        sessionViewModel.clearCurrentRound()
                         navController.navigate(AppRoute.Home.route) {
                             popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
                             launchSingleTop = true
@@ -198,14 +214,14 @@ fun ImpostorPartyRoot(
             composable(AppRoute.RoundReady.route) {
                 RoundReadyScreen(
                     setup = activeRound?.setup,
-                    showQuickInstructions = true,
+                    showQuickInstructions = appSettings.showQuickInstructions,
                     onFinishRound = {
                         navController.navigate(AppRoute.Result.route) {
                             popUpTo(AppRoute.RoundReady.route) { inclusive = true }
                         }
                     },
                     onNewConfiguration = {
-                        viewModel.clearCurrentRound()
+                        sessionViewModel.clearCurrentRound()
                         navController.navigate(AppRoute.Setup.route) {
                             popUpTo(AppRoute.Setup.route) { inclusive = true }
                         }
@@ -216,25 +232,36 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Result.route) {
                 ResultScreen(
                     roundSession = activeRound,
-                    winnerSelection = viewModel.winnerSelection.collectAsStateWithLifecycle().value,
+                    winnerSelection = sessionViewModel.winnerSelection.collectAsStateWithLifecycle().value,
                     reviewPrompt = reviewPrompt,
-                    onWinnerSelected = viewModel::selectWinner,
-                    onReviewNow = viewModel::onReviewNowSelected,
-                    onReviewLater = viewModel::dismissReviewPrompt,
+                    onWinnerSelected = sessionViewModel::selectWinner,
+                    onReviewNow = sessionViewModel::onReviewNowSelected,
+                    onReviewLater = sessionViewModel::dismissReviewPrompt,
                     onSendSuggestion = {
-                        viewModel.onSendSuggestionSelected()
+                        sessionViewModel.onSendSuggestionSelected()
                         navController.navigate(AppRoute.Feedback.route)
                     },
                     onPlayAgain = {
-                        viewModel.persistRoundResultIfNeeded()
-                        viewModel.startRematch(currentAppLanguageTag)
-                        navController.navigate(AppRoute.Reveal.route) {
-                            popUpTo(AppRoute.Result.route) { inclusive = true }
+                        sessionViewModel.persistRoundResultIfNeeded()
+                        val rematchSetup = activeRound?.setup
+                        scope.launch {
+                            val result = setupViewModel.createRound(
+                                currentAppLanguageTag = currentAppLanguageTag,
+                                sourceSetup = rematchSetup,
+                            )
+                            if (result is CreateRoundResult.Success) {
+                                withContext(Dispatchers.Main.immediate) {
+                                    sessionViewModel.activateRound(result.session)
+                                    navController.navigate(AppRoute.Reveal.route) {
+                                        popUpTo(AppRoute.Result.route) { inclusive = true }
+                                    }
+                                }
+                            }
                         }
                     },
                     onBackToMenu = {
-                        viewModel.persistRoundResultIfNeeded()
-                        viewModel.clearCurrentRound()
+                        sessionViewModel.persistRoundResultIfNeeded()
+                        sessionViewModel.clearCurrentRound()
                         navController.navigate(AppRoute.Home.route) {
                             popUpTo(navController.graph.findStartDestination().id) { inclusive = false }
                             launchSingleTop = true
@@ -249,7 +276,7 @@ fun ImpostorPartyRoot(
                             launchSingleTop = true
                         }
                     } else {
-                        viewModel.onResultScreenViewed()
+                        sessionViewModel.onResultScreenViewed()
                     }
                 }
             }
@@ -282,21 +309,24 @@ fun ImpostorPartyRoot(
                     ),
                     removeAdsUiState = removeAdsUiState,
                     highlightRemoveAds = highlightRemoveAds,
-                    onThemeModeChanged = viewModel::updateThemeMode,
-                    onLanguageChanged = viewModel::updateLanguageTag,
-                    onReducedMotionChanged = viewModel::updateReducedMotion,
-                    onShowQuickInstructionsChanged = viewModel::updateShowQuickInstructions,
-                    onSecureScreenChanged = viewModel::updateSecureScreen,
-                    onHapticsChanged = viewModel::updateHaptics,
-                    onAvoidRecentChanged = viewModel::updateAvoidRecentWords,
-                    onRevealAnimationChanged = viewModel::updateRevealAnimation,
+                    onThemeModeChanged = settingsViewModel::updateThemeMode,
+                    onLanguageChanged = settingsViewModel::updateLanguageTag,
+                    onReducedMotionChanged = settingsViewModel::updateReducedMotion,
+                    onShowQuickInstructionsChanged = settingsViewModel::updateShowQuickInstructions,
+                    onSecureScreenChanged = settingsViewModel::updateSecureScreen,
+                    onHapticsChanged = settingsViewModel::updateHaptics,
+                    onAvoidRecentChanged = settingsViewModel::updateAvoidRecentWords,
+                    onRevealAnimationChanged = settingsViewModel::updateRevealAnimation,
                     onRemoveAds = {
                         activity?.let(billingViewModel::launchPurchase)
                     },
                     onRateApp = { context.openPlayStoreListing() },
                     onSendSuggestion = { navController.navigate(AppRoute.Feedback.route) },
-                    onResetPreferences = viewModel::resetPreferences,
-                    onClearHistory = viewModel::clearHistory,
+                    onResetPreferences = {
+                        settingsViewModel.resetPreferences()
+                        setupViewModel.resetToDefaults()
+                    },
+                    onClearHistory = settingsViewModel::clearHistory,
                     onDismissBillingMessage = billingViewModel::clearMessage,
                     onBack = { navController.popBackStack() },
                 )
@@ -304,22 +334,26 @@ fun ImpostorPartyRoot(
 
             composable(AppRoute.Feedback.route) {
                 LaunchedEffect(Unit) {
-                    viewModel.clearFeedbackStatus()
+                    feedbackViewModel.clearFeedbackStatus()
                 }
                 FeedbackScreen(
                     state = feedbackForm,
                     onBack = { navController.popBackStack() },
-                    onTypeChanged = viewModel::updateFeedbackType,
-                    onMessageChanged = viewModel::updateFeedbackMessage,
-                    onEmailChanged = viewModel::updateFeedbackEmail,
-                    onSubmit = viewModel::submitFeedback,
-                    onRetry = viewModel::retryFeedbackSubmission,
+                    onTypeChanged = feedbackViewModel::updateFeedbackType,
+                    onMessageChanged = feedbackViewModel::updateFeedbackMessage,
+                    onEmailChanged = feedbackViewModel::updateFeedbackEmail,
+                    onSubmit = {
+                        feedbackViewModel.submitFeedback(sessionViewModel.getFeedbackContextHint())
+                    },
+                    onRetry = {
+                        feedbackViewModel.retryFeedbackSubmission(sessionViewModel.getFeedbackContextHint())
+                    },
                 )
             }
 
             composable(AppRoute.History.route) {
                 HistoryScreen(
-                    history = viewModel.history.collectAsStateWithLifecycle().value,
+                    history = settingsViewModel.history.collectAsStateWithLifecycle().value,
                     onBack = { navController.popBackStack() },
                 )
             }
@@ -367,7 +401,9 @@ private fun ApplyLanguageEffect(languageTag: String?) {
         }
         val currentLocales = AppCompatDelegate.getApplicationLocales()
         if (currentLocales.toLanguageTags() != desiredLocales.toLanguageTags()) {
-            AppCompatDelegate.setApplicationLocales(desiredLocales)
+            withContext(Dispatchers.Main.immediate) {
+                AppCompatDelegate.setApplicationLocales(desiredLocales)
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.ReviewPromptState
+import javax.inject.Inject
 import kotlin.math.floor
 
 private const val MIN_COMPLETED_GAMES = 5
@@ -10,7 +11,7 @@ private const val DAYS_BETWEEN_REVIEW_ATTEMPTS = 30L
 private const val DAYS_AFTER_LATER = 14L
 private const val MILLIS_PER_DAY = 24L * 60L * 60L * 1000L
 
-class ShouldShowReviewPromptUseCase {
+class ShouldShowReviewPromptUseCase @Inject constructor() {
     operator fun invoke(
         state: ReviewPromptState,
         nowEpochMillis: Long,
@@ -33,7 +34,7 @@ class ShouldShowReviewPromptUseCase {
     }
 }
 
-class UpdateReviewPromptStateUseCase {
+class UpdateReviewPromptStateUseCase @Inject constructor() {
     fun onSessionStarted(
         state: ReviewPromptState,
         nowEpochMillis: Long,

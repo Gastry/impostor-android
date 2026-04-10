@@ -5,6 +5,7 @@ import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.model.WordUsageRecord
 import com.impostorparty.domain.repository.WordRepository
 import java.util.UUID
+import javax.inject.Inject
 import kotlin.random.Random
 
 sealed interface CreateRoundResult {
@@ -17,12 +18,19 @@ sealed interface CreateRoundResult {
     data class WordSelectionFailed(val error: WordSelectionError) : CreateRoundResult
 }
 
-class CreateRoundUseCase(
-    private val validateGameSetupUseCase: ValidateGameSetupUseCase = ValidateGameSetupUseCase(),
-    private val buildPlayersUseCase: BuildPlayersUseCase = BuildPlayersUseCase(),
-    private val selectSecretWordUseCase: SelectSecretWordUseCase = SelectSecretWordUseCase(),
-    private val assignRolesUseCase: AssignRolesUseCase = AssignRolesUseCase(),
+class CreateRoundUseCase @Inject constructor(
+    private val validateGameSetupUseCase: ValidateGameSetupUseCase,
+    private val buildPlayersUseCase: BuildPlayersUseCase,
+    private val selectSecretWordUseCase: SelectSecretWordUseCase,
+    private val assignRolesUseCase: AssignRolesUseCase,
 ) {
+    constructor() : this(
+        ValidateGameSetupUseCase(),
+        BuildPlayersUseCase(),
+        SelectSecretWordUseCase(),
+        AssignRolesUseCase(),
+    )
+
     suspend operator fun invoke(
         setup: GameSetup,
         activeLanguageTag: String?,

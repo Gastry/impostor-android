@@ -1,8 +1,9 @@
 package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.PlayerSlot
+import javax.inject.Inject
 
-class BuildPlayersUseCase {
+class BuildPlayersUseCase @Inject constructor() {
     operator fun invoke(
         playerCount: Int,
         customNames: List<String>,

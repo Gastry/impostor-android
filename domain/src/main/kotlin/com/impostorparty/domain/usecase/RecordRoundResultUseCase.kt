@@ -6,8 +6,9 @@ import com.impostorparty.domain.model.RoundHistoryEntry
 import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.model.WinnerSide
 import com.impostorparty.domain.repository.StatsRepository
+import javax.inject.Inject
 
-class RecordRoundResultUseCase {
+class RecordRoundResultUseCase @Inject constructor() {
     suspend operator fun invoke(
         session: RoundSession,
         winnerSide: WinnerSide,
@@ -31,7 +32,7 @@ class RecordRoundResultUseCase {
     }
 }
 
-class BuildStatsUseCase {
+class BuildStatsUseCase @Inject constructor() {
     operator fun invoke(history: List<RoundHistoryEntry>): GameStats {
         val usage = history.groupingBy { it.category }.eachCount()
         return GameStats(

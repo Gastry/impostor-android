@@ -3,9 +3,10 @@ package com.impostorparty.domain.usecase
 import com.impostorparty.domain.model.PlayerAssignment
 import com.impostorparty.domain.model.PlayerSecret
 import com.impostorparty.domain.model.PlayerSlot
+import javax.inject.Inject
 import kotlin.random.Random
 
-class AssignRolesUseCase {
+class AssignRolesUseCase @Inject constructor() {
     operator fun invoke(
         players: List<PlayerSlot>,
         impostorCount: Int,

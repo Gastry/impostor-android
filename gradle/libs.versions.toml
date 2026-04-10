@@ -22,8 +22,10 @@ turbine = "1.1.0"
 playReview = "2.0.2"
 mobileAds = "24.0.0"
 playBilling = "8.3.0"
+javaxInject = "1"
 
 [libraries]
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }

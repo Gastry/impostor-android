@@ -2,7 +2,9 @@ package com.impostorparty.domain.usecase
 
 import com.impostorparty.domain.model.GameSetup
 
-class GetAllowedImpostorCountsUseCase {
+import javax.inject.Inject
+
+class GetAllowedImpostorCountsUseCase @Inject constructor() {
     operator fun invoke(playerCount: Int): List<Int> {
         return if (playerCount >= 6) listOf(1, 2) else listOf(1)
     }

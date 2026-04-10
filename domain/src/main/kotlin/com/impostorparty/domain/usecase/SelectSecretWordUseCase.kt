@@ -3,6 +3,7 @@ package com.impostorparty.domain.usecase
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.WordEntry
 import com.impostorparty.domain.model.WordUsageRecord
+import javax.inject.Inject
 import kotlin.random.Random
 
 sealed interface WordSelectionResult {
@@ -20,7 +21,11 @@ enum class WordSelectionError {
     NO_WORDS_AFTER_RECENT_FILTER,
 }
 
-class SelectSecretWordUseCase {
+class SelectSecretWordUseCase @Inject constructor(
+    private val wordNormalization: WordNormalization,
+) {
+    constructor() : this(WordNormalization())
+
     operator fun invoke(
         words: List<WordEntry>,
         selectedCategories: Set<Category>,
@@ -36,7 +41,7 @@ class SelectSecretWordUseCase {
         val byCategory = words
             .filter { it.category in selectedCategories }
             .groupBy { it.category }
-            .mapValues { (_, entries) -> entries.distinctBy { normalizeWordForComparison(it.text) } }
+            .mapValues { (_, entries) -> entries.distinctBy { wordNormalization(it.text) } }
             .filterValues { it.isNotEmpty() }
 
         if (byCategory.isEmpty()) {
@@ -62,7 +67,7 @@ class SelectSecretWordUseCase {
         val availableWords = if (!avoidRecentWords) {
             pool
         } else {
-            val filtered = pool.filter { normalizeWordForComparison(it.text) !in usedSet }
+            val filtered = pool.filter { wordNormalization(it.text) !in usedSet }
             if (filtered.isEmpty()) {
                 usedSet.clear()
                 pool
@@ -76,7 +81,7 @@ class SelectSecretWordUseCase {
         }
 
         val selectedWord = availableWords.random(random)
-        usedSet += normalizeWordForComparison(selectedWord.text)
+        usedSet += wordNormalization(selectedWord.text)
 
         return WordSelectionResult.Success(
             word = selectedWord,
