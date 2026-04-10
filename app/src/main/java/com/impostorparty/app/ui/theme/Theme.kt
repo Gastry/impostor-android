@@ -23,10 +23,16 @@ private val LightColors = lightColorScheme(
     tertiary = AmberHint,
     onTertiary = Color.White,
     error = DangerRose,
+    onError = Color.White,
     surface = SurfaceLight,
+    onSurface = InkBlue,
     surfaceContainer = SurfaceLightElevated,
     surfaceContainerHighest = Color(0xFFE1E8F6),
+    onSurfaceVariant = Color(0xFF51607A),
+    outline = Color(0xFF7786A0),
+    outlineVariant = Color(0xFFC3CCDC),
     background = SurfaceLight,
+    onBackground = InkBlue,
 )
 
 private val DarkColors = darkColorScheme(
@@ -39,10 +45,16 @@ private val DarkColors = darkColorScheme(
     tertiary = Color(0xFFFFC77A),
     onTertiary = Color(0xFF4A2D00),
     error = Color(0xFFFFB3C5),
+    onError = Color(0xFF5B1224),
     surface = Color(0xFF0A1224),
+    onSurface = Color(0xFFE7ECF7),
     surfaceContainer = Color(0xFF14213B),
     surfaceContainerHighest = Color(0xFF213353),
+    onSurfaceVariant = Color(0xFFB7C4DF),
+    outline = Color(0xFF8B9AB8),
+    outlineVariant = Color(0xFF41506E),
     background = Color(0xFF08101E),
+    onBackground = Color(0xFFE7ECF7),
 )
 
 private val AppShapes = Shapes(
