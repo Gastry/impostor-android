@@ -36,6 +36,7 @@ fun PartySectionCard(
             containerColor = MaterialTheme.colorScheme.surfaceContainer.copy(
                 alpha = if (isDarkSurface) 0.98f else 1f,
             ),
+            contentColor = MaterialTheme.colorScheme.onSurface,
         ),
         border = BorderStroke(
             width = 1.dp,
