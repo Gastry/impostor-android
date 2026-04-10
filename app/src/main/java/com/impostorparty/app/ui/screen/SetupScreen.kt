@@ -37,6 +37,7 @@ import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
+import com.impostorparty.app.ui.components.partyFilterChipColors
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.app.util.titleRes
 import com.impostorparty.app.viewmodel.UiMessage
@@ -117,6 +118,7 @@ fun SetupScreen(
                                 selected = setup.impostorCount == option,
                                 onClick = { onImpostorCountChanged(option) },
                                 label = { Text(stringResource(R.string.setup_impostor_count_item, option)) },
+                                colors = partyFilterChipColors(),
                             )
                         }
                     }
@@ -156,6 +158,7 @@ fun SetupScreen(
                                         ),
                                     )
                                 },
+                                colors = partyFilterChipColors(),
                             )
                         }
                     }
@@ -201,6 +204,7 @@ fun SetupScreen(
                                 selected = category in setup.categories,
                                 onClick = { onToggleCategory(category) },
                                 label = { Text(stringResource(category.titleRes())) },
+                                colors = partyFilterChipColors(),
                             )
                         }
                     }

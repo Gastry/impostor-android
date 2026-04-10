@@ -53,6 +53,7 @@ import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
 import com.impostorparty.app.ui.components.SecondaryPartyButton
+import com.impostorparty.app.ui.components.partyOutlinedTextFieldColors
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.ThemeMode
@@ -220,7 +221,7 @@ fun SettingsScreen(
                                     trailingIcon = {
                                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = languageMenuExpanded)
                                     },
-                                    colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(),
+                                    colors = partyOutlinedTextFieldColors(),
                                 )
                                 DropdownMenu(
                                     expanded = languageMenuExpanded,
@@ -228,7 +229,12 @@ fun SettingsScreen(
                                 ) {
                                     LanguageOption.entries.forEach { option ->
                                         DropdownMenuItem(
-                                            text = { Text(stringResource(option.displayLabelRes)) },
+                                            text = {
+                                                Text(
+                                                    text = stringResource(option.displayLabelRes),
+                                                    color = MaterialTheme.colorScheme.onSurface,
+                                                )
+                                            },
                                             onClick = {
                                                 languageMenuExpanded = false
                                                 onLanguageChanged(option.tag)

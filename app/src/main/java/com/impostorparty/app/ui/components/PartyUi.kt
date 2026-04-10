@@ -10,8 +10,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -86,4 +89,56 @@ fun SecondaryPartyButton(
     ) {
         Text(text = text, style = MaterialTheme.typography.titleSmall)
     }
+}
+
+@Composable
+fun partyFilterChipColors() =
+    FilterChipDefaults.filterChipColors(
+        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        labelColor = MaterialTheme.colorScheme.onSurface,
+        iconColor = MaterialTheme.colorScheme.onSurface,
+        selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+        selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        selectedLeadingIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        selectedTrailingIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest.copy(alpha = 0.6f),
+        disabledLabelColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+        disabledLeadingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+        disabledTrailingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+    )
+
+@Composable
+fun partyOutlinedTextFieldColors(): TextFieldColors {
+    return OutlinedTextFieldDefaults.colors(
+        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+        disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+        errorTextColor = MaterialTheme.colorScheme.onSurface,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest.copy(alpha = 0.68f),
+        errorContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        cursorColor = MaterialTheme.colorScheme.primary,
+        errorCursorColor = MaterialTheme.colorScheme.error,
+        focusedBorderColor = MaterialTheme.colorScheme.primary,
+        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+        disabledBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f),
+        errorBorderColor = MaterialTheme.colorScheme.error,
+        focusedLabelColor = MaterialTheme.colorScheme.primary,
+        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+        errorLabelColor = MaterialTheme.colorScheme.error,
+        focusedPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+        errorPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        focusedSupportingTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        unfocusedSupportingTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        disabledSupportingTextColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+        errorSupportingTextColor = MaterialTheme.colorScheme.error,
+        focusedTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        unfocusedTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+        errorTrailingIconColor = MaterialTheme.colorScheme.error,
+    )
 }

@@ -30,6 +30,8 @@ import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
 import com.impostorparty.app.ui.components.SecondaryPartyButton
+import com.impostorparty.app.ui.components.partyFilterChipColors
+import com.impostorparty.app.ui.components.partyOutlinedTextFieldColors
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.app.viewmodel.FeedbackFormUiState
 import com.impostorparty.domain.model.FeedbackSendResult
@@ -96,6 +98,7 @@ fun FeedbackScreen(
                                 selected = state.type == type,
                                 onClick = { onTypeChanged(type) },
                                 label = { Text(stringResource(typeLabel(type))) },
+                                colors = partyFilterChipColors(),
                             )
                         }
                     }
@@ -122,6 +125,7 @@ fun FeedbackScreen(
                                 it == FeedbackValidationError.MESSAGE_TOO_SHORT ||
                                 it == FeedbackValidationError.MESSAGE_TOO_LONG
                         },
+                        colors = partyOutlinedTextFieldColors(),
                     )
 
                     OutlinedTextField(
@@ -145,6 +149,7 @@ fun FeedbackScreen(
                             }
                         },
                         isError = FeedbackValidationError.EMAIL_INVALID in state.validationErrors,
+                        colors = partyOutlinedTextFieldColors(),
                     )
                 }
             }

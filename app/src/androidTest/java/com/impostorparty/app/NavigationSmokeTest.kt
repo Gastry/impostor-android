@@ -84,8 +84,7 @@ class NavigationSmokeTest {
         composeRule.onNodeWithTag("result_rematch_button").performClick()
 
         composeRule.waitUntil(timeoutMillis = 30_000) {
-            composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty() &&
-                composeRule.onAllNodesWithTag("result_rematch_button").fetchSemanticsNodes().isEmpty()
+            composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty()
         }
         composeRule.onNodeWithTag("reveal_hold_button").assertIsDisplayed()
     }

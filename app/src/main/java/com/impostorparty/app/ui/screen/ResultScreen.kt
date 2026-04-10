@@ -28,6 +28,7 @@ import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
 import com.impostorparty.app.ui.components.SecondaryPartyButton
+import com.impostorparty.app.ui.components.partyFilterChipColors
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.app.util.labelRes
 import com.impostorparty.domain.model.PlayerSecret
@@ -107,6 +108,7 @@ fun ResultScreen(
                             selected = side == winnerSelection,
                             onClick = { onWinnerSelected(side) },
                             label = { Text(stringResource(side.labelRes())) },
+                            colors = partyFilterChipColors(),
                         )
                     }
                 }
