@@ -170,6 +170,8 @@
     <string name="language_portuguese">Portuguese</string>
     <string name="language_japanese">Japanese</string>
     <string name="language_native_spanish">Español</string>
+    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
+    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>

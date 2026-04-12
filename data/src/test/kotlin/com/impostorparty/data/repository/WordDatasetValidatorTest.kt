@@ -30,7 +30,7 @@ class WordDatasetValidatorTest {
 
         WordDatasetValidator.validateOrThrow(dataset)
 
-        assertEquals(7, dataset.languages.size)
+        assertEquals(9, dataset.languages.size)
 
         dataset.languages.forEach { language ->
             assertEquals(10, language.categories.size)
@@ -54,17 +54,24 @@ class WordDatasetValidatorTest {
                 .first { it.code == "movies_series" }
                 .words
 
-        val spanish = moviesFor("es")
-        assertTrue(spanish.containsAll(listOf("Origen", "Parque Jurásico", "Los Vengadores", "Miércoles")))
-        assertFalse(spanish.contains("Inception"))
-        assertFalse(spanish.contains("Jurassic Park"))
-        assertFalse(spanish.contains("Wednesday"))
+        val spanishSpain = moviesFor("es-ES")
+        assertTrue(spanishSpain.containsAll(listOf("Origen", "Parque Jurásico", "Pantera Negra", "Miércoles")))
+        assertFalse(spanishSpain.contains("El origen"))
+        assertFalse(spanishSpain.contains("Jurassic Park"))
+        assertFalse(spanishSpain.contains("Merlina"))
+
+        val spanishLatam = moviesFor("es-419")
+        assertTrue(spanishLatam.containsAll(listOf("El origen", "Jurassic Park", "Pantera Negra", "Merlina")))
+        assertFalse(spanishLatam.contains("Origen"))
+        assertFalse(spanishLatam.contains("Parque Jurásico"))
+        assertFalse(spanishLatam.contains("Miércoles"))
+        assertFalse(spanishLatam.contains("Aquí no hay quien viva"))
 
         assertTrue(moviesFor("fr").contains("La Reine des neiges"))
         assertTrue(moviesFor("de").contains("Die Eiskönigin – Völlig unverfroren"))
         assertTrue(moviesFor("it").contains("Il gladiatore"))
         assertTrue(moviesFor("pt").contains("A Origem"))
-        assertTrue(moviesFor("ja").contains("\u30A2\u30CA\u3068\u96EA\u306E\u5973\u738B"))
+        assertTrue(moviesFor("ja").contains("アナと雪の女王"))
     }
 
     @Test
@@ -110,7 +117,7 @@ class WordDatasetValidatorTest {
         assertFalse(portugueseAnimals.contains("Perro"))
 
         val japaneseAnimals = wordsFor("ja", "animals")
-        assertTrue(japaneseAnimals.contains("\u3044\u306C"))
+        assertTrue(japaneseAnimals.contains("いぬ"))
         assertFalse(japaneseAnimals.contains("Dog"))
         assertFalse(japaneseAnimals.contains("Perro"))
     }

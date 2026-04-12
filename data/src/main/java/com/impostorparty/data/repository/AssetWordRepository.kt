@@ -86,16 +86,12 @@ class AssetWordRepository @Inject constructor(
 
         val systemLocale = Locale.getDefault()
         val systemTag = systemLocale.toLanguageTag().lowercase()
-        val systemLanguage = systemLocale.language.lowercase()
 
-        val candidates = listOfNotNull(
-            normalizedRequested,
-            normalizedRequested?.substringBefore('-'),
-            systemTag,
-            systemTag.substringBefore('-'),
-            systemLanguage,
-            fallback,
-        )
+        val candidates = buildList {
+            addAll(regionAwareCandidates(normalizedRequested, available))
+            addAll(regionAwareCandidates(systemTag, available))
+            add(fallback)
+        }
 
         return candidates.firstOrNull { it in available }
             ?: available.firstOrNull()
@@ -110,4 +106,33 @@ class AssetWordRepository @Inject constructor(
     private companion object {
         const val DATASET_FILE = "words_v1.json"
     }
+}
+
+internal fun regionAwareCandidates(
+    requestedTag: String?,
+    available: Set<String>,
+): List<String> {
+    val normalizedTag = requestedTag
+        ?.trim()
+        ?.replace('_', '-')
+        ?.lowercase()
+        ?.takeIf { it.isNotBlank() }
+        ?: return emptyList()
+
+    val language = normalizedTag.substringBefore('-')
+    val region = normalizedTag.substringAfter('-', missingDelimiterValue = "")
+
+    return buildList {
+        add(normalizedTag)
+
+        // `es-419` is the right coarse-grained market split for Latin America.
+        if (language == "es") {
+            when {
+                region == "es" && "es-es" in available -> add("es-es")
+                region.isNotBlank() && region != "es" && "es-419" in available -> add("es-419")
+            }
+        }
+
+        add(language)
+    }.distinct()
 }

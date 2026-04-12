@@ -132,6 +132,8 @@
     <string name="feedback_placeholder_title">Suggerimenti in arrivo</string>
     <string name="feedback_placeholder_body">Questo spazio è riservato a un vero canale per i suggerimenti. Lo collegheremo qui molto presto.</string>
     <string name="language_native_spanish">Español</string>
+    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
+    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>

@@ -370,12 +370,17 @@ private fun removeAdsStatusText(message: RemoveAdsPurchaseMessage?): Int? {
 }
 
 private fun selectedLanguageOption(languageTag: String?): LanguageOption {
-    return LanguageOption.entries.firstOrNull { it.tag == languageTag } ?: LanguageOption.SYSTEM
+    return when (languageTag?.lowercase()) {
+        "es" -> LanguageOption.SPANISH_SPAIN
+        else -> LanguageOption.entries.firstOrNull { it.tag?.lowercase() == languageTag?.lowercase() }
+            ?: LanguageOption.SYSTEM
+    }
 }
 
 enum class LanguageOption(val tag: String?, val labelRes: Int) {
     SYSTEM(null, R.string.language_system),
-    SPANISH("es", R.string.language_native_spanish),
+    SPANISH_SPAIN("es-ES", R.string.language_native_spanish_spain),
+    SPANISH_LATAM("es-419", R.string.language_native_spanish_latin_america),
     ENGLISH("en", R.string.language_native_english),
     FRENCH("fr", R.string.language_native_french),
     GERMAN("de", R.string.language_native_german),
@@ -389,6 +394,6 @@ enum class LanguageOption(val tag: String?, val labelRes: Int) {
 }
 
 private fun languageTag(option: LanguageOption): String {
-    return "settings_language_" + (option.tag ?: "system")
+    return "settings_language_" + (option.tag ?: "system").replace('-', '_').lowercase()
 }
 

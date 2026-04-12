@@ -132,6 +132,8 @@
     <string name="feedback_placeholder_title">フィードバック機能は準備中です</string>
     <string name="feedback_placeholder_body">ここには今後、本格的な提案チャネルを追加する予定です。近いうちにここから送れるようになります。</string>
     <string name="language_native_spanish">Español</string>
+    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
+    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>

@@ -1,6 +1,7 @@
 package com.impostorparty.app
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -12,7 +13,6 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTouchInput
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.impostorparty.app.R
 import org.junit.Rule
@@ -27,7 +27,12 @@ class LocaleLayoutSmokeTest {
 
     @Test
     fun spanish_locale_renders_home_setup_and_reveal() {
-        verifyLanguageFlow("settings_language_es")
+        verifyLanguageFlow("settings_language_es_es")
+    }
+
+    @Test
+    fun latin_american_spanish_locale_renders_home_setup_and_reveal() {
+        verifyLanguageFlow("settings_language_es_419")
     }
 
     @Test
@@ -105,7 +110,11 @@ class LocaleLayoutSmokeTest {
         }
         composeRule.onNodeWithTag(languageTag).performClick()
 
-        pressBack()
+        composeRule.waitUntil(timeoutMillis = 6_000) {
+            composeRule.onAllNodes(hasContentDescription(text(R.string.cd_back)))
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithContentDescription(text(R.string.cd_back)).performClick()
         composeRule.waitUntil(timeoutMillis = 6_000) {
             composeRule.onAllNodesWithTag("home_primary_cta").fetchSemanticsNodes().isNotEmpty()
         }
