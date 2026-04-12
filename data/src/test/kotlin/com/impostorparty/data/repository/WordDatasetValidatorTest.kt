@@ -55,17 +55,19 @@ class WordDatasetValidatorTest {
                 .words
 
         val spanishSpain = moviesFor("es-ES")
-        assertTrue(spanishSpain.containsAll(listOf("Origen", "Parque Jurásico", "Pantera Negra", "Miércoles")))
+        assertTrue(spanishSpain.containsAll(listOf("Origen", "Parque Jurásico", "Black Panther", "Miércoles")))
         assertFalse(spanishSpain.contains("El origen"))
         assertFalse(spanishSpain.contains("Jurassic Park"))
         assertFalse(spanishSpain.contains("Merlina"))
+        assertFalse(spanishSpain.contains("Pantera Negra"))
 
         val spanishLatam = moviesFor("es-419")
-        assertTrue(spanishLatam.containsAll(listOf("El origen", "Jurassic Park", "Pantera Negra", "Merlina")))
+        assertTrue(spanishLatam.containsAll(listOf("El origen", "Jurassic Park", "Black Panther", "Merlina")))
         assertFalse(spanishLatam.contains("Origen"))
         assertFalse(spanishLatam.contains("Parque Jurásico"))
         assertFalse(spanishLatam.contains("Miércoles"))
         assertFalse(spanishLatam.contains("Aquí no hay quien viva"))
+        assertFalse(spanishLatam.contains("Pantera Negra"))
 
         assertTrue(moviesFor("fr").contains("La Reine des neiges"))
         assertTrue(moviesFor("de").contains("Die Eiskönigin – Völlig unverfroren"))
