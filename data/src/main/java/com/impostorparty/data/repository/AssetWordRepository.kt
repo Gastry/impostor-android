@@ -7,6 +7,7 @@ import com.impostorparty.domain.model.LocalizedWordPool
 import com.impostorparty.domain.model.WordEntry
 import com.impostorparty.domain.repository.WordRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
+import java.nio.charset.StandardCharsets
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -44,7 +45,7 @@ class AssetWordRepository @Inject constructor(
     }
 
     private suspend fun loadWords(): CachedWordDataset = withContext(Dispatchers.IO) {
-        val raw = context.assets.open(DATASET_FILE).bufferedReader().use { it.readText() }
+        val raw = context.assets.open(DATASET_FILE).bufferedReader(StandardCharsets.UTF_8).use { it.readText() }
         val dataset = json.decodeFromString<WordDataset>(raw)
 
         WordDatasetValidator.validateOrThrow(dataset)

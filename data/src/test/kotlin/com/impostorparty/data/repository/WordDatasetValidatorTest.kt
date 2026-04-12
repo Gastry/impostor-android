@@ -5,6 +5,7 @@ import com.impostorparty.data.model.WordCategoryPayload
 import com.impostorparty.data.model.WordDataset
 import com.impostorparty.domain.model.Category
 import java.io.File
+import java.nio.charset.StandardCharsets
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -18,10 +19,14 @@ class WordDatasetValidatorTest {
         isLenient = true
     }
 
+    private fun readDataset(): WordDataset {
+        val file = File("src/main/assets/words_v1.json")
+        return json.decodeFromString(file.readText(StandardCharsets.UTF_8))
+    }
+
     @Test
     fun `dataset file is well formed and complete`() {
-        val file = File("src/main/assets/words_v1.json")
-        val dataset = json.decodeFromString<WordDataset>(file.readText())
+        val dataset = readDataset()
 
         WordDatasetValidator.validateOrThrow(dataset)
 
@@ -40,8 +45,7 @@ class WordDatasetValidatorTest {
 
     @Test
     fun `movies and series titles use localized market names`() {
-        val file = File("src/main/assets/words_v1.json")
-        val dataset = json.decodeFromString<WordDataset>(file.readText())
+        val dataset = readDataset()
 
         fun moviesFor(tag: String): List<String> =
             dataset.languages
@@ -60,7 +64,55 @@ class WordDatasetValidatorTest {
         assertTrue(moviesFor("de").contains("Die Eiskönigin – Völlig unverfroren"))
         assertTrue(moviesFor("it").contains("Il gladiatore"))
         assertTrue(moviesFor("pt").contains("A Origem"))
-        assertTrue(moviesFor("ja").contains("アナと雪の女王"))
+        assertTrue(moviesFor("ja").contains("\u30A2\u30CA\u3068\u96EA\u306E\u5973\u738B"))
+    }
+
+    @Test
+    fun `core categories stay inside their own language blocks`() {
+        val dataset = readDataset()
+
+        fun wordsFor(tag: String, code: String): List<String> =
+            dataset.languages
+                .first { it.tag == tag }
+                .categories
+                .first { it.code == code }
+                .words
+
+        val spanishAnimals = wordsFor("es", "animals")
+        assertTrue(spanishAnimals.contains("Perro"))
+        assertFalse(spanishAnimals.contains("Dog"))
+        assertFalse(spanishAnimals.contains("Chien"))
+        assertFalse(spanishAnimals.contains("Hund"))
+
+        val englishAnimals = wordsFor("en", "animals")
+        assertTrue(englishAnimals.contains("Dog"))
+        assertFalse(englishAnimals.contains("Perro"))
+        assertFalse(englishAnimals.contains("Chien"))
+
+        val frenchAnimals = wordsFor("fr", "animals")
+        assertTrue(frenchAnimals.contains("Chien"))
+        assertFalse(frenchAnimals.contains("Dog"))
+        assertFalse(frenchAnimals.contains("Perro"))
+
+        val germanAnimals = wordsFor("de", "animals")
+        assertTrue(germanAnimals.contains("Hund"))
+        assertFalse(germanAnimals.contains("Dog"))
+        assertFalse(germanAnimals.contains("Perro"))
+
+        val italianAnimals = wordsFor("it", "animals")
+        assertTrue(italianAnimals.contains("Cane"))
+        assertFalse(italianAnimals.contains("Dog"))
+        assertFalse(italianAnimals.contains("Perro"))
+
+        val portugueseAnimals = wordsFor("pt", "animals")
+        assertTrue(portugueseAnimals.contains("Cachorro"))
+        assertFalse(portugueseAnimals.contains("Dog"))
+        assertFalse(portugueseAnimals.contains("Perro"))
+
+        val japaneseAnimals = wordsFor("ja", "animals")
+        assertTrue(japaneseAnimals.contains("\u3044\u306C"))
+        assertFalse(japaneseAnimals.contains("Dog"))
+        assertFalse(japaneseAnimals.contains("Perro"))
     }
 
     @Test(expected = IllegalArgumentException::class)
