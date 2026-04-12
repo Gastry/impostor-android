@@ -17,8 +17,10 @@ import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.ui.theme.PartyDimens
 
@@ -46,8 +48,10 @@ fun PartySectionCard(
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = if (isDarkSurface) 3.dp else 2.dp),
     ) {
-        Column(modifier = Modifier.padding(contentPadding)) {
-            content()
+        CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurface) {
+            Column(modifier = Modifier.padding(contentPadding)) {
+                content()
+            }
         }
     }
 }

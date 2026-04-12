@@ -135,13 +135,19 @@ fun HomeScreen(
                             onClick = onHistory,
                             modifier = Modifier.testTag("home_history"),
                         ) {
-                            Text(stringResource(R.string.history_title))
+                            Text(
+                                text = stringResource(R.string.history_title),
+                                color = MaterialTheme.colorScheme.primary,
+                            )
                         }
                         TextButton(
                             onClick = onCredits,
                             modifier = Modifier.testTag("home_credits"),
                         ) {
-                            Text(stringResource(R.string.credits_title))
+                            Text(
+                                text = stringResource(R.string.credits_title),
+                                color = MaterialTheme.colorScheme.primary,
+                            )
                         }
                     }
                 }
@@ -206,6 +212,7 @@ private fun HomeHeroCard(
                 text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.testTag("home_title"),
             )
             Text(
