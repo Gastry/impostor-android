@@ -7,7 +7,7 @@ Android app para jugar presencialmente al juego del impostor con **un solo movil
 - Modo de revelado seguro con **mantener pulsado para revelar**.
 - 3 a 12 jugadores.
 - 1 o 2 impostores (2 habilitado desde 6 jugadores).
-- Dataset local offline por categorias (sin backend).
+- Dataset local offline por categorias.
 - Persistencia local con DataStore:
   - ajustes,
   - historial reciente,
@@ -114,6 +114,6 @@ Ver:
 - `docs/release-checklist.md`
 
    Notas
-- App 100% offline.
-- Sin login, sin backend, sin anuncios.
+- App 100% offline para la experiencia principal de juego.
+- Sin login.
 - Sin permisos peligrosos.

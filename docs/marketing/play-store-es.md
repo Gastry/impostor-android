@@ -21,7 +21,7 @@ Como funciona:
 3. Todos hablan, sospechan y votan.
 4. Revela la palabra y al impostor al final.
 
-Todo funciona offline. Sin cuentas, sin anuncios, sin backend.
+Juega offline. No hace falta crear cuenta.
 
 ## Bullet features
 - Revelado seguro por mantener pulsado
