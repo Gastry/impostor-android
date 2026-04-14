@@ -105,6 +105,11 @@ class NavigationSmokeTest {
     }
 
     private fun completeRevealFlow(playerCount: Int) {
+        composeRule.waitUntil(timeoutMillis = 8_000) {
+            composeRule.onAllNodesWithTag("reveal_hold_button")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+
         repeat(playerCount) {
             holdToReveal()
             composeRule.onNodeWithTag("reveal_hide_and_pass_button").performClick()
