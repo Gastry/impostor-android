@@ -21,7 +21,7 @@ How it works:
 3. Discuss, bluff and vote.
 4. Reveal the secret word and impostor at the end.
 
-Fully offline. No accounts. No ads. No backend.
+Play offline. No account required.
 
 ## Feature bullets
 - Safe hold-to-reveal interaction
