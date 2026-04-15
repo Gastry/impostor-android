@@ -1,0 +1,37 @@
+﻿<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1920" fill="#E5F7E1"/>
+  <circle cx="916" cy="156" r="192" fill="#16A34A" fill-opacity="0.15"/>
+  <circle cx="122" cy="1718" r="184" fill="#EA580C" fill-opacity="0.14"/>
+  <path d="M0 226C168 162 322 148 468 202C624 260 784 256 1080 136V0H0V226Z" fill="#FFFFFF" fill-opacity="0.28"/>
+
+  <rect x="72" y="70" width="392" height="50" rx="25" fill="#101827" fill-opacity="0.08"/>
+  <text x="268" y="103" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="1.8">RONDAS CORTAS Y REVANCHA</text>
+
+  <text x="72" y="190" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">RONDAS</text>
+  <text x="72" y="282" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">CORTAS</text>
+  <text x="72" y="374" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">REVANCHA</text>
+  <text x="72" y="464" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">Hecho para jugar varias partidas</text>
+  <text x="72" y="506" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">seguidas con facilidad.</text>
+
+  <g id="phone">
+    <rect x="286" y="560" width="508" height="1088" rx="66" fill="#111827"/>
+    <rect x="314" y="612" width="452" height="982" rx="34" fill="#F8FAFC"/>
+    <rect x="460" y="582" width="160" height="16" rx="8" fill="#283548"/>
+    <circle cx="700" cy="590" r="7" fill="#283548"/>
+    <rect x="344" y="646" width="392" height="346" rx="24" fill="#16A34A" fill-opacity="0.14"/>
+    <rect x="344" y="1026" width="392" height="24" rx="12" fill="#CBD5E1"/>
+    <rect x="344" y="1070" width="314" height="24" rx="12" fill="#E2E8F0"/>
+    <rect x="344" y="1140" width="392" height="282" rx="24" fill="#EA580C" fill-opacity="0.12"/>
+    <rect x="382" y="1470" width="316" height="78" rx="39" fill="#101827"/>
+    <text x="540" y="1260" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800">PON AQUI TU</text>
+    <text x="540" y="1302" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800">CAPTURA REAL</text>
+    <text x="540" y="1518" text-anchor="middle" fill="#FFF7ED" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">HUECO DE CAPTURA</text>
+  </g>
+
+  <rect x="180" y="1710" width="300" height="74" rx="37" fill="#101827"/>
+  <text x="330" y="1757" text-anchor="middle" fill="#FFF7ED" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">1-3 RONDAS</text>
+  <rect x="600" y="1710" width="300" height="74" rx="37" fill="#FFFFFF" fill-opacity="0.88"/>
+  <text x="750" y="1757" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">NOMBRES PROPIOS</text>
+</svg>
+
+

@@ -17,13 +17,22 @@ Recommended screenshot order for Google Play:
 6. "Bluff. Vote. Reveal."
    Suggested screen: result.
 
-SVG template pack:
-- `recursos/play_store_screenshot_templates/01_no_moderator_needed.svg`
-- `recursos/play_store_screenshot_templates/02_everyone_gets_to_play.svg`
-- `recursos/play_store_screenshot_templates/03_private_role_reveals.svg`
-- `recursos/play_store_screenshot_templates/04_fast_setup_for_groups.svg`
-- `recursos/play_store_screenshot_templates/05_short_rounds_quick_replay.svg`
-- `recursos/play_store_screenshot_templates/06_bluff_vote_reveal.svg`
+Folder structure:
+- `recursos/play_store_screenshot_templates/en/`
+- `recursos/play_store_screenshot_templates/es/`
+- `recursos/play_store_screenshot_templates/fr/`
+- `recursos/play_store_screenshot_templates/de/`
+- `recursos/play_store_screenshot_templates/it/`
+- `recursos/play_store_screenshot_templates/pt/`
+- `recursos/play_store_screenshot_templates/ja/`
+
+Each locale folder contains these files:
+- `01_no_moderator_needed.svg`
+- `02_everyone_gets_to_play.svg`
+- `03_private_role_reveals.svg`
+- `04_fast_setup_for_groups.svg`
+- `05_short_rounds_quick_replay.svg`
+- `06_bluff_vote_reveal.svg`
 
 Practical rules:
 - Each screenshot must work on its own.
