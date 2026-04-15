@@ -1,0 +1,65 @@
+﻿<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1080" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F5FF"/>
+      <stop offset="1" stop-color="#E7D9FF"/>
+    </linearGradient>
+    <linearGradient id="phoneShell" x1="275" y1="420" x2="805" y2="1540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#162033"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="screenGlow" x1="320" y1="490" x2="760" y2="1460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.62"/>
+    </linearGradient>
+    <filter id="shadow" x="195" y="368" width="690" height="1280" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="30"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0705882 0 0 0 0 0.109804 0 0 0 0 0.160784 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="930" cy="170" r="220" fill="#7C3AED" fill-opacity="0.18"/>
+  <circle cx="140" cy="1620" r="200" fill="#0F766E" fill-opacity="0.16"/>
+  <path d="M0 250C160 180 310 160 450 210C595 262 725 261 1080 120V0H0V250Z" fill="#FFFFFF" fill-opacity="0.35"/>
+  <path d="M1080 1560C910 1495 760 1485 620 1530C470 1580 315 1590 0 1470V1920H1080V1560Z" fill="#FFFFFF" fill-opacity="0.25"/>
+
+  <rect x="72" y="82" width="240" height="44" rx="22" fill="#101827" fill-opacity="0.08"/>
+  <text x="102" y="111" fill="#101827" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="22" font-weight="700" letter-spacing="2">ONE PHONE PARTY GAME</text>
+
+  <text x="72" y="230" fill="#101827" font-family="Aptos Display, Bahnschrift, Segoe UI, sans-serif" font-size="96" font-weight="800" letter-spacing="-2">PRIVATE ROLE</text>
+  <text x="72" y="334" fill="#101827" font-family="Aptos Display, Bahnschrift, Segoe UI, sans-serif" font-size="96" font-weight="800" letter-spacing="-2">REVEALS</text>
+  <text x="72" y="430" fill="#334155" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="34" font-weight="500">Each player sees their role alone. No paper, no extra host, no chaos.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="255" y="398" width="570" height="1154" rx="72" fill="url(#phoneShell)"/>
+    <rect x="286" y="454" width="508" height="1040" rx="42" fill="#0F172A"/>
+    <rect x="458" y="420" width="164" height="18" rx="9" fill="#2A3548"/>
+    <circle cx="704" cy="429" r="8" fill="#2A3548"/>
+    <g id="screen-slot">
+      <rect x="320" y="492" width="440" height="964" rx="28" fill="url(#screenGlow)"/>
+      <rect x="336" y="508" width="408" height="932" rx="20" fill="#FFF9F2" stroke="#0F172A" stroke-opacity="0.18" stroke-width="4" stroke-dasharray="16 14"/>
+      <rect x="368" y="580" width="344" height="240" rx="24" fill="#7C3AED" fill-opacity="0.14"/>
+      <rect x="368" y="854" width="344" height="26" rx="13" fill="#CBD5E1"/>
+      <rect x="368" y="902" width="280" height="26" rx="13" fill="#E2E8F0"/>
+      <rect x="368" y="996" width="344" height="180" rx="24" fill="#0F766E" fill-opacity="0.12"/>
+      <rect x="368" y="1208" width="220" height="52" rx="26" fill="#101827"/>
+      <text x="540" y="1064" text-anchor="middle" fill="#101827" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="34" font-weight="800">DROP YOUR</text>
+      <text x="540" y="1110" text-anchor="middle" fill="#101827" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="34" font-weight="800">SCREENSHOT HERE</text>
+    </g>
+  </g>
+
+  <rect x="72" y="1620" width="280" height="72" rx="36" fill="#101827"/>
+  <text x="212" y="1666" text-anchor="middle" fill="#FFF7ED" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="28" font-weight="800">HOLD TO REVEAL</text>
+  <rect x="372" y="1620" width="280" height="72" rx="36" fill="#FFFFFF" fill-opacity="0.84"/>
+  <text x="512" y="1666" text-anchor="middle" fill="#101827" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="28" font-weight="800">SHARED PHONE</text>
+
+  <text x="72" y="1780" fill="#334155" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="26" font-weight="600">Template: replace the phone screen with a real in-app capture.</text>
+  <text x="72" y="1820" fill="#64748B" font-family="Aptos, Bahnschrift, Segoe UI, sans-serif" font-size="22" font-weight="500">Keep each screenshot self-contained. Do not split one message across multiple images.</text>
+</svg>
