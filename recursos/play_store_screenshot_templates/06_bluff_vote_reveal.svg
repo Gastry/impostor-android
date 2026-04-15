@@ -1,26 +1,5 @@
 ﻿<svg width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1080" y2="1920" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF1F2"/>
-      <stop offset="1" stop-color="#FFD9DE"/>
-    </linearGradient>
-    <linearGradient id="phoneShell" x1="286" y1="560" x2="794" y2="1650" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#162033"/>
-      <stop offset="1" stop-color="#0B1220"/>
-    </linearGradient>
-    <filter id="shadow" x="220" y="510" width="640" height="1200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feOffset dy="26"/>
-      <feGaussianBlur stdDeviation="28"/>
-      <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.0705882 0 0 0 0 0.109804 0 0 0 0 0.160784 0 0 0 0.24 0"/>
-      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
-    </filter>
-  </defs>
-
-  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <rect width="1080" height="1920" fill="#FFE0E4"/>
   <circle cx="916" cy="156" r="192" fill="#E11D48" fill-opacity="0.15"/>
   <circle cx="122" cy="1718" r="184" fill="#0F766E" fill-opacity="0.14"/>
   <path d="M0 226C168 162 322 148 468 202C624 260 784 256 1080 136V0H0V226Z" fill="#FFFFFF" fill-opacity="0.28"/>
@@ -33,8 +12,8 @@
   <text x="72" y="448" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">Give clues, spot the impostor,</text>
   <text x="72" y="490" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">and show the result at the end.</text>
 
-  <g filter="url(#shadow)">
-    <rect x="286" y="560" width="508" height="1088" rx="66" fill="url(#phoneShell)"/>
+  <g id="phone">
+    <rect x="286" y="560" width="508" height="1088" rx="66" fill="#111827"/>
     <rect x="314" y="612" width="452" height="982" rx="34" fill="#F8FAFC"/>
     <rect x="460" y="582" width="160" height="16" rx="8" fill="#283548"/>
     <circle cx="700" cy="590" r="7" fill="#283548"/>
@@ -53,4 +32,5 @@
   <rect x="600" y="1710" width="300" height="74" rx="37" fill="#FFFFFF" fill-opacity="0.88"/>
   <text x="750" y="1757" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">PLAY OFFLINE</text>
 </svg>
+
 
