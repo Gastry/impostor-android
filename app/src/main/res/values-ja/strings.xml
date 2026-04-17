@@ -46,6 +46,16 @@
     <string name="setup_quick_mode">クイックモード（自動で隠す）</string>
     <string name="setup_custom_names">プレイヤー名をカスタム</string>
     <string name="setup_player_name_label">プレイヤー%1$dの名前</string>
+    <string name="player_names_title">プレイヤー名</string>
+    <string name="player_names_subtitle">個別確認を始める前に、参加者の名前を確認してください。</string>
+    <string name="player_names_clear_all">すべて消去</string>
+    <string name="player_names_empty_hint">空欄の名前には標準のプレイヤー名を使います。</string>
+    <string name="player_names_empty_placeholder">標準の名前</string>
+    <string name="player_names_saved_hint">この名前は次のゲームでも使われます。</string>
+    <string name="player_names_word_category_title">追加カテゴリ</string>
+    <string name="player_names_word_category_support">実際のプレイヤー名を秘密のワード候補に追加します。</string>
+    <string name="player_names_word_category_disabled">このカテゴリを使うには、全員に実際の名前を入力してください。</string>
+    <string name="player_names_clear_field_content_description">プレイヤー%1$dの名前を消去</string>
     <string name="setup_start_button">確認を始める</string>
     <string name="setup_error_title">ラウンドを開始できません</string>
 
@@ -204,6 +214,7 @@
     <string name="category_countries_cities">国・都市</string>
     <string name="category_nature">自然</string>
     <string name="category_general_knowledge">一般教養</string>
+    <string name="category_players">プレイヤー名</string>
 
     <string name="error_generic">問題が発生しました。もう一度お試しください。</string>
     <string name="error_player_count">プレイヤー人数は3人から12人の間で設定してください。</string>
@@ -212,6 +223,7 @@
     <string name="error_round_time">時間は3分から20分の間で設定してください。</string>
     <string name="error_clue_rounds">1ゲームの周回数は1〜3の範囲で設定してください。</string>
     <string name="error_not_enough_civilians">インポスターではないプレイヤーを少なくとも2人残してください。</string>
+    <string name="error_player_names_required">プレイヤー名をカテゴリとして使う前に、全員に実際の名前を入力してください。</string>
     <string name="error_no_words_for_category">選んだカテゴリに使えるワードがありません。</string>
     <string name="error_no_words_recent_filter">最近使ったワードの除外で候補がなくなりました。カテゴリを増やすか除外を外してください。</string>
 
@@ -220,5 +232,3 @@
     <string name="cd_close">閉じる</string>
     <string name="back_to_home">ホームに戻る</string>
 </resources>
-
-

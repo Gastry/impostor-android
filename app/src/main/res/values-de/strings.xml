@@ -46,6 +46,16 @@
     <string name="setup_quick_mode">Schnellmodus (automatisch verbergen)</string>
     <string name="setup_custom_names">Eigene Namen</string>
     <string name="setup_player_name_label">Name von Spieler %1$d</string>
+    <string name="player_names_title">Spielernamen</string>
+    <string name="player_names_subtitle">Prüft vor der geheimen Ansicht, wer mitspielt.</string>
+    <string name="player_names_clear_all">Alle löschen</string>
+    <string name="player_names_empty_hint">Leere Namen verwenden automatisch den Standardnamen.</string>
+    <string name="player_names_empty_placeholder">Standardname</string>
+    <string name="player_names_saved_hint">Diese Namen werden für die nächste Partie gespeichert.</string>
+    <string name="player_names_word_category_title">Zusätzliche Kategorie</string>
+    <string name="player_names_word_category_support">Fügt echte Spielernamen zum geheimen Wortpool hinzu.</string>
+    <string name="player_names_word_category_disabled">Trage für alle Spieler echte Namen ein, um diese Kategorie zu nutzen.</string>
+    <string name="player_names_clear_field_content_description">Name von Spieler %1$d löschen</string>
     <string name="setup_start_button">Aufdecken starten</string>
     <string name="setup_error_title">Runde kann nicht starten</string>
 
@@ -204,6 +214,7 @@
     <string name="category_countries_cities">Länder und Städte</string>
     <string name="category_nature">Natur</string>
     <string name="category_general_knowledge">Allgemeinwissen</string>
+    <string name="category_players">Spielernamen</string>
 
     <string name="error_generic">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
     <string name="error_player_count">Spielerzahl muss zwischen 3 und 12 liegen.</string>
@@ -212,6 +223,7 @@
     <string name="error_round_time">Rundenzeit muss zwischen 3 und 20 Minuten liegen.</string>
     <string name="error_clue_rounds">Runden pro Partie müssen zwischen 1 und 3 liegen.</string>
     <string name="error_not_enough_civilians">Es müssen mindestens zwei Nicht-Betrüger übrig bleiben.</string>
+    <string name="error_player_names_required">Trage für alle Spieler echte Namen ein, bevor du Spielernamen als Kategorie nutzt.</string>
     <string name="error_no_words_for_category">Für die gewählten Kategorien sind keine Wörter verfügbar.</string>
     <string name="error_no_words_recent_filter">Der Filter für zuletzt genutzte Wörter hat alle Optionen entfernt. Deaktiviere ihn oder wähle mehr Kategorien.</string>
 
@@ -220,6 +232,4 @@
     <string name="cd_close">Schließen</string>
     <string name="back_to_home">Zur Startseite</string>
 </resources>
-
-
 

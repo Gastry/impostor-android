@@ -46,6 +46,16 @@
     <string name="setup_quick_mode">Modo rápido (auto-ocultar)</string>
     <string name="setup_custom_names">Nombres personalizados</string>
     <string name="setup_player_name_label">Nombre del jugador %1$d</string>
+    <string name="player_names_title">Nombres de jugadores</string>
+    <string name="player_names_subtitle">Revisa quién juega antes de empezar el revelado privado.</string>
+    <string name="player_names_clear_all">Borrar todo</string>
+    <string name="player_names_empty_hint">Los nombres vacíos usarán el nombre por defecto.</string>
+    <string name="player_names_empty_placeholder">Nombre por defecto</string>
+    <string name="player_names_saved_hint">Estos nombres se recordarán para la próxima partida.</string>
+    <string name="player_names_word_category_title">Categoría extra</string>
+    <string name="player_names_word_category_support">Añade los nombres reales de los jugadores al conjunto de palabras secretas.</string>
+    <string name="player_names_word_category_disabled">Rellena todos los nombres reales para usar esta categoría.</string>
+    <string name="player_names_clear_field_content_description">Borrar nombre del jugador %1$d</string>
     <string name="setup_start_button">Iniciar revelado</string>
     <string name="setup_error_title">No se puede iniciar la ronda</string>
 
@@ -204,6 +214,7 @@
     <string name="category_countries_cities">Países y ciudades</string>
     <string name="category_nature">Naturaleza</string>
     <string name="category_general_knowledge">Cultura general</string>
+    <string name="category_players">Nombres de jugadores</string>
 
     <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
     <string name="error_player_count">El número de jugadores debe estar entre 3 y 12.</string>
@@ -212,6 +223,7 @@
     <string name="error_round_time">El tiempo debe estar entre 3 y 20 minutos.</string>
     <string name="error_clue_rounds">Las vueltas por partida deben estar entre 1 y 3.</string>
     <string name="error_not_enough_civilians">Deja al menos dos jugadores no impostores.</string>
+    <string name="error_player_names_required">Rellena todos los nombres reales antes de usar los jugadores como categoría.</string>
     <string name="error_no_words_for_category">No hay palabras para las categorías elegidas.</string>
     <string name="error_no_words_recent_filter">El filtro de recientes dejó el pool vacío. Desactívalo o añade categorías.</string>
 
@@ -220,6 +232,4 @@
     <string name="cd_close">Cerrar</string>
     <string name="back_to_home">Volver al inicio</string>
 </resources>
-
-
 

@@ -46,6 +46,16 @@
     <string name="setup_quick_mode">Modalità rapida (nascondi automaticamente)</string>
     <string name="setup_custom_names">Nomi personalizzati</string>
     <string name="setup_player_name_label">Nome giocatore %1$d</string>
+    <string name="player_names_title">Nomi dei giocatori</string>
+    <string name="player_names_subtitle">Controllate chi gioca prima della rivelazione privata.</string>
+    <string name="player_names_clear_all">Cancella tutto</string>
+    <string name="player_names_empty_hint">I nomi vuoti usano il nome predefinito.</string>
+    <string name="player_names_empty_placeholder">Nome predefinito</string>
+    <string name="player_names_saved_hint">Questi nomi saranno ricordati per la prossima partita.</string>
+    <string name="player_names_word_category_title">Categoria extra</string>
+    <string name="player_names_word_category_support">Aggiungi i veri nomi dei giocatori al gruppo di parole segrete.</string>
+    <string name="player_names_word_category_disabled">Inserisci un vero nome per ogni giocatore per usare questa categoria.</string>
+    <string name="player_names_clear_field_content_description">Cancella il nome del giocatore %1$d</string>
     <string name="setup_start_button">Avvia la rivelazione</string>
     <string name="setup_error_title">Impossibile avviare il round</string>
 
@@ -204,6 +214,7 @@
     <string name="category_countries_cities">Paesi e città</string>
     <string name="category_nature">Natura</string>
     <string name="category_general_knowledge">Cultura generale</string>
+    <string name="category_players">Nomi dei giocatori</string>
 
     <string name="error_generic">Qualcosa è andato storto. Riprova.</string>
     <string name="error_player_count">Numero giocatori tra 3 e 12.</string>
@@ -212,6 +223,7 @@
     <string name="error_round_time">Tempo tra 3 e 20 minuti.</string>
     <string name="error_clue_rounds">I giri per partita devono essere tra 1 e 3.</string>
     <string name="error_not_enough_civilians">Lascia almeno due non impostori.</string>
+    <string name="error_player_names_required">Inserisci un vero nome per ogni giocatore prima di usare i giocatori come categoria.</string>
     <string name="error_no_words_for_category">Nessuna parola disponibile per categorie scelte.</string>
     <string name="error_no_words_recent_filter">Il filtro delle parole recenti ha svuotato il pool. Disattivalo o aggiungi categorie.</string>
 
@@ -220,4 +232,3 @@
     <string name="cd_close">Chiudi</string>
     <string name="back_to_home">Torna alla home</string>
 </resources>
-

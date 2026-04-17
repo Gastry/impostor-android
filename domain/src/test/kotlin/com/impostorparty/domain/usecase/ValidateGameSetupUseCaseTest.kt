@@ -50,4 +50,21 @@ class ValidateGameSetupUseCaseTest {
             result,
         )
     }
+
+    @Test
+    fun `rejects player names category without all player names`() {
+        val setup = GameSetup(
+            playerCount = 4,
+            impostorCount = 1,
+            categories = setOf(Category.PLAYERS),
+            customPlayerNames = listOf("Ana", "", "Luis", "Mia"),
+        )
+
+        val result = useCase(setup)
+
+        assertEquals(
+            SetupValidationResult.Invalid(SetupValidationError.PLAYER_NAMES_REQUIRED),
+            result,
+        )
+    }
 }

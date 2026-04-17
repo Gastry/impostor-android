@@ -46,6 +46,16 @@
     <string name="setup_quick_mode">Mode rapide (masquage auto)</string>
     <string name="setup_custom_names">Noms personnalisés</string>
     <string name="setup_player_name_label">Nom du joueur %1$d</string>
+    <string name="player_names_title">Noms des joueurs</string>
+    <string name="player_names_subtitle">Vérifiez qui joue avant de lancer la révélation privée.</string>
+    <string name="player_names_clear_all">Tout effacer</string>
+    <string name="player_names_empty_hint">Les noms vides utilisent le nom par défaut.</string>
+    <string name="player_names_empty_placeholder">Nom par défaut</string>
+    <string name="player_names_saved_hint">Ces noms seront mémorisés pour la prochaine partie.</string>
+    <string name="player_names_word_category_title">Catégorie supplémentaire</string>
+    <string name="player_names_word_category_support">Ajoute les vrais noms des joueurs à la réserve de mots secrets.</string>
+    <string name="player_names_word_category_disabled">Renseignez un vrai nom pour chaque joueur afin d’utiliser cette catégorie.</string>
+    <string name="player_names_clear_field_content_description">Effacer le nom du joueur %1$d</string>
     <string name="setup_start_button">Commencer la révélation</string>
     <string name="setup_error_title">Impossible de lancer la manche</string>
 
@@ -204,6 +214,7 @@
     <string name="category_countries_cities">Pays et villes</string>
     <string name="category_nature">Nature</string>
     <string name="category_general_knowledge">Culture générale</string>
+    <string name="category_players">Noms des joueurs</string>
 
     <string name="error_generic">Une erreur est survenue. Réessayez.</string>
     <string name="error_player_count">Le nombre de joueurs doit être entre 3 et 12.</string>
@@ -212,6 +223,7 @@
     <string name="error_round_time">Le temps doit être entre 3 et 20 minutes.</string>
     <string name="error_clue_rounds">Le nombre de tours doit être entre 1 et 3.</string>
     <string name="error_not_enough_civilians">Laissez au moins deux non-imposteurs.</string>
+    <string name="error_player_names_required">Renseignez un vrai nom pour chaque joueur avant d’utiliser les joueurs comme catégorie.</string>
     <string name="error_no_words_for_category">Aucun mot n’est disponible pour les catégories sélectionnées.</string>
     <string name="error_no_words_recent_filter">Le filtre des mots récents a retiré toutes les options. Désactivez-le ou ajoutez des catégories.</string>
 
@@ -220,4 +232,3 @@
     <string name="cd_close">Fermer</string>
     <string name="back_to_home">Retour à l’accueil</string>
 </resources>
-

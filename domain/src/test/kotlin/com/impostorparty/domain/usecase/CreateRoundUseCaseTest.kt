@@ -67,6 +67,30 @@ class CreateRoundUseCaseTest {
         assertTrue(success.updatedWordUsageHistory.any { it.languageTag == "en" })
     }
 
+    @Test
+    fun `can use player names as dynamic word category`() = runTest {
+        val repository = FakeLocalizedRepository()
+        val setup = GameSetup(
+            playerCount = 4,
+            impostorCount = 1,
+            categories = setOf(Category.PLAYERS),
+            customPlayerNames = listOf("Ana", "Luis", "Mia", "Noa"),
+        )
+
+        val result = useCase(
+            setup = setup,
+            activeLanguageTag = "es-ES",
+            wordUsageHistory = emptyList(),
+            wordRepository = repository,
+            random = Random(1),
+        )
+
+        assertTrue(result is CreateRoundResult.Success)
+        val success = result as CreateRoundResult.Success
+        assertTrue(success.session.word.text in setup.customPlayerNames)
+        assertEquals(Category.PLAYERS, success.session.word.category)
+    }
+
     private class FakeLocalizedRepository : WordRepository {
         override suspend fun getWords(languageTag: String?): LocalizedWordPool {
             val normalized = languageTag?.substringBefore('-')

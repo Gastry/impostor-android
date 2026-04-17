@@ -9,6 +9,7 @@ import com.impostorparty.domain.repository.WordRepository
 import com.impostorparty.domain.usecase.CreateRoundResult
 import com.impostorparty.domain.usecase.CreateRoundUseCase
 import com.impostorparty.domain.usecase.GetAllowedImpostorCountsUseCase
+import com.impostorparty.domain.usecase.SetupValidationError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Locale
 import javax.inject.Inject
@@ -64,7 +65,9 @@ class SetupViewModel @Inject constructor(
     fun updatePlayerCount(count: Int) {
         _setup.update {
             val adjusted = it.copy(playerCount = count)
-            getAllowedImpostorCountsUseCase.clamp(adjusted)
+            getAllowedImpostorCountsUseCase.clamp(
+                adjusted.copy(categories = adjusted.categories - Category.PLAYERS),
+            )
         }
     }
 
@@ -85,31 +88,111 @@ class SetupViewModel @Inject constructor(
         }
     }
 
+    fun preparePlayerNames(currentAppLanguageTag: String?) {
+        _setup.update { current ->
+            val defaults = localizedDefaultPlayerNames(
+                playerCount = current.playerCount,
+                languageTag = currentAppLanguageTag,
+            )
+            val next = current.copy(customPlayerNames = current.resolvedPlayerNames(defaults))
+            if (next.canUsePlayerNamesAsWords(defaults)) {
+                next
+            } else {
+                next.copy(categories = next.categories - Category.PLAYERS)
+            }
+        }
+    }
+
+    fun updatePlayerName(index: Int, name: String) {
+        _setup.update { current ->
+            if (index !in 0 until current.playerCount) return@update current
+
+            val names = current.customPlayerNames
+                .normalizedSize(current.playerCount)
+                .toMutableList()
+            names[index] = name
+            val next = current.copy(customPlayerNames = names)
+            if (names.any { it.isBlank() }) {
+                next.copy(categories = next.categories - Category.PLAYERS)
+            } else {
+                next
+            }
+        }
+    }
+
+    fun clearPlayerName(index: Int) {
+        updatePlayerName(index, "")
+    }
+
+    fun clearPlayerNames() {
+        _setup.update { current ->
+            current.copy(
+                categories = current.categories - Category.PLAYERS,
+                customPlayerNames = List(current.playerCount) { "" },
+            )
+        }
+    }
+
+    fun canUsePlayerNamesAsWords(currentAppLanguageTag: String?): Boolean {
+        val current = _setup.value
+        val defaults = localizedDefaultPlayerNames(
+            playerCount = current.playerCount,
+            languageTag = currentAppLanguageTag,
+        )
+        return current.canUsePlayerNamesAsWords(defaults)
+    }
+
+    fun setPlayerNamesAsWordsEnabled(enabled: Boolean, currentAppLanguageTag: String?) {
+        _setup.update { current ->
+            val defaults = localizedDefaultPlayerNames(
+                playerCount = current.playerCount,
+                languageTag = currentAppLanguageTag,
+            )
+            val categories = if (enabled && current.canUsePlayerNamesAsWords(defaults)) {
+                current.categories + Category.PLAYERS
+            } else {
+                current.categories - Category.PLAYERS
+            }
+            current.copy(categories = categories)
+        }
+    }
+
     suspend fun createRound(
         currentAppLanguageTag: String?,
         sourceSetup: GameSetup? = null,
     ): CreateRoundResult {
         _isStartingRound.value = true
-        val setupSnapshot = getAllowedImpostorCountsUseCase.clamp(
+        val clampedSetup = getAllowedImpostorCountsUseCase.clamp(
             fixedSetup(sourceSetup ?: _setup.value),
         )
-        _setup.value = setupSnapshot
 
         val settingsSnapshot = preferencesRepository.appSettings.first()
         val effectiveLanguageTag = resolveEffectiveLanguageTag(
             preferredLanguageTag = settingsSnapshot.languageTag,
             currentAppLanguageTag = currentAppLanguageTag,
         )
+        val fallbackNames = localizedDefaultPlayerNames(
+            playerCount = clampedSetup.playerCount,
+            languageTag = effectiveLanguageTag,
+        )
+        if (Category.PLAYERS in clampedSetup.categories && !clampedSetup.canUsePlayerNamesAsWords(fallbackNames)) {
+            val result = CreateRoundResult.InvalidSetup(SetupValidationError.PLAYER_NAMES_REQUIRED)
+            _message.value = UiMessage.fromSetupError(result.error)
+            _isStartingRound.value = false
+            return result
+        }
+        val setupSnapshot = clampedSetup.copy(
+            customPlayerNames = clampedSetup.resolvedPlayerNames(fallbackNames),
+        )
+        _setup.value = setupSnapshot
+
         val result = createRoundUseCase(
             setup = setupSnapshot,
             activeLanguageTag = effectiveLanguageTag,
             wordUsageHistory = preferencesRepository.wordUsageHistory.first(),
             wordRepository = wordRepository,
             random = Random(System.nanoTime()),
-            fallbackPlayerNames = localizedDefaultPlayerNames(
-                playerCount = setupSnapshot.playerCount,
-                languageTag = effectiveLanguageTag,
-            ),
+            fallbackPlayerNames = fallbackNames,
         )
 
         when (result) {
@@ -141,7 +224,7 @@ class SetupViewModel @Inject constructor(
             hapticsEnabled = defaults.hapticsEnabled,
             avoidRecentWords = true,
             quickMode = defaults.quickMode,
-            customPlayerNames = defaults.customPlayerNames,
+            customPlayerNames = setup.customPlayerNames.normalizedSize(setup.playerCount),
         )
     }
 
@@ -156,6 +239,26 @@ class SetupViewModel @Inject constructor(
             else -> "Player"
         }
         return List(playerCount) { index -> "$label ${index + 1}" }
+    }
+
+    private fun GameSetup.resolvedPlayerNames(fallbackNames: List<String>): List<String> {
+        return List(playerCount) { index ->
+            customPlayerNames.getOrNull(index)
+                ?.trim()
+                ?.takeIf { it.isNotBlank() }
+                ?: fallbackNames.getOrNull(index)
+                ?: "Player ${index + 1}"
+        }
+    }
+
+    private fun List<String>.normalizedSize(playerCount: Int): List<String> {
+        return List(playerCount) { index -> getOrNull(index).orEmpty() }
+    }
+
+    private fun GameSetup.canUsePlayerNamesAsWords(defaultNames: List<String>): Boolean {
+        val names = customPlayerNames.normalizedSize(playerCount).map { it.trim() }
+        return names.all { it.isNotBlank() } &&
+            names.zip(defaultNames).all { (name, defaultName) -> name != defaultName }
     }
 
     private fun resolveEffectiveLanguageTag(

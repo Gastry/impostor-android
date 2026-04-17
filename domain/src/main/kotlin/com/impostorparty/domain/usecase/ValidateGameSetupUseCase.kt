@@ -1,5 +1,6 @@
-﻿package com.impostorparty.domain.usecase
+package com.impostorparty.domain.usecase
 
+import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
 import javax.inject.Inject
 
@@ -15,6 +16,7 @@ enum class SetupValidationError {
     ROUND_TIME_INVALID,
     CLUE_ROUNDS_INVALID,
     NOT_ENOUGH_NON_IMPOSTORS,
+    PLAYER_NAMES_REQUIRED,
 }
 
 class ValidateGameSetupUseCase @Inject constructor(
@@ -41,6 +43,14 @@ class ValidateGameSetupUseCase @Inject constructor(
         if (setup.playerCount - setup.impostorCount < 2) {
             return SetupValidationResult.Invalid(SetupValidationError.NOT_ENOUGH_NON_IMPOSTORS)
         }
+        if (Category.PLAYERS in setup.categories && !setup.hasCompletePlayerNames()) {
+            return SetupValidationResult.Invalid(SetupValidationError.PLAYER_NAMES_REQUIRED)
+        }
         return SetupValidationResult.Valid
+    }
+
+    private fun GameSetup.hasCompletePlayerNames(): Boolean {
+        val names = customPlayerNames.take(playerCount)
+        return names.size == playerCount && names.all { it.isNotBlank() }
     }
 }

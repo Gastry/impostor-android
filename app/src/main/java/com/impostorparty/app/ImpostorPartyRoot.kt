@@ -34,6 +34,7 @@ import com.impostorparty.app.ui.screen.FeedbackScreen
 import com.impostorparty.app.ui.screen.HistoryScreen
 import com.impostorparty.app.ui.screen.HomeScreen
 import com.impostorparty.app.ui.screen.HowToPlayScreen
+import com.impostorparty.app.ui.screen.PlayerNamesScreen
 import com.impostorparty.app.ui.screen.ResultScreen
 import com.impostorparty.app.ui.screen.RevealScreen
 import com.impostorparty.app.ui.screen.RoundReadyScreen
@@ -167,6 +168,35 @@ fun ImpostorPartyRoot(
                     onPlayerCountChanged = setupViewModel::updatePlayerCount,
                     onImpostorCountChanged = setupViewModel::updateImpostorCount,
                     onToggleCategory = setupViewModel::toggleCategory,
+                    onStartRound = {
+                        setupViewModel.preparePlayerNames(currentAppLanguageTag)
+                        navController.navigate(AppRoute.PlayerNames.route)
+                    },
+                    onBack = { navController.popBackStack() },
+                )
+            }
+
+            composable(AppRoute.PlayerNames.route) {
+                PlayerNamesScreen(
+                    setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.SETUP_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
+                    isLoading = setupViewModel.isStartingRound.collectAsStateWithLifecycle().value,
+                    message = setupViewModel.message.collectAsStateWithLifecycle().value,
+                    onDismissMessage = setupViewModel::dismissMessage,
+                    onNameChanged = setupViewModel::updatePlayerName,
+                    onClearName = setupViewModel::clearPlayerName,
+                    onClearAll = setupViewModel::clearPlayerNames,
+                    playerNamesAsWordsAvailable = setupViewModel.canUsePlayerNamesAsWords(currentAppLanguageTag),
+                    onPlayerNamesAsWordsChanged = {
+                        setupViewModel.setPlayerNamesAsWordsEnabled(it, currentAppLanguageTag)
+                    },
                     onStartRound = {
                         scope.launch {
                             val result = setupViewModel.createRound(currentAppLanguageTag)
