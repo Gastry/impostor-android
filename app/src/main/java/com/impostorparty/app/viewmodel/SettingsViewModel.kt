@@ -78,10 +78,6 @@ class SettingsViewModel @Inject constructor(
         updateAppSettings { it.copy(hapticsEnabled = enabled) }
     }
 
-    fun updateAvoidRecentWords(enabled: Boolean) {
-        updateAppSettings { it.copy(avoidRecentWords = enabled) }
-    }
-
     fun updateRevealAnimation(enabled: Boolean) {
         updateAppSettings { it.copy(showRevealAnimation = enabled) }
     }

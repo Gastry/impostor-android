@@ -153,21 +153,20 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Setup.route) {
                 SetupScreen(
                     setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.SETUP_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     isLoading = setupViewModel.isStartingRound.collectAsStateWithLifecycle().value,
                     message = setupViewModel.message.collectAsStateWithLifecycle().value,
                     onDismissMessage = setupViewModel::dismissMessage,
                     onPlayerCountChanged = setupViewModel::updatePlayerCount,
                     onImpostorCountChanged = setupViewModel::updateImpostorCount,
                     onToggleCategory = setupViewModel::toggleCategory,
-                    onRoundMinutesChanged = setupViewModel::updateRoundMinutes,
-                    onClueRoundsChanged = setupViewModel::updateClueRounds,
-                    onNoExtraHintsChanged = setupViewModel::updateNoExtraHints,
-                    onQuickModeChanged = setupViewModel::updateQuickMode,
-                    onRevealAnimationChanged = setupViewModel::updateRevealAnimation,
-                    onHapticsChanged = setupViewModel::updateHaptics,
-                    onAvoidRecentWordsChanged = setupViewModel::updateAvoidRecentWords,
-                    onCustomPlayerNameChanged = setupViewModel::updateCustomPlayerName,
-                    onClearCustomNames = setupViewModel::clearCustomNames,
                     onStartRound = {
                         scope.launch {
                             val result = setupViewModel.createRound(currentAppLanguageTag)
@@ -287,6 +286,10 @@ fun ImpostorPartyRoot(
                         placement = AdPlacement.HOW_TO_PLAY_BANNER,
                         adsRemoved = adsRemoved,
                     ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     onBack = { navController.popBackStack() },
                 )
             }
@@ -315,7 +318,6 @@ fun ImpostorPartyRoot(
                     onShowQuickInstructionsChanged = settingsViewModel::updateShowQuickInstructions,
                     onSecureScreenChanged = settingsViewModel::updateSecureScreen,
                     onHapticsChanged = settingsViewModel::updateHaptics,
-                    onAvoidRecentChanged = settingsViewModel::updateAvoidRecentWords,
                     onRevealAnimationChanged = settingsViewModel::updateRevealAnimation,
                     onRemoveAds = {
                         activity?.let(billingViewModel::launchPurchase)
@@ -415,7 +417,7 @@ private fun SensitiveContentEffect(enabled: Boolean) {
 
     DisposableEffect(activity, enabled) {
         val window = activity.window
-        if (enabled) {
+        if (enabled && !BuildConfig.DEBUG) {
             window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)

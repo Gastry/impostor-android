@@ -8,4 +8,6 @@ data class ReviewPromptState(
     val lastReviewAttemptEpochMillis: Long? = null,
     val lastReviewLaterEpochMillis: Long? = null,
     val lastCompletedRoundId: String? = null,
+    val nextPromptAtCompletedGames: Int = 5,
+    val isPermanentlyDismissed: Boolean = false,
 )

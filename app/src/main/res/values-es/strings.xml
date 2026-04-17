@@ -11,6 +11,12 @@
     <string name="home_banner_fallback_subtitle_price">Pago único · %1$s</string>
     <string name="home_banner_fallback_cta">Ver opción</string>
 
+    <string name="promo_banner_label">Más de Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Guía de fermentación</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Calculadora de proporciones</string>
+
     <string name="how_to_play_title">Cómo se juega</string>
     <string name="settings_title">Ajustes</string>
     <string name="history_title">Historial</string>
@@ -33,12 +39,10 @@
     <string name="setup_clue_round_hint_2">2 vueltas: suele ser la opción más equilibrada.</string>
     <string name="setup_clue_round_hint_3">3 vueltas: más tensión y más deducción.</string>
     <string name="setup_categories_title">Categorías</string>
-    <string name="setup_advanced_options">Opciones avanzadas</string>
     <string name="setup_round_time_title">Tiempo sugerido: %1$d min</string>
     <string name="setup_no_extra_hints">Sin pistas extra</string>
     <string name="setup_show_animation">Mostrar animación de revelado</string>
     <string name="setup_haptics">Activar hápticos</string>
-    <string name="setup_avoid_recent">Evitar palabras recientes</string>
     <string name="setup_quick_mode">Modo rápido (auto-ocultar)</string>
     <string name="setup_custom_names">Nombres personalizados</string>
     <string name="setup_player_name_label">Nombre del jugador %1$d</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">Asegúrate de que nadie más mire.</string>
     <string name="reveal_hold_to_see">Mantén pulsado para revelar</string>
     <string name="reveal_hold_hint">Mantén pulsado un instante</string>
-    <string name="reveal_word_title">Tu palabra es</string>
+    <string name="reveal_word_title">La palabra es</string>
     <string name="reveal_impostor_title">Eres el impostor</string>
     <string name="reveal_impostor_hint">Disimula y adivina la palabra.</string>
     <string name="reveal_hide_and_pass">Ocultar y pasar</string>
 
     <string name="round_ready_title">Todo listo</string>
-    <string name="round_ready_instructions">Dejad el móvil a un lado. Cada jugador dice una sola palabra por vuelta. Cuando terminéis las vueltas elegidas, votad al impostor.</string>
+    <string name="round_ready_instructions">Dejad el móvil a un lado. Cada jugador dice una sola palabra por vuelta. Lo normal es votar tras 2 vueltas; añadid una tercera solo si al grupo le falta información.</string>
     <string name="round_ready_clue_rounds">Vueltas elegidas para esta partida: %1$d</string>
     <string name="round_ready_word_per_turn">Una palabra por jugador en cada vuelta.</string>
     <string name="round_ready_vote_after_rounds">Cuando completéis las %1$d vueltas, votad al impostor.</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">Cómo se juega la ronda</string>
     <string name="how_play_line_1">Cuando todos hayan visto su rol, dejad el móvil a un lado.</string>
     <string name="how_play_line_2">En cada vuelta, cada jugador dice exactamente 1 palabra relacionada con la palabra secreta.</string>
-    <string name="how_play_line_3">Mantened el mismo número de vueltas hasta la votación.</string>
+    <string name="how_play_line_3">Lo normal es jugar 2 vueltas antes de votar; añadid una tercera solo si al grupo le falta información.</string>
     <string name="how_play_line_4">La app no controla los turnos hablados; eso lo lleva el grupo.</string>
     <string name="how_win_title">Cómo se gana</string>
-    <string name="how_win_line_1">Al completar todas las vueltas pactadas, votad quién creéis que es el impostor.</string>
+    <string name="how_win_line_1">Tras 2 vueltas, o 3 si todavía os falta información, votad quién creéis que es el impostor.</string>
     <string name="how_win_line_2">Si el grupo lo descubre, ganan los civiles.</string>
     <string name="how_win_line_3">Si el grupo falla, gana el impostor.</string>
     <string name="how_win_line_4">Variante opcional entre amigos: si lo descubren, el impostor puede empatar si adivina la palabra (la app no lo aplica).</string>
     <string name="how_tips_title">Consejos para jugar mejor</string>
     <string name="how_tip_1">No des pistas demasiado claras.</string>
-    <string name="how_tip_2">2 vueltas suele ser la opción más equilibrada.</string>
+    <string name="how_tip_2">2 vueltas suele ser el mejor punto de partida; añadid una tercera solo si al grupo le falta información.</string>
     <string name="how_tip_3">Observa cómo responden los demás.</string>
 
     <string name="settings_theme_title">Tema</string>
@@ -112,7 +116,6 @@
     <string name="settings_haptics">Hápticos</string>
     <string name="settings_reduced_motion">Reducir movimiento</string>
     <string name="settings_show_instructions">Mostrar instrucciones cortas</string>
-    <string name="settings_avoid_recent">Evitar palabras recientes</string>
     <string name="settings_show_animation">Animación de revelado</string>
     <string name="settings_secure_screen">Proteger pantallas sensibles</string>
     <string name="settings_remove_ads_buy">Quitar anuncios</string>
@@ -217,5 +220,7 @@
     <string name="cd_close">Cerrar</string>
     <string name="back_to_home">Volver al inicio</string>
 </resources>
+
+
 
 

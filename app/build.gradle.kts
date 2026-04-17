@@ -1,3 +1,6 @@
+﻿import java.nio.charset.MalformedInputException
+import java.nio.charset.StandardCharsets
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -11,6 +14,58 @@ val debugHomeBannerAdUnitId = "ca-app-pub-3940256099942544/9214589741"
 val removeAdsProductId = providers.gradleProperty("removeAdsProductId").orNull ?: "remove_ads"
 val releaseAdMobAppId = providers.gradleProperty("admobAppId").orNull ?: debugAdMobAppId
 val releaseHomeBannerAdUnitId = providers.gradleProperty("admobHomeBannerAdUnitId").orNull.orEmpty()
+val appVersionCode = 4
+
+val suspiciousStringMarkers = listOf(
+    "\u00C3",
+    "\u00C2",
+    "\u00E2\u20AC\u00A6",
+    "\u00E2\u20AC\u2122",
+    "\u00E2\u20AC\u0153",
+    "\u00E2\u20AC\u009D",
+    "\u00E2\u20AC\u201C",
+    "\u00E2\u20AC\u201D",
+    "\u00E6\u2014\u00A5\u00E6\u0153\u00AC\u00E8\u00AA\u017E",
+)
+
+val checkStringsEncoding by tasks.registering {
+    group = "verification"
+    description = "Fails if any Android strings.xml file contains mojibake or invalid UTF-8."
+
+    val stringFiles = fileTree("src/main/res") {
+        include("**/strings.xml")
+    }
+
+    inputs.files(stringFiles)
+
+    doLast {
+        val failures = mutableListOf<String>()
+
+        stringFiles.files.sorted().forEach { file ->
+            val content = try {
+                file.readText(StandardCharsets.UTF_8)
+            } catch (error: MalformedInputException) {
+                failures += "${file.relativeTo(projectDir)}: invalid UTF-8 (${error.message ?: "malformed input"})"
+                return@forEach
+            }
+
+            suspiciousStringMarkers.forEach { marker ->
+                if (content.contains(marker)) {
+                    failures += "${file.relativeTo(projectDir)}: contains suspicious marker '$marker'"
+                }
+            }
+        }
+
+        if (failures.isNotEmpty()) {
+            error(
+                buildString {
+                    appendLine("Detected broken encoding in Android string resources:")
+                    failures.distinct().sorted().forEach { appendLine(" - $it") }
+                },
+            )
+        }
+    }
+}
 
 android {
     namespace = "com.impostorparty.app"
@@ -20,8 +75,8 @@ android {
         applicationId = "com.gastry.elimpostor"
         minSdk = 24
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = appVersionCode
+        versionName = "1.$appVersionCode"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -74,6 +129,10 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+}
+
+tasks.named("preBuild") {
+    dependsOn(checkStringsEncoding)
 }
 
 dependencies {

@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -17,33 +16,22 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.HideSource
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
-import com.impostorparty.app.ui.components.AdMobBanner
-import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyBackground
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
+import com.impostorparty.app.ui.components.PromoBannerSlot
 import com.impostorparty.app.ui.components.SecondaryPartyButton
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.GameStats
@@ -60,12 +48,7 @@ fun HomeScreen(
     onHistory: () -> Unit,
     onCredits: () -> Unit,
 ) {
-    val bannerReservedHeight = if (homeBannerAdUnitId != null) 88.dp else 0.dp
-    var bannerState by rememberSaveable(homeBannerAdUnitId) {
-        mutableStateOf(
-            if (homeBannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
-        )
-    }
+    val bannerReservedHeight = 88.dp
 
     Box(modifier = Modifier.fillMaxSize()) {
         PartyBackground()
@@ -154,29 +137,15 @@ fun HomeScreen(
             }
         }
 
-        if (homeBannerAdUnitId != null) {
-            when (bannerState) {
-                BannerLoadState.LOADING,
-                BannerLoadState.LOADED,
-                -> AdMobBanner(
-                    adUnitId = homeBannerAdUnitId,
-                    onLoadStateChanged = { bannerState = it },
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .windowInsetsPadding(WindowInsets.safeDrawing),
-                )
-
-                BannerLoadState.FAILED -> RemoveAdsFallbackCard(
-                    priceLabel = removeAdsPriceLabel,
-                    onClick = onOpenRemoveAdsSettings,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .windowInsetsPadding(WindowInsets.safeDrawing),
-                )
-            }
-        }
+        PromoBannerSlot(
+            adUnitId = homeBannerAdUnitId,
+            removeAdsPriceLabel = removeAdsPriceLabel,
+            onRemoveAdsClick = onOpenRemoveAdsSettings,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.safeDrawing),
+        )
     }
 }
 
@@ -251,98 +220,6 @@ private fun HomeStatPill(text: String) {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-    }
-}
-
-@Composable
-private fun RemoveAdsFallbackCard(
-    priceLabel: String?,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        onClick = onClick,
-        modifier = modifier
-            .height(64.dp)
-            .testTag("home_banner_fallback"),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.88f),
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-        ),
-        shape = RoundedCornerShape(0.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.72f),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
-                    ),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.HideSource,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(18.dp),
-                )
-            }
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.home_banner_fallback_title),
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Text(
-                    text = removeAdsPromoSubtitle(priceLabel),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.74f),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
-            Column(
-                horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(2.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.home_support_title),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.68f),
-                    maxLines = 1,
-                )
-                Text(
-                    text = stringResource(R.string.home_banner_fallback_cta),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.End,
-                    maxLines = 1,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun removeAdsPromoSubtitle(priceLabel: String?): String {
-    return if (priceLabel.isNullOrBlank()) {
-        stringResource(R.string.home_banner_fallback_subtitle)
-    } else {
-        stringResource(R.string.home_banner_fallback_subtitle_price, priceLabel)
     }
 }
 

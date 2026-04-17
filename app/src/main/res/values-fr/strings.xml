@@ -3,13 +3,19 @@
     <string name="new_game">Nouvelle partie</string>
     <string name="home_tagline">Un téléphone. Un imposteur. Chaos garanti.</string>
     <string name="home_stats_title">Dernières parties</string>
-    <string name="home_stats_games_played">Parties jouees : %1$d</string>
+    <string name="home_stats_games_played">Parties jouées : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
     <string name="home_support_title">Soutiens l’app</string>
     <string name="home_banner_fallback_title">Supprimer la publicité pour toujours</string>
     <string name="home_banner_fallback_subtitle">Paiement unique</string>
     <string name="home_banner_fallback_subtitle_price">Paiement unique · %1$s</string>
     <string name="home_banner_fallback_cta">Voir l’option</string>
+
+    <string name="promo_banner_label">Plus de Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Guide de fermentation</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Calculatrice de proportions</string>
 
     <string name="how_to_play_title">Comment jouer</string>
     <string name="settings_title">Paramètres</string>
@@ -29,38 +35,36 @@
     <string name="setup_clue_round_option_1">1 tour</string>
     <string name="setup_clue_round_option_2">2 tours</string>
     <string name="setup_clue_round_option_3">3 tours</string>
-    <string name="setup_clue_round_hint_1">1 tour : partie rapide, moins d informations.</string>
-    <string name="setup_clue_round_hint_2">2 tours : option la plus equilibree.</string>
-    <string name="setup_clue_round_hint_3">3 tours : plus de tension et deduction.</string>
-    <string name="setup_categories_title">Categories</string>
-    <string name="setup_advanced_options">Options avancees</string>
-    <string name="setup_round_time_title">Temps conseille : %1$d min</string>
-    <string name="setup_no_extra_hints">Sans indices supplementaires</string>
-    <string name="setup_show_animation">Afficher animation</string>
-    <string name="setup_haptics">Activer haptique</string>
-    <string name="setup_avoid_recent">Eviter mots recents</string>
+    <string name="setup_clue_round_hint_1">1 tour : partie rapide, moins d’informations.</string>
+    <string name="setup_clue_round_hint_2">2 tours : l’option la plus équilibrée.</string>
+    <string name="setup_clue_round_hint_3">3 tours : plus de tension et de déduction.</string>
+    <string name="setup_categories_title">Catégories</string>
+    <string name="setup_round_time_title">Temps conseillé : %1$d min</string>
+    <string name="setup_no_extra_hints">Sans indices supplémentaires</string>
+    <string name="setup_show_animation">Afficher l’animation de révélation</string>
+    <string name="setup_haptics">Activer le retour haptique</string>
     <string name="setup_quick_mode">Mode rapide (masquage auto)</string>
-    <string name="setup_custom_names">Noms personnalises</string>
-    <string name="setup_player_name_label">Nom joueur %1$d</string>
+    <string name="setup_custom_names">Noms personnalisés</string>
+    <string name="setup_player_name_label">Nom du joueur %1$d</string>
     <string name="setup_start_button">Commencer la révélation</string>
     <string name="setup_error_title">Impossible de lancer la manche</string>
 
-    <string name="reveal_title">Revelation privee</string>
-    <string name="reveal_pass_to_player">Passez le telephone a %1$s</string>
-    <string name="reveal_keep_private">Assurez vous que personne ne regarde.</string>
+    <string name="reveal_title">Révélation privée</string>
+    <string name="reveal_pass_to_player">Passez le téléphone à %1$s</string>
+    <string name="reveal_keep_private">Assurez-vous que personne d’autre ne regarde.</string>
     <string name="reveal_hold_to_see">Maintenir pour révéler</string>
-    <string name="reveal_hold_hint">Gardez appuye un court instant</string>
-    <string name="reveal_word_title">Ton mot est</string>
-    <string name="reveal_impostor_title">Tu es imposteur</string>
+    <string name="reveal_hold_hint">Gardez appuyé un court instant</string>
+    <string name="reveal_word_title">Le mot est</string>
+    <string name="reveal_impostor_title">Tu es l’imposteur</string>
     <string name="reveal_impostor_hint">Fais semblant et devine le mot.</string>
     <string name="reveal_hide_and_pass">Masquer et passer</string>
 
-    <string name="round_ready_title">Tout est pret</string>
-    <string name="round_ready_instructions">Chaque joueur dit un seul mot par tour. Après les tours convenus, votez pour l’imposteur.</string>
-    <string name="round_ready_clue_rounds">Tours fixes pour cette partie : %1$d</string>
-    <string name="round_ready_word_per_turn">A chaque tour, chaque joueur dit 1 mot.</string>
+    <string name="round_ready_title">Tout est prêt</string>
+    <string name="round_ready_instructions">Laissez le téléphone de côté. Chaque joueur dit un mot par tour. La base recommandée est de voter après 2 tours ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
+    <string name="round_ready_clue_rounds">Tours fixés pour cette partie : %1$d</string>
+    <string name="round_ready_word_per_turn">À chaque tour, chaque joueur dit 1 mot.</string>
     <string name="round_ready_vote_after_rounds">Après %1$d tours, votez pour l’imposteur.</string>
-    <string name="round_ready_suggested_time">Temps conseille : %1$d minutes</string>
+    <string name="round_ready_suggested_time">Temps conseillé : %1$d minutes</string>
     <string name="round_ready_finish_button">Terminer la manche</string>
     <string name="round_ready_new_config_button">Nouvelle configuration</string>
 
@@ -91,30 +95,29 @@
     <string name="how_play_title">Déroulement de la manche</string>
     <string name="how_play_line_1">Quand tout le monde a vu son rôle, laissez le téléphone de côté.</string>
     <string name="how_play_line_2">À chaque tour, chaque joueur dit exactement 1 mot lié au mot secret.</string>
-    <string name="how_play_line_3">Gardez le même nombre de tours jusqu’au vote.</string>
+    <string name="how_play_line_3">La base recommandée est de faire 2 tours avant le vote ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
     <string name="how_play_line_4">L’app ne gère pas les tours de parole ; le groupe s’en charge.</string>
     <string name="how_win_title">Comment gagner</string>
-    <string name="how_win_line_1">Quand tous les tours prévus sont terminés, votez pour la personne que vous pensez être l’imposteur.</string>
+    <string name="how_win_line_1">Après 2 tours, ou 3 si le groupe manque encore d’informations, votez pour la personne que vous pensez être l’imposteur.</string>
     <string name="how_win_line_2">Si le groupe le trouve, les civils gagnent.</string>
     <string name="how_win_line_3">Si le groupe se trompe, l’imposteur gagne.</string>
-    <string name="how_win_line_4">Variante optionnelle: s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>
+    <string name="how_win_line_4">Variante optionnelle : s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>
     <string name="how_tips_title">Conseils de jeu</string>
     <string name="how_tip_1">Ne donnez pas un indice trop évident.</string>
-    <string name="how_tip_2">2 tours est souvent l’option la plus équilibrée.</string>
+    <string name="how_tip_2">2 tours est généralement le meilleur point de départ ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
     <string name="how_tip_3">Observez les réactions et les réponses des autres.</string>
 
-    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_title">Thème</string>
     <string name="settings_language_title">Langue</string>
     <string name="settings_appearance_title">Apparence</string>
     <string name="settings_support_title">Soutenir l’app</string>
     <string name="settings_help_title">Aide et retours</string>
     <string name="settings_data_title">Données</string>
     <string name="settings_haptics">Haptique</string>
-    <string name="settings_reduced_motion">Reduire animations</string>
-    <string name="settings_show_instructions">Afficher instructions courtes</string>
-    <string name="settings_avoid_recent">Eviter mots recents</string>
-    <string name="settings_show_animation">Animation revelation</string>
-    <string name="settings_secure_screen">Proteger ecrans sensibles</string>
+    <string name="settings_reduced_motion">Réduire les animations</string>
+    <string name="settings_show_instructions">Afficher les instructions courtes</string>
+    <string name="settings_show_animation">Animation de révélation</string>
+    <string name="settings_secure_screen">Protéger les écrans sensibles</string>
     <string name="settings_remove_ads_buy">Retirer les pubs</string>
     <string name="settings_remove_ads_price">Retirer les pubs · %1$s</string>
     <string name="settings_remove_ads_loading">Vérification Google Play…</string>
@@ -127,13 +130,13 @@
     <string name="settings_rate_app">Noter sur Google Play</string>
     <string name="settings_send_feedback">Envoyer une suggestion</string>
     <string name="settings_clear_history">Effacer l’historique</string>
-    <string name="settings_reset_preferences">Reinitialiser preferences</string>
+    <string name="settings_reset_preferences">Réinitialiser les préférences</string>
     <string name="feedback_title">Envoyer une suggestion</string>
-    <string name="feedback_placeholder_title">Les suggestions arrivent bientot</string>
+    <string name="feedback_placeholder_title">Les suggestions arrivent bientôt</string>
     <string name="feedback_placeholder_body">Cet espace est réservé à un vrai canal de suggestions. Nous l’ajouterons ici très bientôt.</string>
     <string name="language_native_spanish">Español</string>
-    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
-    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
+    <string name="language_native_spanish_spain">Español (España)</string>
+    <string name="language_native_spanish_latin_america">Español (Latinoamérica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>
@@ -141,46 +144,46 @@
     <string name="language_native_portuguese">Português</string>
     <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Envoyez une suggestion ou signalez un problème sans quitter l’app.</string>
-    <string name="feedback_form_privacy">Nous envoyons seulement votre message, l email optionnel, la version de l appli, la langue, l horodatage, la plateforme et un contexte de partie basique si disponible.</string>
+    <string name="feedback_form_privacy">Nous envoyons seulement votre message, l’email optionnel, la version de l’appli, la langue, l’horodatage, la plateforme et un contexte de partie basique si disponible.</string>
     <string name="feedback_type_label">Type de retour</string>
     <string name="feedback_type_suggestion">Suggestion</string>
-    <string name="feedback_type_problem">Probleme</string>
+    <string name="feedback_type_problem">Problème</string>
     <string name="feedback_message_label">Message</string>
-    <string name="feedback_message_placeholder">Expliquez ce qui devrait etre ameliore ou ce qui a echoue.</string>
+    <string name="feedback_message_placeholder">Expliquez ce qui devrait être amélioré ou ce qui a échoué.</string>
     <string name="feedback_message_help">Ajoutez assez de contexte pour que nous puissions agir.</string>
     <string name="feedback_message_error_required">Le message est obligatoire.</string>
-    <string name="feedback_message_error_short">Ajoutez un peu plus de detail.</string>
-    <string name="feedback_message_error_long">Raccourcissez le message avant l envoi.</string>
+    <string name="feedback_message_error_short">Ajoutez un peu plus de détails.</string>
+    <string name="feedback_message_error_long">Raccourcissez le message avant l’envoi.</string>
     <string name="feedback_email_label">Email (optionnel)</string>
     <string name="feedback_email_placeholder">nom@exemple.fr</string>
-    <string name="feedback_email_help">Optionnel. Seulement si vous souhaitez une reponse.</string>
-    <string name="feedback_email_error">Verifiez le format de l email.</string>
-    <string name="feedback_context_title">Contexte envoye automatiquement</string>
-    <string name="feedback_context_body">Version de l appli, langue, horodatage, plateforme et contexte simple de partie quand il est disponible.</string>
+    <string name="feedback_email_help">Optionnel. Seulement si vous souhaitez une réponse.</string>
+    <string name="feedback_email_error">Vérifiez le format de l’email.</string>
+    <string name="feedback_context_title">Contexte envoyé automatiquement</string>
+    <string name="feedback_context_body">Version de l’appli, langue, horodatage, plateforme et contexte simple de partie quand il est disponible.</string>
     <string name="feedback_success">Retour envoyé avec succès.</string>
     <string name="feedback_retry">Réessayer</string>
     <string name="feedback_send">Envoyer</string>
     <string name="feedback_sending">Envoi...</string>
-    <string name="feedback_error_network">Erreur reseau. Verifiez la connexion puis reessayez.</string>
-    <string name="feedback_error_server">Le service de feedback a renvoye une erreur.</string>
-    <string name="feedback_error_invalid_response">Le service de feedback a renvoye une reponse invalide.</string>
-    <string name="feedback_error_missing_endpoint">La configuration du feedback est incomplete dans ce build.</string>
+    <string name="feedback_error_network">Erreur réseau. Vérifiez la connexion puis réessayez.</string>
+    <string name="feedback_error_server">Le service de feedback a renvoyé une erreur.</string>
+    <string name="feedback_error_invalid_response">Le service de feedback a renvoyé une réponse invalide.</string>
+    <string name="feedback_error_missing_endpoint">La configuration du feedback est incomplète dans ce build.</string>
 
-    <string name="theme_system">Systeme</string>
+    <string name="theme_system">Système</string>
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>
 
-    <string name="language_system">Systeme</string>
+    <string name="language_system">Système</string>
     <string name="language_spanish">Espagnol</string>
     <string name="language_english">Anglais</string>
-    <string name="language_french">Francais</string>
+    <string name="language_french">Français</string>
     <string name="language_german">Allemand</string>
     <string name="language_italian">Italien</string>
     <string name="language_portuguese">Portugais</string>
     <string name="language_japanese">Japonais</string>
 
     <string name="history_empty">Aucune manche pour le moment.</string>
-    <string name="history_category_format">Categorie : %1$s</string>
+    <string name="history_category_format">Catégorie : %1$s</string>
     <string name="history_impostors_format">Imposteur(s) : %1$s</string>
 
     <string name="credits_creator_title">Créé par</string>
@@ -196,19 +199,19 @@
     <string name="category_professions">Professions</string>
     <string name="category_objects">Objets</string>
     <string name="category_places">Lieux</string>
-    <string name="category_movies_series">Films et series</string>
+    <string name="category_movies_series">Films et séries</string>
     <string name="category_sports">Sports</string>
     <string name="category_countries_cities">Pays et villes</string>
     <string name="category_nature">Nature</string>
-    <string name="category_general_knowledge">Culture generale</string>
+    <string name="category_general_knowledge">Culture générale</string>
 
-    <string name="error_generic">Une erreur est survenue. Reessayez.</string>
-    <string name="error_player_count">Le nombre de joueurs doit etre entre 3 et 12.</string>
-    <string name="error_impostor_count">Nombre imposteurs invalide pour ce groupe.</string>
-    <string name="error_categories_empty">Choisissez au moins une categorie.</string>
-    <string name="error_round_time">Le temps doit etre entre 3 et 20 minutes.</string>
-    <string name="error_clue_rounds">Le nombre de tours doit etre entre 1 et 3.</string>
-    <string name="error_not_enough_civilians">Laissez au moins deux non imposteurs.</string>
+    <string name="error_generic">Une erreur est survenue. Réessayez.</string>
+    <string name="error_player_count">Le nombre de joueurs doit être entre 3 et 12.</string>
+    <string name="error_impostor_count">Nombre d’imposteurs invalide pour ce groupe.</string>
+    <string name="error_categories_empty">Choisissez au moins une catégorie.</string>
+    <string name="error_round_time">Le temps doit être entre 3 et 20 minutes.</string>
+    <string name="error_clue_rounds">Le nombre de tours doit être entre 1 et 3.</string>
+    <string name="error_not_enough_civilians">Laissez au moins deux non-imposteurs.</string>
     <string name="error_no_words_for_category">Aucun mot n’est disponible pour les catégories sélectionnées.</string>
     <string name="error_no_words_recent_filter">Le filtre des mots récents a retiré toutes les options. Désactivez-le ou ajoutez des catégories.</string>
 
@@ -217,7 +220,5 @@
     <string name="cd_close">Fermer</string>
     <string name="back_to_home">Retour à l’accueil</string>
 </resources>
-
-
 
 

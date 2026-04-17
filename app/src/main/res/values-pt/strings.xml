@@ -11,6 +11,12 @@
     <string name="home_banner_fallback_subtitle_price">Pagamento único · %1$s</string>
     <string name="home_banner_fallback_cta">Ver opção</string>
 
+    <string name="promo_banner_label">Mais de Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Guia de fermentação</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Calculadora de proporções</string>
+
     <string name="how_to_play_title">Como jogar</string>
     <string name="settings_title">Definições</string>
     <string name="history_title">Histórico</string>
@@ -33,12 +39,10 @@
     <string name="setup_categories_title">Categorias</string>
     <string name="setup_categories_selected">%1$d selecionadas</string>
     <string name="setup_categories_support">Escolhe poucas categorias amplas para que as pistas sejam mais claras.</string>
-    <string name="setup_advanced_options">Opções avançadas</string>
     <string name="setup_round_time_title">Tempo sugerido: %1$d min</string>
     <string name="setup_no_extra_hints">Sem dicas extras</string>
     <string name="setup_show_animation">Mostrar animação de revelação</string>
     <string name="setup_haptics">Ativar vibração tátil</string>
-    <string name="setup_avoid_recent">Evitar palavras recentes</string>
     <string name="setup_quick_mode">Modo rápido (ocultar automático)</string>
     <string name="setup_custom_names">Nomes personalizados</string>
     <string name="setup_player_name_label">Nome do jogador %1$d</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">Certifica-te de que mais ninguém está a olhar.</string>
     <string name="reveal_hold_to_see">Mantém premido para revelar</string>
     <string name="reveal_hold_hint">Mantém premido por um instante</string>
-    <string name="reveal_word_title">A tua palavra é</string>
+    <string name="reveal_word_title">A palavra é</string>
     <string name="reveal_impostor_title">Tu és o impostor</string>
     <string name="reveal_impostor_hint">Disfarça-te e adivinha a palavra.</string>
     <string name="reveal_hide_and_pass">Ocultar e passar</string>
 
     <string name="round_ready_title">Tudo pronto</string>
-    <string name="round_ready_instructions">Cada jogador diz uma palavra por volta. Ao terminar as voltas combinadas, votem no impostor.</string>
+    <string name="round_ready_instructions">Deixem o telemóvel de lado. Cada pessoa diz uma palavra por ronda. O ponto de partida recomendado é votar após 2 rondas; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
     <string name="round_ready_clue_rounds">Voltas fixas desta partida: %1$d</string>
     <string name="round_ready_word_per_turn">Em cada volta, cada jogador diz 1 palavra.</string>
     <string name="round_ready_vote_after_rounds">Depois de %1$d voltas, votem no impostor.</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">Como funciona a ronda</string>
     <string name="how_play_line_1">Quando todos tiverem visto o seu papel, deixem o telemóvel de lado.</string>
     <string name="how_play_line_2">Em cada volta, cada jogador diz exatamente 1 palavra ligada à palavra secreta.</string>
-    <string name="how_play_line_3">Mantenham o mesmo número de voltas até à votação.</string>
+    <string name="how_play_line_3">O ponto de partida recomendado é fazer 2 rondas antes da votação; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
     <string name="how_play_line_4">A app não controla os turnos falados; isso fica a cargo do grupo.</string>
     <string name="how_win_title">Como ganhar</string>
-    <string name="how_win_line_1">Quando todas as voltas combinadas terminarem, votem em quem acham que é o impostor.</string>
+    <string name="how_win_line_1">Após 2 rondas, ou 3 se o grupo ainda precisar de mais informação, votem em quem acham que é o impostor.</string>
     <string name="how_win_line_2">Se o grupo acertar, os civis vencem.</string>
     <string name="how_win_line_3">Se o grupo errar, o impostor vence.</string>
-    <string name="how_win_line_4">Variante opcional: se for descoberto, o impostor pode empatar ao adivinhar a palavra (não aplicado pelo app).</string>
+    <string name="how_win_line_4">Variante opcional: se for descoberto, o impostor pode empatar ao adivinhar a palavra (não aplicado pela app).</string>
     <string name="how_tips_title">Dicas para jogar melhor</string>
     <string name="how_tip_1">Não dê pistas óbvias demais.</string>
-    <string name="how_tip_2">2 voltas costuma ser a opção mais equilibrada.</string>
+    <string name="how_tip_2">2 rondas costumam ser o melhor ponto de partida; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
     <string name="how_tip_3">Observe como os outros reagem e respondem.</string>
 
     <string name="settings_theme_title">Tema</string>
@@ -112,9 +116,8 @@
     <string name="settings_haptics">Hápticos</string>
     <string name="settings_reduced_motion">Reduzir movimento</string>
     <string name="settings_show_instructions">Mostrar instruções rápidas</string>
-    <string name="settings_avoid_recent">Evitar palavras recentes</string>
     <string name="settings_show_animation">Animação de revelação</string>
-    <string name="settings_secure_screen">Proteger telas sensíveis</string>
+    <string name="settings_secure_screen">Proteger ecrãs sensíveis</string>
     <string name="settings_remove_ads_buy">Remover anúncios</string>
     <string name="settings_remove_ads_price">Remover anúncios · %1$s</string>
     <string name="settings_remove_ads_loading">A verificar o Google Play…</string>
@@ -132,8 +135,8 @@
     <string name="feedback_placeholder_title">Sugestões em breve</string>
     <string name="feedback_placeholder_body">Este espaço fica reservado para um canal real de sugestões. Vamos ligá-lo aqui muito em breve.</string>
     <string name="language_native_spanish">Español</string>
-    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
-    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
+    <string name="language_native_spanish_spain">Español (España)</string>
+    <string name="language_native_spanish_latin_america">Español (Latinoamérica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>
@@ -161,9 +164,9 @@
     <string name="feedback_retry">Tentar de novo</string>
     <string name="feedback_send">Enviar</string>
     <string name="feedback_sending">A enviar...</string>
-    <string name="feedback_error_network">Erro de rede. Verifica a ligacao e tenta de novo.</string>
+    <string name="feedback_error_network">Erro de rede. Verifica a ligação e tenta de novo.</string>
     <string name="feedback_error_server">O serviço de feedback devolveu um erro.</string>
-    <string name="feedback_error_invalid_response">O serviço de feedback devolveu uma resposta inválida.</string>
+    <string name="feedback_error_invalid_response">O servicio de feedback devolveu uma resposta inválida.</string>
     <string name="feedback_error_missing_endpoint">A configuração de feedback está incompleta nesta build.</string>
 
     <string name="theme_system">Sistema</string>
@@ -197,10 +200,10 @@
     <string name="category_objects">Objetos</string>
     <string name="category_places">Lugares</string>
     <string name="category_movies_series">Filmes e séries</string>
-    <string name="category_sports">Esportes</string>
+    <string name="category_sports">Desportos</string>
     <string name="category_countries_cities">Países e cidades</string>
     <string name="category_nature">Natureza</string>
-    <string name="category_general_knowledge">Conhecimentos gerais</string>
+    <string name="category_general_knowledge">Cultura geral</string>
 
     <string name="error_generic">Algo deu errado. Tente novamente.</string>
     <string name="error_player_count">O número de jogadores deve estar entre 3 e 12.</string>
@@ -217,4 +220,5 @@
     <string name="cd_close">Fechar</string>
     <string name="back_to_home">Voltar ao início</string>
 </resources>
+
 

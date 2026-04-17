@@ -5,6 +5,7 @@ import com.impostorparty.app.RuntimeFlags
 
 enum class AdPlacement {
     HOME_BANNER,
+    SETUP_BANNER,
     SETTINGS_BANNER,
     HOW_TO_PLAY_BANNER,
 }
@@ -18,6 +19,7 @@ object AdsConfig {
 
         return when (placement) {
             AdPlacement.HOME_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
+            AdPlacement.SETUP_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
             AdPlacement.SETTINGS_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
             AdPlacement.HOW_TO_PLAY_BANNER -> BuildConfig.HOME_BANNER_AD_UNIT_ID.takeIf { it.isNotBlank() }
         }

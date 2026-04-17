@@ -1,5 +1,5 @@
 ﻿<resources>
-    <string name="app_name">Imposter</string>
+    <string name="app_name">Impostor</string>
     <string name="new_game">New Game</string>
     <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
     <string name="home_stats_title">Recent games</string>
@@ -10,6 +10,12 @@
     <string name="home_banner_fallback_subtitle">One-time payment</string>
     <string name="home_banner_fallback_subtitle_price">One-time payment · %1$s</string>
     <string name="home_banner_fallback_cta">See option</string>
+
+    <string name="promo_banner_label">More from Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Fermentation guide</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Proportion calculator</string>
 
     <string name="how_to_play_title">How to play</string>
     <string name="settings_title">Settings</string>
@@ -33,12 +39,10 @@
     <string name="setup_clue_round_hint_2">2 rounds: usually the most balanced option.</string>
     <string name="setup_clue_round_hint_3">3 rounds: more tension and deduction.</string>
     <string name="setup_categories_title">Categories</string>
-    <string name="setup_advanced_options">Advanced options</string>
     <string name="setup_round_time_title">Suggested round time: %1$d min</string>
     <string name="setup_no_extra_hints">No extra hints</string>
     <string name="setup_show_animation">Show reveal animation</string>
     <string name="setup_haptics">Enable haptics</string>
-    <string name="setup_avoid_recent">Avoid recent words</string>
     <string name="setup_quick_mode">Quick mode (auto-hide)</string>
     <string name="setup_custom_names">Custom player names</string>
     <string name="setup_player_name_label">Player %1$d name</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">Make sure nobody else is looking.</string>
     <string name="reveal_hold_to_see">Hold to reveal</string>
     <string name="reveal_hold_hint">Keep pressed for a brief moment</string>
-    <string name="reveal_word_title">Your word is</string>
+    <string name="reveal_word_title">The word is</string>
     <string name="reveal_impostor_title">You are the impostor</string>
     <string name="reveal_impostor_hint">Blend in and guess the word.</string>
     <string name="reveal_hide_and_pass">Hide and pass</string>
 
     <string name="round_ready_title">All set</string>
-    <string name="round_ready_instructions">Put the phone away. Each player says one word per round. After the chosen rounds, vote for the impostor.</string>
+    <string name="round_ready_instructions">Put the phone away. Each player says one word per round. A good default is 2 rounds before voting; play a third only if your group needs more information.</string>
     <string name="round_ready_clue_rounds">Chosen rounds for this game: %1$d</string>
     <string name="round_ready_word_per_turn">One word per player in each round.</string>
     <string name="round_ready_vote_after_rounds">Once you finish %1$d rounds, vote for the impostor.</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">How the round works</string>
     <string name="how_play_line_1">Once everyone has seen their role, leave the phone aside.</string>
     <string name="how_play_line_2">In each round, every player says exactly 1 word related to the secret word.</string>
-    <string name="how_play_line_3">Keep the same number of rounds until the vote.</string>
+    <string name="how_play_line_3">A good default is 2 rounds before voting; add a third only if the group needs more information.</string>
     <string name="how_play_line_4">The app does not control spoken turns; the group does.</string>
     <string name="how_win_title">How to win</string>
-    <string name="how_win_line_1">After all agreed rounds are complete, vote for who you think is the impostor.</string>
+    <string name="how_win_line_1">After 2 rounds, or 3 if your group still needs more information, vote for who you think is the impostor.</string>
     <string name="how_win_line_2">If the group catches the impostor, civilians win.</string>
     <string name="how_win_line_3">If the group misses, the impostor wins.</string>
     <string name="how_win_line_4">Optional house rule: if caught, the impostor may draw by guessing the word (not enforced by the app).</string>
     <string name="how_tips_title">Tips to play better</string>
     <string name="how_tip_1">Do not make your clue too obvious.</string>
-    <string name="how_tip_2">2 rounds is usually the most balanced option.</string>
+    <string name="how_tip_2">2 rounds is usually the best starting point; add a third only if the group needs more information.</string>
     <string name="how_tip_3">Watch how others react and answer.</string>
 
     <string name="settings_theme_title">Theme</string>
@@ -112,7 +116,6 @@
     <string name="settings_haptics">Haptics</string>
     <string name="settings_reduced_motion">Reduce motion</string>
     <string name="settings_show_instructions">Show quick instructions</string>
-    <string name="settings_avoid_recent">Avoid recent words</string>
     <string name="settings_show_animation">Reveal animation</string>
     <string name="settings_secure_screen">Protect sensitive screens</string>
     <string name="settings_remove_ads_buy">Remove ads</string>
@@ -217,5 +220,7 @@
     <string name="cd_close">Close</string>
     <string name="back_to_home">Back to Home</string>
 </resources>
+
+
 
 

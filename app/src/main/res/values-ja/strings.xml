@@ -11,6 +11,12 @@
     <string name="home_banner_fallback_subtitle_price">1回限りの支払い · %1$s</string>
     <string name="home_banner_fallback_cta">設定を見る</string>
 
+    <string name="promo_banner_label">Gastryのほかの作品</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">発酵ガイド</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">比例計算アプリ</string>
+
     <string name="how_to_play_title">遊び方</string>
     <string name="settings_title">設定</string>
     <string name="history_title">履歴</string>
@@ -33,12 +39,10 @@
     <string name="setup_categories_title">カテゴリ</string>
     <string name="setup_categories_selected">%1$d個を選択中</string>
     <string name="setup_categories_support">ヒントを分かりやすくするため、広めのカテゴリを少数選んでください。</string>
-    <string name="setup_advanced_options">詳細オプション</string>
     <string name="setup_round_time_title">目安時間: %1$d分</string>
     <string name="setup_no_extra_hints">追加ヒントなし</string>
     <string name="setup_show_animation">公開アニメーションを表示</string>
     <string name="setup_haptics">触覚フィードバックを有効にする</string>
-    <string name="setup_avoid_recent">最近使ったワードを避ける</string>
     <string name="setup_quick_mode">クイックモード（自動で隠す）</string>
     <string name="setup_custom_names">プレイヤー名をカスタム</string>
     <string name="setup_player_name_label">プレイヤー%1$dの名前</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">ほかの人に見られないようにしてください。</string>
     <string name="reveal_hold_to_see">長押しで確認</string>
     <string name="reveal_hold_hint">少しだけ長押ししてください</string>
-    <string name="reveal_word_title">あなたのワード</string>
+    <string name="reveal_word_title">単語は</string>
     <string name="reveal_impostor_title">あなたはインポスターです</string>
     <string name="reveal_impostor_hint">うまく紛れて、ワードを推理しましょう。</string>
     <string name="reveal_hide_and_pass">隠して渡す</string>
 
     <string name="round_ready_title">準備完了</string>
-    <string name="round_ready_instructions">各周で全員が1語だけ言います。決めた周回が終わったらインポスターに投票します。</string>
+    <string name="round_ready_instructions">スマホは脇に置きます。各ラウンドで各プレイヤーは1語だけ言います。基本は2ラウンドで投票し、情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
     <string name="round_ready_clue_rounds">このゲームで固定された周回数: %1$d</string>
     <string name="round_ready_word_per_turn">各周で、各プレイヤーは1語だけ言います。</string>
     <string name="round_ready_vote_after_rounds">%1$d周が終わったらインポスターに投票してください。</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">ラウンドの進め方</string>
     <string name="how_play_line_1">全員が役を確認したら、スマホは脇に置きます。</string>
     <string name="how_play_line_2">各周で、各プレイヤーは秘密の単語に関連する語をちょうど1つ言います。</string>
-    <string name="how_play_line_3">投票までは同じ周回数のまま進めます。</string>
+    <string name="how_play_line_3">基本は2ラウンドで投票です。情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
     <string name="how_play_line_4">話す順番そのものはアプリでは管理せず、グループで進行します。</string>
     <string name="how_win_title">勝敗</string>
-    <string name="how_win_line_1">決めた周回数をすべて終えたら、誰がインポスターか投票します。</string>
+    <string name="how_win_line_1">2ラウンド後、または情報が足りないなら3ラウンド後に、誰がインポスターかを投票で決めます。</string>
     <string name="how_win_line_2">当てられたら市民側の勝ちです。</string>
     <string name="how_win_line_3">外したらインポスターの勝ちです。</string>
     <string name="how_win_line_4">任意ルール: 見つかってもワードを当てれば引き分けにできます（アプリ内では自動判定しません）。</string>
     <string name="how_tips_title">うまく遊ぶコツ</string>
     <string name="how_tip_1">ヒントを露骨にしすぎない。</string>
-    <string name="how_tip_2">2周が最もバランスのよい設定です。</string>
+    <string name="how_tip_2">まずは2ラウンドが無難です。情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
     <string name="how_tip_3">相手の反応や答え方を観察しましょう。</string>
 
     <string name="settings_theme_title">テーマ</string>
@@ -112,7 +116,6 @@
     <string name="settings_haptics">触覚フィードバック</string>
     <string name="settings_reduced_motion">動きを減らす</string>
     <string name="settings_show_instructions">短い説明を表示</string>
-    <string name="settings_avoid_recent">最近使ったワードを避ける</string>
     <string name="settings_show_animation">公開アニメーション</string>
     <string name="settings_secure_screen">機密画面を保護する</string>
     <string name="settings_remove_ads_buy">広告を非表示にする</string>
@@ -217,4 +220,6 @@
     <string name="cd_close">閉じる</string>
     <string name="back_to_home">ホームに戻る</string>
 </resources>
+
+
 

@@ -1,5 +1,5 @@
 ﻿<resources>
-    <string name="app_name">Hochstapler</string>
+    <string name="app_name">Impostor</string>
     <string name="new_game">Neues Spiel</string>
     <string name="home_tagline">Ein Handy. Ein Betrüger. Reines Chaos.</string>
     <string name="home_stats_title">Letzte Partien</string>
@@ -10,6 +10,12 @@
     <string name="home_banner_fallback_subtitle">Einmalige Zahlung</string>
     <string name="home_banner_fallback_subtitle_price">Einmalige Zahlung · %1$s</string>
     <string name="home_banner_fallback_cta">Option ansehen</string>
+
+    <string name="promo_banner_label">Mehr von Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Fermentationsratgeber</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Proportionsrechner</string>
 
     <string name="how_to_play_title">So spielt man</string>
     <string name="settings_title">Einstellungen</string>
@@ -33,12 +39,10 @@
     <string name="setup_clue_round_hint_2">2 Runden: meist die ausgewogenste Option.</string>
     <string name="setup_clue_round_hint_3">3 Runden: mehr Spannung und Deduktion.</string>
     <string name="setup_categories_title">Kategorien</string>
-    <string name="setup_advanced_options">Erweiterte Optionen</string>
     <string name="setup_round_time_title">Empfohlene Zeit: %1$d Min</string>
     <string name="setup_no_extra_hints">Keine zusätzlichen Hinweise</string>
     <string name="setup_show_animation">Aufdeck-Animation anzeigen</string>
     <string name="setup_haptics">Haptik aktivieren</string>
-    <string name="setup_avoid_recent">Zuletzt genutzte Wörter vermeiden</string>
     <string name="setup_quick_mode">Schnellmodus (automatisch verbergen)</string>
     <string name="setup_custom_names">Eigene Namen</string>
     <string name="setup_player_name_label">Name von Spieler %1$d</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">Stell sicher, dass niemand sonst hinsieht.</string>
     <string name="reveal_hold_to_see">Gedrückt halten zum Aufdecken</string>
     <string name="reveal_hold_hint">Kurz gedrückt halten</string>
-    <string name="reveal_word_title">Dein Wort ist</string>
+    <string name="reveal_word_title">Das Wort ist</string>
     <string name="reveal_impostor_title">Du bist der Betrüger</string>
     <string name="reveal_impostor_hint">Falle nicht auf und errate das Wort.</string>
     <string name="reveal_hide_and_pass">Verbergen und weitergeben</string>
 
     <string name="round_ready_title">Alles bereit</string>
-    <string name="round_ready_instructions">Jede Person sagt pro Runde genau ein Wort. Nach den vereinbarten Runden stimmt ihr ab.</string>
+    <string name="round_ready_instructions">Legt das Handy weg. Jede Person sagt pro Runde genau ein Wort. Der sinnvolle Standard sind 2 Runden vor der Abstimmung; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
     <string name="round_ready_clue_rounds">Festgelegte Runden für diese Partie: %1$d</string>
     <string name="round_ready_word_per_turn">In jeder Runde sagt jede Person 1 Wort.</string>
     <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr für den Betrüger ab.</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">So läuft die Runde</string>
     <string name="how_play_line_1">Wenn alle ihre Rolle gesehen haben, legt das Handy weg.</string>
     <string name="how_play_line_2">In jeder Runde sagt jede Person genau 1 Wort zum geheimen Wort.</string>
-    <string name="how_play_line_3">Behaltet dieselbe Rundenzahl bis zur Abstimmung.</string>
+    <string name="how_play_line_3">Der sinnvolle Standard sind 2 Runden vor der Abstimmung; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
     <string name="how_play_line_4">Die App steuert die gesprochenen Wortmeldungen nicht; das macht die Gruppe.</string>
     <string name="how_win_title">So gewinnt man</string>
-    <string name="how_win_line_1">Wenn alle vereinbarten Runden vorbei sind, stimmt ihr ab, wer der Betrüger ist.</string>
+    <string name="how_win_line_1">Nach 2 Runden, oder nach 3 falls der Gruppe noch Informationen fehlen, stimmt ihr ab, wer der Betrüger ist.</string>
     <string name="how_win_line_2">Wird der Betrüger enttarnt, gewinnen die Zivilen.</string>
     <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Betrüger.</string>
     <string name="how_win_line_4">Optionale Hausregel: Wird der Betrüger enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>
     <string name="how_tips_title">Tipps für bessere Runden</string>
     <string name="how_tip_1">Gib keine zu eindeutigen Hinweise.</string>
-    <string name="how_tip_2">2 Runden sind meist die ausgewogenste Wahl.</string>
+    <string name="how_tip_2">2 Runden sind meist der beste Startpunkt; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
     <string name="how_tip_3">Achte auf Reaktionen und Antworten der anderen.</string>
 
     <string name="settings_theme_title">Design</string>
@@ -112,7 +116,6 @@
     <string name="settings_haptics">Haptik</string>
     <string name="settings_reduced_motion">Bewegung reduzieren</string>
     <string name="settings_show_instructions">Kurzanleitung anzeigen</string>
-    <string name="settings_avoid_recent">Zuletzt genutzte Wörter vermeiden</string>
     <string name="settings_show_animation">Aufdeck-Animation</string>
     <string name="settings_secure_screen">Sensible Bildschirme schützen</string>
     <string name="settings_remove_ads_buy">Werbung entfernen</string>
@@ -126,8 +129,8 @@
     <string name="settings_remove_ads_message_unavailable">Diese Option ist in diesem Build derzeit nicht verfügbar.</string>
     <string name="settings_rate_app">Bei Google Play bewerten</string>
     <string name="settings_send_feedback">Vorschlag senden</string>
-    <string name="settings_clear_history">Verlauf loschen</string>
-    <string name="settings_reset_preferences">Einstellungen zurucksetzen</string>
+    <string name="settings_clear_history">Verlauf löschen</string>
+    <string name="settings_reset_preferences">Einstellungen zurücksetzen</string>
     <string name="feedback_title">Vorschlag senden</string>
     <string name="feedback_placeholder_title">Feedback kommt bald</string>
     <string name="feedback_placeholder_body">Dieser Bereich ist für einen echten Feedback-Kanal reserviert. Wir schalten ihn hier bald frei.</string>
@@ -141,7 +144,7 @@
     <string name="language_native_portuguese">Português</string>
     <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Sende einen Vorschlag oder melde ein Problem, ohne die App zu verlassen.</string>
-    <string name="feedback_form_privacy">Wir senden nur deine Nachricht, optionale E-Mail, App-Version, Sprache, Zeitstempel, Plattform und einfachen Spielkontext, falls verfuegbar.</string>
+    <string name="feedback_form_privacy">Wir senden nur deine Nachricht, optionale E-Mail, App-Version, Sprache, Zeitstempel, Plattform und einfachen Spielkontext, falls verfügbar.</string>
     <string name="feedback_type_label">Feedback-Typ</string>
     <string name="feedback_type_suggestion">Vorschlag</string>
     <string name="feedback_type_problem">Problem melden</string>
@@ -154,16 +157,16 @@
     <string name="feedback_email_label">E-Mail (optional)</string>
     <string name="feedback_email_placeholder">name@beispiel.de</string>
     <string name="feedback_email_help">Optional. Nur wenn du eine Antwort möchtest.</string>
-    <string name="feedback_email_error">Bitte pruefe das E-Mail-Format.</string>
+    <string name="feedback_email_error">Bitte prüfe das E-Mail-Format.</string>
     <string name="feedback_context_title">Automatisch gesendeter Kontext</string>
-    <string name="feedback_context_body">App-Version, Sprache, Zeitstempel, Plattform und einfacher Rundenkontext, wenn verfuegbar.</string>
+    <string name="feedback_context_body">App-Version, Sprache, Zeitstempel, Plattform und einfacher Rundenkontext, wenn verfügbar.</string>
     <string name="feedback_success">Feedback erfolgreich gesendet.</string>
     <string name="feedback_retry">Erneut versuchen</string>
     <string name="feedback_send">Senden</string>
     <string name="feedback_sending">Wird gesendet...</string>
-    <string name="feedback_error_network">Netzwerkfehler. Verbindung pruefen und erneut versuchen.</string>
-    <string name="feedback_error_server">Der Feedback-Dienst hat einen Fehler zurueckgegeben.</string>
-    <string name="feedback_error_invalid_response">Der Feedback-Dienst hat ungueltig geantwortet.</string>
+    <string name="feedback_error_network">Netzwerkfehler. Verbindung prüfen und erneut versuchen.</string>
+    <string name="feedback_error_server">Der Feedback-Dienst hat einen Fehler zurückgegeben.</string>
+    <string name="feedback_error_invalid_response">Der Feedback-Dienst hat ungültig geantwortet.</string>
     <string name="feedback_error_missing_endpoint">Die Feedback-Konfiguration ist in diesem Build unvollständig.</string>
 
     <string name="theme_system">System</string>
@@ -217,5 +220,7 @@
     <string name="cd_close">Schließen</string>
     <string name="back_to_home">Zur Startseite</string>
 </resources>
+
+
 
 

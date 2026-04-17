@@ -1,0 +1,11 @@
+root = true
+
+[*.{kt,kts,java,xml,md}]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{png,jpg,jpeg,webp,keystore,jks}]
+insert_final_newline = false
+trim_trailing_whitespace = false

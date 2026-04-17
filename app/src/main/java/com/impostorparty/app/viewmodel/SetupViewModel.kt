@@ -2,7 +2,6 @@ package com.impostorparty.app.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.impostorparty.domain.model.AppSettings
 import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.repository.PreferencesRepository
@@ -86,52 +85,6 @@ class SetupViewModel @Inject constructor(
         }
     }
 
-    fun updateRoundMinutes(minutes: Int) {
-        _setup.update { it.copy(suggestedRoundMinutes = minutes) }
-    }
-
-    fun updateClueRounds(rounds: Int) {
-        _setup.update { it.copy(clueRounds = rounds.coerceIn(1, 3)) }
-    }
-
-    fun updateNoExtraHints(enabled: Boolean) {
-        _setup.update { it.copy(noExtraHints = enabled) }
-    }
-
-    fun updateQuickMode(enabled: Boolean) {
-        _setup.update { it.copy(quickMode = enabled) }
-    }
-
-    fun updateRevealAnimation(enabled: Boolean) {
-        _setup.update { it.copy(revealAnimation = enabled) }
-        updateAppSettings { it.copy(showRevealAnimation = enabled) }
-    }
-
-    fun updateHaptics(enabled: Boolean) {
-        _setup.update { it.copy(hapticsEnabled = enabled) }
-        updateAppSettings { it.copy(hapticsEnabled = enabled) }
-    }
-
-    fun updateAvoidRecentWords(enabled: Boolean) {
-        _setup.update { it.copy(avoidRecentWords = enabled) }
-        updateAppSettings { it.copy(avoidRecentWords = enabled) }
-    }
-
-    fun updateCustomPlayerName(index: Int, name: String) {
-        _setup.update { current ->
-            val list = current.customPlayerNames.toMutableList()
-            while (list.size < current.playerCount) {
-                list.add("")
-            }
-            list[index] = name
-            current.copy(customPlayerNames = list)
-        }
-    }
-
-    fun clearCustomNames() {
-        _setup.update { it.copy(customPlayerNames = emptyList()) }
-    }
-
     suspend fun createRound(
         currentAppLanguageTag: String?,
         sourceSetup: GameSetup? = null,
@@ -186,7 +139,7 @@ class SetupViewModel @Inject constructor(
             noExtraHints = defaults.noExtraHints,
             revealAnimation = defaults.revealAnimation,
             hapticsEnabled = defaults.hapticsEnabled,
-            avoidRecentWords = defaults.avoidRecentWords,
+            avoidRecentWords = true,
             quickMode = defaults.quickMode,
             customPlayerNames = defaults.customPlayerNames,
         )
@@ -216,10 +169,4 @@ class SetupViewModel @Inject constructor(
             ?: Locale.getDefault().toLanguageTag().ifBlank { "en" }
     }
 
-    private fun updateAppSettings(update: (AppSettings) -> AppSettings) {
-        viewModelScope.launch {
-            val current = preferencesRepository.appSettings.first()
-            preferencesRepository.saveAppSettings(update(current))
-        }
-    }
 }

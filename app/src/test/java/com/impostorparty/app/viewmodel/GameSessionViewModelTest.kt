@@ -152,6 +152,30 @@ class GameSessionViewModelTest {
         assertNull(viewModel.pendingInAppReviewRequest.value)
     }
 
+    @Test
+    fun `rate now disables future review prompts permanently`() = runTest(dispatcher) {
+        val viewModel = buildViewModel()
+
+        viewModel.onReviewNowSelected()
+        advanceUntilIdle()
+
+        assertTrue(preferencesRepository.reviewPromptState.value.isPermanentlyDismissed)
+    }
+
+    @Test
+    fun `later postpones review prompt by seven completed games`() = runTest(dispatcher) {
+        preferencesRepository.reviewPromptState.value = ReviewPromptState(
+            completedGames = 5,
+            distinctUseDays = 2,
+            sessionCount = 2,
+        )
+        val viewModel = buildViewModel()
+        viewModel.dismissReviewPrompt()
+        advanceUntilIdle()
+
+        assertEquals(12, preferencesRepository.reviewPromptState.value.nextPromptAtCompletedGames)
+    }
+
     private fun sampleSession(): RoundSession {
         return RoundSession(
             id = "round-1",

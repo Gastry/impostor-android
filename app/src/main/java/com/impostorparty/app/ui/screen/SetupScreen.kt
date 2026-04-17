@@ -1,6 +1,7 @@
 package com.impostorparty.app.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -22,7 +23,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -37,6 +37,7 @@ import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
+import com.impostorparty.app.ui.components.PromoBannerSlot
 import com.impostorparty.app.ui.components.partyFilterChipColors
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.app.util.titleRes
@@ -49,24 +50,20 @@ import com.impostorparty.domain.model.GameSetup
 @Composable
 fun SetupScreen(
     setup: GameSetup,
+    bannerAdUnitId: String?,
+    removeAdsPriceLabel: String?,
+    onOpenRemoveAdsSettings: () -> Unit,
     isLoading: Boolean,
     message: UiMessage?,
     onDismissMessage: () -> Unit,
     onPlayerCountChanged: (Int) -> Unit,
     onImpostorCountChanged: (Int) -> Unit,
     onToggleCategory: (Category) -> Unit,
-    onRoundMinutesChanged: (Int) -> Unit,
-    onClueRoundsChanged: (Int) -> Unit,
-    onNoExtraHintsChanged: (Boolean) -> Unit,
-    onQuickModeChanged: (Boolean) -> Unit,
-    onRevealAnimationChanged: (Boolean) -> Unit,
-    onHapticsChanged: (Boolean) -> Unit,
-    onAvoidRecentWordsChanged: (Boolean) -> Unit,
-    onCustomPlayerNameChanged: (Int, String) -> Unit,
-    onClearCustomNames: () -> Unit,
     onStartRound: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val bannerReservedHeight = 88.dp
+
     PartyScaffold(
         title = stringResource(R.string.setup_title),
         navigationIcon = {
@@ -75,230 +72,140 @@ fun SetupScreen(
             }
         },
     ) { modifier ->
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(top = PartyDimens.SpaceMd),
-            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
-        ) {
-            Text(
-                text = stringResource(R.string.setup_subtitle),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
-            PartySectionCard(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(18.dp),
+        Box(modifier = modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(top = PartyDimens.SpaceMd)
+                    .padding(bottom = PartyDimens.SpaceXxl + bannerReservedHeight),
+                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
             ) {
-                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                    Text(
-                        text = stringResource(R.string.setup_basics_title),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Text(
-                        text = stringResource(R.string.setup_players_count, setup.playerCount),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
-                    Slider(
-                        value = setup.playerCount.toFloat(),
-                        onValueChange = { onPlayerCountChanged(it.toInt()) },
-                        valueRange = 3f..12f,
-                        steps = 8,
-                    )
-                    Text(
-                        text = stringResource(R.string.setup_impostor_count_title),
-                        style = MaterialTheme.typography.titleSmall,
-                    )
-                    Row(horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                        val options = if (setup.playerCount >= 6) listOf(1, 2) else listOf(1)
-                        options.forEach { option ->
-                            FilterChip(
-                                selected = setup.impostorCount == option,
-                                onClick = { onImpostorCountChanged(option) },
-                                label = { Text(stringResource(R.string.setup_impostor_count_item, option)) },
-                                colors = partyFilterChipColors(),
-                            )
-                        }
-                    }
-                }
-            }
+                Text(
+                    text = stringResource(R.string.setup_subtitle),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
 
-            PartySectionCard(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(18.dp),
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                    Text(
-                        text = stringResource(R.string.setup_clue_rounds_title),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Text(
-                        text = stringResource(R.string.setup_clue_rounds_support),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                    ) {
-                        (1..3).forEach { rounds ->
-                            FilterChip(
-                                selected = setup.clueRounds == rounds,
-                                onClick = { onClueRoundsChanged(rounds) },
-                                label = {
-                                    Text(
-                                        text = stringResource(
-                                            when (rounds) {
-                                                1 -> R.string.setup_clue_round_option_1
-                                                2 -> R.string.setup_clue_round_option_2
-                                                else -> R.string.setup_clue_round_option_3
-                                            },
-                                        ),
-                                    )
-                                },
-                                colors = partyFilterChipColors(),
-                            )
-                        }
-                    }
-                    Text(
-                        text = clueRoundsHint(setup.clueRounds),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                }
-            }
-
-            PartySectionCard(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(18.dp),
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
+                PartySectionCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(18.dp),
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
                         Text(
-                            text = stringResource(R.string.setup_categories_title),
+                            text = stringResource(R.string.setup_basics_title),
                             style = MaterialTheme.typography.titleMedium,
                         )
                         Text(
-                            text = stringResource(R.string.setup_categories_selected, setup.categories.size),
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.primary,
+                            text = stringResource(R.string.setup_players_count, setup.playerCount),
+                            style = MaterialTheme.typography.bodyLarge,
                         )
-                    }
-                    Text(
-                        text = stringResource(R.string.setup_categories_support),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                    ) {
-                        Category.entries.forEach { category ->
-                            FilterChip(
-                                selected = category in setup.categories,
-                                onClick = { onToggleCategory(category) },
-                                label = { Text(stringResource(category.titleRes())) },
-                                colors = partyFilterChipColors(),
-                            )
+                        Slider(
+                            value = setup.playerCount.toFloat(),
+                            onValueChange = { onPlayerCountChanged(it.toInt()) },
+                            valueRange = 3f..12f,
+                            steps = 8,
+                        )
+                        Text(
+                            text = stringResource(R.string.setup_impostor_count_title),
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                        Row(horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                            val options = if (setup.playerCount >= 6) listOf(1, 2) else listOf(1)
+                            options.forEach { option ->
+                                FilterChip(
+                                    selected = setup.impostorCount == option,
+                                    onClick = { onImpostorCountChanged(option) },
+                                    label = { Text(stringResource(R.string.setup_impostor_count_item, option)) },
+                                    colors = partyFilterChipColors(),
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            PartySectionCard(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(18.dp),
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
-                    Text(
-                        text = stringResource(R.string.setup_advanced_options),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Text(
-                        text = stringResource(R.string.setup_round_time_title, setup.suggestedRoundMinutes),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
-                    Slider(
-                        value = setup.suggestedRoundMinutes.toFloat(),
-                        onValueChange = { onRoundMinutesChanged(it.toInt()) },
-                        valueRange = 5f..15f,
-                        steps = 9,
-                    )
-
-                    SetupSwitchRow(
-                        title = stringResource(R.string.setup_quick_mode),
-                        checked = setup.quickMode,
-                        onCheckedChange = onQuickModeChanged,
-                    )
-                    SetupSwitchRow(
-                        title = stringResource(R.string.setup_avoid_recent),
-                        checked = setup.avoidRecentWords,
-                        onCheckedChange = onAvoidRecentWordsChanged,
-                    )
-                    SetupSwitchRow(
-                        title = stringResource(R.string.setup_haptics),
-                        checked = setup.hapticsEnabled,
-                        onCheckedChange = onHapticsChanged,
-                    )
-                    SetupSwitchRow(
-                        title = stringResource(R.string.setup_show_animation),
-                        checked = setup.revealAnimation,
-                        onCheckedChange = onRevealAnimationChanged,
-                    )
-                    SetupSwitchRow(
-                        title = stringResource(R.string.setup_no_extra_hints),
-                        checked = setup.noExtraHints,
-                        onCheckedChange = onNoExtraHintsChanged,
-                    )
-                }
-            }
-
-            PartySectionCard(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(18.dp),
-            ) {
-                Column(
+                PartySectionCard(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    contentPadding = PaddingValues(18.dp),
                 ) {
-                    Text(
-                        text = stringResource(R.string.setup_players_count, setup.playerCount),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center,
-                    )
-                    Text(
-                        text = when (setup.clueRounds) {
-                            1 -> stringResource(R.string.setup_clue_round_option_1)
-                            2 -> stringResource(R.string.setup_clue_round_option_2)
-                            else -> stringResource(R.string.setup_clue_round_option_3)
-                        },
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                    PrimaryPartyButton(
-                        text = stringResource(R.string.setup_start_button),
-                        onClick = onStartRound,
-                        enabled = !isLoading,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .testTag("setup_start_button"),
-                    )
-
-                    if (isLoading) {
-                        CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                    Column(verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = stringResource(R.string.setup_categories_title),
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                            Text(
+                                text = stringResource(R.string.setup_categories_selected, setup.categories.size),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                        }
+                        Text(
+                            text = stringResource(R.string.setup_categories_support),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                            verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                        ) {
+                            Category.entries.forEach { category ->
+                                FilterChip(
+                                    selected = category in setup.categories,
+                                    onClick = { onToggleCategory(category) },
+                                    label = { Text(stringResource(category.titleRes())) },
+                                    colors = partyFilterChipColors(),
+                                )
+                            }
+                        }
                     }
                 }
+
+                PartySectionCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(18.dp),
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
+                        Text(
+                            text = stringResource(R.string.setup_players_count, setup.playerCount),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
+                        )
+                        PrimaryPartyButton(
+                            text = stringResource(R.string.setup_start_button),
+                            onClick = onStartRound,
+                            enabled = !isLoading,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("setup_start_button"),
+                        )
+
+                        if (isLoading) {
+                            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(PartyDimens.SpaceSm))
             }
 
-            Spacer(modifier = Modifier.height(PartyDimens.SpaceSm))
+            PromoBannerSlot(
+                adUnitId = bannerAdUnitId,
+                removeAdsPriceLabel = removeAdsPriceLabel,
+                onRemoveAdsClick = onOpenRemoveAdsSettings,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth(),
+            )
         }
     }
 
@@ -330,40 +237,6 @@ fun SetupScreen(
                     }
                 }
             },
-        )
-    }
-}
-
-@Composable
-private fun clueRoundsHint(clueRounds: Int): String {
-    return stringResource(
-        when (clueRounds) {
-            1 -> R.string.setup_clue_round_hint_1
-            2 -> R.string.setup_clue_round_hint_2
-            else -> R.string.setup_clue_round_hint_3
-        },
-    )
-}
-
-@Composable
-private fun SetupSwitchRow(
-    title: String,
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.weight(1f),
-        )
-        Switch(
-            checked = checked,
-            onCheckedChange = onCheckedChange,
         )
     }
 }

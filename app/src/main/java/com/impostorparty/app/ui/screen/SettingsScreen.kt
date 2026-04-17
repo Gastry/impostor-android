@@ -47,11 +47,10 @@ import kotlinx.coroutines.delay
 import com.impostorparty.app.R
 import com.impostorparty.app.ads.RemoveAdsPurchaseMessage
 import com.impostorparty.app.ads.RemoveAdsPurchaseUiState
-import com.impostorparty.app.ui.components.AdMobBanner
-import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
+import com.impostorparty.app.ui.components.PromoBannerSlot
 import com.impostorparty.app.ui.components.SecondaryPartyButton
 import com.impostorparty.app.ui.components.partyOutlinedTextFieldColors
 import com.impostorparty.app.ui.theme.PartyDimens
@@ -71,7 +70,6 @@ fun SettingsScreen(
     onShowQuickInstructionsChanged: (Boolean) -> Unit,
     onSecureScreenChanged: (Boolean) -> Unit,
     onHapticsChanged: (Boolean) -> Unit,
-    onAvoidRecentChanged: (Boolean) -> Unit,
     onRevealAnimationChanged: (Boolean) -> Unit,
     onRemoveAds: () -> Unit,
     onRateApp: () -> Unit,
@@ -81,14 +79,9 @@ fun SettingsScreen(
     onDismissBillingMessage: () -> Unit,
     onBack: () -> Unit,
 ) {
-    val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
+    val bannerReservedHeight = 88.dp
     val listState = rememberLazyListState()
     var languageMenuExpanded by rememberSaveable { mutableStateOf(false) }
-    var bannerState by rememberSaveable(bannerAdUnitId) {
-        mutableStateOf(
-            if (bannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
-        )
-    }
     val removeAdsButtonText = when {
         removeAdsUiState.isAdsRemoved -> stringResource(R.string.settings_remove_ads_owned)
         removeAdsUiState.hasPendingPurchase -> stringResource(R.string.settings_remove_ads_pending)
@@ -346,15 +339,14 @@ fun SettingsScreen(
                 }
             }
 
-            if (bannerAdUnitId != null) {
-                AdMobBanner(
-                    adUnitId = bannerAdUnitId,
-                    onLoadStateChanged = { bannerState = it },
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth(),
-                )
-            }
+            PromoBannerSlot(
+                adUnitId = bannerAdUnitId,
+                removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                onRemoveAdsClick = onRemoveAds,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth(),
+            )
         }
     }
 }

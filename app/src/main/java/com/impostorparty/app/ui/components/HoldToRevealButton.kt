@@ -1,5 +1,6 @@
 package com.impostorparty.app.ui.components
 
+import com.impostorparty.app.BuildConfig
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
@@ -55,7 +56,11 @@ fun HoldToRevealButton(
     )
 
     OutlinedButton(
-        onClick = {},
+        onClick = {
+            if (BuildConfig.DEBUG) {
+                onComplete()
+            }
+        },
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 112.dp)

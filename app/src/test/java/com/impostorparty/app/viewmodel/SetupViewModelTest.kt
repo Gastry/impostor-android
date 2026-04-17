@@ -86,7 +86,6 @@ class SetupViewModelTest {
     fun `reset to defaults clears in memory setup`() = runTest(dispatcher) {
         val viewModel = buildViewModel()
         viewModel.updatePlayerCount(8)
-        viewModel.updateClueRounds(3)
         viewModel.toggleCategory(Category.FOOD)
         viewModel.resetToDefaults()
 

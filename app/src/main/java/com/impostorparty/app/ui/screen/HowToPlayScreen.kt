@@ -23,10 +23,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,23 +32,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
-import com.impostorparty.app.ui.components.AdMobBanner
-import com.impostorparty.app.ui.components.BannerLoadState
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
+import com.impostorparty.app.ui.components.PromoBannerSlot
 import com.impostorparty.app.ui.theme.PartyDimens
 
 @Composable
 fun HowToPlayScreen(
     bannerAdUnitId: String?,
+    removeAdsPriceLabel: String?,
+    onOpenRemoveAdsSettings: () -> Unit,
     onBack: () -> Unit,
 ) {
-    val bannerReservedHeight = if (bannerAdUnitId != null) 88.dp else 0.dp
-    var bannerState by rememberSaveable(bannerAdUnitId) {
-        mutableStateOf(
-            if (bannerAdUnitId == null) BannerLoadState.FAILED else BannerLoadState.LOADING,
-        )
-    }
+    val bannerReservedHeight = 88.dp
 
     PartyScaffold(
         title = stringResource(R.string.how_to_play_title),
@@ -166,15 +158,14 @@ fun HowToPlayScreen(
                 }
             }
 
-            if (bannerAdUnitId != null) {
-                AdMobBanner(
-                    adUnitId = bannerAdUnitId,
-                    onLoadStateChanged = { bannerState = it },
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth(),
-                )
-            }
+            PromoBannerSlot(
+                adUnitId = bannerAdUnitId,
+                removeAdsPriceLabel = removeAdsPriceLabel,
+                onRemoveAdsClick = onOpenRemoveAdsSettings,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth(),
+            )
         }
     }
 }

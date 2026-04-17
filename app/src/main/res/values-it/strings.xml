@@ -11,6 +11,12 @@
     <string name="home_banner_fallback_subtitle_price">Pagamento unico · %1$s</string>
     <string name="home_banner_fallback_cta">Vedi opzione</string>
 
+    <string name="promo_banner_label">Altro da Gastry</string>
+    <string name="promo_book_title">Fermentar con cabeza</string>
+    <string name="promo_book_subtitle">Guida alla fermentazione</string>
+    <string name="promo_rule_of_three_title">Regla de tres</string>
+    <string name="promo_rule_of_three_subtitle">Calcolatrice di proporzioni</string>
+
     <string name="how_to_play_title">Come si gioca</string>
     <string name="settings_title">Impostazioni</string>
     <string name="history_title">Cronologia</string>
@@ -33,12 +39,10 @@
     <string name="setup_clue_round_hint_2">2 giri: opzione più equilibrata.</string>
     <string name="setup_clue_round_hint_3">3 giri: più tensione e deduzione.</string>
     <string name="setup_categories_title">Categorie</string>
-    <string name="setup_advanced_options">Opzioni avanzate</string>
     <string name="setup_round_time_title">Tempo suggerito: %1$d min</string>
     <string name="setup_no_extra_hints">Senza indizi extra</string>
     <string name="setup_show_animation">Mostra animazione di rivelazione</string>
     <string name="setup_haptics">Abilita aptica</string>
-    <string name="setup_avoid_recent">Evita parole recenti</string>
     <string name="setup_quick_mode">Modalità rapida (nascondi automaticamente)</string>
     <string name="setup_custom_names">Nomi personalizzati</string>
     <string name="setup_player_name_label">Nome giocatore %1$d</string>
@@ -50,13 +54,13 @@
     <string name="reveal_keep_private">Assicurati che nessun altro guardi.</string>
     <string name="reveal_hold_to_see">Tieni premuto per rivelare</string>
     <string name="reveal_hold_hint">Tieni premuto un attimo</string>
-    <string name="reveal_word_title">La tua parola è</string>
-    <string name="reveal_impostor_title">Sei impostore</string>
+    <string name="reveal_word_title">La parola è</string>
+    <string name="reveal_impostor_title">Sei l’impostore</string>
     <string name="reveal_impostor_hint">Mimetizzati e scopri la parola.</string>
     <string name="reveal_hide_and_pass">Nascondi e passa</string>
 
     <string name="round_ready_title">Tutto pronto</string>
-    <string name="round_ready_instructions">Ogni giocatore dice una sola parola per giro. Dopo i giri concordati, votate per l’impostore.</string>
+    <string name="round_ready_instructions">Lasciate il telefono da parte. Ogni giocatore dice una sola parola per round. La base consigliata è votare dopo 2 round; aggiungetene un terzo solo se al gruppo manca ancora informazione.</string>
     <string name="round_ready_clue_rounds">Giri fissi per questa partita: %1$d</string>
     <string name="round_ready_word_per_turn">In ogni giro, ogni giocatore dice 1 parola.</string>
     <string name="round_ready_vote_after_rounds">Dopo %1$d giri, votate per l’impostore.</string>
@@ -91,16 +95,16 @@
     <string name="how_play_title">Come si svolge il round</string>
     <string name="how_play_line_1">Quando tutti hanno visto il proprio ruolo, mettete via il telefono.</string>
     <string name="how_play_line_2">In ogni giro, ogni giocatore dice esattamente 1 parola legata alla parola segreta.</string>
-    <string name="how_play_line_3">Mantenete lo stesso numero di giri fino al voto.</string>
+    <string name="how_play_line_3">La base consigliata è fare 2 round prima del voto; aggiungetene un terzo solo se al gruppo manca ancora informazione.</string>
     <string name="how_play_line_4">L’app non controlla i turni parlati; li gestisce il gruppo.</string>
     <string name="how_win_title">Come si vince</string>
-    <string name="how_win_line_1">Quando tutti i giri concordati sono finiti, votate chi pensate sia l’impostore.</string>
+    <string name="how_win_line_1">Dopo 2 round, o 3 se al gruppo manca ancora informazione, votate chi pensate sia l’impostore.</string>
     <string name="how_win_line_2">Se il gruppo lo individua, vincono i civili.</string>
     <string name="how_win_line_3">Se il gruppo sbaglia, vince l’impostore.</string>
     <string name="how_win_line_4">Variante opzionale: se scoperto, l’impostore può pareggiare indovinando la parola (non gestito dall’app).</string>
     <string name="how_tips_title">Consigli per giocare meglio</string>
     <string name="how_tip_1">Non dare indizi troppo evidenti.</string>
-    <string name="how_tip_2">2 giri sono di solito l’opzione più equilibrata.</string>
+    <string name="how_tip_2">2 round sono di solito il miglior punto di partenza; aggiungetene un terzo solo se al gruppo manca ancora informazione.</string>
     <string name="how_tip_3">Osserva come rispondono gli altri.</string>
 
     <string name="settings_theme_title">Tema</string>
@@ -112,7 +116,6 @@
     <string name="settings_haptics">Aptica</string>
     <string name="settings_reduced_motion">Riduci movimento</string>
     <string name="settings_show_instructions">Mostra istruzioni brevi</string>
-    <string name="settings_avoid_recent">Evita parole recenti</string>
     <string name="settings_show_animation">Animazione reveal</string>
     <string name="settings_secure_screen">Proteggi schermate sensibili</string>
     <string name="settings_remove_ads_buy">Rimuovi pubblicità</string>
@@ -121,7 +124,7 @@
     <string name="settings_remove_ads_owned">Pubblicità rimossa</string>
     <string name="settings_remove_ads_pending">Acquisto in attesa</string>
     <string name="settings_remove_ads_message_purchased">La pubblicità è ora disattivata su questo dispositivo.</string>
-    <string name="settings_remove_ads_message_pending">L’acquisto è in attesa. Google Play lo confermerà quando il pagamento sarà completato.</string>
+    <string name="settings_remove_ads_message_pending">L’acquisto è in attesa. Google Play lo confirmerà quando il pagamento sarà completato.</string>
     <string name="settings_remove_ads_message_error">Non è stato possibile completare l’acquisto su Google Play.</string>
     <string name="settings_remove_ads_message_unavailable">Questa opzione non è disponibile in questa build.</string>
     <string name="settings_rate_app">Valuta su Google Play</string>
@@ -132,8 +135,8 @@
     <string name="feedback_placeholder_title">Suggerimenti in arrivo</string>
     <string name="feedback_placeholder_body">Questo spazio è riservato a un vero canale per i suggerimenti. Lo collegheremo qui molto presto.</string>
     <string name="language_native_spanish">Español</string>
-    <string name="language_native_spanish_spain">Espa&#241;ol (Espa&#241;a)</string>
-    <string name="language_native_spanish_latin_america">Espa&#241;ol (Latinoam&#233;rica)</string>
+    <string name="language_native_spanish_spain">Español (España)</string>
+    <string name="language_native_spanish_latin_america">Español (Latinoamérica)</string>
     <string name="language_native_english">English</string>
     <string name="language_native_french">Français</string>
     <string name="language_native_german">Deutsch</string>
@@ -141,15 +144,15 @@
     <string name="language_native_portuguese">Português</string>
     <string name="language_native_japanese">日本語</string>
     <string name="feedback_form_intro">Invia un suggerimento o segnala un problema senza uscire dall’app.</string>
-    <string name="feedback_form_privacy">Invieremo solo il tuo messaggio, l email opzionale, la versione dell app, la lingua, il timestamp, la piattaforma e il contesto base della partita se disponibile.</string>
+    <string name="feedback_form_privacy">Invieremo solo il tuo messaggio, l’email opzionale, la versione dell’app, la lingua, il timestamp, la piattaforma e il contesto base della partita se disponibile.</string>
     <string name="feedback_type_label">Tipo di feedback</string>
     <string name="feedback_type_suggestion">Suggerimento</string>
     <string name="feedback_type_problem">Problema</string>
     <string name="feedback_message_label">Messaggio</string>
     <string name="feedback_message_placeholder">Raccontaci cosa miglioreresti o cosa non ha funzionato.</string>
     <string name="feedback_message_help">Aggiungi abbastanza contesto per permetterci di intervenire.</string>
-    <string name="feedback_message_error_required">Il messaggio e obbligatorio.</string>
-    <string name="feedback_message_error_short">Aggiungi qualche dettaglio in piu.</string>
+    <string name="feedback_message_error_required">Il messaggio è obbligatorio.</string>
+    <string name="feedback_message_error_short">Aggiungi qualche dettaglio in più.</string>
     <string name="feedback_message_error_long">Accorcia il messaggio prima di inviarlo.</string>
     <string name="feedback_email_label">Email (opzionale)</string>
     <string name="feedback_email_placeholder">nome@esempio.it</string>
@@ -164,7 +167,7 @@
     <string name="feedback_error_network">Errore di rete. Controlla la connessione e riprova.</string>
     <string name="feedback_error_server">Il servizio feedback ha restituito un errore.</string>
     <string name="feedback_error_invalid_response">Il servizio feedback ha restituito una risposta non valida.</string>
-    <string name="feedback_error_missing_endpoint">La configurazione del feedback e incompleta in questa build.</string>
+    <string name="feedback_error_missing_endpoint">La configurazione del feedback è incompleta in questa build.</string>
 
     <string name="theme_system">Sistema</string>
     <string name="theme_light">Chiaro</string>
@@ -198,11 +201,11 @@
     <string name="category_places">Luoghi</string>
     <string name="category_movies_series">Film e serie</string>
     <string name="category_sports">Sport</string>
-    <string name="category_countries_cities">Paesi e citta</string>
+    <string name="category_countries_cities">Paesi e città</string>
     <string name="category_nature">Natura</string>
     <string name="category_general_knowledge">Cultura generale</string>
 
-    <string name="error_generic">Qualcosa e andato storto. Riprova.</string>
+    <string name="error_generic">Qualcosa è andato storto. Riprova.</string>
     <string name="error_player_count">Numero giocatori tra 3 e 12.</string>
     <string name="error_impostor_count">Il numero di impostori non è valido per questo gruppo.</string>
     <string name="error_categories_empty">Seleziona almeno una categoria.</string>
@@ -217,7 +220,5 @@
     <string name="cd_close">Chiudi</string>
     <string name="back_to_home">Torna alla home</string>
 </resources>
-
-
 
 

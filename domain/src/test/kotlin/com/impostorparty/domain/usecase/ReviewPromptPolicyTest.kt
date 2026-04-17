@@ -25,17 +25,30 @@ class ReviewPromptPolicyTest {
     }
 
     @Test
-    fun `respects thirty day cooldown after review attempt`() {
-        val state = eligibleBaseState.copy(lastReviewAttemptEpochMillis = now - 29L * DAY)
+    fun `does not show again after rate now`() {
+        val state = eligibleBaseState.copy(isPermanentlyDismissed = true)
 
         assertFalse(useCase(state, now))
     }
 
     @Test
-    fun `respects fourteen day cooldown after later action`() {
-        val state = eligibleBaseState.copy(lastReviewLaterEpochMillis = now - 13L * DAY)
+    fun `does not show again until seven more completed games after later`() {
+        val state = eligibleBaseState.copy(
+            completedGames = 11,
+            nextPromptAtCompletedGames = 12,
+        )
 
         assertFalse(useCase(state, now))
+    }
+
+    @Test
+    fun `shows again after seven more completed games after later`() {
+        val state = eligibleBaseState.copy(
+            completedGames = 12,
+            nextPromptAtCompletedGames = 12,
+        )
+
+        assertTrue(useCase(state, now))
     }
 
     @Test
