@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Pasa el móvil a %1$s</string>
     <string name="reveal_keep_private">Asegúrate de que nadie más mire.</string>
     <string name="reveal_hold_to_see">Mantén pulsado para revelar</string>
-    <string name="reveal_hold_hint">Mantén pulsado un instante</string>
+    <string name="reveal_hold_hint">Mantén pulsado un instante. Al soltar se oculta.</string>
     <string name="reveal_word_title">La palabra es</string>
     <string name="reveal_impostor_title">Eres el impostor</string>
     <string name="reveal_impostor_hint">Disimula y adivina la palabra.</string>
-    <string name="reveal_hide_and_pass">Ocultar y pasar</string>
+    <string name="reveal_hide_and_pass">Pasar al siguiente</string>
 
     <string name="round_ready_title">Todo listo</string>
     <string name="round_ready_instructions">Dejad el móvil a un lado. Cada jugador dice una sola palabra por vuelta. Lo normal es votar tras 2 vueltas; añadid una tercera solo si al grupo le falta información.</string>
@@ -220,7 +220,6 @@
     <string name="cd_close">Cerrar</string>
     <string name="back_to_home">Volver al inicio</string>
 </resources>
-
 
 
 

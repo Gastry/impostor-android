@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">%1$s にスマホを渡してください</string>
     <string name="reveal_keep_private">ほかの人に見られないようにしてください。</string>
     <string name="reveal_hold_to_see">長押しで確認</string>
-    <string name="reveal_hold_hint">少しだけ長押ししてください</string>
+    <string name="reveal_hold_hint">少しだけ長押ししてください。離すと再び隠れます。</string>
     <string name="reveal_word_title">単語は</string>
     <string name="reveal_impostor_title">あなたはインポスターです</string>
     <string name="reveal_impostor_hint">うまく紛れて、ワードを推理しましょう。</string>
-    <string name="reveal_hide_and_pass">隠して渡す</string>
+    <string name="reveal_hide_and_pass">次のプレイヤーに渡す</string>
 
     <string name="round_ready_title">準備完了</string>
     <string name="round_ready_instructions">スマホは脇に置きます。各ラウンドで各プレイヤーは1語だけ言います。基本は2ラウンドで投票し、情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
@@ -220,6 +220,5 @@
     <string name="cd_close">閉じる</string>
     <string name="back_to_home">ホームに戻る</string>
 </resources>
-
 
 

@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Pass the phone to %1$s</string>
     <string name="reveal_keep_private">Make sure nobody else is looking.</string>
     <string name="reveal_hold_to_see">Hold to reveal</string>
-    <string name="reveal_hold_hint">Keep pressed for a brief moment</string>
+    <string name="reveal_hold_hint">Hold for a moment. Release to hide again.</string>
     <string name="reveal_word_title">The word is</string>
     <string name="reveal_impostor_title">You are the impostor</string>
     <string name="reveal_impostor_hint">Blend in and guess the word.</string>
-    <string name="reveal_hide_and_pass">Hide and pass</string>
+    <string name="reveal_hide_and_pass">Pass to next player</string>
 
     <string name="round_ready_title">All set</string>
     <string name="round_ready_instructions">Put the phone away. Each player says one word per round. A good default is 2 rounds before voting; play a third only if your group needs more information.</string>
@@ -220,7 +220,6 @@
     <string name="cd_close">Close</string>
     <string name="back_to_home">Back to Home</string>
 </resources>
-
 
 
 

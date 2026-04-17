@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Passez le téléphone à %1$s</string>
     <string name="reveal_keep_private">Assurez-vous que personne d’autre ne regarde.</string>
     <string name="reveal_hold_to_see">Maintenir pour révéler</string>
-    <string name="reveal_hold_hint">Gardez appuyé un court instant</string>
+    <string name="reveal_hold_hint">Maintenez un instant. En relâchant, cela se masque.</string>
     <string name="reveal_word_title">Le mot est</string>
     <string name="reveal_impostor_title">Tu es l’imposteur</string>
     <string name="reveal_impostor_hint">Fais semblant et devine le mot.</string>
-    <string name="reveal_hide_and_pass">Masquer et passer</string>
+    <string name="reveal_hide_and_pass">Passer au joueur suivant</string>
 
     <string name="round_ready_title">Tout est prêt</string>
     <string name="round_ready_instructions">Laissez le téléphone de côté. Chaque joueur dit un mot par tour. La base recommandée est de voter après 2 tours ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
@@ -220,5 +220,4 @@
     <string name="cd_close">Fermer</string>
     <string name="back_to_home">Retour à l’accueil</string>
 </resources>
-
 

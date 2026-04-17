@@ -20,13 +20,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.HoldToRevealButton
 import com.impostorparty.app.ui.components.PartyScaffold
@@ -36,7 +40,6 @@ import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.PlayerSecret
 import com.impostorparty.domain.model.RoundSession
 import com.impostorparty.domain.usecase.RevealFlowState
-import kotlinx.coroutines.delay
 
 @Composable
 fun RevealScreen(
@@ -71,16 +74,9 @@ fun RevealScreen(
 
     val haptic = LocalHapticFeedback.current
     val stateKey = when (flowState) {
-        is RevealFlowState.PassingPhone -> "pass_${flowState.playerIndex}"
-        is RevealFlowState.RevealingSecret -> "secret_${flowState.playerIndex}"
+        is RevealFlowState.PassingPhone -> "player_${flowState.playerIndex}"
+        is RevealFlowState.RevealingSecret -> "player_${flowState.playerIndex}"
         RevealFlowState.RoundReady -> "ready"
-    }
-
-    if (flowState is RevealFlowState.RevealingSecret && roundSession.setup.quickMode) {
-        LaunchedEffect(flowState.playerIndex) {
-            delay(2200)
-            onHideAndPass()
-        }
     }
 
     PartyScaffold(
@@ -106,27 +102,29 @@ fun RevealScreen(
             label = "reveal_content",
         ) {
             when (flowState) {
-                is RevealFlowState.PassingPhone -> {
-                    val assignment = roundSession.assignments[flowState.playerIndex]
-                    RevealPassContent(
+                is RevealFlowState.PassingPhone,
+                is RevealFlowState.RevealingSecret -> {
+                    val currentPlayerIndex = when (flowState) {
+                        is RevealFlowState.PassingPhone -> flowState.playerIndex
+                        is RevealFlowState.RevealingSecret -> flowState.playerIndex
+                        RevealFlowState.RoundReady -> error("RoundReady should not render player reveal content")
+                    }
+                    val assignment = roundSession.assignments[currentPlayerIndex]
+                    RevealPeekContent(
                         playerName = assignment.player.name,
-                        onRequestReveal = {
-                            if (hapticsEnabled) {
+                        secret = assignment.secret,
+                        isReadyToPass = flowState is RevealFlowState.RevealingSecret,
+                        onRevealUnlocked = {
+                            if (flowState is RevealFlowState.PassingPhone && hapticsEnabled) {
                                 haptic.performHapticFeedback(
                                     androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
                                 )
                             }
-                            onRequestReveal()
+                            if (flowState is RevealFlowState.PassingPhone) {
+                                onRequestReveal()
+                            }
                         },
-                    )
-                }
-
-                is RevealFlowState.RevealingSecret -> {
-                    val assignment = roundSession.assignments[flowState.playerIndex]
-                    RevealSecretContent(
-                        playerName = assignment.player.name,
-                        secret = assignment.secret,
-                        onHideAndPass = {
+                        onContinue = {
                             if (hapticsEnabled) {
                                 haptic.performHapticFeedback(
                                     androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove,
@@ -134,6 +132,7 @@ fun RevealScreen(
                             }
                             onHideAndPass()
                         },
+                        revealKey = currentPlayerIndex,
                     )
                 }
 
@@ -152,55 +151,16 @@ fun RevealScreen(
 }
 
 @Composable
-private fun RevealPassContent(
-    playerName: String,
-    onRequestReveal: () -> Unit,
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(vertical = PartyDimens.SpaceLg),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-            ) {
-                Text(
-                    text = stringResource(R.string.reveal_pass_to_player, playerName),
-                    style = MaterialTheme.typography.headlineMedium,
-                    textAlign = TextAlign.Center,
-                )
-                Text(
-                    text = stringResource(R.string.reveal_keep_private),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
-
-        Spacer(Modifier.height(PartyDimens.SpaceLg))
-
-        HoldToRevealButton(
-            label = stringResource(R.string.reveal_hold_to_see),
-            helper = stringResource(R.string.reveal_hold_hint),
-            onComplete = onRequestReveal,
-            modifier = Modifier.fillMaxWidth(),
-        )
-    }
-}
-
-@Composable
-private fun RevealSecretContent(
+private fun RevealPeekContent(
     playerName: String,
     secret: PlayerSecret,
-    onHideAndPass: () -> Unit,
+    isReadyToPass: Boolean,
+    onRevealUnlocked: () -> Unit,
+    onContinue: () -> Unit,
+    revealKey: Int,
 ) {
+    var isRevealVisible by rememberSaveable(revealKey) { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -209,56 +169,97 @@ private fun RevealSecretContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        PartySectionCard(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    text = playerName,
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-
-                when (secret) {
-                    is PlayerSecret.Civilian -> {
+        PartySectionCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(260.dp),
+        ) {
+            AnimatedContent(
+                targetState = isRevealVisible,
+                transitionSpec = { fadeIn() togetherWith fadeOut() },
+                label = "reveal_card_content",
+            ) { visible ->
+                if (!visible) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                    ) {
                         Text(
-                            text = stringResource(R.string.reveal_word_title),
-                            style = MaterialTheme.typography.titleMedium,
-                            textAlign = TextAlign.Center,
-                        )
-                        Text(
-                            text = secret.word,
-                            style = MaterialTheme.typography.displaySmall,
-                            color = MaterialTheme.colorScheme.primary,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
-
-                    PlayerSecret.Impostor -> {
-                        Text(
-                            text = stringResource(R.string.reveal_impostor_title),
+                            text = stringResource(R.string.reveal_pass_to_player, playerName),
                             style = MaterialTheme.typography.headlineMedium,
-                            color = MaterialTheme.colorScheme.error,
                             textAlign = TextAlign.Center,
                         )
                         Text(
-                            text = stringResource(R.string.reveal_impostor_hint),
+                            text = stringResource(R.string.reveal_keep_private),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center,
                         )
                     }
+                } else {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Text(
+                            text = playerName,
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+
+                        when (secret) {
+                            is PlayerSecret.Civilian -> {
+                                Text(
+                                    text = stringResource(R.string.reveal_word_title),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Center,
+                                )
+                                Text(
+                                    text = secret.word,
+                                    style = MaterialTheme.typography.displaySmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    textAlign = TextAlign.Center,
+                                )
+                            }
+
+                            PlayerSecret.Impostor -> {
+                                Text(
+                                    text = stringResource(R.string.reveal_impostor_title),
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    color = MaterialTheme.colorScheme.error,
+                                    textAlign = TextAlign.Center,
+                                )
+                                Text(
+                                    text = stringResource(R.string.reveal_impostor_hint),
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    textAlign = TextAlign.Center,
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        Spacer(Modifier.height(PartyDimens.SpaceLg))
+        Spacer(Modifier.height(PartyDimens.SpaceMd))
+
+        HoldToRevealButton(
+            label = stringResource(R.string.reveal_hold_to_see),
+            helper = stringResource(R.string.reveal_hold_hint),
+            onComplete = onRevealUnlocked,
+            onRevealVisibilityChanged = { isRevealVisible = it },
+            modifier = Modifier.fillMaxWidth(),
+        )
+
+        Spacer(Modifier.height(PartyDimens.SpaceMd))
 
         PrimaryPartyButton(
             text = stringResource(R.string.reveal_hide_and_pass),
-            onClick = onHideAndPass,
+            onClick = onContinue,
+            enabled = isReadyToPass,
             modifier = Modifier
                 .fillMaxWidth()
                 .testTag("reveal_hide_and_pass_button"),

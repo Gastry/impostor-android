@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Passa o telemóvel a %1$s</string>
     <string name="reveal_keep_private">Certifica-te de que mais ninguém está a olhar.</string>
     <string name="reveal_hold_to_see">Mantém premido para revelar</string>
-    <string name="reveal_hold_hint">Mantém premido por um instante</string>
+    <string name="reveal_hold_hint">Mantém premido um instante. Ao largar, volta a ocultar.</string>
     <string name="reveal_word_title">A palavra é</string>
     <string name="reveal_impostor_title">Tu és o impostor</string>
     <string name="reveal_impostor_hint">Disfarça-te e adivinha a palavra.</string>
-    <string name="reveal_hide_and_pass">Ocultar e passar</string>
+    <string name="reveal_hide_and_pass">Passar ao jogador seguinte</string>
 
     <string name="round_ready_title">Tudo pronto</string>
     <string name="round_ready_instructions">Deixem o telemóvel de lado. Cada pessoa diz uma palavra por ronda. O ponto de partida recomendado é votar após 2 rondas; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
@@ -220,5 +220,4 @@
     <string name="cd_close">Fechar</string>
     <string name="back_to_home">Voltar ao início</string>
 </resources>
-
 

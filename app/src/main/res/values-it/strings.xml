@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Passa il telefono a %1$s</string>
     <string name="reveal_keep_private">Assicurati che nessun altro guardi.</string>
     <string name="reveal_hold_to_see">Tieni premuto per rivelare</string>
-    <string name="reveal_hold_hint">Tieni premuto un attimo</string>
+    <string name="reveal_hold_hint">Tieni premuto un attimo. Rilasciando si nasconde di nuovo.</string>
     <string name="reveal_word_title">La parola è</string>
     <string name="reveal_impostor_title">Sei l’impostore</string>
     <string name="reveal_impostor_hint">Mimetizzati e scopri la parola.</string>
-    <string name="reveal_hide_and_pass">Nascondi e passa</string>
+    <string name="reveal_hide_and_pass">Passa al giocatore successivo</string>
 
     <string name="round_ready_title">Tutto pronto</string>
     <string name="round_ready_instructions">Lasciate il telefono da parte. Ogni giocatore dice una sola parola per round. La base consigliata è votare dopo 2 round; aggiungetene un terzo solo se al gruppo manca ancora informazione.</string>
@@ -220,5 +220,4 @@
     <string name="cd_close">Chiudi</string>
     <string name="back_to_home">Torna alla home</string>
 </resources>
-
 

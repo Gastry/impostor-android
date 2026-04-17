@@ -53,11 +53,11 @@
     <string name="reveal_pass_to_player">Gib das Handy an %1$s</string>
     <string name="reveal_keep_private">Stell sicher, dass niemand sonst hinsieht.</string>
     <string name="reveal_hold_to_see">Gedrückt halten zum Aufdecken</string>
-    <string name="reveal_hold_hint">Kurz gedrückt halten</string>
+    <string name="reveal_hold_hint">Kurz gedrückt halten. Beim Loslassen wird es wieder verborgen.</string>
     <string name="reveal_word_title">Das Wort ist</string>
     <string name="reveal_impostor_title">Du bist der Betrüger</string>
     <string name="reveal_impostor_hint">Falle nicht auf und errate das Wort.</string>
-    <string name="reveal_hide_and_pass">Verbergen und weitergeben</string>
+    <string name="reveal_hide_and_pass">An nächsten Spieler weitergeben</string>
 
     <string name="round_ready_title">Alles bereit</string>
     <string name="round_ready_instructions">Legt das Handy weg. Jede Person sagt pro Runde genau ein Wort. Der sinnvolle Standard sind 2 Runden vor der Abstimmung; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
@@ -220,7 +220,6 @@
     <string name="cd_close">Schließen</string>
     <string name="back_to_home">Zur Startseite</string>
 </resources>
-
 
 
 
