@@ -1,7 +1,6 @@
 package com.impostorparty.app.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -62,8 +61,6 @@ fun PlayerNamesScreen(
     onStartRound: () -> Unit,
     onBack: () -> Unit,
 ) {
-    val bannerReservedHeight = 88.dp
-    val actionReservedHeight = 96.dp
     val playerNames = List(setup.playerCount) { index ->
         setup.customPlayerNames.getOrNull(index).orEmpty()
     }
@@ -83,12 +80,12 @@ fun PlayerNamesScreen(
             }
         },
     ) { modifier ->
-        Box(modifier = modifier.fillMaxSize()) {
+        Column(modifier = modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .weight(1f, fill = true)
+                    .fillMaxWidth()
                     .padding(top = PartyDimens.SpaceMd)
-                    .padding(bottom = PartyDimens.SpaceXxl + bannerReservedHeight + actionReservedHeight)
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(PartyDimens.SpaceMd),
             ) {
@@ -185,7 +182,6 @@ fun PlayerNamesScreen(
 
             Column(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
