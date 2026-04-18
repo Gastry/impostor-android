@@ -34,6 +34,7 @@ import com.impostorparty.app.ui.screen.FeedbackScreen
 import com.impostorparty.app.ui.screen.HistoryScreen
 import com.impostorparty.app.ui.screen.HomeScreen
 import com.impostorparty.app.ui.screen.HowToPlayScreen
+import com.impostorparty.app.ui.screen.PlayerNamesScreen
 import com.impostorparty.app.ui.screen.ResultScreen
 import com.impostorparty.app.ui.screen.RevealScreen
 import com.impostorparty.app.ui.screen.RoundReadyScreen
@@ -134,6 +135,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Home.route) {
                 HomeScreen(
                     stats = settingsViewModel.stats.collectAsStateWithLifecycle().value,
+                    adsEnabled = !adsRemoved,
                     homeBannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HOME_BANNER,
                         adsRemoved = adsRemoved,
@@ -153,6 +155,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Setup.route) {
                 SetupScreen(
                     setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
+                    adsEnabled = !adsRemoved,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.SETUP_BANNER,
                         adsRemoved = adsRemoved,
@@ -167,6 +170,36 @@ fun ImpostorPartyRoot(
                     onPlayerCountChanged = setupViewModel::updatePlayerCount,
                     onImpostorCountChanged = setupViewModel::updateImpostorCount,
                     onToggleCategory = setupViewModel::toggleCategory,
+                    onStartRound = {
+                        setupViewModel.preparePlayerNames(currentAppLanguageTag)
+                        navController.navigate(AppRoute.PlayerNames.route)
+                    },
+                    onBack = { navController.popBackStack() },
+                )
+            }
+
+            composable(AppRoute.PlayerNames.route) {
+                PlayerNamesScreen(
+                    setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
+                    adsEnabled = !adsRemoved,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.SETUP_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
+                    isLoading = setupViewModel.isStartingRound.collectAsStateWithLifecycle().value,
+                    message = setupViewModel.message.collectAsStateWithLifecycle().value,
+                    onDismissMessage = setupViewModel::dismissMessage,
+                    onNameChanged = setupViewModel::updatePlayerName,
+                    onClearName = setupViewModel::clearPlayerName,
+                    onClearAll = setupViewModel::clearPlayerNames,
+                    playerNamesAsWordsAvailable = setupViewModel.canUsePlayerNamesAsWords(currentAppLanguageTag),
+                    onPlayerNamesAsWordsChanged = {
+                        setupViewModel.setPlayerNamesAsWordsEnabled(it, currentAppLanguageTag)
+                    },
                     onStartRound = {
                         scope.launch {
                             val result = setupViewModel.createRound(currentAppLanguageTag)
@@ -187,6 +220,15 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Reveal.route) {
                 RevealScreen(
                     roundSession = activeRound,
+                    adsEnabled = !adsRemoved,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.REVEAL_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     flowState = revealState,
                     reducedMotion = appSettings.reducedMotion,
                     hapticsEnabled = appSettings.hapticsEnabled,
@@ -282,6 +324,7 @@ fun ImpostorPartyRoot(
 
             composable(AppRoute.HowToPlay.route) {
                 HowToPlayScreen(
+                    adsEnabled = !adsRemoved,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HOW_TO_PLAY_BANNER,
                         adsRemoved = adsRemoved,
@@ -306,6 +349,7 @@ fun ImpostorPartyRoot(
                 val highlightRemoveAds = entry.arguments?.getBoolean(AppRoute.Settings.HighlightRemoveAdsArg) == true
                 SettingsScreen(
                     settings = appSettings,
+                    adsEnabled = !adsRemoved,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.SETTINGS_BANNER,
                         adsRemoved = adsRemoved,
@@ -356,12 +400,32 @@ fun ImpostorPartyRoot(
             composable(AppRoute.History.route) {
                 HistoryScreen(
                     history = settingsViewModel.history.collectAsStateWithLifecycle().value,
+                    adsEnabled = !adsRemoved,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.HISTORY_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
                     onBack = { navController.popBackStack() },
                 )
             }
 
             composable(AppRoute.Credits.route) {
-                CreditsScreen(onBack = { navController.popBackStack() })
+                CreditsScreen(
+                    adsEnabled = !adsRemoved,
+                    bannerAdUnitId = AdsConfig.adUnitIdFor(
+                        placement = AdPlacement.CREDITS_BANNER,
+                        adsRemoved = adsRemoved,
+                    ),
+                    removeAdsPriceLabel = removeAdsUiState.priceLabel,
+                    onOpenRemoveAdsSettings = {
+                        navController.navigate(AppRoute.Settings.createRoute(highlightRemoveAds = true))
+                    },
+                    onBack = { navController.popBackStack() },
+                )
             }
         }
     }

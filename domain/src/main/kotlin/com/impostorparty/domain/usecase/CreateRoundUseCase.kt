@@ -1,7 +1,9 @@
 package com.impostorparty.domain.usecase
 
+import com.impostorparty.domain.model.Category
 import com.impostorparty.domain.model.GameSetup
 import com.impostorparty.domain.model.RoundSession
+import com.impostorparty.domain.model.WordEntry
 import com.impostorparty.domain.model.WordUsageRecord
 import com.impostorparty.domain.repository.WordRepository
 import java.util.UUID
@@ -46,8 +48,9 @@ class CreateRoundUseCase @Inject constructor(
         }
 
         val localizedWords = wordRepository.getWords(activeLanguageTag)
+        val playerNameWords = setup.playerNameWords()
         val selectedWordResult = selectSecretWordUseCase(
-            words = localizedWords.words,
+            words = localizedWords.words + playerNameWords,
             selectedCategories = setup.categories,
             languageTag = localizedWords.languageTag,
             wordUsageHistory = wordUsageHistory,
@@ -82,5 +85,16 @@ class CreateRoundUseCase @Inject constructor(
             ),
             updatedWordUsageHistory = (selectedWordResult as WordSelectionResult.Success).updatedWordUsageHistory,
         )
+    }
+
+    private fun GameSetup.playerNameWords(): List<WordEntry> {
+        if (Category.PLAYERS !in categories) return emptyList()
+
+        return customPlayerNames
+            .take(playerCount)
+            .map { it.trim() }
+            .filter { it.isNotBlank() }
+            .distinct()
+            .map { name -> WordEntry(text = name, category = Category.PLAYERS) }
     }
 }

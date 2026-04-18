@@ -1,6 +1,4 @@
 package com.impostorparty.app.ui.components
-
-import com.impostorparty.app.BuildConfig
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
@@ -31,6 +29,7 @@ fun HoldToRevealButton(
     helper: String,
     modifier: Modifier = Modifier,
     revealDelayMillis: Long = 650,
+    onRevealVisibilityChanged: (Boolean) -> Unit = {},
     onComplete: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -43,9 +42,15 @@ fun HoldToRevealButton(
     )
 
     LaunchedEffect(pressed) {
+        if (!pressed) {
+            onRevealVisibilityChanged(false)
+            return@LaunchedEffect
+        }
+
+        delay(revealDelayMillis)
         if (pressed) {
-            delay(revealDelayMillis)
             onComplete()
+            onRevealVisibilityChanged(true)
         }
     }
 
@@ -56,11 +61,7 @@ fun HoldToRevealButton(
     )
 
     OutlinedButton(
-        onClick = {
-            if (BuildConfig.DEBUG) {
-                onComplete()
-            }
-        },
+        onClick = {},
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 112.dp)

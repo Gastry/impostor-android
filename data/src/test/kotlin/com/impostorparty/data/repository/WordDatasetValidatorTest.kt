@@ -132,7 +132,7 @@ class WordDatasetValidatorTest {
                 languages = listOf(
                     LanguagePayload(
                         tag = "en",
-                        categories = Category.entries.map { category ->
+                        categories = Category.wordDatasetCategories.map { category ->
                             if (category == Category.FOOD) {
                                 WordCategoryPayload(
                                     code = category.code,
@@ -176,7 +176,7 @@ class WordDatasetValidatorTest {
                 languages = listOf(
                     LanguagePayload(
                         tag = "en",
-                        categories = Category.entries.map { category ->
+                        categories = Category.wordDatasetCategories.map { category ->
                             if (category.code == "food") {
                                 WordCategoryPayload(
                                     code = "food",

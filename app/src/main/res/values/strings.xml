@@ -5,6 +5,8 @@
     <string name="home_stats_title">Recent games</string>
     <string name="home_stats_games_played">Games played: %1$d</string>
     <string name="home_stats_last_players">Last player count: %1$d</string>
+    <string name="home_stats_games_played_label">Games played</string>
+    <string name="home_stats_last_players_label">Last players</string>
     <string name="home_support_title">Support the app</string>
     <string name="home_banner_fallback_title">Remove ads forever</string>
     <string name="home_banner_fallback_subtitle">One-time payment</string>
@@ -46,18 +48,29 @@
     <string name="setup_quick_mode">Quick mode (auto-hide)</string>
     <string name="setup_custom_names">Custom player names</string>
     <string name="setup_player_name_label">Player %1$d name</string>
+    <string name="player_names_title">Player names</string>
+    <string name="player_names_subtitle">Check who is playing before the private reveal starts.</string>
+    <string name="player_names_clear_all">Clear all</string>
+    <string name="player_names_empty_hint">Empty names use the default player label.</string>
+    <string name="player_names_empty_placeholder">Default player name</string>
+    <string name="player_names_saved_hint">These names will be remembered for the next game.</string>
+    <string name="player_names_word_category_title">Extra category</string>
+    <string name="player_names_word_category_support">Add real player names to the secret word pool.</string>
+    <string name="player_names_word_category_disabled">Fill every player with a real name to use this category.</string>
+    <string name="player_names_clear_field_content_description">Clear player %1$d name</string>
     <string name="setup_start_button">Start reveal</string>
     <string name="setup_error_title">Cannot start round</string>
 
     <string name="reveal_title">Private reveal</string>
-    <string name="reveal_pass_to_player">Pass the phone to %1$s</string>
+    <string name="reveal_pass_to_player">Only %1$s should look</string>
     <string name="reveal_keep_private">Make sure nobody else is looking.</string>
     <string name="reveal_hold_to_see">Hold to reveal</string>
-    <string name="reveal_hold_hint">Keep pressed for a brief moment</string>
+    <string name="reveal_hold_hint">Hold for a moment. Release to hide again.</string>
     <string name="reveal_word_title">The word is</string>
     <string name="reveal_impostor_title">You are the impostor</string>
     <string name="reveal_impostor_hint">Blend in and guess the word.</string>
-    <string name="reveal_hide_and_pass">Hide and pass</string>
+    <string name="reveal_hide_and_pass_named">Pass to %1$s</string>
+    <string name="reveal_hide_and_finish">All set</string>
 
     <string name="round_ready_title">All set</string>
     <string name="round_ready_instructions">Put the phone away. Each player says one word per round. A good default is 2 rounds before voting; play a third only if your group needs more information.</string>
@@ -204,6 +217,7 @@
     <string name="category_countries_cities">Countries &amp; cities</string>
     <string name="category_nature">Nature</string>
     <string name="category_general_knowledge">General knowledge</string>
+    <string name="category_players">Player names</string>
 
     <string name="error_generic">Something went wrong. Try again.</string>
     <string name="error_player_count">Player count must be between 3 and 12.</string>
@@ -212,6 +226,7 @@
     <string name="error_round_time">Round time must be between 3 and 20 minutes.</string>
     <string name="error_clue_rounds">Rounds per game must be between 1 and 3.</string>
     <string name="error_not_enough_civilians">Leave at least two non-impostor players.</string>
+    <string name="error_player_names_required">Fill every player with a real name before using player names as a category.</string>
     <string name="error_no_words_for_category">No words available for selected categories.</string>
     <string name="error_no_words_recent_filter">Recent-word filter removed every option. Disable it or choose more categories.</string>
 
@@ -220,7 +235,3 @@
     <string name="cd_close">Close</string>
     <string name="back_to_home">Back to Home</string>
 </resources>
-
-
-
-

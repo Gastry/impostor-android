@@ -3,6 +3,7 @@ package com.impostorparty.app.navigation
 sealed class AppRoute(val route: String) {
     data object Home : AppRoute("home")
     data object Setup : AppRoute("setup")
+    data object PlayerNames : AppRoute("player_names")
     data object Reveal : AppRoute("reveal")
     data object RoundReady : AppRoute("round_ready")
     data object Result : AppRoute("result")

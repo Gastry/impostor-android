@@ -39,6 +39,7 @@ import com.impostorparty.app.ui.theme.PartyDimens
 
 @Composable
 fun HowToPlayScreen(
+    adsEnabled: Boolean,
     bannerAdUnitId: String?,
     removeAdsPriceLabel: String?,
     onOpenRemoveAdsSettings: () -> Unit,
@@ -159,6 +160,7 @@ fun HowToPlayScreen(
             }
 
             PromoBannerSlot(
+                adsEnabled = adsEnabled,
                 adUnitId = bannerAdUnitId,
                 removeAdsPriceLabel = removeAdsPriceLabel,
                 onRemoveAdsClick = onOpenRemoveAdsSettings,

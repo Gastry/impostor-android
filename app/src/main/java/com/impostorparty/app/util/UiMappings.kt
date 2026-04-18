@@ -17,6 +17,7 @@ fun Category.titleRes(): Int = when (this) {
     Category.COUNTRIES_CITIES -> R.string.category_countries_cities
     Category.NATURE -> R.string.category_nature
     Category.GENERAL_KNOWLEDGE -> R.string.category_general_knowledge
+    Category.PLAYERS -> R.string.category_players
 }
 
 @StringRes

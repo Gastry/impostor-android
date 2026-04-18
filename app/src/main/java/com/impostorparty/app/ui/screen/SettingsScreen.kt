@@ -61,6 +61,7 @@ import com.impostorparty.domain.model.ThemeMode
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
+    adsEnabled: Boolean,
     bannerAdUnitId: String?,
     removeAdsUiState: RemoveAdsPurchaseUiState,
     highlightRemoveAds: Boolean,
@@ -340,6 +341,7 @@ fun SettingsScreen(
             }
 
             PromoBannerSlot(
+                adsEnabled = adsEnabled,
                 adUnitId = bannerAdUnitId,
                 removeAdsPriceLabel = removeAdsUiState.priceLabel,
                 onRemoveAdsClick = onRemoveAds,

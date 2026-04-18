@@ -12,7 +12,7 @@ internal object WordDatasetValidator {
     fun validateOrThrow(dataset: WordDataset) {
         require(dataset.languages.isNotEmpty()) { "Dataset has no languages" }
 
-        val expectedCategoryCodes = Category.entries.map { it.code }.toSet()
+        val expectedCategoryCodes = Category.wordDatasetCategories.map { it.code }.toSet()
         val languageTags = mutableSetOf<String>()
 
         dataset.languages.forEach { language ->
