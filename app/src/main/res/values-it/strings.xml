@@ -5,6 +5,8 @@
     <string name="home_stats_title">Ultime partite</string>
     <string name="home_stats_games_played">Partite giocate: %1$d</string>
     <string name="home_stats_last_players">Ultimo numero giocatori: %1$d</string>
+    <string name="home_stats_games_played_label">Partite giocate</string>
+    <string name="home_stats_last_players_label">Ultimi giocatori</string>
     <string name="home_support_title">Supporta l’app</string>
     <string name="home_banner_fallback_title">Rimuovi la pubblicità per sempre</string>
     <string name="home_banner_fallback_subtitle">Pagamento unico</string>
@@ -60,14 +62,15 @@
     <string name="setup_error_title">Impossibile avviare il round</string>
 
     <string name="reveal_title">Rivelazione privata</string>
-    <string name="reveal_pass_to_player">Passa il telefono a %1$s</string>
+    <string name="reveal_pass_to_player">Questo è solo per %1$s</string>
     <string name="reveal_keep_private">Assicurati che nessun altro guardi.</string>
     <string name="reveal_hold_to_see">Tieni premuto per rivelare</string>
     <string name="reveal_hold_hint">Tieni premuto un attimo. Rilasciando si nasconde di nuovo.</string>
     <string name="reveal_word_title">La parola è</string>
     <string name="reveal_impostor_title">Sei l’impostore</string>
     <string name="reveal_impostor_hint">Mimetizzati e scopri la parola.</string>
-    <string name="reveal_hide_and_pass">Passa al giocatore successivo</string>
+    <string name="reveal_hide_and_pass_named">Passa a %1$s</string>
+    <string name="reveal_hide_and_finish">Tutto pronto</string>
 
     <string name="round_ready_title">Tutto pronto</string>
     <string name="round_ready_instructions">Lasciate il telefono da parte. Ogni giocatore dice una sola parola per round. La base consigliata è votare dopo 2 round; aggiungetene un terzo solo se al gruppo manca ancora informazione.</string>

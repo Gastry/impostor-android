@@ -46,6 +46,7 @@ import com.impostorparty.domain.model.GameSetup
 @Composable
 fun SetupScreen(
     setup: GameSetup,
+    adsEnabled: Boolean,
     bannerAdUnitId: String?,
     removeAdsPriceLabel: String?,
     onOpenRemoveAdsSettings: () -> Unit,
@@ -195,6 +196,7 @@ fun SetupScreen(
             }
 
             PromoBannerSlot(
+                adsEnabled = adsEnabled,
                 adUnitId = bannerAdUnitId,
                 removeAdsPriceLabel = removeAdsPriceLabel,
                 onRemoveAdsClick = onOpenRemoveAdsSettings,

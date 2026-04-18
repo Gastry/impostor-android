@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,6 +37,7 @@ import com.impostorparty.app.ui.components.HoldToRevealButton
 import com.impostorparty.app.ui.components.PartyScaffold
 import com.impostorparty.app.ui.components.PartySectionCard
 import com.impostorparty.app.ui.components.PrimaryPartyButton
+import com.impostorparty.app.ui.components.PromoBannerSlot
 import com.impostorparty.app.ui.theme.PartyDimens
 import com.impostorparty.domain.model.PlayerSecret
 import com.impostorparty.domain.model.RoundSession
@@ -44,6 +46,10 @@ import com.impostorparty.domain.usecase.RevealFlowState
 @Composable
 fun RevealScreen(
     roundSession: RoundSession?,
+    adsEnabled: Boolean,
+    bannerAdUnitId: String?,
+    removeAdsPriceLabel: String?,
+    onOpenRemoveAdsSettings: () -> Unit,
     flowState: RevealFlowState,
     reducedMotion: Boolean,
     hapticsEnabled: Boolean,
@@ -51,21 +57,38 @@ fun RevealScreen(
     onHideAndPass: () -> Unit,
     onExit: () -> Unit,
 ) {
+    val bannerReservedHeight = 88.dp
+
     if (roundSession == null) {
         PartyScaffold(title = stringResource(R.string.reveal_title)) { modifier ->
-            Column(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(vertical = PartyDimens.SpaceLg),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(stringResource(R.string.error_generic), textAlign = TextAlign.Center)
-                Spacer(Modifier.height(PartyDimens.SpaceMd))
-                PrimaryPartyButton(
-                    text = stringResource(R.string.back_to_home),
-                    onClick = onExit,
-                    modifier = Modifier.fillMaxWidth(),
+            Box(modifier = modifier.fillMaxSize()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(
+                            top = PartyDimens.SpaceLg,
+                            bottom = PartyDimens.SpaceXxl + bannerReservedHeight,
+                        ),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(stringResource(R.string.error_generic), textAlign = TextAlign.Center)
+                    Spacer(Modifier.height(PartyDimens.SpaceMd))
+                    PrimaryPartyButton(
+                        text = stringResource(R.string.back_to_home),
+                        onClick = onExit,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+
+                PromoBannerSlot(
+                    adsEnabled = adsEnabled,
+                    adUnitId = bannerAdUnitId,
+                    removeAdsPriceLabel = removeAdsPriceLabel,
+                    onRemoveAdsClick = onOpenRemoveAdsSettings,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth(),
                 )
             }
         }
@@ -88,64 +111,83 @@ fun RevealScreen(
             }
         },
     ) { modifier ->
-        AnimatedContent(
-            targetState = stateKey,
-            transitionSpec = {
-                if (reducedMotion) {
-                    fadeIn(animationSpec = androidx.compose.animation.core.tween(0)) togetherWith
-                        fadeOut(animationSpec = androidx.compose.animation.core.tween(0))
-                } else {
-                    fadeIn() togetherWith fadeOut()
-                }
-            },
-            modifier = modifier.fillMaxSize(),
-            label = "reveal_content",
-        ) {
-            when (flowState) {
-                is RevealFlowState.PassingPhone,
-                is RevealFlowState.RevealingSecret -> {
-                    val currentPlayerIndex = when (flowState) {
-                        is RevealFlowState.PassingPhone -> flowState.playerIndex
-                        is RevealFlowState.RevealingSecret -> flowState.playerIndex
-                        RevealFlowState.RoundReady -> error("RoundReady should not render player reveal content")
+        Box(modifier = modifier.fillMaxSize()) {
+            AnimatedContent(
+                targetState = stateKey,
+                transitionSpec = {
+                    if (reducedMotion) {
+                        fadeIn(animationSpec = androidx.compose.animation.core.tween(0)) togetherWith
+                            fadeOut(animationSpec = androidx.compose.animation.core.tween(0))
+                    } else {
+                        fadeIn() togetherWith fadeOut()
                     }
-                    val assignment = roundSession.assignments[currentPlayerIndex]
-                    RevealPeekContent(
-                        playerName = assignment.player.name,
-                        secret = assignment.secret,
-                        isReadyToPass = flowState is RevealFlowState.RevealingSecret,
-                        onRevealUnlocked = {
-                            if (flowState is RevealFlowState.PassingPhone && hapticsEnabled) {
-                                haptic.performHapticFeedback(
-                                    androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
-                                )
-                            }
-                            if (flowState is RevealFlowState.PassingPhone) {
-                                onRequestReveal()
-                            }
-                        },
-                        onContinue = {
-                            if (hapticsEnabled) {
-                                haptic.performHapticFeedback(
-                                    androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove,
-                                )
-                            }
-                            onHideAndPass()
-                        },
-                        revealKey = currentPlayerIndex,
-                    )
-                }
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = PartyDimens.SpaceXxl + bannerReservedHeight),
+                label = "reveal_content",
+            ) {
+                when (flowState) {
+                    is RevealFlowState.PassingPhone,
+                    is RevealFlowState.RevealingSecret -> {
+                        val currentPlayerIndex = when (flowState) {
+                            is RevealFlowState.PassingPhone -> flowState.playerIndex
+                            is RevealFlowState.RevealingSecret -> flowState.playerIndex
+                            RevealFlowState.RoundReady -> error("RoundReady should not render player reveal content")
+                        }
+                        val assignment = roundSession.assignments[currentPlayerIndex]
+                        val nextPlayerName = roundSession.assignments
+                            .getOrNull(currentPlayerIndex + 1)
+                            ?.player
+                            ?.name
+                        RevealPeekContent(
+                            playerName = assignment.player.name,
+                            nextPlayerName = nextPlayerName,
+                            secret = assignment.secret,
+                            isReadyToPass = flowState is RevealFlowState.RevealingSecret,
+                            onRevealUnlocked = {
+                                if (flowState is RevealFlowState.PassingPhone && hapticsEnabled) {
+                                    haptic.performHapticFeedback(
+                                        androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                                    )
+                                }
+                                if (flowState is RevealFlowState.PassingPhone) {
+                                    onRequestReveal()
+                                }
+                            },
+                            onContinue = {
+                                if (hapticsEnabled) {
+                                    haptic.performHapticFeedback(
+                                        androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove,
+                                    )
+                                }
+                                onHideAndPass()
+                            },
+                            revealKey = currentPlayerIndex,
+                        )
+                    }
 
-                RevealFlowState.RoundReady -> {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text(stringResource(R.string.round_ready_title))
+                    RevealFlowState.RoundReady -> {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            Text(stringResource(R.string.round_ready_title))
+                        }
                     }
                 }
             }
+
+            PromoBannerSlot(
+                adsEnabled = adsEnabled,
+                adUnitId = bannerAdUnitId,
+                removeAdsPriceLabel = removeAdsPriceLabel,
+                onRemoveAdsClick = onOpenRemoveAdsSettings,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth(),
+            )
         }
     }
 }
@@ -153,6 +195,7 @@ fun RevealScreen(
 @Composable
 private fun RevealPeekContent(
     playerName: String,
+    nextPlayerName: String?,
     secret: PlayerSecret,
     isReadyToPass: Boolean,
     onRevealUnlocked: () -> Unit,
@@ -257,7 +300,11 @@ private fun RevealPeekContent(
         Spacer(Modifier.height(PartyDimens.SpaceMd))
 
         PrimaryPartyButton(
-            text = stringResource(R.string.reveal_hide_and_pass),
+            text = if (nextPlayerName != null) {
+                stringResource(R.string.reveal_hide_and_pass_named, nextPlayerName)
+            } else {
+                stringResource(R.string.reveal_hide_and_finish)
+            },
             onClick = onContinue,
             enabled = isReadyToPass,
             modifier = Modifier

@@ -5,6 +5,8 @@
     <string name="home_stats_title">Dernières parties</string>
     <string name="home_stats_games_played">Parties jouées : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
+    <string name="home_stats_games_played_label">Parties jouées</string>
+    <string name="home_stats_last_players_label">Derniers joueurs</string>
     <string name="home_support_title">Soutiens l’app</string>
     <string name="home_banner_fallback_title">Supprimer la publicité pour toujours</string>
     <string name="home_banner_fallback_subtitle">Paiement unique</string>
@@ -60,14 +62,15 @@
     <string name="setup_error_title">Impossible de lancer la manche</string>
 
     <string name="reveal_title">Révélation privée</string>
-    <string name="reveal_pass_to_player">Passez le téléphone à %1$s</string>
+    <string name="reveal_pass_to_player">C’est seulement pour %1$s</string>
     <string name="reveal_keep_private">Assurez-vous que personne d’autre ne regarde.</string>
     <string name="reveal_hold_to_see">Maintenir pour révéler</string>
     <string name="reveal_hold_hint">Maintenez un instant. En relâchant, cela se masque.</string>
     <string name="reveal_word_title">Le mot est</string>
     <string name="reveal_impostor_title">Tu es l’imposteur</string>
     <string name="reveal_impostor_hint">Fais semblant et devine le mot.</string>
-    <string name="reveal_hide_and_pass">Passer au joueur suivant</string>
+    <string name="reveal_hide_and_pass_named">Passer à %1$s</string>
+    <string name="reveal_hide_and_finish">Tout est prêt</string>
 
     <string name="round_ready_title">Tout est prêt</string>
     <string name="round_ready_instructions">Laissez le téléphone de côté. Chaque joueur dit un mot par tour. La base recommandée est de voter après 2 tours ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>

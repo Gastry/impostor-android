@@ -3,6 +3,7 @@ package com.impostorparty.app.ui.components
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.content.SharedPreferences
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -44,31 +46,56 @@ private const val FermentationBookUrl = "https://amzn.to/48F6DRr"
 private const val RuleOfThreeUrl =
     "https://play.google.com/store/apps/details?id=com.aplicaciones.gastry.regladetres"
 private const val AdMobFallbackTimeoutMillis = 3500L
+private const val PromoBannerStatsPrefs = "promo_banner_stats"
+private const val TotalShownKey = "total_shown"
+private const val InternalShownKey = "internal_shown"
+private const val InternalSharePermille = 50L
+private const val SharePermilleBase = 1000L
 
-private enum class PromoBannerOption {
+internal enum class PromoBannerOption {
     ADMOB,
     REMOVE_ADS,
     FERMENTATION_BOOK,
     RULE_OF_THREE,
 }
 
+internal data class BannerExposureStats(
+    val totalShown: Long = 0,
+    val internalShown: Long = 0,
+)
+
 @Composable
 fun PromoBannerSlot(
+    adsEnabled: Boolean,
     adUnitId: String?,
     removeAdsPriceLabel: String?,
     onRemoveAdsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    if (!adsEnabled) return
+
+    val context = LocalContext.current
+    val exposureStore = remember(context.applicationContext) {
+        BannerExposureStore(context.applicationContext.getSharedPreferences(PromoBannerStatsPrefs, Context.MODE_PRIVATE))
+    }
     val adMobAvailable = !adUnitId.isNullOrBlank()
     var selectedOptionName by rememberSaveable(adUnitId, removeAdsPriceLabel) {
-        mutableStateOf(pickPromoBannerOption(adMobAvailable).name)
+        mutableStateOf(pickPromoBannerOption(adMobAvailable, exposureStore.snapshot()).name)
     }
     var bannerLoadState by rememberSaveable(adUnitId) {
         mutableStateOf(BannerLoadState.LOADING.name)
     }
+    var recordedImpressionKey by rememberSaveable(adUnitId, removeAdsPriceLabel) {
+        mutableStateOf<String?>(null)
+    }
 
     val selectedOption = selectedOptionName.toPromoBannerOption()
     val currentBannerLoadState = bannerLoadState.toBannerLoadState()
+    val impressionKey = when {
+        selectedOption == PromoBannerOption.ADMOB && currentBannerLoadState == BannerLoadState.LOADED -> "admob_loaded"
+        selectedOption != PromoBannerOption.ADMOB -> "internal_${selectedOption.name}"
+        else -> null
+    }
 
     LaunchedEffect(selectedOption, currentBannerLoadState, adMobAvailable) {
         if (!adMobAvailable || selectedOption != PromoBannerOption.ADMOB || currentBannerLoadState != BannerLoadState.LOADING) {
@@ -79,6 +106,18 @@ fun PromoBannerSlot(
         if (bannerLoadState.toBannerLoadState() == BannerLoadState.LOADING) {
             selectedOptionName = pickSelfPromoBannerOption().name
         }
+    }
+
+    LaunchedEffect(impressionKey) {
+        val key = impressionKey ?: return@LaunchedEffect
+        if (recordedImpressionKey == key) return@LaunchedEffect
+
+        if (key == "admob_loaded") {
+            exposureStore.recordAdMobShown()
+        } else {
+            exposureStore.recordInternalShown()
+        }
+        recordedImpressionKey = key
     }
 
     if (selectedOption == PromoBannerOption.ADMOB && adMobAvailable) {
@@ -96,11 +135,7 @@ fun PromoBannerSlot(
     }
 
     PromoBannerCard(
-        option = if (selectedOption == PromoBannerOption.ADMOB) {
-            pickSelfPromoBannerOption()
-        } else {
-            selectedOption
-        },
+        option = if (selectedOption == PromoBannerOption.ADMOB) pickSelfPromoBannerOption() else selectedOption,
         removeAdsPriceLabel = removeAdsPriceLabel,
         onRemoveAdsClick = onRemoveAdsClick,
         modifier = modifier,
@@ -196,36 +231,24 @@ private fun PromoBannerCard(
                 )
             }
 
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = stringResource(R.string.promo_banner_label),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.68f),
-                    maxLines = 1,
-                )
-                Text(
-                    text = stringResource(R.string.home_banner_fallback_cta),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.End,
-                    maxLines = 1,
-                )
-            }
+            Text(
+                text = stringResource(R.string.home_banner_fallback_cta),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.SemiBold,
+                textAlign = TextAlign.End,
+                maxLines = 1,
+            )
         }
     }
 }
 
-private fun pickPromoBannerOption(adMobAvailable: Boolean): PromoBannerOption {
+internal fun pickPromoBannerOption(
+    adMobAvailable: Boolean,
+    exposureStats: BannerExposureStats,
+): PromoBannerOption {
     if (!adMobAvailable) return pickSelfPromoBannerOption()
-
-    val roll = Random.nextInt(1000)
-    return when {
-        roll < 800 -> PromoBannerOption.ADMOB
-        roll < 850 -> PromoBannerOption.REMOVE_ADS
-        roll < 925 -> PromoBannerOption.FERMENTATION_BOOK
-        else -> PromoBannerOption.RULE_OF_THREE
-    }
+    return if (shouldShowInternalPromo(exposureStats)) pickSelfPromoBannerOption() else PromoBannerOption.ADMOB
 }
 
 private fun pickSelfPromoBannerOption(): PromoBannerOption {
@@ -234,6 +257,11 @@ private fun pickSelfPromoBannerOption(): PromoBannerOption {
         in 50..124 -> PromoBannerOption.FERMENTATION_BOOK
         else -> PromoBannerOption.RULE_OF_THREE
     }
+}
+
+internal fun shouldShowInternalPromo(exposureStats: BannerExposureStats): Boolean {
+    val targetInternalShownAfterNext = ((exposureStats.totalShown + 1) * InternalSharePermille) / SharePermilleBase
+    return exposureStats.internalShown < targetInternalShownAfterNext
 }
 
 private fun String.toPromoBannerOption(): PromoBannerOption {
@@ -259,4 +287,30 @@ private fun Context.openExternalUrl(url: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     runCatching { startActivity(intent) }
+}
+
+private class BannerExposureStore(
+    private val sharedPreferences: SharedPreferences,
+) {
+    fun snapshot(): BannerExposureStats {
+        return BannerExposureStats(
+            totalShown = sharedPreferences.getLong(TotalShownKey, 0L),
+            internalShown = sharedPreferences.getLong(InternalShownKey, 0L),
+        )
+    }
+
+    fun recordAdMobShown() {
+        val stats = snapshot()
+        sharedPreferences.edit()
+            .putLong(TotalShownKey, stats.totalShown + 1)
+            .apply()
+    }
+
+    fun recordInternalShown() {
+        val stats = snapshot()
+        sharedPreferences.edit()
+            .putLong(TotalShownKey, stats.totalShown + 1)
+            .putLong(InternalShownKey, stats.internalShown + 1)
+            .apply()
+    }
 }

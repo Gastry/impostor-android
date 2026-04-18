@@ -6,12 +6,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyBackground
@@ -39,6 +38,7 @@ import com.impostorparty.domain.model.GameStats
 @Composable
 fun HomeScreen(
     stats: GameStats,
+    adsEnabled: Boolean,
     homeBannerAdUnitId: String?,
     removeAdsPriceLabel: String?,
     onNewGame: () -> Unit,
@@ -138,6 +138,7 @@ fun HomeScreen(
         }
 
         PromoBannerSlot(
+            adsEnabled = adsEnabled,
             adUnitId = homeBannerAdUnitId,
             removeAdsPriceLabel = removeAdsPriceLabel,
             onRemoveAdsClick = onOpenRemoveAdsSettings,
@@ -191,34 +192,63 @@ private fun HomeHeroCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 4.dp),
             )
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
-            ) {
-                HomeStatPill(text = stringResource(R.string.home_stats_games_played, stats.gamesPlayed))
-                if (stats.lastPlayerCount > 0) {
-                    HomeStatPill(text = stringResource(R.string.home_stats_last_players, stats.lastPlayerCount))
+            if (stats.lastPlayerCount > 0) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
+                ) {
+                    HomeStatCard(
+                        value = stats.gamesPlayed.toString(),
+                        label = stringResource(R.string.home_stats_games_played_label),
+                        modifier = Modifier.weight(1f),
+                    )
+                    HomeStatCard(
+                        value = stats.lastPlayerCount.toString(),
+                        label = stringResource(R.string.home_stats_last_players_label),
+                        modifier = Modifier.weight(1f),
+                    )
                 }
+            } else {
+                HomeStatCard(
+                    value = stats.gamesPlayed.toString(),
+                    label = stringResource(R.string.home_stats_games_played_label),
+                    modifier = Modifier.widthIn(max = 220.dp),
+                )
             }
         }
     }
 }
 
 @Composable
-private fun HomeStatPill(text: String) {
-    Box(
+private fun HomeStatCard(
+    value: String,
+    label: String,
+    modifier: Modifier = Modifier,
+) {
+    Column(
         modifier = Modifier
+            .then(modifier)
             .background(
                 color = MaterialTheme.colorScheme.surfaceContainerHighest,
                 shape = RoundedCornerShape(PartyDimens.RadiusSm),
             )
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .heightIn(min = 76.dp)
+            .padding(horizontal = 12.dp, vertical = 10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = text,
+            text = value,
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text = label,
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            maxLines = 2,
+            textAlign = TextAlign.Center,
         )
     }
 }

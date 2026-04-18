@@ -5,6 +5,8 @@
     <string name="home_stats_title">Últimas partidas</string>
     <string name="home_stats_games_played">Partidas jugadas: %1$d</string>
     <string name="home_stats_last_players">Último número de jugadores: %1$d</string>
+    <string name="home_stats_games_played_label">Partidas</string>
+    <string name="home_stats_last_players_label">Últimos jugadores</string>
     <string name="home_support_title">Apoya la app</string>
     <string name="home_banner_fallback_title">Quita la publicidad para siempre</string>
     <string name="home_banner_fallback_subtitle">Pago único</string>
@@ -60,14 +62,15 @@
     <string name="setup_error_title">No se puede iniciar la ronda</string>
 
     <string name="reveal_title">Revelado privado</string>
-    <string name="reveal_pass_to_player">Pasa el móvil a %1$s</string>
+    <string name="reveal_pass_to_player">Esto es solo para %1$s</string>
     <string name="reveal_keep_private">Asegúrate de que nadie más mire.</string>
     <string name="reveal_hold_to_see">Mantén pulsado para revelar</string>
     <string name="reveal_hold_hint">Mantén pulsado un instante. Al soltar se oculta.</string>
     <string name="reveal_word_title">La palabra es</string>
     <string name="reveal_impostor_title">Eres el impostor</string>
     <string name="reveal_impostor_hint">Disimula y adivina la palabra.</string>
-    <string name="reveal_hide_and_pass">Pasar al siguiente</string>
+    <string name="reveal_hide_and_pass_named">Pasar a %1$s</string>
+    <string name="reveal_hide_and_finish">Todo listo</string>
 
     <string name="round_ready_title">Todo listo</string>
     <string name="round_ready_instructions">Dejad el móvil a un lado. Cada jugador dice una sola palabra por vuelta. Lo normal es votar tras 2 vueltas; añadid una tercera solo si al grupo le falta información.</string>
@@ -232,4 +235,3 @@
     <string name="cd_close">Cerrar</string>
     <string name="back_to_home">Volver al inicio</string>
 </resources>
-

@@ -47,6 +47,7 @@ import com.impostorparty.domain.model.GameSetup
 @Composable
 fun PlayerNamesScreen(
     setup: GameSetup,
+    adsEnabled: Boolean,
     bannerAdUnitId: String?,
     removeAdsPriceLabel: String?,
     onOpenRemoveAdsSettings: () -> Unit,
@@ -200,6 +201,7 @@ fun PlayerNamesScreen(
                         .testTag("player_names_start_button"),
                 )
                 PromoBannerSlot(
+                    adsEnabled = adsEnabled,
                     adUnitId = bannerAdUnitId,
                     removeAdsPriceLabel = removeAdsPriceLabel,
                     onRemoveAdsClick = onOpenRemoveAdsSettings,
