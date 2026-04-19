@@ -96,10 +96,10 @@ fun RevealScreen(
     }
 
     val haptic = LocalHapticFeedback.current
-    val stateKey = when (flowState) {
-        is RevealFlowState.PassingPhone -> "player_${flowState.playerIndex}"
-        is RevealFlowState.RevealingSecret -> "player_${flowState.playerIndex}"
-        RevealFlowState.RoundReady -> "ready"
+    val contentState = when (flowState) {
+        is RevealFlowState.PassingPhone -> RevealContentState.Player(flowState.playerIndex)
+        is RevealFlowState.RevealingSecret -> RevealContentState.Player(flowState.playerIndex)
+        RevealFlowState.RoundReady -> RevealContentState.Ready
     }
 
     PartyScaffold(
@@ -113,7 +113,7 @@ fun RevealScreen(
     ) { modifier ->
         Box(modifier = modifier.fillMaxSize()) {
             AnimatedContent(
-                targetState = stateKey,
+                targetState = contentState,
                 transitionSpec = {
                     if (reducedMotion) {
                         fadeIn(animationSpec = androidx.compose.animation.core.tween(0)) togetherWith
@@ -126,15 +126,10 @@ fun RevealScreen(
                     .fillMaxSize()
                     .padding(bottom = PartyDimens.SpaceXxl + bannerReservedHeight),
                 label = "reveal_content",
-            ) {
-                when (flowState) {
-                    is RevealFlowState.PassingPhone,
-                    is RevealFlowState.RevealingSecret -> {
-                        val currentPlayerIndex = when (flowState) {
-                            is RevealFlowState.PassingPhone -> flowState.playerIndex
-                            is RevealFlowState.RevealingSecret -> flowState.playerIndex
-                            RevealFlowState.RoundReady -> error("RoundReady should not render player reveal content")
-                        }
+            ) { targetContentState ->
+                when (targetContentState) {
+                    is RevealContentState.Player -> {
+                        val currentPlayerIndex = targetContentState.playerIndex
                         val assignment = roundSession.assignments[currentPlayerIndex]
                         val nextPlayerName = roundSession.assignments
                             .getOrNull(currentPlayerIndex + 1)
@@ -144,7 +139,8 @@ fun RevealScreen(
                             playerName = assignment.player.name,
                             nextPlayerName = nextPlayerName,
                             secret = assignment.secret,
-                            isReadyToPass = flowState is RevealFlowState.RevealingSecret,
+                            isReadyToPass = flowState is RevealFlowState.RevealingSecret &&
+                                flowState.playerIndex == currentPlayerIndex,
                             onRevealUnlocked = {
                                 if (flowState is RevealFlowState.PassingPhone && hapticsEnabled) {
                                     haptic.performHapticFeedback(
@@ -167,7 +163,7 @@ fun RevealScreen(
                         )
                     }
 
-                    RevealFlowState.RoundReady -> {
+                    RevealContentState.Ready -> {
                         Column(
                             modifier = Modifier.fillMaxSize(),
                             verticalArrangement = Arrangement.Center,
@@ -190,6 +186,11 @@ fun RevealScreen(
             )
         }
     }
+}
+
+private sealed interface RevealContentState {
+    data class Player(val playerIndex: Int) : RevealContentState
+    data object Ready : RevealContentState
 }
 
 @Composable
