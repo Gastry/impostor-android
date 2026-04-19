@@ -16,6 +16,10 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -26,6 +30,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.impostorparty.app.R
 import com.impostorparty.app.ui.components.PartyBackground
 import com.impostorparty.app.ui.components.PartySectionCard
@@ -198,11 +203,13 @@ private fun HomeHeroCard(
                     horizontalArrangement = Arrangement.spacedBy(PartyDimens.SpaceSm),
                 ) {
                     HomeStatCard(
+                        icon = Icons.Filled.EmojiEvents,
                         value = stats.gamesPlayed.toString(),
                         label = stringResource(R.string.home_stats_games_played_label),
                         modifier = Modifier.weight(1f),
                     )
                     HomeStatCard(
+                        icon = Icons.Filled.Group,
                         value = stats.lastPlayerCount.toString(),
                         label = stringResource(R.string.home_stats_last_players_label),
                         modifier = Modifier.weight(1f),
@@ -210,6 +217,7 @@ private fun HomeHeroCard(
                 }
             } else {
                 HomeStatCard(
+                    icon = Icons.Filled.EmojiEvents,
                     value = stats.gamesPlayed.toString(),
                     label = stringResource(R.string.home_stats_games_played_label),
                     modifier = Modifier.widthIn(max = 220.dp),
@@ -221,6 +229,7 @@ private fun HomeHeroCard(
 
 @Composable
 private fun HomeStatCard(
+    icon: ImageVector,
     value: String,
     label: String,
     modifier: Modifier = Modifier,
@@ -237,12 +246,22 @@ private fun HomeStatCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurface,
-            textAlign = TextAlign.Center,
-        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                text = value,
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Center,
+            )
+        }
         Text(
             text = label,
             style = MaterialTheme.typography.labelLarge,
