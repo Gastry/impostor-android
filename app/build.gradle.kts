@@ -14,7 +14,16 @@ val debugHomeBannerAdUnitId = "ca-app-pub-3940256099942544/9214589741"
 val removeAdsProductId = providers.gradleProperty("removeAdsProductId").orNull ?: "remove_ads"
 val releaseAdMobAppId = providers.gradleProperty("admobAppId").orNull ?: debugAdMobAppId
 val releaseHomeBannerAdUnitId = providers.gradleProperty("admobHomeBannerAdUnitId").orNull.orEmpty()
-val appVersionCode = 4
+val releaseStoreFilePath =
+    providers.gradleProperty("releaseStoreFile").orNull ?: "${rootDir}/signing/ElImpostorUpload.jks"
+val releaseKeyAlias = providers.gradleProperty("releaseKeyAlias").orNull ?: "gastry"
+val releaseStorePassword = providers.gradleProperty("releaseStorePassword").orNull
+val releaseKeyPassword = providers.gradleProperty("releaseKeyPassword").orNull ?: releaseStorePassword
+val hasReleaseSigning =
+    releaseStorePassword.isNullOrBlank().not() &&
+        releaseKeyPassword.isNullOrBlank().not() &&
+        file(releaseStoreFilePath).exists()
+val appVersionCode = 8
 
 val suspiciousStringMarkers = listOf(
     "\u00C3",
@@ -71,8 +80,19 @@ android {
     namespace = "com.impostorparty.app"
     compileSdk = 35
 
+    signingConfigs {
+        create("release") {
+            if (hasReleaseSigning) {
+                storeFile = file(releaseStoreFilePath)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
+
     defaultConfig {
-        applicationId = "com.gastry.elimpostor"
+        applicationId = "com.gastry.elinfiltrado"
         minSdk = 24
         targetSdk = 35
         versionCode = appVersionCode
@@ -87,6 +107,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             buildConfigField("boolean", "ADS_ENABLED", (releaseHomeBannerAdUnitId.isNotBlank()).toString())
             buildConfigField("String", "HOME_BANNER_AD_UNIT_ID", "\"$releaseHomeBannerAdUnitId\"")
             buildConfigField("String", "REMOVE_ADS_PRODUCT_ID", "\"$removeAdsProductId\"")
@@ -124,6 +147,12 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+
+    lint {
+        // AGP/Kotlin can crash lint when analyzing test-only Kotlin sources.
+        checkTestSources = false
+        ignoreTestSources = true
     }
 
     testOptions {

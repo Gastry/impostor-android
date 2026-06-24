@@ -13,7 +13,7 @@ The implementation stays intentionally small for this MVP, but it now includes s
 
 Recommended spreadsheet name:
 
-`El Impostor Feedback`
+`El Infiltrado Feedback`
 
 Recommended tab name:
 

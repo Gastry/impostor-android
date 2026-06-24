@@ -1,12 +1,12 @@
-  El Impostor (Impostor Party)
+  El Infiltrado
 
-Android app para jugar presencialmente al juego del impostor con **un solo movil** que se pasa entre jugadores.
+Android app para jugar presencialmente a un juego de infiltrado con **un solo movil** que se pasa entre jugadores.
 
    Que incluye
 - Flujo completo: Home -> Setup -> Reveal jugador por jugador -> Round Ready -> Result.
 - Modo de revelado seguro con **mantener pulsado para revelar**.
 - 3 a 12 jugadores.
-- 1 o 2 impostores (2 habilitado desde 6 jugadores).
+- 1 o 2 infiltrados (2 habilitado desde 6 jugadores).
 - Dataset local offline por categorias.
 - Persistencia local con DataStore:
   - ajustes,
@@ -108,6 +108,8 @@ Recursos incluidos:
    Publicacion Play
 Ver:
 - `docs/privacy-policy.md`
+- `docs/terms-and-conditions.md`
+- `docs/index.md` para GitHub Pages
 - `docs/marketing/play-store-es.md`
 - `docs/marketing/play-store-en.md`
 - `docs/marketing/screenshot-guide.md`

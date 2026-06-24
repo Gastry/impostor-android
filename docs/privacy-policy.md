@@ -1,6 +1,11 @@
-# Privacy Policy (Draft)
+---
+layout: default
+title: Privacy Policy
+---
 
-El Impostor funciona principalmente offline.
+# Privacy Policy
+
+El Infiltrado funciona principalmente offline.
 
 ## Datos recopilados
 - La app no requiere cuenta ni login.

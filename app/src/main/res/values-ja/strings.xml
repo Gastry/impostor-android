@@ -1,7 +1,7 @@
 ﻿<resources>
-    <string name="app_name">インポスター</string>
+    <string name="app_name">El Infiltrado</string>
     <string name="new_game">新しいゲーム</string>
-    <string name="home_tagline">1台のスマホ。1人のインポスター。大混乱。</string>
+    <string name="home_tagline">1台のスマホ。1人の潜入者。大混乱。</string>
     <string name="home_stats_title">最近のプレイ</string>
     <string name="home_stats_games_played">プレイした回数: %1$d</string>
     <string name="home_stats_last_players">前回のプレイヤー人数: %1$d</string>
@@ -28,8 +28,8 @@
     <string name="setup_subtitle">手早く準備して、スマホを回しましょう。</string>
     <string name="setup_basics_title">基本設定</string>
     <string name="setup_players_count">プレイヤー数: %1$d</string>
-    <string name="setup_impostor_count_title">インポスター数</string>
-    <string name="setup_impostor_count_item">インポスター %1$d人</string>
+    <string name="setup_impostor_count_title">潜入者数</string>
+    <string name="setup_impostor_count_item">潜入者 %1$d人</string>
     <string name="setup_clue_rounds_title">1ゲームの周回数</string>
     <string name="setup_clue_rounds_support">始める前に1周、2周、3周から選びます。2周はあくまで一般的なおすすめです。</string>
     <string name="setup_clue_round_option_1">1周</string>
@@ -67,7 +67,7 @@
     <string name="reveal_hold_to_see">長押しで確認</string>
     <string name="reveal_hold_hint">少しだけ長押ししてください。離すと再び隠れます。</string>
     <string name="reveal_word_title">単語は</string>
-    <string name="reveal_impostor_title">あなたはインポスターです</string>
+    <string name="reveal_impostor_title">あなたは潜入者です</string>
     <string name="reveal_impostor_hint">うまく紛れて、ワードを推理しましょう。</string>
     <string name="reveal_hide_and_pass_named">%1$s に渡す</string>
     <string name="reveal_hide_and_finish">準備完了</string>
@@ -76,31 +76,31 @@
     <string name="round_ready_instructions">スマホは脇に置きます。各ラウンドで各プレイヤーは1語だけ言います。基本は2ラウンドで投票し、情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
     <string name="round_ready_clue_rounds">このゲームで固定された周回数: %1$d</string>
     <string name="round_ready_word_per_turn">各周で、各プレイヤーは1語だけ言います。</string>
-    <string name="round_ready_vote_after_rounds">%1$d周が終わったらインポスターに投票してください。</string>
+    <string name="round_ready_vote_after_rounds">%1$d周が終わったら潜入者に投票してください。</string>
     <string name="round_ready_suggested_time">目安時間: %1$d分</string>
     <string name="round_ready_finish_button">結果へ進む</string>
     <string name="round_ready_new_config_button">設定し直す</string>
 
     <string name="result_title">ラウンド結果</string>
     <string name="result_word_label">秘密のワード</string>
-    <string name="result_impostor_label">インポスター: %1$s</string>
+    <string name="result_impostor_label">潜入者: %1$s</string>
     <string name="result_winner_title">勝ったのは？</string>
     <string name="result_rematch_button">同じ設定でもう一度遊ぶ</string>
     <string name="result_new_setup_button">メニューに戻る</string>
-    <string name="review_prompt_title">インポスターを評価してみませんか？</string>
+    <string name="review_prompt_title">El Infiltradoを評価してみませんか？</string>
     <string name="review_prompt_body">役に立っていて楽しいと感じてもらえているなら、評価がとても励みになります。</string>
     <string name="review_prompt_rate_now">今すぐ評価する</string>
     <string name="review_prompt_later">あとで</string>
     <string name="review_prompt_send_feedback">提案を送る</string>
 
     <string name="winner_civilians">市民</string>
-    <string name="winner_impostors">インポスター</string>
+    <string name="winner_impostors">潜入者</string>
     <string name="winner_undecided">未決定</string>
     <string name="how_intro">1分で遊び方の流れがわかります。</string>
     <string name="how_objective_title">目的</string>
     <string name="how_objective_line_1">1人を除いて全員が同じ秘密のワードを見ます。</string>
-    <string name="how_objective_line_2">1人だけインポスターで、ワードを知りません。</string>
-    <string name="how_objective_line_3">市民はインポスターを見つけ、インポスターはワードを推理します。</string>
+    <string name="how_objective_line_2">1人だけ潜入者で、ワードを知りません。</string>
+    <string name="how_objective_line_3">市民は潜入者を見つけ、潜入者はワードを推理します。</string>
     <string name="how_preparation_title">準備</string>
     <string name="how_preparation_line_1">人数とカテゴリを決めてゲームを準備します。</string>
     <string name="how_preparation_line_2">1台の共有スマホで役割が配られます。</string>
@@ -111,9 +111,9 @@
     <string name="how_play_line_3">基本は2ラウンドで投票です。情報が足りないと感じたときだけ3ラウンド目を追加してください。</string>
     <string name="how_play_line_4">話す順番そのものはアプリでは管理せず、グループで進行します。</string>
     <string name="how_win_title">勝敗</string>
-    <string name="how_win_line_1">2ラウンド後、または情報が足りないなら3ラウンド後に、誰がインポスターかを投票で決めます。</string>
+    <string name="how_win_line_1">2ラウンド後、または情報が足りないなら3ラウンド後に、誰が潜入者かを投票で決めます。</string>
     <string name="how_win_line_2">当てられたら市民側の勝ちです。</string>
-    <string name="how_win_line_3">外したらインポスターの勝ちです。</string>
+    <string name="how_win_line_3">外したら潜入者の勝ちです。</string>
     <string name="how_win_line_4">任意ルール: 見つかってもワードを当てれば引き分けにできます（アプリ内では自動判定しません）。</string>
     <string name="how_tips_title">うまく遊ぶコツ</string>
     <string name="how_tip_1">ヒントを露骨にしすぎない。</string>
@@ -197,7 +197,7 @@
 
     <string name="history_empty">まだラウンド履歴はありません。</string>
     <string name="history_category_format">カテゴリ: %1$s</string>
-    <string name="history_impostors_format">インポスター: %1$s</string>
+    <string name="history_impostors_format">潜入者: %1$s</string>
 
     <string name="credits_creator_title">制作</string>
     <string name="credits_creator_body">Gastry</string>
@@ -221,11 +221,11 @@
 
     <string name="error_generic">問題が発生しました。もう一度お試しください。</string>
     <string name="error_player_count">プレイヤー人数は3人から12人の間で設定してください。</string>
-    <string name="error_impostor_count">この人数ではそのインポスター数は選べません。</string>
+    <string name="error_impostor_count">この人数ではその潜入者数は選べません。</string>
     <string name="error_categories_empty">カテゴリを少なくとも1つ選んでください。</string>
     <string name="error_round_time">時間は3分から20分の間で設定してください。</string>
     <string name="error_clue_rounds">1ゲームの周回数は1〜3の範囲で設定してください。</string>
-    <string name="error_not_enough_civilians">インポスターではないプレイヤーを少なくとも2人残してください。</string>
+    <string name="error_not_enough_civilians">潜入者ではないプレイヤーを少なくとも2人残してください。</string>
     <string name="error_player_names_required">プレイヤー名をカテゴリとして使う前に、全員に実際の名前を入力してください。</string>
     <string name="error_no_words_for_category">選んだカテゴリに使えるワードがありません。</string>
     <string name="error_no_words_recent_filter">最近使ったワードの除外で候補がなくなりました。カテゴリを増やすか除外を外してください。</string>

@@ -9,7 +9,7 @@
 
   <text x="72" y="190" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">FAST SETUP</text>
   <text x="72" y="282" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">FOR GROUPS</text>
-  <text x="72" y="448" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">Choose players, impostors and</text>
+  <text x="72" y="448" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">Choose players, infiltrators and</text>
   <text x="72" y="490" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">categories in seconds.</text>
 
   <g id="phone">
@@ -30,7 +30,6 @@
   <rect x="180" y="1710" width="300" height="74" rx="37" fill="#101827"/>
   <text x="330" y="1757" text-anchor="middle" fill="#FFF7ED" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">3-12 PLAYERS</text>
   <rect x="600" y="1710" width="300" height="74" rx="37" fill="#FFFFFF" fill-opacity="0.88"/>
-  <text x="750" y="1757" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">1 OR 2 IMPOSTORS</text>
+  <text x="750" y="1757" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">1 OR 2 INFILTRATORS</text>
 </svg>
-
 

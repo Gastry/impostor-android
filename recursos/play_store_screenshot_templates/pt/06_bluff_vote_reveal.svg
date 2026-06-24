@@ -10,7 +10,7 @@
   <text x="72" y="190" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">ENGANE.</text>
   <text x="72" y="282" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">VOTE.</text>
   <text x="72" y="374" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-2">REVELE.</text>
-  <text x="72" y="464" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">De pistas, encontre o impostor</text>
+  <text x="72" y="464" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">De pistas, encontre o infiltrado</text>
   <text x="72" y="506" fill="#334155" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">e veja o resultado no fim.</text>
 
   <g id="phone">
@@ -33,5 +33,4 @@
   <rect x="600" y="1710" width="300" height="74" rx="37" fill="#FFFFFF" fill-opacity="0.88"/>
   <text x="750" y="1757" text-anchor="middle" fill="#101827" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="800">JOGUE OFFLINE</text>
 </svg>
-
 

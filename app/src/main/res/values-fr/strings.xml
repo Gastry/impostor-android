@@ -1,7 +1,7 @@
 ﻿<resources>
-    <string name="app_name">Imposteur</string>
+    <string name="app_name">El Infiltrado</string>
     <string name="new_game">Nouvelle partie</string>
-    <string name="home_tagline">Un téléphone. Un imposteur. Chaos garanti.</string>
+    <string name="home_tagline">Un téléphone. Un infiltré. Chaos garanti.</string>
     <string name="home_stats_title">Dernières parties</string>
     <string name="home_stats_games_played">Parties jouées : %1$d</string>
     <string name="home_stats_last_players">Dernier nombre de joueurs : %1$d</string>
@@ -28,8 +28,8 @@
     <string name="setup_subtitle">Configuration rapide, puis passez le téléphone.</string>
     <string name="setup_basics_title">Réglages essentiels</string>
     <string name="setup_players_count">Joueurs : %1$d</string>
-    <string name="setup_impostor_count_title">Imposteurs</string>
-    <string name="setup_impostor_count_item">%1$d imposteur(s)</string>
+    <string name="setup_impostor_count_title">Infiltrés</string>
+    <string name="setup_impostor_count_item">%1$d infiltré(s)</string>
     <string name="setup_categories_selected">%1$d sélectionnées</string>
     <string name="setup_categories_support">Choisissez quelques grandes catégories pour garder des indices clairs.</string>
     <string name="setup_clue_rounds_title">Tours par partie</string>
@@ -67,7 +67,7 @@
     <string name="reveal_hold_to_see">Maintenir pour révéler</string>
     <string name="reveal_hold_hint">Maintenez un instant. En relâchant, cela se masque.</string>
     <string name="reveal_word_title">Le mot est</string>
-    <string name="reveal_impostor_title">Tu es l’imposteur</string>
+    <string name="reveal_impostor_title">Tu es l’infiltré</string>
     <string name="reveal_impostor_hint">Fais semblant et devine le mot.</string>
     <string name="reveal_hide_and_pass_named">Passer à %1$s</string>
     <string name="reveal_hide_and_finish">Tout est prêt</string>
@@ -76,14 +76,14 @@
     <string name="round_ready_instructions">Laissez le téléphone de côté. Chaque joueur dit un mot par tour. La base recommandée est de voter après 2 tours ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
     <string name="round_ready_clue_rounds">Tours fixés pour cette partie : %1$d</string>
     <string name="round_ready_word_per_turn">À chaque tour, chaque joueur dit 1 mot.</string>
-    <string name="round_ready_vote_after_rounds">Après %1$d tours, votez pour l’imposteur.</string>
+    <string name="round_ready_vote_after_rounds">Après %1$d tours, votez pour l’infiltré.</string>
     <string name="round_ready_suggested_time">Temps conseillé : %1$d minutes</string>
     <string name="round_ready_finish_button">Terminer la manche</string>
     <string name="round_ready_new_config_button">Nouvelle configuration</string>
 
     <string name="result_title">Résultat de la manche</string>
     <string name="result_word_label">Mot secret</string>
-    <string name="result_impostor_label">Imposteur(s) : %1$s</string>
+    <string name="result_impostor_label">Infiltré(s) : %1$s</string>
     <string name="result_winner_title">Qui a gagné ?</string>
     <string name="result_rematch_button">Rejouer avec les mêmes réglages</string>
     <string name="result_new_setup_button">Retour au menu</string>
@@ -94,13 +94,13 @@
     <string name="review_prompt_send_feedback">Envoyer une suggestion</string>
 
     <string name="winner_civilians">Civils</string>
-    <string name="winner_impostors">Imposteur(s)</string>
+    <string name="winner_impostors">Infiltré(s)</string>
     <string name="winner_undecided">Aucun camp</string>
     <string name="how_intro">Comprenez la partie complète en moins d’une minute.</string>
     <string name="how_objective_title">Objectif</string>
     <string name="how_objective_line_1">Tous sauf un voient le même mot secret.</string>
-    <string name="how_objective_line_2">Un joueur est l’imposteur et ne connaît pas le mot.</string>
-    <string name="how_objective_line_3">Le groupe doit trouver l’imposteur. L’imposteur doit se fondre et deviner le mot.</string>
+    <string name="how_objective_line_2">Un joueur est l’infiltré et ne connaît pas le mot.</string>
+    <string name="how_objective_line_3">Le groupe doit trouver l’infiltré. L’infiltré doit se fondre et deviner le mot.</string>
     <string name="how_preparation_title">Préparation</string>
     <string name="how_preparation_line_1">Choisissez le nombre de joueurs et les catégories pour préparer la partie.</string>
     <string name="how_preparation_line_2">L’application distribue les rôles avec un seul téléphone.</string>
@@ -111,10 +111,10 @@
     <string name="how_play_line_3">La base recommandée est de faire 2 tours avant le vote ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
     <string name="how_play_line_4">L’app ne gère pas les tours de parole ; le groupe s’en charge.</string>
     <string name="how_win_title">Comment gagner</string>
-    <string name="how_win_line_1">Après 2 tours, ou 3 si le groupe manque encore d’informations, votez pour la personne que vous pensez être l’imposteur.</string>
-    <string name="how_win_line_2">Si le groupe le trouve, les civils gagnent.</string>
-    <string name="how_win_line_3">Si le groupe se trompe, l’imposteur gagne.</string>
-    <string name="how_win_line_4">Variante optionnelle : s’il est découvert, l’imposteur peut faire égalité en devinant le mot (non géré par l’app).</string>
+    <string name="how_win_line_1">Après 2 tours, ou 3 si le groupe manque encore d’informations, votez pour la personne que vous pensez être l’infiltré.</string>
+    <string name="how_win_line_2">Si le groupe trouve l’infiltré, les civils gagnent.</string>
+    <string name="how_win_line_3">Si le groupe se trompe, l’infiltré gagne.</string>
+    <string name="how_win_line_4">Variante optionnelle : s’il est découvert, l’infiltré peut faire égalité en devinant le mot (non géré par l’app).</string>
     <string name="how_tips_title">Conseils de jeu</string>
     <string name="how_tip_1">Ne donnez pas un indice trop évident.</string>
     <string name="how_tip_2">2 tours est généralement le meilleur point de départ ; ajoutez-en un troisième seulement si le groupe manque encore d’informations.</string>
@@ -197,7 +197,7 @@
 
     <string name="history_empty">Aucune manche pour le moment.</string>
     <string name="history_category_format">Catégorie : %1$s</string>
-    <string name="history_impostors_format">Imposteur(s) : %1$s</string>
+    <string name="history_impostors_format">Infiltré(s) : %1$s</string>
 
     <string name="credits_creator_title">Créé par</string>
     <string name="credits_creator_body">Gastry</string>
@@ -221,11 +221,11 @@
 
     <string name="error_generic">Une erreur est survenue. Réessayez.</string>
     <string name="error_player_count">Le nombre de joueurs doit être entre 3 et 12.</string>
-    <string name="error_impostor_count">Nombre d’imposteurs invalide pour ce groupe.</string>
+    <string name="error_impostor_count">Nombre d’infiltrés invalide pour ce groupe.</string>
     <string name="error_categories_empty">Choisissez au moins une catégorie.</string>
     <string name="error_round_time">Le temps doit être entre 3 et 20 minutes.</string>
     <string name="error_clue_rounds">Le nombre de tours doit être entre 1 et 3.</string>
-    <string name="error_not_enough_civilians">Laissez au moins deux non-imposteurs.</string>
+    <string name="error_not_enough_civilians">Laissez au moins deux joueurs non infiltrés.</string>
     <string name="error_player_names_required">Renseignez un vrai nom pour chaque joueur avant d’utiliser les joueurs comme catégorie.</string>
     <string name="error_no_words_for_category">Aucun mot n’est disponible pour les catégories sélectionnées.</string>
     <string name="error_no_words_recent_filter">Le filtre des mots récents a retiré toutes les options. Désactivez-le ou ajoutez des catégories.</string>

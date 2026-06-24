@@ -20,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ImpostorParty"
+rootProject.name = "ElInfiltrado"
 include(":app")
 include(":domain")
 include(":data")

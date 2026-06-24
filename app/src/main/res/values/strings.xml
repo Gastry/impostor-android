@@ -1,7 +1,7 @@
 ﻿<resources>
-    <string name="app_name">Impostor</string>
+    <string name="app_name">El Infiltrado</string>
     <string name="new_game">New Game</string>
-    <string name="home_tagline">One phone. One impostor. Pure chaos.</string>
+    <string name="home_tagline">One phone. One infiltrator. Pure chaos.</string>
     <string name="home_stats_title">Recent games</string>
     <string name="home_stats_games_played">Games played: %1$d</string>
     <string name="home_stats_last_players">Last player count: %1$d</string>
@@ -28,8 +28,8 @@
     <string name="setup_subtitle">Fast setup, then pass the phone around.</string>
     <string name="setup_basics_title">Round basics</string>
     <string name="setup_players_count">Players: %1$d</string>
-    <string name="setup_impostor_count_title">Impostors</string>
-    <string name="setup_impostor_count_item">%1$d impostor(s)</string>
+    <string name="setup_impostor_count_title">Infiltrators</string>
+    <string name="setup_impostor_count_item">%1$d infiltrator(s)</string>
     <string name="setup_categories_selected">%1$d selected</string>
     <string name="setup_categories_support">Pick a few broad categories to keep clues fast and clear.</string>
     <string name="setup_clue_rounds_title">Rounds per game</string>
@@ -67,7 +67,7 @@
     <string name="reveal_hold_to_see">Hold to reveal</string>
     <string name="reveal_hold_hint">Hold for a moment. Release to hide again.</string>
     <string name="reveal_word_title">The word is</string>
-    <string name="reveal_impostor_title">You are the impostor</string>
+    <string name="reveal_impostor_title">You are the infiltrator</string>
     <string name="reveal_impostor_hint">Blend in and guess the word.</string>
     <string name="reveal_hide_and_pass_named">Pass to %1$s</string>
     <string name="reveal_hide_and_finish">All set</string>
@@ -76,14 +76,14 @@
     <string name="round_ready_instructions">Put the phone away. Each player says one word per round. A good default is 2 rounds before voting; play a third only if your group needs more information.</string>
     <string name="round_ready_clue_rounds">Chosen rounds for this game: %1$d</string>
     <string name="round_ready_word_per_turn">One word per player in each round.</string>
-    <string name="round_ready_vote_after_rounds">Once you finish %1$d rounds, vote for the impostor.</string>
+    <string name="round_ready_vote_after_rounds">Once you finish %1$d rounds, vote for the infiltrator.</string>
     <string name="round_ready_suggested_time">Suggested time: %1$d minutes</string>
     <string name="round_ready_finish_button">Finish round</string>
     <string name="round_ready_new_config_button">New setup</string>
 
     <string name="result_title">Round result</string>
     <string name="result_word_label">Secret word</string>
-    <string name="result_impostor_label">Impostor(s): %1$s</string>
+    <string name="result_impostor_label">Infiltrator(s): %1$s</string>
     <string name="result_winner_title">Who won?</string>
     <string name="result_rematch_button">Play again with same settings</string>
     <string name="result_new_setup_button">Back to menu</string>
@@ -94,13 +94,13 @@
     <string name="review_prompt_send_feedback">Send feedback</string>
 
     <string name="winner_civilians">Civilians</string>
-    <string name="winner_impostors">Impostor(s)</string>
+    <string name="winner_impostors">Infiltrator(s)</string>
     <string name="winner_undecided">Undecided</string>
     <string name="how_intro">Learn the full game flow in under a minute.</string>
     <string name="how_objective_title">Objective</string>
     <string name="how_objective_line_1">All players except one see the same secret word.</string>
-    <string name="how_objective_line_2">One player is the impostor and does not know the word.</string>
-    <string name="how_objective_line_3">The group must find the impostor. The impostor must blend in and guess the word.</string>
+    <string name="how_objective_line_2">One player is the infiltrator and does not know the word.</string>
+    <string name="how_objective_line_3">The group must find the infiltrator. The infiltrator must blend in and guess the word.</string>
     <string name="how_preparation_title">Preparation</string>
     <string name="how_preparation_line_1">Choose player count and categories to prepare the game.</string>
     <string name="how_preparation_line_2">The app assigns roles using one shared phone.</string>
@@ -111,10 +111,10 @@
     <string name="how_play_line_3">A good default is 2 rounds before voting; add a third only if the group needs more information.</string>
     <string name="how_play_line_4">The app does not control spoken turns; the group does.</string>
     <string name="how_win_title">How to win</string>
-    <string name="how_win_line_1">After 2 rounds, or 3 if your group still needs more information, vote for who you think is the impostor.</string>
-    <string name="how_win_line_2">If the group catches the impostor, civilians win.</string>
-    <string name="how_win_line_3">If the group misses, the impostor wins.</string>
-    <string name="how_win_line_4">Optional house rule: if caught, the impostor may draw by guessing the word (not enforced by the app).</string>
+    <string name="how_win_line_1">After 2 rounds, or 3 if your group still needs more information, vote for who you think is the infiltrator.</string>
+    <string name="how_win_line_2">If the group catches the infiltrator, civilians win.</string>
+    <string name="how_win_line_3">If the group misses, the infiltrator wins.</string>
+    <string name="how_win_line_4">Optional house rule: if caught, the infiltrator may draw by guessing the word (not enforced by the app).</string>
     <string name="how_tips_title">Tips to play better</string>
     <string name="how_tip_1">Do not make your clue too obvious.</string>
     <string name="how_tip_2">2 rounds is usually the best starting point; add a third only if the group needs more information.</string>
@@ -197,7 +197,7 @@
 
     <string name="history_empty">No rounds yet. Start your first game.</string>
     <string name="history_category_format">Category: %1$s</string>
-    <string name="history_impostors_format">Impostor(s): %1$s</string>
+    <string name="history_impostors_format">Infiltrator(s): %1$s</string>
 
     <string name="credits_creator_title">Created by</string>
     <string name="credits_creator_body">Gastry</string>
@@ -221,11 +221,11 @@
 
     <string name="error_generic">Something went wrong. Try again.</string>
     <string name="error_player_count">Player count must be between 3 and 12.</string>
-    <string name="error_impostor_count">Selected impostor count is not valid for this player count.</string>
+    <string name="error_impostor_count">Selected infiltrator count is not valid for this player count.</string>
     <string name="error_categories_empty">Select at least one category.</string>
     <string name="error_round_time">Round time must be between 3 and 20 minutes.</string>
     <string name="error_clue_rounds">Rounds per game must be between 1 and 3.</string>
-    <string name="error_not_enough_civilians">Leave at least two non-impostor players.</string>
+    <string name="error_not_enough_civilians">Leave at least two non-infiltrator players.</string>
     <string name="error_player_names_required">Fill every player with a real name before using player names as a category.</string>
     <string name="error_no_words_for_category">No words available for selected categories.</string>
     <string name="error_no_words_recent_filter">Recent-word filter removed every option. Disable it or choose more categories.</string>

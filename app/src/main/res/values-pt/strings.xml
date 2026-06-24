@@ -1,7 +1,7 @@
 ﻿<resources>
-    <string name="app_name">Impostor</string>
+    <string name="app_name">El Infiltrado</string>
     <string name="new_game">Nova partida</string>
-    <string name="home_tagline">Um telemóvel. Um impostor. Caos total.</string>
+    <string name="home_tagline">Um telemóvel. Um infiltrado. Caos total.</string>
     <string name="home_stats_title">Últimas partidas</string>
     <string name="home_stats_games_played">Partidas jogadas: %1$d</string>
     <string name="home_stats_last_players">Último número de jogadores: %1$d</string>
@@ -28,8 +28,8 @@
     <string name="setup_subtitle">Prepara rápido e passa o telemóvel.</string>
     <string name="setup_basics_title">Ajustes base</string>
     <string name="setup_players_count">Jogadores: %1$d</string>
-    <string name="setup_impostor_count_title">Impostores</string>
-    <string name="setup_impostor_count_item">%1$d impostor(es)</string>
+    <string name="setup_impostor_count_title">Infiltrados</string>
+    <string name="setup_impostor_count_item">%1$d infiltrado(s)</string>
     <string name="setup_clue_rounds_title">Voltas por partida</string>
     <string name="setup_clue_rounds_support">Escolham 1, 2 ou 3 voltas antes de começar. 2 voltas são apenas a recomendação mais habitual.</string>
     <string name="setup_clue_round_option_1">1 volta</string>
@@ -67,7 +67,7 @@
     <string name="reveal_hold_to_see">Mantém premido para revelar</string>
     <string name="reveal_hold_hint">Mantém premido um instante. Ao largar, volta a ocultar.</string>
     <string name="reveal_word_title">A palavra é</string>
-    <string name="reveal_impostor_title">Tu és o impostor</string>
+    <string name="reveal_impostor_title">Tu és o infiltrado</string>
     <string name="reveal_impostor_hint">Disfarça-te e adivinha a palavra.</string>
     <string name="reveal_hide_and_pass_named">Passar a %1$s</string>
     <string name="reveal_hide_and_finish">Tudo pronto</string>
@@ -76,14 +76,14 @@
     <string name="round_ready_instructions">Deixem o telemóvel de lado. Cada pessoa diz uma palavra por ronda. O ponto de partida recomendado é votar após 2 rondas; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
     <string name="round_ready_clue_rounds">Voltas fixas desta partida: %1$d</string>
     <string name="round_ready_word_per_turn">Em cada volta, cada jogador diz 1 palavra.</string>
-    <string name="round_ready_vote_after_rounds">Depois de %1$d voltas, votem no impostor.</string>
+    <string name="round_ready_vote_after_rounds">Depois de %1$d voltas, votem no infiltrado.</string>
     <string name="round_ready_suggested_time">Tempo sugerido: %1$d minutos</string>
     <string name="round_ready_finish_button">Terminar ronda</string>
     <string name="round_ready_new_config_button">Nova configuração</string>
 
     <string name="result_title">Resultado da ronda</string>
     <string name="result_word_label">Palavra secreta</string>
-    <string name="result_impostor_label">Impostor(es): %1$s</string>
+    <string name="result_impostor_label">Infiltrado(s): %1$s</string>
     <string name="result_winner_title">Quem venceu?</string>
     <string name="result_rematch_button">Jogar de novo com as mesmas opções</string>
     <string name="result_new_setup_button">Voltar ao menu</string>
@@ -94,13 +94,13 @@
     <string name="review_prompt_send_feedback">Enviar sugestão</string>
 
     <string name="winner_civilians">Civis</string>
-    <string name="winner_impostors">Impostor(es)</string>
+    <string name="winner_impostors">Infiltrado(s)</string>
     <string name="winner_undecided">Indefinido</string>
     <string name="how_intro">Percebe a ronda completa em menos de um minuto.</string>
     <string name="how_objective_title">Objetivo</string>
     <string name="how_objective_line_1">Todos, menos um, veem a mesma palavra secreta.</string>
-    <string name="how_objective_line_2">Um jogador é o impostor e não conhece a palavra.</string>
-    <string name="how_objective_line_3">O grupo precisa descobrir o impostor. O impostor deve disfarçar e adivinhar a palavra.</string>
+    <string name="how_objective_line_2">Um jogador é o infiltrado e não conhece a palavra.</string>
+    <string name="how_objective_line_3">O grupo precisa descobrir o infiltrado. O infiltrado deve disfarçar e adivinhar a palavra.</string>
     <string name="how_preparation_title">Preparação</string>
     <string name="how_preparation_line_1">Escolha jogadores e categorias para preparar a partida.</string>
     <string name="how_preparation_line_2">A app distribui os papéis com um único telemóvel partilhado.</string>
@@ -111,10 +111,10 @@
     <string name="how_play_line_3">O ponto de partida recomendado é fazer 2 rondas antes da votação; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
     <string name="how_play_line_4">A app não controla os turnos falados; isso fica a cargo do grupo.</string>
     <string name="how_win_title">Como ganhar</string>
-    <string name="how_win_line_1">Após 2 rondas, ou 3 se o grupo ainda precisar de mais informação, votem em quem acham que é o impostor.</string>
-    <string name="how_win_line_2">Se o grupo acertar, os civis vencem.</string>
-    <string name="how_win_line_3">Se o grupo errar, o impostor vence.</string>
-    <string name="how_win_line_4">Variante opcional: se for descoberto, o impostor pode empatar ao adivinhar a palavra (não aplicado pela app).</string>
+    <string name="how_win_line_1">Após 2 rondas, ou 3 se o grupo ainda precisar de mais informação, votem em quem acham que é o infiltrado.</string>
+    <string name="how_win_line_2">Se o grupo descobrir o infiltrado, os civis vencem.</string>
+    <string name="how_win_line_3">Se o grupo errar, o infiltrado vence.</string>
+    <string name="how_win_line_4">Variante opcional: se for descoberto, o infiltrado pode empatar ao adivinhar a palavra (não aplicado pela app).</string>
     <string name="how_tips_title">Dicas para jogar melhor</string>
     <string name="how_tip_1">Não dê pistas óbvias demais.</string>
     <string name="how_tip_2">2 rondas costumam ser o melhor ponto de partida; joguem uma terceira apenas se o grupo ainda precisar de mais informação.</string>
@@ -197,7 +197,7 @@
 
     <string name="history_empty">Ainda não há rodadas.</string>
     <string name="history_category_format">Categoria: %1$s</string>
-    <string name="history_impostors_format">Impostor(es): %1$s</string>
+    <string name="history_impostors_format">Infiltrado(s): %1$s</string>
 
     <string name="credits_creator_title">Criado por</string>
     <string name="credits_creator_body">Gastry</string>
@@ -221,11 +221,11 @@
 
     <string name="error_generic">Algo deu errado. Tente novamente.</string>
     <string name="error_player_count">O número de jogadores deve estar entre 3 e 12.</string>
-    <string name="error_impostor_count">Número de impostores inválido para este grupo.</string>
+    <string name="error_impostor_count">Número de infiltrados inválido para este grupo.</string>
     <string name="error_categories_empty">Selecione pelo menos uma categoria.</string>
     <string name="error_round_time">O tempo deve ficar entre 3 e 20 minutos.</string>
     <string name="error_clue_rounds">As voltas por partida devem estar entre 1 e 3.</string>
-    <string name="error_not_enough_civilians">Deixe pelo menos dois jogadores não impostores.</string>
+    <string name="error_not_enough_civilians">Deixe pelo menos dois jogadores não infiltrados.</string>
     <string name="error_player_names_required">Preenche todos os jogadores com nomes reais antes de usar jogadores como categoria.</string>
     <string name="error_no_words_for_category">Não há palavras para as categorias selecionadas.</string>
     <string name="error_no_words_recent_filter">O filtro de palavras recentes removeu todas as opções. Desative-o ou adicione categorias.</string>

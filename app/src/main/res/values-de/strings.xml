@@ -1,7 +1,7 @@
 ﻿<resources>
-    <string name="app_name">Impostor</string>
+    <string name="app_name">El Infiltrado</string>
     <string name="new_game">Neues Spiel</string>
-    <string name="home_tagline">Ein Handy. Ein Betrüger. Reines Chaos.</string>
+    <string name="home_tagline">Ein Handy. Ein Infiltrator. Reines Chaos.</string>
     <string name="home_stats_title">Letzte Partien</string>
     <string name="home_stats_games_played">Gespielte Runden: %1$d</string>
     <string name="home_stats_last_players">Letzte Spielerzahl: %1$d</string>
@@ -28,8 +28,8 @@
     <string name="setup_subtitle">Schnell einstellen und Handy weitergeben.</string>
     <string name="setup_basics_title">Rundenbasis</string>
     <string name="setup_players_count">Spieler: %1$d</string>
-    <string name="setup_impostor_count_title">Betrüger</string>
-    <string name="setup_impostor_count_item">%1$d Betrüger</string>
+    <string name="setup_impostor_count_title">Infiltratoren</string>
+    <string name="setup_impostor_count_item">%1$d Infiltrator(en)</string>
     <string name="setup_categories_selected">%1$d ausgewählt</string>
     <string name="setup_categories_support">Wähle ein paar breite Kategorien, damit Hinweise klar bleiben.</string>
     <string name="setup_clue_rounds_title">Runden pro Partie</string>
@@ -67,7 +67,7 @@
     <string name="reveal_hold_to_see">Gedrückt halten zum Aufdecken</string>
     <string name="reveal_hold_hint">Kurz gedrückt halten. Beim Loslassen wird es wieder verborgen.</string>
     <string name="reveal_word_title">Das Wort ist</string>
-    <string name="reveal_impostor_title">Du bist der Betrüger</string>
+    <string name="reveal_impostor_title">Du bist der Infiltrator</string>
     <string name="reveal_impostor_hint">Falle nicht auf und errate das Wort.</string>
     <string name="reveal_hide_and_pass_named">An %1$s weitergeben</string>
     <string name="reveal_hide_and_finish">Alles bereit</string>
@@ -76,14 +76,14 @@
     <string name="round_ready_instructions">Legt das Handy weg. Jede Person sagt pro Runde genau ein Wort. Der sinnvolle Standard sind 2 Runden vor der Abstimmung; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
     <string name="round_ready_clue_rounds">Festgelegte Runden für diese Partie: %1$d</string>
     <string name="round_ready_word_per_turn">In jeder Runde sagt jede Person 1 Wort.</string>
-    <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr für den Betrüger ab.</string>
+    <string name="round_ready_vote_after_rounds">Nach %1$d Runden stimmt ihr für den Infiltrator ab.</string>
     <string name="round_ready_suggested_time">Empfohlene Zeit: %1$d Minuten</string>
     <string name="round_ready_finish_button">Runde beenden</string>
     <string name="round_ready_new_config_button">Neu einrichten</string>
 
     <string name="result_title">Rundenergebnis</string>
     <string name="result_word_label">Geheimes Wort</string>
-    <string name="result_impostor_label">Betrüger: %1$s</string>
+    <string name="result_impostor_label">Infiltrator(en): %1$s</string>
     <string name="result_winner_title">Wer hat gewonnen?</string>
     <string name="result_rematch_button">Nochmal mit gleichen Einstellungen</string>
     <string name="result_new_setup_button">Zum Menü</string>
@@ -94,13 +94,13 @@
     <string name="review_prompt_send_feedback">Vorschlag senden</string>
 
     <string name="winner_civilians">Zivilisten</string>
-    <string name="winner_impostors">Betrüger</string>
+    <string name="winner_impostors">Infiltrator(en)</string>
     <string name="winner_undecided">Unentschieden</string>
     <string name="how_intro">Verstehe den kompletten Ablauf in unter einer Minute.</string>
     <string name="how_objective_title">Ziel</string>
     <string name="how_objective_line_1">Alle außer einer Person sehen dasselbe geheime Wort.</string>
-    <string name="how_objective_line_2">Eine Person ist der Betrüger und kennt das Wort nicht.</string>
-    <string name="how_objective_line_3">Die Gruppe muss den Betrüger finden. Der Betrüger muss sich tarnen und das Wort erraten.</string>
+    <string name="how_objective_line_2">Eine Person ist der Infiltrator und kennt das Wort nicht.</string>
+    <string name="how_objective_line_3">Die Gruppe muss den Infiltrator finden. Der Infiltrator muss sich tarnen und das Wort erraten.</string>
     <string name="how_preparation_title">Vorbereitung</string>
     <string name="how_preparation_line_1">Wähle Spielerzahl und Kategorien für die Partie.</string>
     <string name="how_preparation_line_2">Die App verteilt die Rollen mit nur einem gemeinsamen Handy.</string>
@@ -111,10 +111,10 @@
     <string name="how_play_line_3">Der sinnvolle Standard sind 2 Runden vor der Abstimmung; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
     <string name="how_play_line_4">Die App steuert die gesprochenen Wortmeldungen nicht; das macht die Gruppe.</string>
     <string name="how_win_title">So gewinnt man</string>
-    <string name="how_win_line_1">Nach 2 Runden, oder nach 3 falls der Gruppe noch Informationen fehlen, stimmt ihr ab, wer der Betrüger ist.</string>
-    <string name="how_win_line_2">Wird der Betrüger enttarnt, gewinnen die Zivilen.</string>
-    <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Betrüger.</string>
-    <string name="how_win_line_4">Optionale Hausregel: Wird der Betrüger enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>
+    <string name="how_win_line_1">Nach 2 Runden, oder nach 3 falls der Gruppe noch Informationen fehlen, stimmt ihr ab, wer der Infiltrator ist.</string>
+    <string name="how_win_line_2">Wird der Infiltrator enttarnt, gewinnen die Zivilen.</string>
+    <string name="how_win_line_3">Liegt die Gruppe falsch, gewinnt der Infiltrator.</string>
+    <string name="how_win_line_4">Optionale Hausregel: Wird der Infiltrator enttarnt, kann er mit einer Wort-Erratung ein Unentschieden holen (nicht in der App umgesetzt).</string>
     <string name="how_tips_title">Tipps für bessere Runden</string>
     <string name="how_tip_1">Gib keine zu eindeutigen Hinweise.</string>
     <string name="how_tip_2">2 Runden sind meist der beste Startpunkt; spielt nur dann eine dritte, wenn der Gruppe noch Informationen fehlen.</string>
@@ -197,7 +197,7 @@
 
     <string name="history_empty">Noch keine Runden vorhanden.</string>
     <string name="history_category_format">Kategorie: %1$s</string>
-    <string name="history_impostors_format">Betrüger: %1$s</string>
+    <string name="history_impostors_format">Infiltrator(en): %1$s</string>
 
     <string name="credits_creator_title">Erstellt von</string>
     <string name="credits_creator_body">Gastry</string>
@@ -221,11 +221,11 @@
 
     <string name="error_generic">Etwas ist schiefgelaufen. Bitte erneut versuchen.</string>
     <string name="error_player_count">Spielerzahl muss zwischen 3 und 12 liegen.</string>
-    <string name="error_impostor_count">Diese Anzahl an Betrügern ist für diese Spielerzahl ungültig.</string>
+    <string name="error_impostor_count">Diese Anzahl an Infiltratoren ist für diese Spielerzahl ungültig.</string>
     <string name="error_categories_empty">Bitte wähle mindestens eine Kategorie.</string>
     <string name="error_round_time">Rundenzeit muss zwischen 3 und 20 Minuten liegen.</string>
     <string name="error_clue_rounds">Runden pro Partie müssen zwischen 1 und 3 liegen.</string>
-    <string name="error_not_enough_civilians">Es müssen mindestens zwei Nicht-Betrüger übrig bleiben.</string>
+    <string name="error_not_enough_civilians">Es müssen mindestens zwei Nicht-Infiltratoren übrig bleiben.</string>
     <string name="error_player_names_required">Trage für alle Spieler echte Namen ein, bevor du Spielernamen als Kategorie nutzt.</string>
     <string name="error_no_words_for_category">Für die gewählten Kategorien sind keine Wörter verfügbar.</string>
     <string name="error_no_words_recent_filter">Der Filter für zuletzt genutzte Wörter hat alle Optionen entfernt. Deaktiviere ihn oder wähle mehr Kategorien.</string>
