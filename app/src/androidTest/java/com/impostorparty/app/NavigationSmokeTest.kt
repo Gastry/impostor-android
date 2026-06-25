@@ -51,9 +51,7 @@ class NavigationSmokeTest {
 
     @Test
     fun setup_valid_to_round_ready_shows_basic_instructions() {
-        startRoundSetupFromHome()
-        composeRule.onNodeWithTag("setup_start_button").performScrollTo().performClick()
-
+        startRoundFromHome()
         completeRevealFlow(playerCount = 6)
 
         composeRule.onNodeWithText(text(R.string.round_ready_instructions)).assertIsDisplayed()
@@ -98,6 +96,12 @@ class NavigationSmokeTest {
     private fun startRoundFromHome() {
         startRoundSetupFromHome()
         composeRule.onNodeWithTag("setup_start_button").performScrollTo().performClick()
+        composeRule.waitUntil(timeoutMillis = 7_000) {
+            composeRule.onAllNodesWithTag("player_names_start_button")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithTag("player_names_start_button").assertIsDisplayed()
+        composeRule.onNodeWithTag("player_names_start_button").performClick()
         composeRule.waitUntil(timeoutMillis = 7_000) {
             composeRule.onAllNodesWithTag("reveal_hold_button")
                 .fetchSemanticsNodes().isNotEmpty()

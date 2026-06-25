@@ -86,6 +86,12 @@ class LocaleLayoutSmokeTest {
         composeRule.onNodeWithTag("setup_start_button").performClick()
 
         composeRule.waitUntil(timeoutMillis = 8_000) {
+            composeRule.onAllNodesWithTag("player_names_start_button").fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithTag("player_names_start_button").assertIsDisplayed()
+        composeRule.onNodeWithTag("player_names_start_button").performClick()
+
+        composeRule.waitUntil(timeoutMillis = 8_000) {
             composeRule.onAllNodesWithTag("reveal_hold_button").fetchSemanticsNodes().isNotEmpty()
         }
 

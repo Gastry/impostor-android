@@ -64,6 +64,7 @@ fun ImpostorPartyRoot(
     val navController = rememberNavController()
     val appSettings by settingsViewModel.appSettings.collectAsStateWithLifecycle()
     val adsRemoved by settingsViewModel.adsRemoved.collectAsStateWithLifecycle()
+    val promosEnabled = !adsRemoved && RuntimeFlags.externalServicesEnabled
     val activeRound by sessionViewModel.activeRound.collectAsStateWithLifecycle()
     val feedbackForm by feedbackViewModel.feedbackForm.collectAsStateWithLifecycle()
     val reviewPrompt by sessionViewModel.reviewPrompt.collectAsStateWithLifecycle()
@@ -135,7 +136,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Home.route) {
                 HomeScreen(
                     stats = settingsViewModel.stats.collectAsStateWithLifecycle().value,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     homeBannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HOME_BANNER,
                         adsRemoved = adsRemoved,
@@ -155,7 +156,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Setup.route) {
                 SetupScreen(
                     setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.SETUP_BANNER,
                         adsRemoved = adsRemoved,
@@ -181,7 +182,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.PlayerNames.route) {
                 PlayerNamesScreen(
                     setup = setupViewModel.setup.collectAsStateWithLifecycle().value,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.SETUP_BANNER,
                         adsRemoved = adsRemoved,
@@ -220,7 +221,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.Reveal.route) {
                 RevealScreen(
                     roundSession = activeRound,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.REVEAL_BANNER,
                         adsRemoved = adsRemoved,
@@ -324,7 +325,7 @@ fun ImpostorPartyRoot(
 
             composable(AppRoute.HowToPlay.route) {
                 HowToPlayScreen(
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HOW_TO_PLAY_BANNER,
                         adsRemoved = adsRemoved,
@@ -349,7 +350,7 @@ fun ImpostorPartyRoot(
                 val highlightRemoveAds = entry.arguments?.getBoolean(AppRoute.Settings.HighlightRemoveAdsArg) == true
                 SettingsScreen(
                     settings = appSettings,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.SETTINGS_BANNER,
                         adsRemoved = adsRemoved,
@@ -400,7 +401,7 @@ fun ImpostorPartyRoot(
             composable(AppRoute.History.route) {
                 HistoryScreen(
                     history = settingsViewModel.history.collectAsStateWithLifecycle().value,
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.HISTORY_BANNER,
                         adsRemoved = adsRemoved,
@@ -415,7 +416,7 @@ fun ImpostorPartyRoot(
 
             composable(AppRoute.Credits.route) {
                 CreditsScreen(
-                    adsEnabled = !adsRemoved,
+                    adsEnabled = promosEnabled,
                     bannerAdUnitId = AdsConfig.adUnitIdFor(
                         placement = AdPlacement.CREDITS_BANNER,
                         adsRemoved = adsRemoved,

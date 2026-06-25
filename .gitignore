@@ -21,6 +21,10 @@ signing/
 release-artifacts/*.aab
 *.lock
 
+# Local third-party reverse engineering workspace
+reverse-engineering/
+reverse-engineering.rar
+
 # OS
 .DS_Store
 Thumbs.db
