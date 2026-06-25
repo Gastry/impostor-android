@@ -23,7 +23,7 @@ val hasReleaseSigning =
     releaseStorePassword.isNullOrBlank().not() &&
         releaseKeyPassword.isNullOrBlank().not() &&
         file(releaseStoreFilePath).exists()
-val appVersionCode = 8
+val appVersionCode = 9
 
 val suspiciousStringMarkers = listOf(
     "\u00C3",
